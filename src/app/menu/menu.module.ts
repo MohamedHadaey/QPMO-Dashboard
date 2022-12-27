@@ -6,7 +6,7 @@ import { CalenderComponent } from './components/calender/calender.component';
 import { FavouritesComponent } from './components/favourites/favourites.component';
 import { ReportsComponent } from './components/reports/reports.component';
 import { RouterModule } from '@angular/router';
-import {  ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '../shared/shared.module';
@@ -14,20 +14,21 @@ import { SharedModule } from '../shared/shared.module';
 import { GoogleMapsModule } from '@angular/google-maps';
 //import { AgmCoreModule } from '@agm/core/lib/core.module';
 
-// import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+
 // import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 // from angular material
 import { MatSliderModule } from '@angular/material/slider';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 // npm
 // import swiper
-import { SwiperModule } from "swiper/angular";
+import { SwiperModule } from 'swiper/angular';
 
 // my trail to add calender cards
-import { CalendarModule } from '@syncfusion/ej2-angular-calendars';
 
 // import ApexCharts for charts
-import { NgApexchartsModule } from "ng-apexcharts";
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 
 
@@ -37,7 +38,7 @@ import { NgApexchartsModule } from "ng-apexcharts";
     ProjectsComponent,
     CalenderComponent,
     FavouritesComponent,
-    ReportsComponent
+    ReportsComponent,
   ],
   imports: [
     CommonModule,
@@ -49,19 +50,18 @@ import { NgApexchartsModule } from "ng-apexcharts";
     NgApexchartsModule,
     NgxSliderModule,
     TranslateModule,
-    CalendarModule
-    // CalendarModule.forRoot({
-    //   provide: DateAdapter,
-    //   useFactory: adapterFactory,
-    // }),
+    GoogleMapsModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
   ],
   exports: [
     MainComponent,
     ProjectsComponent,
     FavouritesComponent,
     CalenderComponent,
-    ReportsComponent
-  ]
-
+    ReportsComponent,
+  ],
 })
-export class MenuModule { }
+export class MenuModule {}
