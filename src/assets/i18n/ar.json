@@ -53,7 +53,8 @@
   "project-states": "احصائيات المشاريع ( النوع )",
   "from": "من",
   "to": "الى",
-  "projects-archive": "احصائيات المشاريع ( الحالة )",
+  "project-archive": "ارشيف المشاريع",
+  "projects-archive-states": "احصائيات المشاريع ( الحالة )",
   "completed": "مكتملة",
   "not-completed": "غير مكتملة",
 

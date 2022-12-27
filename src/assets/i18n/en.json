@@ -53,7 +53,8 @@
 "project-states": "Project Statistics ( Type )",
 "from": "From",
 "to": "To",
-"projects-archive": "Project Statistics ( Status )",
+"projects-archive": "Projects archive",
+"projects-archive-states": "Project Statistics ( Status )",
 "completed": "Completed",
 "not-completed": "Not Completed",
 

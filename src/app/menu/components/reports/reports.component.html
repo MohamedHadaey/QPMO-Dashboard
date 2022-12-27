@@ -103,13 +103,15 @@
                   <div class="employees p-3">
                     <div class="employees-head w-100 d-flex justify-content-between align-items-center">
                       <div class="logo d-flex align-items-center">
-                        <img src="../../../../assets/images/Dashboard-icons/archives.png" alt="worker">
-                        <h4>{{"projects-archive" | translate }}</h4>
+                        <img src="../../../../assets/images/Dashboard-icons/rate.png" alt="worker">
+                        <h4>{{"projects-archive-states" | translate }}</h4>
                       </div>
                     </div>
                     <!-- begin:: chart -->
+                    <div class="chart-container">
+                      <apx-chart [chart]="stateChartDetails" [series]="stateChartSeries" [labels]="['لم يتم التعميد','الحالية','تنتهى قريبا','متأخرة','مكتملة']" [dataLabels]="statechartDetails"></apx-chart>
+                    </div>
 
-                    <!-- test -->
 
                     <!-- end:: charts -->
                   </div>
@@ -126,7 +128,7 @@
                     <div class="employees-number py-0">
                       <div class="row">
                         <div class="chart-container">
-                          <apx-chart [chart]="ChartDetails" [series]="ChartSeries" [labels]="['mohamed','ahmed','ali','omar']" [dataLabels]="chartDetails"></apx-chart>
+                          <apx-chart [chart]="typeChartDetails" [series]="typeChartSeries" [labels]="[' إنارة طرق ',' طرق ',' صرف صحى ',' كبارى ']" [dataLabels]="typechartDetails"></apx-chart>
                         </div>
                       </div>
                     </div>
@@ -176,7 +178,26 @@
                 </div>
 
               </div>
+              <div class="row justify-content-center align-items-center">
+                <div class="col-sm-8">
+                  <div class="employees p-3">
+                    <div class="employees-head  w-100 d-flex justify-content-between align-items-center">
+                      <div class="logo d-flex align-items-center flex-grow-1">
+                        <img src="../../../../assets/images/Dashboard-icons/archives.png" alt="rate">
+                        <h4>{{"project-archive" | translate }}</h4>
+                      </div>
 
+                    </div>
+                    <div class="employees-number py-0">
+                      <div class="row">
+                        <div class="chart-container">
+                          <apx-chart [chart]="typeChartDetails" [series]="typeChartSeries" [labels]="[' إنارة طرق ',' طرق ',' صرف صحى ',' كبارى ']" [dataLabels]="typechartDetails" height="250"></apx-chart>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -9,25 +9,34 @@ import {
 // end:: using charts
 
 
-
 @Component({
   selector: 'app-reports',
   templateUrl: './reports.component.html',
   styleUrls: ['./reports.component.scss']
 })
 export class ReportsComponent implements OnInit {
-  ChartSeries: ApexNonAxisChartSeries = [26,16,18,40];
-  ChartDetails: ApexChart = {
+  typeChartSeries: ApexNonAxisChartSeries = [26,16,18,40];
+  typeChartDetails: ApexChart = {
     type: "donut",
     toolbar: {
       show: true
     }
   };
 
-  // chartLabels = [" إنارة طرق " , " طرق " , " صرف صحى " , " كبارى "];
+  typechartDetails: ApexDataLabels = {
+    enabled: true
+  }
+  /********************/
+  stateChartSeries: ApexNonAxisChartSeries = [26,16,18,40,60];
+  stateChartDetails: ApexChart = {
+    type: "bar",
+    toolbar: {
+      show: true
+    }
+  };
 
-  chartDetails: ApexDataLabels = {
-    enabled: false
+  statechartDetails: ApexDataLabels = {
+    enabled: true
   }
 
   /******************** */

@@ -199,18 +199,16 @@
                   font-weight: bold;
                 }
 
-                .chart-container{
-                  width: 450px;
-                  margin: auto;
-
-
-
-
-                }
 
               }
             }
           }
+          .chart-container{
+            max-width: 450px;
+            margin: auto;
+
+          }
+
         }
 
         // dates-grade

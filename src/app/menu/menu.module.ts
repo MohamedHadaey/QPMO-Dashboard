@@ -29,6 +29,8 @@ import { CalendarModule } from '@syncfusion/ej2-angular-calendars';
 // import ApexCharts for charts
 import { NgApexchartsModule } from "ng-apexcharts";
 
+
+
 @NgModule({
   declarations: [
     MainComponent,
