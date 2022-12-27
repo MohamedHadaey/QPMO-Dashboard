@@ -103,6 +103,8 @@ export class CalenderComponent implements OnInit {
   /****************/
   refresh = new Subject<void>();
   viewDate: Date = new Date();
+  minDate: Date = new Date ("10/01/2022");
+  maxDate: Date = new Date ("12/30/2022");
   activeDayIsOpen: boolean = true;
   events: CalendarEvent[] = [
     {

@@ -87,20 +87,18 @@
       <div style="display: flex; align-items: center;justify-content: center;" class="container-fluid w-100 pt-3">
         <div style="width: 50vw;">
           <mwl-calendar-month-view style="width:50%" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
-            [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)">
+            [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day);showDayProjects()">
           </mwl-calendar-month-view>
         </div>
       </div>
-      <!-- <div class="container-fluid w-100 pt-3">
+
+      <div class="container-fluid w-100 pt-3">
         <div class="row p-3">
           <div class="calender-content">
-            <div class="dates-carousel py-3">
-              <img src="../../../../assets/images/Dashboard-icons/calenders.jpg" alt="" (click)="showDayProjects()" class="hover">
-            </div>
-             <app-project-details></app-project-details>
+            <app-project-details></app-project-details>
           </div>
         </div>
-      </div> -->
+      </div>
     </div>
   </div>
 </section>

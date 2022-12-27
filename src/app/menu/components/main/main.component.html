@@ -243,44 +243,16 @@
           </div>
         </div>
         <!-- begin map theme -->
-        <div class="row row-map p-0" *ngIf="showen == 'maps'">
-          <!-- <div class="col-12">
-            <div class="map " *ngIf="map">
-              <div class="row">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1060958.2186432849!2d43.38579170635075!3d25.964688843173548!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x158310b24d17ecf7%3A0x3ce0a3b106868cf1!2z2KfZhNio2KrYsdin2KEg2KfZhNiz2LnZiNiv2YrYqQ!5e0!3m2!1sar!2seg!4v1669635784858!5m2!1sar!2seg"
-                  width="600" height="700" style="border:0;" allowfullscreen="" loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="row row-map p-3" *ngIf="showen == 'maps'">
+          <div >
+            <google-map height="100%" width="100%" [center]="center" [zoom]="zoom" [options]="mapsop">
 
-              </div>
-            </div>
-            <div class="map map-fav" *ngIf="!map">
-              <div class="row ">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1060958.2186432849!2d43.38579170635075!3d25.964688843173548!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x158310b24d17ecf7%3A0x3ce0a3b106868cf1!2z2KfZhNio2KrYsdin2KEg2KfZhNiz2LnZiNiv2YrYqQ!5e0!3m2!1sar!2seg!4v1669635784858!5m2!1sar!2seg"
-                  width="600" height="700" style="border:0;" allowfullscreen="" loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"></iframe>
-              </div>
-            </div>
-          </div> -->
-
-          <google-map height="100%" width="100%" [center]="center" [zoom]="zoom" [options]="mapsop">
-
-            <map-marker *ngFor="let markerPosition of projectslocations " [icon]="markerPosition.status"
-              [position]="markerPosition.position" [options]="markerOptions"
-              (mapClick)="MarkerClick(markerPosition)"></map-marker>
-          </google-map>
+              <map-marker *ngFor="let markerPosition of projectslocations " [icon]="markerPosition.status"
+                [position]="markerPosition.position" [options]="markerOptions"
+                (mapClick)="MarkerClick(markerPosition)"></map-marker>
+            </google-map>
+          </div>
         </div>
-
-        <!--
-        <div class="row row-map" *ngIf="showen == 'maps'">
-          <google-map height="100%" width="100%" [center]="center" [zoom]="zoom" [options]="mapsop">
-
-            <map-marker *ngFor="let markerPosition of projectslocations " [icon]="markerPosition.status"
-              [position]="markerPosition.position" [options]="markerOptions"></map-marker>
-          </google-map>
-        </div> -->
-
         <!-- end: map theme -->
         <!-- begin: list theme  -->
         <div class="row row-list" *ngIf="showen == 'lists'">
