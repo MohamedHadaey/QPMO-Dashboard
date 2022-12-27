@@ -6,7 +6,6 @@ import { Options } from '@angular-slider/ngx-slider';
 declare const $: any;
 declare var google: any;
 
-
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -15,190 +14,190 @@ declare var google: any;
 export class MainComponent implements OnInit {
   // price range inputs
   // section input
-  sectionMinValue:any = 25;
-  sectionMaxValue:any = 75;
+  sectionMinValue: any = 25;
+  sectionMaxValue: any = 75;
   sectionOptions: Options = {
     floor: 0,
     ceil: 100,
   };
+  MarkerClick(ll: googleMaps_ApiReturn) {
+    console.log(ll);
+  }
   // constructor input
-  constructorMinValue:any = 30;
-  constructorMaxValue:any = 60;
+  constructorMinValue: any = 30;
+  constructorMaxValue: any = 60;
   constructorOptions: Options = {
     floor: 0,
-    ceil: 100
-  }
+    ceil: 100,
+  };
   /**************************/
   map: boolean = true;
   list: boolean = true;
   card: boolean = true;
   showen: string = 'maps';
-  currentLanguage: any = localStorage.getItem("currentLanguage");
+  currentLanguage: any = localStorage.getItem('currentLanguage');
+  display: any;
+
   constructor(
     private _AuthService: AuthService,
     private _MenuService: MenuService
-  ) {
+  ) {}
 
-  }
+  /////////////////////Maps////////////////////
+  center: google.maps.LatLngLiteral = {
+    lat: 25.295213,
+    lng: 50.454654,
+  };
+  mapsop: google.maps.MapOptions = {
+    styles: [
+      { elementType: 'geometry', stylers: [{ color: '#242f3e' }] },
+      { elementType: 'labels.text.stroke', stylers: [{ color: '#242f3e' }] },
+      { elementType: 'labels.text.fill', stylers: [{ color: '#746855' }] },
+      {
+        featureType: 'administrative.locality',
+        elementType: 'labels.text.fill',
+        stylers: [{ color: '#d59563' }],
+      },
+      {
+        featureType: 'poi',
+        elementType: 'labels.text.fill',
+        stylers: [{ color: '#d59563' }],
+      },
+      {
+        featureType: 'poi.park',
+        elementType: 'geometry',
+        stylers: [{ color: '#263c3f' }],
+      },
+      {
+        featureType: 'poi.park',
+        elementType: 'labels.text.fill',
+        stylers: [{ color: '#6b9a76' }],
+      },
+      {
+        featureType: 'road',
+        elementType: 'geometry',
+        stylers: [{ color: '#202124' }],
+      },
+      {
+        featureType: 'road',
+        elementType: 'geometry.stroke',
+        stylers: [{ color: '#202124' }],
+      },
+      {
+        featureType: 'road',
+        elementType: 'labels.text.fill',
+        stylers: [{ color: '#202124' }],
+      },
+      {
+        featureType: 'road.highway',
+        elementType: 'geometry',
+        stylers: [{ color: '#202124' }],
+      },
+      {
+        featureType: 'road.highway',
+        elementType: 'geometry.stroke',
+        stylers: [{ color: '#202124' }],
+      },
+      {
+        featureType: 'road.highway',
+        elementType: 'labels.text.fill',
+        stylers: [{ color: '#202124' }],
+      },
+      {
+        featureType: 'transit',
+        elementType: 'geometry',
+        stylers: [{ color: '#2f3948' }],
+      },
+      {
+        featureType: 'transit.station',
+        elementType: 'labels.text.fill',
+        stylers: [{ color: '#d59563' }],
+      },
+      {
+        featureType: 'water',
+        elementType: 'geometry',
+        stylers: [{ color: '#17263c' }],
+      },
+      {
+        featureType: 'water',
+        elementType: 'labels.text.fill',
+        stylers: [{ color: '#515c6d' }],
+      },
+      {
+        featureType: 'water',
+        elementType: 'labels.text.stroke',
+        stylers: [{ color: '#17263c' }],
+      },
+    ],
+  };
+  zoom = 8;
 
+  projectslocations: googleMaps_ApiReturn[] = [
+    {
+      position: {
+        lat: 25.295213,
+        lng: 50.454654,
+      },
+      status: {
+        scaledSize: {
+          height: 40,
+          width: 40,
+          equals(other) {
+            return true;
+          },
+        },
+        url: '../../../../assets/maps_images/green.png',
+      },
+    },
+    {
+      position: {
+        lat: 24.295213,
+        lng: 50.454654,
+      },
+      status: {
+        scaledSize: {
+          height: 40,
+          width: 40,
+          equals(other) {
+            return true;
+          },
+        },
+        url: '../../../../assets/maps_images/yellow.png',
+      },
+    },
+    {
+      position: {
+        lat: 24.895213,
+        lng: 49.454654,
+      },
+      status: {
+        scaledSize: {
+          height: 40,
+          width: 40,
+          equals(other) {
+            return true;
+          },
+        },
+        url: '../../../../assets/maps_images/red.png',
+      },
+    },
+  ];
+
+  markerOptions: google.maps.MarkerOptions = {
+    draggable: false,
+  };
+  ////////////////////////////////////////////
   ngOnInit(): void {
     // for check directions after any refresh
-    if(this.currentLanguage == "ar"){
-      $(".content-body").removeClass("content-body-ltr")
-      $(".content-body").addClass("content-body-rtl")
-    }else{
-      $(".content-body").removeClass("content-body-rtl")
-      $(".content-body").addClass("content-body-ltr")
+    if (this.currentLanguage == 'ar') {
+      $('.content-body').removeClass('content-body-ltr');
+      $('.content-body').addClass('content-body-rtl');
+    } else {
+      $('.content-body').removeClass('content-body-rtl');
+      $('.content-body').addClass('content-body-ltr');
     }
   }
-    /*********************************/
-
-    display: any;
-    center: google.maps.LatLngLiteral = {
-      lat: 25.295213,
-      lng: 50.454654,
-    };
-    mapsop: google.maps.MapOptions = {
-      styles: [
-        { elementType: 'geometry', stylers: [{ color: '#242f3e' }] },
-        { elementType: 'labels.text.stroke', stylers: [{ color: '#242f3e' }] },
-        { elementType: 'labels.text.fill', stylers: [{ color: '#746855' }] },
-        {
-          featureType: 'administrative.locality',
-          elementType: 'labels.text.fill',
-          stylers: [{ color: '#d59563' }],
-        },
-        {
-          featureType: 'poi',
-          elementType: 'labels.text.fill',
-          stylers: [{ color: '#d59563' }],
-        },
-        {
-          featureType: 'poi.park',
-          elementType: 'geometry',
-          stylers: [{ color: '#263c3f' }],
-        },
-        {
-          featureType: 'poi.park',
-          elementType: 'labels.text.fill',
-          stylers: [{ color: '#6b9a76' }],
-        },
-        {
-          featureType: 'road',
-          elementType: 'geometry',
-          stylers: [{ color: '#202124' }],
-        },
-        {
-          featureType: 'road',
-          elementType: 'geometry.stroke',
-          stylers: [{ color: '#202124' }],
-        },
-        {
-          featureType: 'road',
-          elementType: 'labels.text.fill',
-          stylers: [{ color: '#202124' }],
-        },
-        {
-          featureType: 'road.highway',
-          elementType: 'geometry',
-          stylers: [{ color: '#202124' }],
-        },
-        {
-          featureType: 'road.highway',
-          elementType: 'geometry.stroke',
-          stylers: [{ color: '#202124' }],
-        },
-        {
-          featureType: 'road.highway',
-          elementType: 'labels.text.fill',
-          stylers: [{ color: '#202124' }],
-        },
-        {
-          featureType: 'transit',
-          elementType: 'geometry',
-          stylers: [{ color: '#2f3948' }],
-        },
-        {
-          featureType: 'transit.station',
-          elementType: 'labels.text.fill',
-          stylers: [{ color: '#d59563' }],
-        },
-        {
-          featureType: 'water',
-          elementType: 'geometry',
-          stylers: [{ color: '#17263c' }],
-        },
-        {
-          featureType: 'water',
-          elementType: 'labels.text.fill',
-          stylers: [{ color: '#515c6d' }],
-        },
-        {
-          featureType: 'water',
-          elementType: 'labels.text.stroke',
-          stylers: [{ color: '#17263c' }],
-        },
-      ],
-    };
-    zoom = 8;
-
-    projectslocations: googleMaps_ApiReturn[] = [
-      {
-        position: {
-          lat: 25.295213,
-          lng: 50.454654,
-        },
-        status: {
-          scaledSize: {
-            height: 40,
-            width: 40,
-            equals(other) {
-              return true;
-            },
-          },
-          // url: '../../../../assets/maps_images/green.png',
-          url: '../../../../assets/images/Dashboard-icons/exit.png',
-        },
-      },
-      {
-        position: {
-          lat: 24.295213,
-          lng: 50.454654,
-        },
-        status: {
-          scaledSize: {
-            height: 40,
-            width: 40,
-            equals(other) {
-              return true;
-            },
-          },
-          // url: '../../../../assets/maps_images/yellow.png',
-          url: '../../../../assets/images/Dashboard-icons/exit.png',
-        },
-      },
-      {
-        position: {
-          lat: 24.895213,
-          lng: 49.454654,
-        },
-        status: {
-          scaledSize: {
-            height: 40,
-            width: 40,
-            equals(other) {
-              return true;
-            },
-          },
-          // url: '../../../../assets/maps_images/red.png',
-          url: '../../../../assets/images/Dashboard-icons/exit.png',
-        },
-      },
-    ];
-
-    markerOptions: google.maps.MarkerOptions = {
-      draggable: false,
-    };
+  /*********************************/
 
   // filter form inputs
   filterForm: FormGroup = new FormGroup({
