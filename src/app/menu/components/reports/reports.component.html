@@ -1,0 +1,198 @@
+<section class="content">
+  <div class="row">
+    <div class="sidebar">
+      <div class="bg-white pt-5 h-100">
+        <ul class="h-100">
+          <li routerLink="/home"><img src="../../../../assets/images/Dashboard-icons/home.png"
+              alt="home"><span>{{"home" | translate }}</span></li>
+          <li routerLink="/projects"><img src="../../../../assets/images/Dashboard-icons/trackprojects.png"
+              alt="projects"><span>{{"projects" | translate }}</span></li>
+          <li routerLink="/calender"><img src="../../../../assets/images/Dashboard-icons/calender.png"
+              alt="calender"><span>{{"calender" | translate }}</span></li>
+          <li routerLink="/favourites"><img src="../../../../assets/images/Dashboard-icons/fav-darkgray.png"
+              alt="favourites"><span>{{"favourite" | translate }}</span></li>
+          <li class="active" routerLink="/reports"><img src="../../../../assets/images/Dashboard-icons/report.png"
+              alt="reports"><span>{{"statistics" | translate }}</span></li>
+        </ul>
+        <div class="list-group list-group-flush">
+        </div>
+      </div>
+      <div class="offcanvas offcanvas-end p-0" tabindex="-1" id="offcanvasExample"
+        aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header border border-bottom-1">
+          <h5 class="offcanvas-title"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body p-0 px-2 bg-white">
+          <div class="bg-white h-100">
+            <ul class="h-100">
+              <li routerLink="/home"><img src="../../../../assets/images/Dashboard-icons/home.png"
+                  alt="home"><span>{{"home" | translate }}</span></li>
+              <li routerLink="/projects"><img src="../../../../assets/images/Dashboard-icons/trackprojects.png"
+                  alt="projects"><span>{{"projects" | translate }}</span></li>
+              <li routerLink="/calender"><img src="../../../../assets/images/Dashboard-icons/calender.png"
+                  alt="calender"><span>{{"calender" | translate }}</span></li>
+              <li routerLink="/favourites"><img src="../../../../assets/images/Dashboard-icons/fav-darkgray.png"
+                  alt="favourites"><span>{{"favourite" | translate }}</span></li>
+              <li class="active" routerLink="/reports"><img src="../../../../assets/images/Dashboard-icons/report.png"
+                  alt="reports"><span>{{"statistics" | translate }}</span></li>
+            </ul>
+            <div class="list-group list-group-flush">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+      <nav class="navbar">
+        <app-toggler></app-toggler>
+        <h2>QPMO<sub>system</sub></h2>
+        <div class="d-flex justify-content-center align-items-center icons">
+          <app-language></app-language>
+          <img src="../../../../assets/images/Dashboard-icons/msg01.png" alt="msgs" routerLink="/messages">
+          <div class="dropdown">
+            <button class="dropdown-toggle mx-2 p-0" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <img src="../../../../assets/images/Dashboard-icons/profile.png" alt="user" class="profile m-0">
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li>
+                <div class="row">
+                  <div class="col-4 p-0">
+                    <div class="profile-img">
+                      <div class="layer">
+                        <img class="img-fluid" src="../../../../assets/images/Dashboard-icons/profile.jpg"
+                          alt="profile-img">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-8">
+                    <p>{{"ahmed-esmael" | translate }}</p>
+                  </div>
+                </div>
+              </li>
+              <li class="mt-2">
+                <button routerLink="/profile" class="hover bg-secondary"><span>{{"profile" | translate }}</span></button>
+              </li>
+              <li class="mb-2">
+                <button (click)="logOut()" routerLink="/login" class="hover bg-danger"><span>{{"log-out" | translate }}</span></button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="container-fluid w-100 pt-3">
+        <div class="row p-0">
+          <div class="col-12 p-3">
+            <div class="list p-3">
+              <!-- <div class="row dates-grade">
+                <span class="datepicker-toggle">
+                  <img class="datepicker-toggle-button" src="../../../../assets/images/Dashboard-icons/date.png" alt="date icon">
+                  <input type="date" class="datepicker-input">
+                </span>
+                <p>{{"form" | translate }}</p>
+               <span class="datepicker-toggle">
+                  <img class="datepicker-toggle-button" src="../../../../assets/images/Dashboard-icons/date.png" alt="date icon">
+                  <input type="date" class="datepicker-input">
+                </span>
+                <p>{{"to" | translate }}</p>
+                <input type="date" >
+              </div> -->
+              <div class="row date-range">
+                <form action="">
+                <div class="range start">
+                  <span>{{"from" | translate }}</span>
+                  <input type="date" value="2022-01-01" id="start" name="range-start">
+                </div>
+                <div class="range end">
+                  <span>{{"to" | translate }}</span>
+                  <input type="date" value="2022-12-30" id="end" name="range-start">
+                </div>
+              </form>
+              </div>
+              <div class="row reports">
+                <div class="col-md-6 p-3">
+                  <div class="employees p-3">
+                    <div class="employees-head w-100 d-flex justify-content-between align-items-center">
+                      <div class="logo d-flex align-items-center">
+                        <img src="../../../../assets/images/Dashboard-icons/archives.png" alt="worker">
+                        <h4>{{"projects-archive" | translate }}</h4>
+                      </div>
+                    </div>
+                    <!-- begin:: chart -->
+
+
+
+                    <!-- end:: charts -->
+                  </div>
+                </div>
+                <div class="col-md-6 p-3">
+                  <div class="employees p-3">
+                    <div class="employees-head  w-100 d-flex justify-content-between align-items-center">
+                      <div class="logo d-flex align-items-center flex-grow-1">
+                        <img src="../../../../assets/images/Dashboard-icons/rate.png" alt="rate">
+                        <h4>{{"project-states" | translate }}</h4>
+                      </div>
+
+                    </div>
+                    <div class="employees-number py-0">
+                      <div class="row">
+                        <div class="chart-container">
+                          <apx-chart [chart]="ChartDetails" [series]="ChartSeries" [labels]="['mohamed','ahmed','ali','omar']" [dataLabels]="chartDetails"></apx-chart>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6 col-md-4 col-lg p-3">
+                  <div class="projects-follow-card">
+                    <h4>{{"completed-projects" | translate }}</h4>
+                    <div class="number p-3">
+                      <h3 id="color-yellow">80</h3>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg p-3">
+                  <div class="projects-follow-card">
+                    <h4>{{"delayed-projects" | translate }}</h4>
+                    <div class="number p-3">
+                      <h3 id="color-red">25</h3>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg p-3">
+                  <div class="projects-follow-card">
+                    <h4>{{"projects-neering" | translate }}</h4>
+                    <div class="number p-3">
+                      <h3 id="color-green">70</h3>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg p-3">
+                  <div class="projects-follow-card">
+                    <h4>{{"current-projects" | translate }}</h4>
+                    <div class="number p-3">
+                      <h3 id="color-primary">122</h3>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg p-3">
+                  <div class="projects-follow-card">
+                    <h4>{{"not-financial" | translate }}</h4>
+                    <div class="number p-3">
+                      <h3 id="color-secondary">08</h3>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

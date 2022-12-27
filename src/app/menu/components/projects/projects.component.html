@@ -1,0 +1,301 @@
+<section class="content">
+  <div class="row">
+    <div class="sidebar">
+      <div class="bg-white pt-5 h-100">
+        <ul class="h-100">
+          <li routerLink="/home"><img src="../../../../assets/images/Dashboard-icons/home.png"
+              alt="home"><span>{{"home" | translate }}</span></li>
+          <li class="active" routerLink="/projects"><img src="../../../../assets/images/Dashboard-icons/trackprojects.png"
+              alt="projects"><span>{{"projects" | translate }}</span></li>
+          <li routerLink="/calender"><img src="../../../../assets/images/Dashboard-icons/calender.png"
+              alt="calender"><span>{{"calender" | translate }}</span></li>
+          <li routerLink="/favourites"><img src="../../../../assets/images/Dashboard-icons/fav-darkgray.png"
+              alt="favourites"><span>{{"favourite" | translate }}</span></li>
+          <li routerLink="/reports"><img src="../../../../assets/images/Dashboard-icons/report.png"
+              alt="reports"><span>{{"statistics" | translate }}</span></li>
+        </ul>
+        <div class="list-group list-group-flush">
+        </div>
+      </div>
+      <div class="offcanvas offcanvas-end p-0" tabindex="-1" id="offcanvasExample"
+        aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header border border-bottom-1">
+          <h5 class="offcanvas-title"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body p-0 px-2 bg-white">
+          <div class="bg-white h-100">
+            <ul class="h-100">
+              <li routerLink="/home"><img src="../../../../assets/images/Dashboard-icons/home.png"
+                  alt="home"><span>{{"home" | translate }}</span></li>
+              <li class="active" routerLink="/projects"><img src="../../../../assets/images/Dashboard-icons/trackprojects.png"
+                  alt="projects"><span>{{"projects" | translate }}</span></li>
+              <li routerLink="/calender"><img src="../../../../assets/images/Dashboard-icons/calender.png"
+                  alt="calender"><span>{{"calender" | translate }}</span></li>
+              <li routerLink="/favourites"><img src="../../../../assets/images/Dashboard-icons/fav-darkgray.png"
+                  alt="favourites"><span>{{"favourite" | translate }}</span></li>
+              <li routerLink="/reports"><img src="../../../../assets/images/Dashboard-icons/report.png"
+                  alt="reports"><span>{{"statistics" | translate }}</span></li>
+            </ul>
+            <div class="list-group list-group-flush">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+      <nav class="navbar">
+        <app-toggler></app-toggler>
+        <h2>QPMO<sub>system</sub></h2>
+        <div class="d-flex justify-content-center align-items-center icons">
+          <app-language></app-language>
+          <img src="../../../../assets/images/Dashboard-icons/msg01.png" alt="msgs" routerLink="/messages">
+          <div class="dropdown">
+            <button class="dropdown-toggle mx-2 p-0" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <img src="../../../../assets/images/Dashboard-icons/profile.png" alt="user" class="profile m-0">
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li>
+                <div class="row">
+                  <div class="col-4 p-0">
+                    <div class="profile-img">
+                      <div class="layer">
+                        <img src="../../../../assets/images/Dashboard-icons/profile.jpg" alt="profile-img">
+                      </div>
+                      </div>
+                  </div>
+                  <div class="col-8">
+                    <p>{{"ahmed-esmael" | translate }}</p>
+                  </div>
+                </div>
+              </li>
+              <li class="mt-2">
+                <button routerLink="/profile" class="hover bg-secondary"><span>{{"profile" | translate }}</span></button>
+              </li>
+              <li class="mb-2">
+                <button (click)="logOut()" routerLink="/login" class="hover bg-danger"><span>{{"log-out" | translate }}</span></button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="container-fluid w-100 pt-3">
+        <div class="row">
+          <div class="col-sm-10 text-center p-2 px-3 w-100">
+            <div class="search ">
+              <span><i class="fa-solid fa-magnifying-glass"></i></span>
+              <input type="search" [placeholder]="'search' | translate">
+              <div class="dropdown">
+                <button class="dropdown-toggle me-2 p-0" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  <img src="../../../../assets/images/Dashboard-icons/filter-gray.png" alt="user" class="profile m-0">
+                </button>
+                <form [formGroup]="filterForm" (ngSubmit)="submitFilterForm(filterForm)">
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li >
+                      <div class="row">
+                        <div class="col-5">
+                          <p>{{"project-type" | translate }}</p>
+                        </div>
+                        <div class="col-7">
+                          <select class="w-100 border border-0" formControlName="project_type">
+                            <option value="1" selected>{{"roads-bridges" | translate }}</option>
+                            <option value="2">{{"sanitaion" | translate }}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </li>
+                    <li >
+                      <div class="row">
+                        <div class="col-5">
+                          <p>{{"project-state" | translate }}</p>
+                        </div>
+                        <div class="col-7 ">
+                          <div class="w-100 my-1 d-flex justify-content-between align-items-center">
+                            <span>{{"current" | translate }}</span>
+                            <div class="form-check form-switch">
+                              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked formControlName="now_check">
+                            </div>
+                          </div>
+                          <div class="w-100 my-1 d-flex justify-content-between align-items-center">
+                            <span>{{"completed" | translate }}</span>
+                            <div class="form-check form-switch">
+                              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" formControlName="complete_check">
+                            </div>
+                          </div>
+                          <div class="w-100 my-1 d-flex justify-content-between align-items-center">
+                            <span>{{"late" | translate }}</span>
+                            <div class="form-check form-switch">
+                              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" formControlName="late_check">
+                            </div>
+                          </div>
+                          <div class="w-100 my-1 d-flex justify-content-between align-items-center">
+                            <span>{{"almost-done" | translate }}</span>
+                            <div class="form-check form-switch">
+                              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked formControlName="end_check">
+                            </div>
+                          </div>
+                          <div class="w-100 my-1 d-flex justify-content-between align-items-center">
+                            <span>{{"not-financial" | translate }}</span>
+                            <div class="form-check form-switch">
+                              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" formControlName="not_check">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li >
+                      <div class="row">
+                        <div class="col-5">
+                          <p>{{"starting-date" | translate }}</p>
+                        </div>
+                        <div class="col-7 ">
+                          <div class="w-100 my-1 d-flex justify-content-between align-items-center">
+                            <input type="date" name="start_project" formControlName="project_start" class="w-100">
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li >
+                      <div class="row">
+                        <div class="col-5">
+                          <p>{{"ending-date" | translate }}</p>
+                        </div>
+                        <div class="col-7 ">
+                          <div class="w-100 my-1 d-flex justify-content-between align-items-center">
+                            <input type="date" name="end_project" formControlName="project_end" class="w-100">
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="row">
+                        <div class="col-5">
+                          <p>{{"Section A.Rate" | translate }}</p>
+                        </div>
+                        <div class="col-7 ">
+                          <!-- begin:: price range inputs -->
+                          <div class="custom-slider w-100 px-0">
+                            <ngx-slider [(value)]="sectionMinValue" [(highValue)]="sectionMaxValue" [options]="sectionOptions"></ngx-slider>
+                          </div>
+                          <!-- end:: price range inputs -->
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="row">
+                        <div class="col-5">
+                          <p>{{"Contractor A.Rate" | translate }}</p>
+                        </div>
+                        <div class="col-7 ">
+                          <!-- begin:: price range inputs -->
+                          <div class="custom-slider w-100 px-0">
+                            <ngx-slider [(value)]="constructorMinValue" [(highValue)]="constructorMaxValue" [options]="constructorOptions"></ngx-slider>
+                          </div>
+                          <!-- end:: price range inputs -->
+                        </div>
+                      </div>
+                    </li>
+                    <li >
+                      <div class="row footer d-flex justify-content-center align-items-center">
+                        <div class="col-6 p-2 d-flex justify-content-center align-items-center">
+                          <button type="submit" id="agree">{{"apply" | translate }}</button>
+                        </div>
+                        <div class="col-6 p-2 d-flex justify-content-center align-items-center">
+                          <button id="exit">{{"cancel" | translate }}</button>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row row-list ">
+          <div class="col-12 p-3">
+            <div class="list table-responsive">
+              <table class="table table-hover ">
+                <thead>
+                  <tr>
+                    <th scope="col">{{"contract-no" | translate }}</th>
+                    <th scope="col">{{"project-name" | translate }}</th>
+                    <th scope="col">{{"contractors-name" | translate }}</th>
+                    <th scope="col">{{"action-reason" | translate }}</th>
+                    <th scope="col">{{"expire-date" | translate }}</th>
+                  </tr>
+                </thead>
+                <tbody >
+                  <tr>
+                    <td><div class="item"><p>P0369873241</p></div></td>
+                    <td><div class="item"><p>{{"road-light" | translate }}</p></div></td>
+                    <td><div class="item"><p>{{"Abdullah Ibrahim" | translate }}</p></div></td>
+                    <td><div class="item"><p>{{"reason" | translate }}</p></div></td>
+                    <td><div class="item"><p>13-08-2022</p></div></td>
+                  </tr>
+                  <tr>
+                    <td><div class="item"><p>P0369659874</p></div></td>
+                    <td><div class="item"><p>{{"road" | translate }}</p></div></td>
+                    <td><div class="item"><p>{{"Mohamed Abdelrahman" | translate }}</p></div></td>
+                    <td><div class="item"><p>{{"reason" | translate }}</p></div></td>
+                    <td><div class="item"><p>13-08-2022</p></div></td>
+                  </tr>
+                  <tr>
+                    <td><div class="item"><p>P0369873639</p></div></td>
+                    <td><div class="item"><p>{{"sanitaion" | translate }}</p></div></td>
+                    <td><div class="item"><p>{{"Yahia Abdullah" | translate }}</p></div></td>
+                    <td><div class="item"><p>{{"reason" | translate }}</p></div></td>
+                    <td><div class="item"><p>13-08-2022</p></div></td>
+                  </tr>
+                  <tr>
+                    <td><div class="item"><p>P036965441</p></div></td>
+                    <td><div class="item"><p>{{"road" | translate }}</p></div></td>
+                    <td><div class="item"><p>{{"Islam Hassan" | translate }}</p></div></td>
+                    <td><div class="item"><p>{{"reason" | translate }}</p></div></td>
+                    <td><div class="item"><p>13-08-2022</p></div></td>
+                  </tr>
+                  <tr>
+                    <td><div class="item"><p>P0369873244</p></div></td>
+                    <td><div class="item"><p>{{"bridges" | translate }}</p></div></td>
+                    <td><div class="item"><p>{{"Zayn Mostafa" | translate }}</p></div></td>
+                    <td><div class="item"><p>{{"reason" | translate }}</p></div></td>
+                    <td><div class="item"><p>13-08-2022</p></div></td>
+                  </tr>
+                  <tr>
+                    <td><div class="item"><p>P0369873658</p></div></td>
+                    <td><div class="item"><p>{{"road-light" | translate }}</p></div></td>
+                    <td><div class="item"><p>{{"Tarek Ali" | translate }}</p></div></td>
+                    <td><div class="item"><p>{{"reason" | translate }}</p></div></td>
+                    <td><div class="item"><p>13-08-2022</p></div></td>
+                  </tr>
+                  <tr>
+                    <td><div class="item"><p>P0379873659</p></div></td>
+                    <td><div class="item"><p>{{"bridges" | translate }}</p></div></td>
+                    <td><div class="item"><p>{{"Hamza Sayed" | translate }}</p></div></td>
+                    <td><div class="item"><p>{{"reason" | translate }}</p></div></td>
+                    <td><div class="item"><p>13-08-2022</p></div></td>
+                  </tr>
+                  <tr>
+                    <td><div class="item"><p>P0369873870</p></div></td>
+                    <td><div class="item"><p>{{"sanitaion" | translate }}</p></div></td>
+                    <td><div class="item"><p>{{"Zeyad Ahmed" | translate }}</p></div></td>
+                    <td><div class="item"><p>{{"reason" | translate }}</p></div></td>
+                    <td><div class="item"><p>13-08-2022</p></div></td>
+                  </tr>
+                  <tr>
+                    <td><div class="item"><p>P0369873732</p></div></td>
+                    <td><div class="item"><p>{{"bridges" | translate }}</p></div></td>
+                    <td><div class="item"><p>{{"Gamal Elsayed" | translate }}</p></div></td>
+                    <td><div class="item"><p>{{"reason" | translate }}</p></div></td>
+                    <td><div class="item"><p>13-08-2022</p></div></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

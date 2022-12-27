@@ -1,0 +1,200 @@
+<section class="content">
+  <div class="row">
+    <div class="sidebar">
+      <div class="bg-white pt-5 h-100">
+        <ul class="h-100">
+          <li routerLink="/home"><img src="../../../../assets/images/Dashboard-icons/home.png"
+              alt="home"><span>{{"home" | translate }}</span></li>
+          <li routerLink="/projects"><img src="../../../../assets/images/Dashboard-icons/trackprojects.png"
+              alt="projects"><span>{{"projects" | translate }}</span></li>
+          <li routerLink="/calender"><img src="../../../../assets/images/Dashboard-icons/calender.png"
+              alt="calender"><span>{{"calender" | translate }}</span></li>
+          <li routerLink="/favourites"><img src="../../../../assets/images/Dashboard-icons/fav-darkgray.png"
+              alt="favourites"><span>{{"favourite" | translate }}</span></li>
+          <li routerLink="/reports"><img src="../../../../assets/images/Dashboard-icons/report.png"
+              alt="reports"><span>{{"statistics" | translate }}</span></li>
+        </ul>
+        <div class="list-group list-group-flush">
+        </div>
+      </div>
+      <div class="offcanvas offcanvas-end p-0" tabindex="-1" id="offcanvasExample"
+        aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header border border-bottom-1">
+          <h5 class="offcanvas-title"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body p-0 px-2 bg-white">
+          <div class="bg-white h-100">
+            <ul class="h-100">
+              <li routerLink="/home"><img src="../../../../assets/images/Dashboard-icons/home.png"
+                  alt="home"><span>{{"home" | translate }}</span></li>
+              <li routerLink="/projects"><img src="../../../../assets/images/Dashboard-icons/trackprojects.png"
+                  alt="projects"><span>{{"projects" | translate }}</span></li>
+              <li routerLink="/calender"><img src="../../../../assets/images/Dashboard-icons/calender.png"
+                  alt="calender"><span>{{"calender" | translate }}</span></li>
+              <li routerLink="/favourites"><img src="../../../../assets/images/Dashboard-icons/fav-darkgray.png"
+                  alt="favourites"><span>{{"favourite" | translate }}</span></li>
+              <li routerLink="/reports"><img src="../../../../assets/images/Dashboard-icons/report.png"
+                  alt="reports"><span>{{"statistics" | translate }}</span></li>
+            </ul>
+            <div class="list-group list-group-flush">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+      <nav class="navbar">
+        <app-toggler></app-toggler>
+        <h2>QPMO<sub>system</sub></h2>
+        <div class="d-flex justify-content-center align-items-center icons">
+          <app-language></app-language>
+          <img src="../../../../assets/images/Dashboard-icons/msg01.png" alt="msgs" routerLink="/messages">
+          <div class="dropdown">
+            <button class="dropdown-toggle mx-2 p-0" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <img src="../../../../assets/images/Dashboard-icons/profile.png" alt="user" class="profile m-0">
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li>
+                <div class="row">
+                  <div class="col-4 p-0">
+                    <div class="profile-img">
+                      <div class="layer">
+                        <img class="img-fluid" src="../../../../assets/images/Dashboard-icons/profile.jpg"
+                          alt="profile-img">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-8">
+                    <p>{{"ahmed-esmael" | translate }}</p>
+                  </div>
+                </div>
+              </li>
+              <li class="mt-2">
+                <button routerLink="/profile" class="hover bg-secondary"><span>{{"profile" | translate }}</span></button>
+              </li>
+              <li class="mb-2">
+                <button (click)="logOut()" routerLink="/login" class="hover bg-danger"><span>{{"log-out" | translate }}</span></button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="container-fluid w-100 pt-3">
+        <div class="row">
+          <div class="profile-card">
+             <div class="profile-img">
+              <div class="layer">
+                <img src="../../../../assets/images/Dashboard-icons/profile.jpg" alt="profile-img">
+                <img src="../../../../assets/images/Dashboard-icons/camera.png" alt="camera" class="camera">
+              </div>
+             </div>
+             <div class="profile-data mt-3 p-3">
+              <div class="details">
+                <div class="right">
+                   <p>{{"employee-name" | translate }}</p>
+                </div>
+                <div class="left">
+                   <p>{{"ahmed-esmael" | translate }}</p>
+                </div>
+              </div>
+              <div class="details">
+                <div class="right">
+                   <p>{{"job-title" | translate }}</p>
+                </div>
+                <div class="left">
+                   <p>{{"job" | translate }}</p>
+                </div>
+              </div>
+              <div class="details">
+                <div class="right">
+                   <p>{{"department" | translate }}</p>
+                </div>
+                <div class="left">
+                   <p>{{"Quality" | translate }}</p>
+                </div>
+              </div>
+              <div class="details">
+                <div class="right">
+                   <p>{{"phone-number" | translate }}</p>
+                </div>
+                <div class="left">
+                   <p>+966550009908</p>
+                </div>
+              </div>
+              <div class="details">
+                <div class="right">
+                   <p>{{"address" | translate }}</p>
+                </div>
+                <div class="left">
+                   <p>{{"Onaizah-Qassim" | translate }}</p>
+                </div>
+              </div>
+              <div class="details">
+                <div class="right">
+                   <p>{{"e-mail" | translate }}</p>
+                </div>
+                <div class="left">
+                   <p>info@qdpm.com</p>
+                </div>
+              </div>
+              <div class="details">
+                <div class="right">
+                   <p>{{"password" | translate }}</p>
+                </div>
+                <div class="left d-flex justify-content-between align-items-center">
+                   <p>***********</p>
+                   <img src="../../../../assets/images/Dashboard-icons/edit.png" alt="edit" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered ">
+                      <div class="modal-content p-3">
+                          <div class="header">
+                            <h3>{{"reset" | translate }}</h3>
+                            <p>{{"reset-pass-msg" | translate }}</p>
+                          </div>
+                          <div class="body">
+                            <div class="form">
+                              <form [formGroup]="passwordForm" (ngSubmit)="submitPasswordForm(passwordForm)">
+                                <div class="form-group mb-2">
+                                  <input [type]="changeTypePass?'password':'text'" [placeholder]="'current-pass' | translate"
+                                    formControlName="password" autocomplete="">
+                                  <!-- to show or hide password -->
+                                  <span (click)="viewPassword()" id="view-pass"><i
+                                      [ngClass]="visiblePass?'fa fa-eye-slash':'fa fa-eye'"></i></span>
+                                </div>
+                                <div class="w-100 text-start">
+                                  <p routerLink="/forget-pass" data-bs-dismiss="modal" aria-label="Close" class="main-color hover">{{"forget-pass" | translate }}</p>
+                                </div>
+                                <div class="form-group mb-2">
+                                  <input [type]="changeTypeNewPass?'password':'text'" [placeholder]="'new-pass' | translate"
+                                    formControlName="newPassword" autocomplete="">
+                                  <!-- to show or hide password -->
+                                  <span (click)="viewNewPassword()" id="view-pass"><i
+                                      [ngClass]="visibleNewPass?'fa fa-eye-slash':'fa fa-eye'"></i></span>
+                                </div>
+                                <div class="form-group mb-2">
+                                  <input [type]="changeTypeRePass?'password':'text'" [placeholder]="'retype-pass' | translate"
+                                    formControlName="rePassword" autocomplete="">
+                                  <!-- to show or hide password -->
+                                  <span (click)="viewRePassword()" id="view-pass"><i
+                                      [ngClass]="visibleRePass?'fa fa-eye-slash':'fa fa-eye'"></i></span>
+                                </div>
+                                  <button [disabled]="passwordForm.invalid" class="btn my-3 m-auto" type="submit" data-bs-dismiss="modal" aria-label="Close">{{"update-pass" | translate }}</button>
+                                  <p class="hover text-danger h6 mb-2 fw-bold" data-bs-dismiss="modal" aria-label="Close">{{"cancel" | translate }}</p>
+                              </form>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

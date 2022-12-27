@@ -1,0 +1,39 @@
+<div class="content">
+  <div class="navbar d-flex justify-content-center align-items-center">
+    <h2>QPMO<sub>system</sub></h2>
+  </div>
+  <div class="login-page py-5">
+    <div class="login-slide">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="login-form">
+              <div class="form-data">
+                <img src="../../../../assets/images/Dashboard-icons/logo-login.png" alt="login-logo">
+                <h3>{{"reset" | translate }}</h3>
+                <h6>{{"phone-please-msg" | translate }}</h6>
+                <div class="form">
+                  <form [formGroup]="forgetPassForm" (ngSubmit)="submitForgetPassForm(forgetPassForm)">
+                    <div class="form-group my-5">
+                      <input type="number" [placeholder]="'phone-no' | translate" formControlName="phone">
+                    </div>
+
+                    <button [disabled]="forgetPassForm.invalid" class="btn my-2" type="submit">{{"varify" | translate }}</button>
+                  </form>
+                  <div class="msg-validate">
+                    <p class="text-danger" id="validate-msg">{{"credentials" | translate }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="intro-img">
+              <img src="../../../../assets/images/Dashboard-icons/login-image.png" class="img-fluid" alt="QDPM System">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

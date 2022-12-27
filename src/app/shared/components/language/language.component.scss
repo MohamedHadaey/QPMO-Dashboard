@@ -1,0 +1,14 @@
+.languages {
+    padding: 0 10px;
+    margin-top: 0;
+    img{
+      width: 20px !important;
+      margin-top: -5px;
+      border-radius: 50%;
+      box-shadow: 0px 0px 5px 1px #749BC4;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }

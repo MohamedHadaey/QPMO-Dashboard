@@ -1,0 +1,1364 @@
+<section class="content">
+  <div class="row">
+    <div class="sidebar">
+      <div class="bg-white pt-5 h-100">
+        <ul class="h-100">
+          <li class="active" routerLink="/home"><img src="../../../../assets/images/Dashboard-icons/home.png"
+              alt="home"><span>{{"home" | translate }}</span></li>
+          <li routerLink="/projects"><img src="../../../../assets/images/Dashboard-icons/trackprojects.png"
+              alt="projects"><span>{{"projects" | translate }}</span></li>
+          <li routerLink="/calender"><img src="../../../../assets/images/Dashboard-icons/calender.png"
+              alt="calender"><span>{{"calender" | translate }}</span></li>
+          <li routerLink="/favourites"><img src="../../../../assets/images/Dashboard-icons/fav-darkgray.png"
+              alt="favourites"><span>{{"favourite" | translate }}</span></li>
+          <li routerLink="/reports"><img src="../../../../assets/images/Dashboard-icons/report.png"
+              alt="reports"><span>{{"statistics" | translate }}</span></li>
+        </ul>
+        <div class="list-group list-group-flush">
+        </div>
+      </div>
+      <div class="offcanvas offcanvas-end p-0" tabindex="-1" id="offcanvasExample"
+        aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header border border-bottom-1">
+          <h5 class="offcanvas-title"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body p-0 px-2 bg-white">
+          <div class="bg-white h-100">
+            <ul class="h-100">
+              <li class="active" routerLink="/home"><img src="../../../../assets/images/Dashboard-icons/home.png"
+                  alt="home"><span>{{"home" | translate }}</span></li>
+              <li routerLink="/projects"><img src="../../../../assets/images/Dashboard-icons/trackprojects.png"
+                  alt="projects"><span>{{"projects" | translate }}</span></li>
+              <li routerLink="/calender"><img src="../../../../assets/images/Dashboard-icons/calender.png"
+                  alt="calender"><span>{{"calender" | translate }}</span></li>
+              <li routerLink="/favourites"><img src="../../../../assets/images/Dashboard-icons/fav-darkgray.png"
+                  alt="favourites"><span>{{"favourite" | translate }}</span></li>
+              <li routerLink="/reports"><img src="../../../../assets/images/Dashboard-icons/report.png"
+                  alt="reports"><span>{{"statistics" | translate }}</span></li>
+            </ul>
+            <div class="list-group list-group-flush">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body content-body-rtl">
+      <nav class="navbar">
+          <app-toggler></app-toggler>
+          <h2>QPMO<sub>system</sub></h2>
+        <div class="d-flex justify-content-center align-items-center icons">
+          <app-language></app-language>
+          <img src="../../../../assets/images/Dashboard-icons/msg01.png" alt="msgs" routerLink="/messages">
+          <div class="dropdown">
+            <button class="dropdown-toggle mx-2 p-0" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <img src="../../../../assets/images/Dashboard-icons/profile.png" alt="user" class="profile m-0">
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li>
+                <div class="row">
+                  <div class="col-4 p-0">
+                    <div class="profile-img">
+                      <div class="layer">
+                        <img class="img-fluid" src="../../../../assets/images/Dashboard-icons/profile.jpg"
+                          alt="profile-img">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-8">
+                    <p>{{"ahmed-esmael" | translate }}</p>
+                  </div>
+                </div>
+              </li>
+              <li class="mt-2">
+                <button routerLink="/profile" class="hover bg-secondary"><span>{{"profile" | translate }}</span></button>
+              </li>
+              <li class="mb-2">
+                <button (click)="logOut()" routerLink="/login" class="hover bg-danger"><span>{{"log-out" | translate }}</span></button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="container-fluid pt-3 ">
+        <div class="row">
+          <div class="col-sm-10 text-center p-2 px-3">
+            <div class="search ">
+              <span><i class="fa-solid fa-magnifying-glass"></i></span>
+              <input type="search" [placeholder]="'search' | translate">
+              <div class="dropdown">
+                <button class="dropdown-toggle me-2 p-0" type="button" id="dropdownMenuButton1"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+                  <img src="../../../../assets/images/Dashboard-icons/filter-gray.png" alt="user" class="profile m-0">
+                </button>
+                <form [formGroup]="filterForm" (ngSubmit)="submitFilterForm(filterForm)">
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li>
+                      <div class="row">
+                        <div class="col-5">
+                          <p>{{"project-type" | translate }}</p>
+                        </div>
+                        <div class="col-7">
+                          <select class="w-100 border border-0" formControlName="project_type">
+                            <option value="1" selected>{{"roads-bridges" | translate }}</option>
+                            <option value="2">{{"sanitaion" | translate }}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="row">
+                        <div class="col-5">
+                          <p>{{"project-state" | translate }}</p>
+                        </div>
+                        <div class="col-7 ">
+                          <div class="w-100 my-1 d-flex justify-content-between align-items-center">
+                            <span>{{"current" | translate }}</span>
+                            <div class="form-check form-switch">
+                              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
+                                checked formControlName="now_check">
+                            </div>
+                          </div>
+                          <div class="w-100 my-1 d-flex justify-content-between align-items-center">
+                            <span>{{"completed" | translate }}</span>
+                            <div class="form-check form-switch">
+                              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
+                                formControlName="complete_check">
+                            </div>
+                          </div>
+                          <div class="w-100 my-1 d-flex justify-content-between align-items-center">
+                            <span>{{"late" | translate }}</span>
+                            <div class="form-check form-switch">
+                              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
+                                formControlName="late_check">
+                            </div>
+                          </div>
+                          <div class="w-100 my-1 d-flex justify-content-between align-items-center">
+                            <span>{{"almost-done" | translate }}</span>
+                            <div class="form-check form-switch">
+                              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
+                                checked formControlName="end_check">
+                            </div>
+                          </div>
+                          <div class="w-100 my-1 d-flex justify-content-between align-items-center">
+                            <span>{{"not-financial" | translate }}</span>
+                            <div class="form-check form-switch">
+                              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
+                                formControlName="not_check">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="row">
+                        <div class="col-5">
+                          <p>{{"starting-date" | translate }}</p>
+                        </div>
+                        <div class="col-7 ">
+                          <div class="w-100 my-1 d-flex justify-content-between align-items-center">
+                            <input type="date" name="start_project" formControlName="project_start" class="w-100">
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="row">
+                        <div class="col-5">
+                          <p>{{"ending-date" | translate }}</p>
+                        </div>
+                        <div class="col-7 ">
+                          <div class="w-100 my-1 d-flex justify-content-between align-items-center">
+                            <input type="date" name="end_project" formControlName="project_end" class="w-100">
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="row">
+                        <div class="col-5">
+                          <p>{{"Section A.Rate" | translate }}</p>
+                        </div>
+                        <div class="col-7 ">
+                          <!-- begin:: price range inputs -->
+                          <div class="custom-slider w-100 px-0">
+                            <ngx-slider [(value)]="sectionMinValue" [(highValue)]="sectionMaxValue" [options]="sectionOptions"></ngx-slider>
+                          </div>
+                          <!-- end:: price range inputs -->
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="row">
+                        <div class="col-5">
+                          <p>{{"Contractor A.Rate" | translate }}</p>
+                        </div>
+                        <div class="col-7 ">
+                          <!-- begin:: price range inputs -->
+                          <div class="custom-slider w-100 px-0">
+                            <ngx-slider [(value)]="constructorMinValue" [(highValue)]="constructorMaxValue" [options]="constructorOptions"></ngx-slider>
+                          </div>
+                          <!-- end:: price range inputs -->
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="row footer d-flex justify-content-center align-items-center">
+                        <div class="col-6 p-2 d-flex justify-content-center align-items-center">
+                          <button type="submit" id="agree">{{"apply" | translate }}</button>
+                        </div>
+                        <div class="col-6 p-2 d-flex justify-content-center align-items-center">
+                          <button id="exit">{{"cancel" | translate }}</button>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-2 py-2 px-0">
+            <div class="theme">
+              <div class="fav">
+                <img
+                  [src]="map?'../../../../assets/images/Dashboard-icons/Favorite-gray.png':'../../../../assets/images/Dashboard-icons/Favorite-blue.png'"
+                  alt="favourite" (click)="showFav()">
+              </div>
+              <div class="theme-styles">
+                <ul>
+                  <li id="list" (click)="showList()"><img src="../../../../assets/images/Dashboard-icons/list.png"
+                      alt="list"></li>
+                  <li id="map" class="active-theme" (click)="showMap()"><img
+                      src="../../../../assets/images/Dashboard-icons/map.png" alt="map"></li>
+                  <li id="card" (click)="showCard()"><img src="../../../../assets/images/Dashboard-icons/card.png"
+                      alt="card"></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- begin map theme -->
+        <div class="row row-map p-0" *ngIf="showen == 'maps'">
+          <div class="col-12">
+            <div class="map " *ngIf="map">
+              <div class="row">
+                <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1060958.2186432849!2d43.38579170635075!3d25.964688843173548!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x158310b24d17ecf7%3A0x3ce0a3b106868cf1!2z2KfZhNio2KrYsdin2KEg2KfZhNiz2LnZiNiv2YrYqQ!5e0!3m2!1sar!2seg!4v1669635784858!5m2!1sar!2seg"
+                width="600" height="700" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+              </div>
+            </div>
+            <div class="map map-fav" *ngIf="!map">
+              <div class="row ">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1060958.2186432849!2d43.38579170635075!3d25.964688843173548!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x158310b24d17ecf7%3A0x3ce0a3b106868cf1!2z2KfZhNio2KrYsdin2KEg2KfZhNiz2LnZiNiv2YrYqQ!5e0!3m2!1sar!2seg!4v1669635784858!5m2!1sar!2seg"
+                  width="600" height="700" style="border:0;" allowfullscreen="" loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <!--
+        <div class="row row-map" *ngIf="showen == 'maps'">
+          <google-map height="100%" width="100%" [center]="center" [zoom]="zoom" [options]="mapsop">
+
+            <map-marker *ngFor="let markerPosition of projectslocations " [icon]="markerPosition.status"
+              [position]="markerPosition.position" [options]="markerOptions"></map-marker>
+          </google-map>
+        </div> -->
+
+        <!-- end: map theme -->
+        <!-- begin: list theme  -->
+        <div class="row row-list" *ngIf="showen == 'lists'">
+          <div class="col-12 p-3">
+            <div class="list table-responsive" *ngIf="list">
+              <table class="table table-hover ">
+                <thead>
+                  <tr>
+                    <th scope="col">{{"contract-no" | translate }}</th>
+                    <th scope="col">{{"project-name" | translate }}</th>
+                    <th scope="col">{{"contractors-name" | translate }}</th>
+                    <th scope="col">{{"expire-date" | translate }}</th>
+                    <th scope="col">{{"completion-rate" | translate }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="item">
+                        <p>P0369873241</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"road-light" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"Abdullah Ibrahim" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>13-08-2022</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>50%</p>
+                        <div class="progress">
+                          <div class="progress-bar bg-warning" role="progressbar" aria-label="Success example"
+                            style="width: 50%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="item">
+                        <p>P0369659874</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"road" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"Mohamed Abdelrahman" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>13-08-2022</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>70%</p>
+                        <div class="progress">
+                          <div class="progress-bar bg-success" role="progressbar" aria-label="Success example"
+                            style="width: 70%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="item">
+                        <p>P0369873639</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"sanitaion" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"Yahia Abdullah" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>13-08-2022</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>98%</p>
+                        <div class="progress">
+                          <div class="progress-bar bg-primary" role="progressbar" aria-label="Success example"
+                            style="width: 98%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="item">
+                        <p>P036965441</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"road" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"Islam Hassan" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>13-08-2022</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>75%</p>
+                        <div class="progress">
+                          <div class="progress-bar bg-primary" role="progressbar" aria-label="Success example"
+                            style="width: 75%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="item">
+                        <p>P0369873244</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"bridges" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"Zayn Mostafa" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>13-08-2022</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>57%</p>
+                        <div class="progress">
+                          <div class="progress-bar bg-danger" role="progressbar" aria-label="Success example"
+                            style="width: 57%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="item">
+                        <p>P0369873658</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"road-light" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"Tarek Ali" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>13-08-2022</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>60%</p>
+                        <div class="progress">
+                          <div class="progress-bar bg-warning" role="progressbar" aria-label="Success example"
+                            style="width: 60%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="item">
+                        <p>P0379873659</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"bridges" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"Hamza Sayed" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>13-08-2022</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>65%</p>
+                        <div class="progress">
+                          <div class="progress-bar bg-danger" role="progressbar" aria-label="Success example"
+                            style="width: 65%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="item">
+                        <p>P0369873870</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"sanitaion" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"Zeyad Ahmed" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>13-08-2022</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>10%</p>
+                        <div class="progress">
+                          <div class="progress-bar bg-info" role="progressbar" aria-label="Success example"
+                            style="width: 10%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="item">
+                        <p>P0369873732</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"bridges" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"Gamal Elsayed" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>13-08-2022</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>45%</p>
+                        <div class="progress">
+                          <div class="progress-bar bg-success" role="progressbar" aria-label="Success example"
+                            style="width: 45%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- ******************** -->
+            <div class="list table-responsive" *ngIf="!list">
+              <table class="table table-hover ">
+                <thead>
+                  <tr>
+                    <th scope="col">{{"contract-no" | translate }}</th>
+                    <th scope="col">{{"project-name" | translate }}</th>
+                    <th scope="col">{{"contractors-name" | translate }}</th>
+                    <th scope="col">{{"expire-date" | translate }}</th>
+                    <th scope="col">{{"completion-rate" | translate }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="item">
+                        <p>P0369873639</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"sanitaion" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"Yahia Abdullah" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>13-08-2022</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>98%</p>
+                        <div class="progress">
+                          <div class="progress-bar bg-primary" role="progressbar" aria-label="Success example"
+                            style="width: 98%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="item">
+                        <p>P0369873658</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"road-light" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"Tarek Ali" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>13-08-2022</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>60%</p>
+                        <div class="progress">
+                          <div class="progress-bar bg-warning" role="progressbar" aria-label="Success example"
+                            style="width: 60%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="item">
+                        <p>P0379873659</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"bridges" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"Hamza Sayed" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>13-08-2022</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>65%</p>
+                        <div class="progress">
+                          <div class="progress-bar bg-danger" role="progressbar" aria-label="Success example"
+                            style="width: 65%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="item">
+                        <p>P0369873732</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"bridges" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"Gamal Elsayed" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>13-08-2022</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>45%</p>
+                        <div class="progress">
+                          <div class="progress-bar bg-success" role="progressbar" aria-label="Success example"
+                            style="width: 45%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!-- end: list theme -->
+        <!-- begin: card theme -->
+        <div class="row row-card p-3" *ngIf="showen == 'cards'">
+          <div class="col-12">
+            <div class="row" *ngIf="card">
+              <div class="col-sm-12 col-md-6 col-lg-4 p-2">
+                <div class="card">
+                  <div class="row">
+                    <div class="col-8">
+                      <div class="card-data">
+                        <table class="table table-borderless">
+                          <tbody>
+                            <tr>
+                              <th>{{"contract-no" | translate }}</th>
+                              <td>P0369873241</td>
+                            </tr>
+                            <tr>
+                              <th>{{"project-name" | translate }}</th>
+                              <td>{{"road-light" | translate }}</td>
+                            </tr>
+                            <tr>
+                              <th>{{"contractors-name" | translate }}</th>
+                              <td>{{"Abdullah Ibrahim" | translate }}</td>
+                            </tr>
+                            <tr>
+                              <th>{{"expire-date" | translate }}</th>
+                              <td>13-08-2022</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="card-degree">
+                        <div class="degree ">
+                          <div class="set-size charts-container">
+                            <div class="pie-wrapper progress-50 style-2">
+                              <span class="label">50%<span class="smaller"></span></span>
+                              <div class="pie">
+                                <div class="left-side half-circle"></div>
+                                <div class="right-side half-circle"></div>
+                              </div>
+                              <div class="shadow"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="fav-icon w-100 text-start px-3 py-2">
+                          <img src="../../../../assets/images/Dashboard-icons/Favorite-gray.png" alt="fav-icon">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-4 p-2">
+                <div class="card">
+                  <div class="row">
+                    <div class="col-8">
+                      <div class="card-data">
+                        <table class="table table-borderless">
+                          <tbody>
+                            <tr>
+                              <th>{{"contract-no" | translate }}</th>
+                              <td>P0369659874</td>
+                            </tr>
+                            <tr>
+                              <th>{{"project-name" | translate }}</th>
+                              <td>{{"road" | translate }}</td>
+                            </tr>
+                            <tr>
+                              <th>{{"contractors-name" | translate }}</th>
+                              <td>{{"Hamza Sayed" | translate }}</td>
+                            </tr>
+                            <tr>
+                              <th>{{"expire-date" | translate }}</th>
+                              <td>13-08-2022</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="card-degree">
+                        <div class="degree ">
+                          <div class="set-size charts-container">
+                            <div class="pie-wrapper progress-70 style-2">
+                              <span class="label">70%<span class="smaller"></span></span>
+                              <div class="pie">
+                                <div class="left-side half-circle"></div>
+                                <div class="right-side half-circle"></div>
+                              </div>
+                              <div class="shadow"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="fav-icon w-100 text-start px-3 py-2">
+                          <img src="../../../../assets/images/Dashboard-icons/Favorite-gray.png" alt="fav-icon">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-4 p-2">
+                <div class="card">
+                  <div class="row">
+                    <div class="col-8">
+                      <div class="card-data">
+                        <table class="table table-borderless">
+                          <tbody>
+                            <tr>
+                              <th>{{"contract-no" | translate }}</th>
+                              <td>P0369873639</td>
+                            </tr>
+                            <tr>
+                              <th>{{"project-name" | translate }}</th>
+                              <td>{{"sanitaion" | translate }}</td>
+                            </tr>
+                            <tr>
+                              <th>{{"contractors-name" | translate }}</th>
+                              <td>{{"Yahia Abdullah" | translate }}</td>
+                            </tr>
+                            <tr>
+                              <th>{{"expire-date" | translate }}</th>
+                              <td>13-08-2022</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="card-degree">
+                        <div class="degree ">
+                          <div class="set-size charts-container">
+                            <div class="pie-wrapper progress-98 style-2">
+                              <span class="label">98%<span class="smaller"></span></span>
+                              <div class="pie">
+                                <div class="left-side half-circle"></div>
+                                <div class="right-side half-circle"></div>
+                              </div>
+                              <div class="shadow"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="fav-icon w-100 text-start px-3 py-2">
+                          <img src="../../../../assets/images/Dashboard-icons/Favorite-blue.png" alt="fav-icon">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-4 p-2">
+                <div class="card">
+                  <div class="row">
+                    <div class="col-8">
+                      <div class="card-data">
+                        <table class="table table-borderless">
+                          <tbody>
+                            <tr>
+                              <th>{{"contract-no" | translate }}</th>
+                              <td>P036965441</td>
+                            </tr>
+                            <tr>
+                              <th>{{"project-name" | translate }}</th>
+                              <td>{{"raod" | translate }}</td>
+                            </tr>
+                            <tr>
+                              <th>{{"contractors-name" | translate }}</th>
+                              <td>{{"Islam Hassan" | translate }}</td>
+                            </tr>
+                            <tr>
+                              <th>{{"expire-date" | translate }}</th>
+                              <td>13-08-2022</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="card-degree">
+                        <div class="degree ">
+                          <div class="set-size charts-container">
+                            <div class="pie-wrapper progress-75 style-2">
+                              <span class="label">75%<span class="smaller"></span></span>
+                              <div class="pie">
+                                <div class="left-side half-circle"></div>
+                                <div class="right-side half-circle"></div>
+                              </div>
+                              <div class="shadow"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="fav-icon w-100 text-start px-3 py-2">
+                          <img src="../../../../assets/images/Dashboard-icons/Favorite-gray.png" alt="fav-icon">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-4 p-2">
+                <div class="card">
+                  <div class="row">
+                    <div class="col-8">
+                      <div class="card-data">
+                        <table class="table table-borderless">
+                          <tbody>
+                            <tr>
+                              <th>{{"contract-no" | translate }}</th>
+                              <td>P0369873244</td>
+                            </tr>
+                            <tr>
+                              <th>{{"project-name" | translate }}</th>
+                              <td>{{"bridges" | translate }}</td>
+                            </tr>
+                            <tr>
+                              <th>{{"contractors-name" | translate }}</th>
+                              <td>{{"Zayn Mostafa" | translate }}</td>
+                            </tr>
+                            <tr>
+                              <th>{{"expire-date" | translate }}</th>
+                              <td>13-08-2022</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="card-degree">
+                        <div class="degree ">
+                          <div class="set-size charts-container">
+                            <div class="pie-wrapper progress-57 style-2">
+                              <span class="label">57%<span class="smaller"></span></span>
+                              <div class="pie">
+                                <div class="left-side half-circle"></div>
+                                <div class="right-side half-circle"></div>
+                              </div>
+                              <div class="shadow"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="fav-icon w-100 text-start px-3 py-2">
+                          <img src="../../../../assets/images/Dashboard-icons/Favorite-gray.png" alt="fav-icon">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-4 p-2">
+                <div class="card">
+                  <div class="row">
+                    <div class="col-8">
+                      <div class="card-data">
+                        <table class="table table-borderless">
+                          <tbody>
+                            <tr>
+                              <th>{{"contract-no" | translate }}</th>
+                              <td>P0369873658</td>
+                            </tr>
+                            <tr>
+                              <th>{{"project-name" | translate }}</th>
+                              <td>{{"road-light" | translate }}</td>
+                            </tr>
+                            <tr>
+                              <th>{{"contractors-name" | translate }}</th>
+                              <td>{{"Tarek Ali" | translate }}</td>
+                            </tr>
+                            <tr>
+                              <th>{{"expire-date" | translate }}</th>
+                              <td>13-08-2022</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="card-degree">
+                        <div class="degree ">
+                          <div class="set-size charts-container">
+                            <div class="pie-wrapper progress-60 style-2">
+                              <span class="label">60%<span class="smaller"></span></span>
+                              <div class="pie">
+                                <div class="left-side half-circle"></div>
+                                <div class="right-side half-circle"></div>
+                              </div>
+                              <div class="shadow"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="fav-icon w-100 text-start px-3 py-2">
+                          <img src="../../../../assets/images/Dashboard-icons/Favorite-blue.png" alt="fav-icon">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-4 p-2">
+                <div class="card">
+                  <div class="row">
+                    <div class="col-8">
+                      <div class="card-data">
+                        <table class="table table-borderless">
+                          <tbody>
+                            <tr>
+                              <th>{{"contract-no" | translate }}</th>
+                              <td>P0379873659</td>
+                            </tr>
+                            <tr>
+                              <th>{{"project-name" | translate }}</th>
+                              <td>{{"bridges" | translate }}</td>
+                            </tr>
+                            <tr>
+                              <th>{{"contractors-name" | translate }}</th>
+                              <td>{{"Hamza Sayed" | translate }}</td>
+                            </tr>
+                            <tr>
+                              <th>{{"expire-date" | translate }}</th>
+                              <td>13-08-2022</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="card-degree">
+                        <div class="degree ">
+                          <div class="set-size charts-container">
+                            <div class="pie-wrapper progress-65 style-2">
+                              <span class="label">65%<span class="smaller"></span></span>
+                              <div class="pie">
+                                <div class="left-side half-circle"></div>
+                                <div class="right-side half-circle"></div>
+                              </div>
+                              <div class="shadow"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="fav-icon w-100 text-start px-3 py-2">
+                          <img src="../../../../assets/images/Dashboard-icons/Favorite-blue.png" alt="fav-icon">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-4 p-2">
+                <div class="card">
+                  <div class="row">
+                    <div class="col-8">
+                      <div class="card-data">
+                        <table class="table table-borderless">
+                          <tbody>
+                            <tr>
+                              <th>{{"contract-no" | translate }}</th>
+                              <td>P0369873870</td>
+                            </tr>
+                            <tr>
+                              <th>{{"project-name" | translate }}</th>
+                              <td>{{"sanitaion" | translate }}</td>
+                            </tr>
+                            <tr>
+                              <th>{{"contractors-name" | translate }}</th>
+                              <td>{{"Zeyad Ahmed" | translate }}</td>
+                            </tr>
+                            <tr>
+                              <th>{{"expire-date" | translate }}</th>
+                              <td>13-08-2022</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="card-degree">
+                        <div class="degree ">
+                          <div class="set-size charts-container">
+                            <div class="pie-wrapper progress-10 style-2">
+                              <span class="label">10%<span class="smaller"></span></span>
+                              <div class="pie">
+                                <div class="left-side half-circle"></div>
+                                <div class="right-side half-circle"></div>
+                              </div>
+                              <div class="shadow"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="fav-icon w-100 text-start px-3 py-2">
+                          <img src="../../../../assets/images/Dashboard-icons/Favorite-gray.png" alt="fav-icon">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-4 p-2">
+                <div class="card">
+                  <div class="row">
+                    <div class="col-8">
+                      <div class="card-data">
+                        <table class="table table-borderless">
+                          <tbody>
+                            <tr>
+                              <th>{{"contract-no" | translate }}</th>
+                              <td>P0369873732</td>
+                            </tr>
+                            <tr>
+                              <th>{{"project-name" | translate }}</th>
+                              <td>{{"bridges" | translate }}</td>
+                            </tr>
+                            <tr>
+                              <th>{{"contractors-name" | translate }}</th>
+                              <td>{{"Gamal Elsayed" | translate }}</td>
+                            </tr>
+                            <tr>
+                              <th>{{"expire-date" | translate }}</th>
+                              <td>13-08-2022</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="card-degree">
+                        <div class="degree ">
+                          <div class="set-size charts-container">
+                            <div class="pie-wrapper progress-45 style-2">
+                              <span class="label">45%<span class="smaller"></span></span>
+                              <div class="pie">
+                                <div class="left-side half-circle"></div>
+                                <div class="right-side half-circle"></div>
+                              </div>
+                              <div class="shadow"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="fav-icon w-100 text-start px-3 py-2">
+                          <img src="../../../../assets/images/Dashboard-icons/Favorite-gray.png" alt="fav-icon">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" *ngIf="!card">
+              <div class="col-sm-12 col-md-6 col-lg-4 p-2">
+                <div class="card">
+                  <div class="row">
+                    <div class="col-8">
+                      <div class="card-data">
+                        <table class="table table-borderless">
+                          <tbody>
+                            <tr>
+                              <th>{{"contract-no" | translate }}</th>
+                              <td>P0369873639</td>
+                            </tr>
+                            <tr>
+                              <th>{{"project-name" | translate }}</th>
+                              <td>{{"sanitaion" | translate }}</td>
+                            </tr>
+                            <tr>
+                              <th>{{"contractors-name" | translate }}</th>
+                              <td>{{"Yahia Abdullah" | translate }}</td>
+                            </tr>
+                            <tr>
+                              <th>{{"expire-date" | translate }}</th>
+                              <td>13-08-2022</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="card-degree">
+                        <div class="degree ">
+                          <div class="set-size charts-container">
+                            <div class="pie-wrapper progress-98 style-2">
+                              <span class="label">98%<span class="smaller"></span></span>
+                              <div class="pie">
+                                <div class="left-side half-circle"></div>
+                                <div class="right-side half-circle"></div>
+                              </div>
+                              <div class="shadow"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="fav-icon w-100 text-start px-3 py-2">
+                          <img src="../../../../assets/images/Dashboard-icons/Favorite-blue.png" alt="fav-icon">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-4 p-2">
+                <div class="card">
+                  <div class="row">
+                    <div class="col-8">
+                      <div class="card-data">
+                        <table class="table table-borderless">
+                          <tbody>
+                            <tr>
+                              <th>{{"contract-no" | translate }}</th>
+                              <td>P0369873658</td>
+                            </tr>
+                            <tr>
+                              <th>{{"project-name" | translate }}</th>
+                              <td>{{"road-light" | translate }}</td>
+                            </tr>
+                            <tr>
+                              <th>{{"contractors-name" | translate }}</th>
+                              <td>{{"Tarek Ali" | translate }}</td>
+                            </tr>
+                            <tr>
+                              <th>{{"expire-date" | translate }}</th>
+                              <td>13-08-2022</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="card-degree">
+                        <div class="degree ">
+                          <div class="set-size charts-container">
+                            <div class="pie-wrapper progress-60 style-2">
+                              <span class="label">60%<span class="smaller"></span></span>
+                              <div class="pie">
+                                <div class="left-side half-circle"></div>
+                                <div class="right-side half-circle"></div>
+                              </div>
+                              <div class="shadow"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="fav-icon w-100 text-start px-3 py-2">
+                          <img src="../../../../assets/images/Dashboard-icons/Favorite-blue.png" alt="fav-icon">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-4 p-2">
+                <div class="card">
+                  <div class="row">
+                    <div class="col-8">
+                      <div class="card-data">
+                        <table class="table table-borderless">
+                          <tbody>
+                            <tr>
+                              <th>{{"contract-no" | translate }}</th>
+                              <td>P0379873659</td>
+                            </tr>
+                            <tr>
+                              <th>{{"project-name" | translate }}</th>
+                              <td>{{"bridges" | translate }}</td>
+                            </tr>
+                            <tr>
+                              <th>{{"contractors-name" | translate }}</th>
+                              <td>{{"Hamza Sayed" | translate }}</td>
+                            </tr>
+                            <tr>
+                              <th>{{"expire-date" | translate }}</th>
+                              <td>13-08-2022</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="card-degree">
+                        <div class="degree ">
+                          <div class="set-size charts-container">
+                            <div class="pie-wrapper progress-65 style-2">
+                              <span class="label">65%<span class="smaller"></span></span>
+                              <div class="pie">
+                                <div class="left-side half-circle"></div>
+                                <div class="right-side half-circle"></div>
+                              </div>
+                              <div class="shadow"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="fav-icon w-100 text-start px-3 py-2">
+                          <img src="../../../../assets/images/Dashboard-icons/Favorite-blue.png" alt="fav-icon">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-4 p-2">
+                <div class="card">
+                  <div class="row">
+                    <div class="col-8">
+                      <div class="card-data">
+                        <table class="table table-borderless">
+                          <tbody>
+                            <tr>
+                              <th>{{"contract-no" | translate }}</th>
+                              <td>P0369873732</td>
+                            </tr>
+                            <tr>
+                              <th>{{"project-name" | translate }}</th>
+                              <td>{{"bridges" | translate }}</td>
+                            </tr>
+                            <tr>
+                              <th>{{"contractors-name" | translate }}</th>
+                              <td>{{"Gamal Elsayed" | translate }}</td>
+                            </tr>
+                            <tr>
+                              <th>{{"expire-date" | translate }}</th>
+                              <td>13-08-2022</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="card-degree">
+                        <div class="degree ">
+                          <div class="set-size charts-container">
+                            <div class="pie-wrapper progress-45 style-2">
+                              <span class="label">45%<span class="smaller"></span></span>
+                              <div class="pie">
+                                <div class="left-side half-circle"></div>
+                                <div class="right-side half-circle"></div>
+                              </div>
+                              <div class="shadow"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="fav-icon w-100 text-start px-3 py-2">
+                          <img src="../../../../assets/images/Dashboard-icons/Favorite-blue.png" alt="fav-icon">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end: card theme -->
+      </div>
+    </div>
+  </div>
+</section>

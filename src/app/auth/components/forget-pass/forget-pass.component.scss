@@ -1,0 +1,309 @@
+/* begin: login-styles */
+.content {
+  height: 100vh;
+  .navbar {
+    background-color: #fff;
+    box-shadow: 0px 1px 4px #15223214;
+    padding: 2px 0 0 0;
+    h2 {
+      color: #749BC4;
+      font-size: 34px;
+      font-weight: bold;
+      letter-spacing: 0px;
+      sub {
+        color: #3D3D3D;
+        font-size: 20px;
+      }
+    }
+  }
+
+  .login-page {
+    padding: 20px;
+    width: 100%;
+    height: 90%;
+    .login-slide {
+      height: 100%;
+      width: 100%;
+      .container {
+        height: 100%;
+        width: 800px;
+        .row {
+          height: 100%;
+          border-radius: 10px;
+          overflow: hidden;
+          box-shadow: 0px 0px 6px #00000029;
+          .col-md-6 {
+          height: 100%;
+          padding: 0;
+            .login-form {
+              width: 100%;
+              height: 100%;
+              padding: 10px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+              background-color: #fff;
+              .form-data {
+                text-align: center;
+                img {
+                  width: 70%;
+                  margin-bottom: 20px;
+                }
+                h3 {
+                  font-size: 18px;
+                  letter-spacing: -0.18px;
+                  font-weight: bold;
+                  color: #3D3D3D;
+                  margin: 30px auto;
+                  margin-bottom: 5px;
+                }
+                h6 {
+                  color: #6d6d6d;
+                  font-size: 14px;
+                  font-weight: 500;
+                  letter-spacing: 0.25px;
+                }
+                .form {
+                  form {
+                    padding: 0 10px;
+                    .form-group {
+                      padding: 5px 10px;
+                      margin: 20px auto;
+                      max-width: 300px;
+                      border-radius: 30px;
+                      background-color: #F3F5FD;
+                      overflow: hidden;
+                      display: flex;
+
+                      input{
+                        width: 100%;
+                        padding: 0 10px;
+                        border: none !important;
+                        outline: none !important;
+                        background-color: #F3F5FD;
+                      }
+                      input::placeholder{
+                        color: #aaa;
+                        font-size: 12px;
+                        font-weight: bold;
+                      }
+                      span {
+                        width: 20px;
+                        height: 20px;
+                        padding-top: 0;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        color: #888;
+                        padding-top: 10px;
+                        i {
+                          font-size: 16px;
+                        }
+                      }
+
+                      #view-pass:hover {
+                        cursor: pointer;
+                      }
+
+                      p:hover {
+                        cursor: pointer;
+                      }
+                    }
+
+
+                    button {
+                      background-color: #749BC4;
+                      padding: 5px 70px;
+                      color: #fff;
+                      font-weight: bold;
+                      border: none;
+                      border-radius: 10px;
+                      transition: all 0.3s;
+                    }
+
+                    button:hover {
+                      cursor: pointer;
+                      box-shadow: 2px 2px 6px #00000029;
+                    }
+
+                    .checker {
+                      padding-top: 5px;
+                      a {
+                        color: #6d6d6d;
+                        font-size: 12px;
+                        font-weight: 500;
+                        &:hover{
+                          cursor: pointer;
+                        }
+                      }
+                      /* The label-checker */
+                      .label-checker {
+                        font-weight: 500;
+                        color: #6d6d6d;
+                        position: relative;
+                        padding-right: 25px;
+                        font-size: 12px;
+                        cursor: pointer;
+                        -webkit-user-select: none;
+                        -moz-user-select: none;
+                        -ms-user-select: none;
+                        user-select: none;
+                      }
+
+                      /* Hide the browser's default checkbox */
+                      .label-checker input {
+                        position: absolute;
+                        opacity: 0;
+                        cursor: pointer;
+                        height: 0;
+                        width: 0;
+                      }
+
+                      /* Create a custom checkbox */
+                      .checkmark {
+                        position: absolute;
+                        top: 0;
+                        height: 20px;
+                        width: 20px;
+                        right: 0 !important;
+                        border: 2px solid rgb(172, 180, 241);
+                        border-radius: 5px;
+                      }
+
+                      /* On mouse-over, add a grey background color */
+                      .label-checker:hover input~.checkmark {
+                        background-color: transparent;
+                      }
+
+                      /* When the checkbox is checked, add a blue background */
+                      .label-checker input:checked~.checkmark {
+                        background-color: #749BC4;
+                      }
+
+                      /* Create the checkmark/indicator (hidden when not checked) */
+                      .checkmark:after {
+                        content: "";
+                        position: absolute;
+                        display: none;
+                      }
+
+                      /* Show the checkmark when checked */
+                      .label-checker input:checked~.checkmark:after {
+                        display: block;
+                      }
+
+                      /* Style the checkmark/indicator */
+                      .label-checker .checkmark:after {
+                        left: 4px;
+                        top: -2px;
+                        width: 8px;
+                        height: 15px;
+                        border: solid white;
+                        border-width: 0 3px 3px 0;
+                        -webkit-transform: rotate(45deg);
+                        -ms-transform: rotate(45deg);
+                        transform: rotate(45deg);
+                      }
+                    }
+                  }
+
+                  .msg-validate {
+                    padding: 5px 10px;
+                    width: 300px;
+                    display: flex;
+                    height: 50px;
+                    text-align: center;
+                    margin: auto;
+
+                    #validate-msg {
+                      display: none;
+                      font-size: 14px;
+                      font-weight: bold;
+                    }
+                  }
+
+                }
+              }
+            }
+            .intro-img {
+              box-shadow: 0px 3px 6px #00000029;
+              height: 100%;
+              padding: 0;
+              img {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+/* end: login-styles */
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance:none
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+  appearance:textfield
+}
+
+
+
+/* start media queres  */
+
+/* start small screen */
+@media screen and (max-width:576px) {
+  .login-page {
+    padding: 20px 10px !important;
+    width: 100%;
+    height: 90%;
+    .login-slide {
+      height: 100%;
+      width: 100%;
+      .container {
+        height: 100%;
+        width: 100% !important;
+      }
+    }
+  }
+}
+
+/* end small screen */
+/* start medium screen */
+@media screen and (min-width:577px) and (max-width:768px) {
+  .login-page {
+    padding: 20px !important;
+  }
+}
+
+@media screen and (min-width:768px) {
+
+}
+
+/* end medium screen */
+/* start large screen */
+@media screen and (min-width:769px) and (max-width:992px) {
+  .login-page {
+    padding: 20px !important;
+  }
+}
+
+/* end large screen */
+/* start extra large screen */
+@media screen and (min-width:993px) and (max-width:1200px) {}
+
+/* end axtra large screen */
+/* start extra extra large screen */
+@media screen and (min-width:1201px) and (max-width:1400px) {}
+
+/* end extra extra large screen */
+
+/* end media queres*/

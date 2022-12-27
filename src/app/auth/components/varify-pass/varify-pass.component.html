@@ -1,0 +1,57 @@
+<div class="content">
+  <div class="navbar d-flex justify-content-center align-items-center">
+    <h2>QPMO<sub>system</sub></h2>
+  </div>
+  <div class="login-page py-5">
+    <div class="login-slide">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="login-form">
+              <div class="form-data">
+                <img src="../../../../assets/images/Dashboard-icons/logo-login.png" alt="login-logo">
+                <h3>{{"security-code" | translate }}</h3>
+                <h6>{{"security-msg" | translate }}</h6>
+                <div class="form">
+                  <form [formGroup]="varifyForm" (ngSubmit)="submitVarifyForm(varifyForm)">
+                    <div class="group  my-5">
+                      <div class="row d-flex justify-content-between  w-100" dir="ltr">
+                        <div class="col-3 p-3">
+                          <input type="number" autofocus min="1" max="9" class="w-100 " maxlength="1" #txt1
+                            (keyup)="move($event , '' , txt1 , txt2)" formControlName="code1">
+                        </div>
+                        <div class="col-3 p-3">
+                          <input type="number" min="1" max="9" class="w-100 " maxlength="1" #txt2
+                            (keyup)="move($event , txt1 , txt2 , txt3)" formControlName="code2">
+                        </div>
+                        <div class="col-3 p-3">
+                          <input type="number" min="1" max="9" class="w-100 " maxlength="1" #txt3
+                            (keyup)="move($event , txt2 , txt3 , txt4)" formControlName="code3">
+                        </div>
+                        <div class="col-3 p-3">
+                          <input type="number" min="1" max="9" class="w-100 " maxlength="1" #txt4
+                            (keyup)="move($event , txt3 , txt4 , '')" formControlName="code4">
+                        </div>
+                      </div>
+                    </div>
+                    <p class="text-center varify-msg">{{"code-q" | translate }}<a >{{"resend-code" | translate }}</a></p>
+                    <button [disabled]="varifyForm.invalid" class="btn mb-2" type="submit">{{"confirm" | translate }}</button>
+                    <p class="text-center exit" routerLink="..">{{"cancel" | translate }}</p>
+                  </form>
+                  <div class="msg-validate">
+                    <p class="text-danger" id="validate-msg">{{"credentials" | translate }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="intro-img">
+              <img src="../../../../assets/images/Dashboard-icons/login-image.png" class="img-fluid" alt="QDPM System">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

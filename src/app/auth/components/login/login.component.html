@@ -1,0 +1,51 @@
+<div class="content">
+  <div class="navbar d-flex justify-content-center align-items-center">
+    <h2>QPMO<sub>system</sub></h2>
+  </div>
+  <div class="login-page py-5">
+    <div class="login-slide">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="login-form">
+              <div class="form-data">
+                <img src="../../../../assets/images/Dashboard-icons/logo-login.png" alt="login-logo">
+                <h3>{{"login-account" | translate }}</h3>
+                <div class="form">
+                  <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm(loginForm)">
+                    <div class="form-group">
+                      <input type="text" [placeholder]="'username' | translate" formControlName="username">
+                    </div>
+                    <div class="form-group mb-2">
+                      <input [type]="changeType?'password':'text'" [placeholder]="'password' | translate" id="userPass"
+                        formControlName="password" autocomplete="">
+                      <!-- to show or hide password -->
+                      <span (click)="viewPassword()" id="view-pass"><i
+                          [ngClass]="visible?'fa fa-eye-slash':'fa fa-eye'"></i></span>
+                    </div>
+                    <div class="checker pb-3  d-flex justify-content-between align-items-center ">
+                      <label class="label-checker">
+                        <input type="checkbox" formControlName="checker">
+                        <span class="checkmark" [ngClass]="currentLanguage == 'ar'?'checkmark-rtl':'checkmark-ltr'" ></span>
+                        {{"remember-me" | translate }}</label>
+                      <a routerLink="/forget-pass">{{"forget-pass" | translate }}</a>
+                    </div>
+                    <button [disabled]="loginForm.invalid"  class="btn my-2" type="submit">{{"login" | translate }}</button>
+                  </form>
+                  <div class="msg-validate">
+                    <p class="text-danger" id="validate-msg">{{"credentials" | translate }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="intro-img">
+              <img src="../../../../assets/images/Dashboard-icons/login-image.png" class="img-fluid" alt="QDPM System">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

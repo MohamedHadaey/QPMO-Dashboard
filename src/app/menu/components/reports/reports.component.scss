@@ -1,0 +1,463 @@
+.container-fluid {
+  .row {
+    .col-12 {
+      .list {
+        box-shadow: 0px 0px 5px 0.5px #ccc;
+        background-color: #fff;
+        border-radius: 15px !important;
+        width: 100% !important;
+
+        .row {
+          .employees {
+            box-shadow: 0px 0px 10px 0.5px #ccc;
+            border-radius: 15px;
+            background-color: #fff;
+
+            .employees-head {
+              border-bottom: 3px solid #eee;
+
+              .logo {
+                h4 {
+                  color: #3D3D3D;
+                  font-weight: bold;
+                  font-size: 20px;
+                }
+
+                img {
+                  margin: 0 10px;
+                  width: 40px;
+                }
+              }
+
+              span {
+                color: #3D3D3D;
+                font-weight: bold !important;
+              }
+
+
+              // for check completing of projects archieve
+              .check-completing {
+                border-radius: 30px;
+                margin: 0 !important;
+                padding: 0 !important;
+                overflow: hidden;
+
+                .form-check {
+                  position: relative;
+                  padding-left: 20px !important;
+                  min-height: 100% !important;
+                  display: flex;
+                  align-items: center;
+
+                  div {
+                    position: absolute;
+
+                    span {
+                      font-size: 12px;
+                      font-weight: 400;
+                      margin-right: 5px;
+                    }
+                  }
+                }
+
+
+
+              }
+            }
+
+            .employees-number {
+              // padding: 30px 0 !important;
+
+              img {
+                margin: 0 10px;
+                width: 60px;
+              }
+
+              h2 {
+                color: #749BC4;
+                font-weight: bold;
+                font-size: 50px;
+              }
+
+              .row {
+                #my-pie-chart-container {
+                  width: 100%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-around;
+                }
+
+                #my-pie-chart {
+                  background: conic-gradient(#F24773 16%, #F5E306 16% 40%, #4CB871 40% 58%, #068DF5 58% 98%, #CCCCCC 98% 100%);
+                  border-radius: 50%;
+                  width: 120px;
+                  height: 120px;
+                }
+
+                #legenda {
+                  margin-left: 20px;
+                  background-color: white;
+                  padding: 5px;
+                }
+
+                .entry {
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+
+                  >span {
+                    font-weight: bold;
+                    font-size: 14px;
+                  }
+                }
+
+                .entry-color {
+                  height: 10px;
+                  width: 10px;
+                  border-radius: 3px;
+                }
+
+                .entry-text {
+                  margin-left: 5px;
+
+                  span {
+                    color: #3D3D3D;
+                    font-size: 12px;
+                    font-weight: 600;
+                    margin: 0 15px;
+                  }
+                }
+
+                #color-red {
+                  background-color: #F24773;
+                }
+
+                #color-yellow {
+                  background-color: #F5E306;
+                }
+
+                #color-green {
+                  background-color: #4CB871;
+                }
+
+                #color-primary {
+                  background-color: #068DF5;
+                }
+
+                #color-secondary {
+                  background-color: #CCCCCC;
+
+                }
+              }
+            }
+          }
+        }
+
+        // for follow projects
+        .row {
+          .projects-follow-card {
+            background-color: #F3F5FD;
+            padding: 5px;
+            border-radius: 15px;
+            text-align: center;
+
+            h4 {
+              margin: 5px 0;
+              color: #3D3D3D;
+              font-size: 18px;
+              font-weight: bold;
+            }
+
+            .number {
+              width: 100%;
+              background-color: #fff;
+              border-radius: 10px;
+
+              h3 {
+                font-weight: bold;
+                font-size: 40px;
+              }
+            }
+          }
+        }
+
+        // for reports
+        .reports {
+          .col-md-6:nth-of-type(2) {
+            .employees {
+              .employees-number {
+                padding: 20px;
+
+                h2 {
+                  font-size: 30px;
+                }
+
+                h3 {
+                  margin-top: 10px;
+                  color: #749BC4;
+                  font-size: 20px;
+                  font-weight: bold;
+                }
+
+                .chart-container{
+                  width: 450px;
+                  margin: auto;
+
+
+
+
+                }
+
+              }
+            }
+          }
+        }
+
+        // dates-grade
+        // .dates-grade {
+        //   display: flex;
+        //   flex-direction: row;
+
+        //   p {
+        //     display: contents;
+        //   }
+
+        //   .datepicker-toggle {
+        //     position: relative;
+        //     width: 30px;
+        //     height: 30px;
+        //     margin: 0 10px;
+        //   }
+
+        //   .datepicker-toggle-button {
+        //     position: absolute;
+        //     left: 0;
+        //     top: 0;
+        //     width: 100%;
+        //     height: 100%;
+        //   }
+
+        //   .datepicker-input {
+        //     position: absolute;
+        //     left: 0;
+        //     top: 0;
+        //     width: 100%;
+        //     height: 100%;
+        //     opacity: 0;
+        //     cursor: pointer;
+        //     box-sizing: border-box;
+        //   }
+
+        //   .datepicker-input::-webkit-calendar-picker-indicator {
+        //     position: absolute;
+        //     left: 0;
+        //     top: 0;
+        //     width: 100%;
+        //     height: 100%;
+        //     margin: 0;
+        //     padding: 0;
+        //     cursor: pointer;
+        //   }
+        // }
+
+        // date-range
+        .date-range {
+          form{
+            display: flex;
+            flex-direction: row;
+            justify-content: end;
+            .range {
+              width: 200px;
+              padding: 5px;
+              text-align: center;
+
+              span {
+                color: #555;
+                font-size: 15px;
+                font-weight: bold;
+              }
+              input {
+                margin: 0 10px;
+                width: 130px;
+                border: none;
+                outline: none;
+                background-color: #F0F2FA;
+                padding: 3px 10px;
+                border-radius: 20px;
+                font-size: 14px;
+                font-weight: bold;
+
+                &:hover{
+                  cursor: pointer;
+                }
+              }
+            }
+          }
+
+
+        }
+      }
+    }
+  }
+}
+
+
+
+/* start media queres  */
+
+/* start small screen */
+@media screen and (max-width:576px) {
+  .container-fluid {
+      .row {
+        .col-12 {
+          .list {
+            .row {
+              .employees {
+                overflow: hidden;
+                .employees-head {
+                  padding: 7px 0px;
+                  border-bottom: 2px solid #eee;
+
+                  .logo {
+                    h3 {
+                      font-size: 18px;
+                    }
+
+                    img {
+                      width: 35px;
+                    }
+                  }
+
+                  .radio {
+                    .form-check-input {
+                      height: 1.5em;
+                    }
+
+                    .form-switch .form-check-input {
+                      width: 3em;
+                    }
+                  }
+
+                  // for check completing of projects archieve
+                  .check-completing {
+                    border-radius: 20px;
+
+                    .form-check {
+                      div {
+                        span {
+                          font-size: 10px;
+                          font-weight: 300;
+                          margin-right: 5px;
+                          width: 100%;
+                          word-wrap: break-word;
+
+                        }
+                      }
+                    }
+
+                    .form-check-input {
+                      background-size: 50% 100%;
+                    }
+                  }
+                }
+
+                .employees-number {
+
+
+                  img {
+                    width: 40px;
+                  }
+
+                  h2 {
+                    color: #749BC4;
+                    font-weight: bold;
+                    font-size: 50px;
+                  }
+
+                  .row {
+
+                    #my-pie-chart-container {
+                      width: 100%;
+                      align-items: center;
+                      justify-content: center;
+                      flex-direction: column;
+                    }
+
+                    #legenda {
+                      margin: 0;
+                      width: 100%;
+                      padding-bottom: 20px;
+                    }
+
+                    .entry {
+
+
+                      >span {
+
+                      }
+                    }
+
+                    .entry-color {
+
+                    }
+
+                    .entry-text {
+
+
+                      span {
+
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
+            .reports .col-md-6 .employees-head {
+              flex-direction: column;
+              justify-content: center;
+
+
+              .logo {
+                img{
+                  width: 30px;
+                }
+                h3 {
+                  font-size: 16px;
+
+                }
+              }
+
+
+            }
+
+          }
+        }
+      }
+    }
+
+}
+/* end small screen */
+/* start medium screen */
+@media screen and (min-width:577px) and (max-width:768px) {
+
+
+}
+/* end medium screen */
+/* start large screen */
+@media screen and (min-width:769px) and (max-width:992px) {
+
+}
+/* end large screen */
+/* start extra large screen */
+@media screen and (min-width:993px) and (max-width:1200px) {
+
+}
+/* end axtra large screen */
+/* start extra extra large screen */
+@media screen and (min-width:1201px) and (max-width:1400px) {
+
+}
+/* end extra extra large screen */
+
+/* end media queres*/
