@@ -1,9 +1,44 @@
+.content-body {
+  .calendar-content {
+
+    .calendar-card {
+      .btn-group {
+        .btn{
+          padding: 5px 10px;
+          border: 1px solid #749BC4;
+          transition: all 0.4s;
+          text-align: center;
+          
+          p{
+            padding: 0;
+            margin: 0;
+            font-size: 16px;
+          }
+        }
+        .btn:first-of-type,.btn:last-of-type {
+          background-color: #749BC4;
+        }
+      }
+    }
+  }
+}
+
+
+
 
 /* start media queres  */
 
 /* start small screen */
 @media screen and (max-width:576px) {
+  .content-body {
 
+    .calendar-content {
+
+      .calendar-card {
+
+      }
+    }
+  }
 
 }
 /* end small screen */

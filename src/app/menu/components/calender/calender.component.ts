@@ -1,7 +1,12 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { ChangeDetectionStrategy, ViewChild, TemplateRef } from '@angular/core';
-import { CalendarEvent, CalendarEventAction } from 'angular-calendar';
+import {
+  CalendarEvent,
+  CalendarEventAction,
+  CalendarEventTimesChangedEvent,
+  CalendarView,
+} from 'angular-calendar';
 import {
   startOfDay,
   endOfDay,
@@ -38,8 +43,7 @@ import { addClass } from '@syncfusion/ej2-base';
 @Component({
   selector: 'app-calender',
   templateUrl: './calender.component.html',
-  styleUrls: ['./calender.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./calender.component.scss']
 })
 export class CalenderComponent implements OnInit {
   // // my trail to add calendar cards
@@ -95,11 +99,11 @@ export class CalenderComponent implements OnInit {
   //   }
 
   /****************/
+  view: CalendarView = CalendarView.Month;
+  CalendarView = CalendarView;
   refresh = new Subject<void>();
   viewDate: Date = new Date();
-  minDate: Date = new Date ("10/01/2022");
-  maxDate: Date = new Date ("12/30/2022");
-  activeDayIsOpen: boolean = true;
+  activeDayIsOpen: boolean = false;
   events: CalendarEvent[] = [
     {
       start: subDays(startOfDay(new Date()), 1),
@@ -152,6 +156,15 @@ export class CalenderComponent implements OnInit {
     }
   }
 
+
+  setView(view: CalendarView) {
+    this.view = view;
+  }
+
+   closeOpenMonthViewDay() {
+    this.activeDayIsOpen = false;
+  }
+
   minimize:boolean= true;
   fav:boolean = false;
   constructor(private _AuthService:AuthService) { }
@@ -165,8 +178,11 @@ export class CalenderComponent implements OnInit {
   }
 
   // this function to open day projects panel
-  showDayProjects() {
-    $(".day-projects").slideToggle();
-    $(".project-card-details").slideUp();
+  showDayProjects(e:any) {
+    if(e.badgeTotal > 0){
+      $(".day-projects").slideToggle();
+      $(".project-card-details").slideUp();
+    }
+
   }
 }
