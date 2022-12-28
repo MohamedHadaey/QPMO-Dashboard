@@ -1,51 +1,30 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ChangeDetectionStrategy, ViewChild, TemplateRef } from '@angular/core';
-import { CalendarEvent, CalendarEventAction } from 'angular-calendar';
-import {
-  startOfDay,
-  endOfDay,
-  subDays,
-  addDays,
-  endOfMonth,
-  isSameDay,
-  isSameMonth,
-  addHours,
-} from 'date-fns';
+import { Component, OnInit,ViewEncapsulation } from '@angular/core';
+
 import { EventColor } from 'calendar-utils';
-import { Subject } from 'rxjs';
+
 
 // import swiper components
 // import Swiper core and required modules
-import SwiperCore, { Navigation, Pagination, Scrollbar } from 'swiper';
+import SwiperCore, { Autoplay, Navigation, Pagination, Scrollbar } from 'swiper';
 
 // install Swiper modules
-SwiperCore.use([Navigation, Pagination, Scrollbar]);
+SwiperCore.use([Autoplay, Navigation, Pagination, Scrollbar]);
 declare const $: any;
-const colors: Record<string, EventColor> = {
-  red: {
-    primary: '#ad2121',
-    secondary: '#FAE3E3',
-  },
-  blue: {
-    primary: '#1e90ff',
-    secondary: '#D1E8FF',
-  },
-  yellow: {
-    primary: '#e3bc08',
-    secondary: '#FDF1BA',
-  },
-};
+
 
 @Component({
   selector: 'app-project-details',
   templateUrl: './project-details.component.html',
-  styleUrls: ['./project-details.component.scss']
+  styleUrls: ['./project-details.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ProjectDetailsComponent implements OnInit {
-
   minimize:boolean= true;
   fav:boolean = false;
-  constructor() { }
+  constructor() {
+
+}
+
 
   ngOnInit(): void {
   }
@@ -74,5 +53,15 @@ export class ProjectDetailsComponent implements OnInit {
 
   favProject() {
     this.fav =! this.fav;
+  }
+
+  // request to update images
+  updateImages() {
+    $(".update-popups").show()
+  }
+
+  // close update images popup
+  closeUpdateImagesPopup(){
+    $(".update-popups").hide()
   }
 }

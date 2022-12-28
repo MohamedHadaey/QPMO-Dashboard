@@ -12,7 +12,6 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '../shared/shared.module';
 
 import { GoogleMapsModule } from '@angular/google-maps';
-//import { AgmCoreModule } from '@agm/core/lib/core.module';
 
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
@@ -21,9 +20,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 // from angular material
 import { MatSliderModule } from '@angular/material/slider';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
-// npm
-// import swiper
-import { SwiperModule } from 'swiper/angular';
+
 
 // my trail to add calender cards
 
@@ -44,7 +41,6 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
-    SwiperModule,
     SharedModule,
     MatSliderModule,
     NgApexchartsModule,

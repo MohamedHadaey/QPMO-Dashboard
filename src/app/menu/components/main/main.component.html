@@ -243,16 +243,17 @@
           </div>
         </div>
         <!-- begin map theme -->
-        <div class="row row-map p-3" *ngIf="showen == 'maps'">
+        <div class="row row-map p-3" *ngIf="showen == 'maps'" >
           <div >
             <google-map height="100%" width="100%" [center]="center" [zoom]="zoom" [options]="mapsop">
-
+              <!-- <map-info-window><br>Get direction</map-info-window> -->
               <map-marker *ngFor="let markerPosition of projectslocations " [icon]="markerPosition.status"
                 [position]="markerPosition.position" [options]="markerOptions"
-                (mapClick)="MarkerClick(markerPosition)"></map-marker>
+                (mapClick)="MarkerClick(markerPosition);openProjectDetails(markerPosition)"></map-marker>
             </google-map>
           </div>
         </div>
+          <app-project-details></app-project-details>
         <!-- end: map theme -->
         <!-- begin: list theme  -->
         <div class="row row-list" *ngIf="showen == 'lists'">

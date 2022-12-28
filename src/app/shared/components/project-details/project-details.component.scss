@@ -1,523 +1,658 @@
-.day-projects {
-  width: 100%;
-  padding: 20px;
-  margin-top: 50px;
-  display: none;
-
-
-  ul {
+.project-detail {
+  padding: 0;
+  .day-projects {
+    background-color: #fff;
     width: 100%;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
+    padding: 20px;
+    margin-top: 50px;
+    border-radius: 10px;
+    display: none;
+    position: relative;
 
-    li {
+
+    >ul {
       width: 100%;
-      background-color: #F3F5FD;
-      border-radius: 5px;
-      margin: 5px 0;
-      padding: 5px 20px;
+      margin: 0;
+      padding: 0;
       display: flex;
-      align-items: center;
+      flex-direction: column;
 
-      p {
-        padding: 0;
-        margin: 0;
-        color: #3D3D3D;
-        font-size: 14px;
-        font-weight: bold;
-      }
-
-      img {
-        width: 18px;
-      }
-
-      .project-card {
-        border-radius: 10px;
+      li {
+        width: 100%;
+        background-color: #F3F5FD;
+        border-radius: 5px;
+        margin: 5px 0;
+        padding: 5px 20px;
         display: flex;
-        flex-direction: column;
-        margin: 5px 10px;
-        padding: 20px 10px;
-        min-width: 200px;
-        &:hover{
-          cursor: pointer;
-        }
-
-        h5 {
-          color: #3D3D3D;
-          font-size: 16px;
-          font-weight: 700;
-        }
+        align-items: center;
 
         p {
-          margin: 0;
           padding: 0;
-          color: #fff;
-          font-weight: 400;
+          margin: 0;
+          color: #3D3D3D;
+          font-size: 14px;
+          font-weight: bold;
         }
-      }
-
-      .project-card:first-of-type {
-        background-color: #4CB871;
-      }
-
-      .project-card:nth-of-type(2) {
-        background-color: #F24773;
-      }
-
-      .project-card:nth-of-type(3) {
-        background-color: #068DF5;
-      }
-    }
-
-    li:first-of-type {
-      justify-content: space-between;
-    }
-
-    li:nth-of-type(2) {
-      padding: 10px 20px;
-      justify-content: center;
-    }
-
-  }
-}
-
-.project-card-details {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-  background-color: #fff;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  box-shadow: 0px 0px 5px 2px #ccc;
-  display: none;
-  max-height: 560px;
-  overflow-x: hidden;
-
-  .row {
-    padding: 3px 20px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom: 2px solid #eee;
-
-    .col {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0;
-      margin: 0;
-      text-align: center;
-
-      p {
-        font-weight: bold;
-        font-size: 14px;
-        color: #3D3D3D;
-        padding: 0;
-        margin: 0 10px;
-      }
-
-      span {
-        color: #068DF5;
-      }
-
-      .icons {
-        padding: 0 3px;
-        width: 100%;
-        text-align: left;
 
         img {
-          width: 20px;
-          margin: 0 3px;
+          width: 18px;
+        }
 
-          &:hover {
-            cursor: pointer;
+        .row{
+          .col-sm-6 {
+            .project-card {
+              border-radius: 10px;
+              display: flex;
+              flex-direction: column;
+              margin: 5px 10px;
+              padding: 20px 10px;
+              min-width: 200px;
+              &:hover{
+                cursor: pointer;
+              }
+
+              h5 {
+                color: #3D3D3D;
+                font-size: 16px;
+                font-weight: 700;
+              }
+
+              p {
+                margin: 0;
+                padding: 0;
+                color: #fff;
+                font-weight: 400;
+              }
+            }
+          }
+
+          .col-sm-6:first-of-type .project-card {
+            background-color: #4CB871;
+          }
+
+          .col-sm-6:nth-of-type(2) .project-card {
+            background-color: #F24773;
+          }
+
+          .col-sm-6:nth-of-type(3) .project-card {
+            background-color: #068DF5;
           }
         }
       }
 
-    }
-  }
-
-  .row {
-    .projects-follow-card {
-      background-color: #F3F5FD;
-      padding: 5px;
-      border-radius: 15px;
-      text-align: center;
-
-      h4 {
-        margin: 5px 0;
-        color: #3D3D3D;
-        font-size: 18px;
-        font-weight: bold;
+      li:first-of-type {
+        justify-content: space-between;
       }
 
-      .number {
-        width: 100%;
-        background-color: #fff;
-        border-radius: 10px;
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        flex-direction: column;
-
-        img {
-          width: 50px;
-
-        }
-
-
+      li:nth-of-type(2) {
+        padding: 10px 20px;
+        justify-content: center;
       }
+
     }
 
-    .col-sm-6:first-of-type {
-      .projects-follow-card {
-        .number {
+    .project-card-details {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 1;
+      background-color: #fff;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      box-shadow: 0px 0px 5px 2px #ccc;
+      display: none;
+      max-height: 700px;
+      overflow-x: hidden;
+
+      .row {
+        padding: 3px 20px;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        border-bottom: 2px solid #eee;
+
+        .col-md-6 {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          padding: 0;
+          margin: 0;
+
+
+
           p {
-            font-size: 14px;
             font-weight: bold;
+            font-size: 14px;
             color: #3D3D3D;
             padding: 0;
-            margin: 0;
-          }
-        }
-      }
-    }
-
-    .col-sm-6:nth-of-type(2) {
-      .projects-follow-card {
-        .number {
-          p {
-            font-size: 16px;
-            font-weight: bold;
-            color: #068DF5;
-            padding: 0;
-            margin: 0;
-          }
-
-          .progress {
-            width: 120px;
-            height: 5px;
-            outline: 0.5px solid #ccc;
-            border-radius: 5px;
-            padding: 0;
-            margin: 12px 0;
-            background-color: #eee;
-            .progress-bar {
-              border-radius: 5px;
-              overflow: hidden;
-            }
+            margin: 0 10px;
           }
 
           span {
-            font-size: 12px;
-            color: #3D3D3D;
-          }
-        }
-      }
-    }
-
-    .col-sm-6:nth-of-type(3) {
-      .projects-follow-card {
-        .number {
-          p {
-            font-size: 14px;
             color: #068DF5;
-            padding: 2px 0;
-            margin: 0;
           }
-        }
-      }
-    }
 
-    .col-sm-6:nth-of-type(4),.col-sm-6:nth-of-type(5) {
-      .projects-follow-card {
-        .number {
+          .icons {
+            padding: 0 3px;
 
-            // -- vars
-            $bg-color: #34495e;
-            $default-size: 1em;
-            $label-font-size: $default-size / 4;
-            $label-font-size-redo: $default-size * 4;
+            img {
+              width: 20px;
+              margin: 0 3px;
 
-            // -- mixins
-            @mixin size($width, $height) {
-              height: $height;
-              width: $width;
-            }
-
-            @mixin draw-progress($progress, $color) {
-              .pie {
-                .half-circle {
-                  border-color: $color;
-                }
-
-                .left-side {
-                  transform: rotate($progress * 3.6deg);
-                }
-
-                @if $progress <= 50 {
-                  .right-side {
-                    display: none;
-                  }
-                } @else {
-                  clip: rect(auto, auto, auto, auto);
-
-                  .right-side {
-                    transform: rotate(180deg);
-                  }
-                }
+              &:hover {
+                cursor: pointer;
               }
             }
-
-            @mixin draw-progress--solid($progress, $color, $bg-color) {
-              background: linear-gradient(to right, $color 50%, $bg-color 50%);
-
-              &:before {
-                @if $progress <= 50 {
-                  background: $bg-color;
-                  transform: rotate((100 - (50 - $progress)) / 100 * 360deg * -1);
-                } @else {
-                  background: $color;
-                  transform: rotate((100 - $progress) / 100 * 360deg);
-                }
-              }
-            }
-
-            // -- selectors
-
-            .set-size {
-              font-size: 5em;
-            }
-
-            .charts-container {
-              &:after {
-                clear: both;
-                content: '';
-                display: table;
-              }
-            }
-
-            .pie-wrapper {
-              @include size($default-size, $default-size);
-              float: left;
-              // margin: 15px 0;
-              position: relative;
-
-              &:nth-child(3n + 1) {
-                clear: both;
-              }
-
-              .pie {
-                @include size(100%, 100%);
-                clip: rect(0, $default-size, $default-size, $default-size / 2);
-                left: 0;
-                position: absolute;
-                top: 0;
-
-                .half-circle {
-                  @include size(100%, 100%);
-                  border: ($default-size / 15) solid #3498db;
-                  border-radius: 50%;
-                  clip: rect(0, $default-size / 2, $default-size, 0);
-                  left: 0;
-                  position: absolute;
-                  top: 0;
-                }
-              }
-
-              .label {
-                background: $bg-color;
-                border-radius: 50%;
-                bottom: $label-font-size-redo / 10;
-                color: #ecf0f1;
-                cursor: default;
-                display: block;
-                font-size: $label-font-size;
-                left: $label-font-size-redo / 10;
-                line-height: $label-font-size-redo * .70;
-                position: absolute;
-                right: $label-font-size-redo / 10;
-                text-align: center;
-                top: $label-font-size-redo / 10;
-
-                .smaller {
-                  color: #bdc3c7;
-                  font-size: .45em;
-                  padding-bottom: 20px;
-                  vertical-align: super;
-                }
-              }
-
-              .shadow {
-                @include size(100%, 100%);
-                border: $default-size / 15 solid #eee;
-                border-radius: 50%;
-              }
-
-              &.style-2 {
-                .label {
-                  background: none;
-                  color: #7f8c8d;
-
-                  .smaller {
-                    color: #bdc3c7;
-                  }
-                }
-              }
-
-              &.progress-10 {
-                @include draw-progress(10, #068DF5);
-              }
-
-              &.progress-45 {
-                @include draw-progress(45, #4CB871);
-              }
-
-              &.progress-50 {
-                @include draw-progress(50, #F5E306);
-              }
-
-              &.progress-56 {
-                @include draw-progress(56, #4CB871);
-              }
-
-              &.progress-57 {
-                @include draw-progress(57, #F24773);
-              }
-
-              &.progress-60 {
-                @include draw-progress(60, #F5E306);
-              }
-
-              &.progress-65 {
-                @include draw-progress(65, #F24773);
-              }
-
-
-              &.progress-70 {
-                @include draw-progress(70, #4CB871);
-              }
-
-              &.progress-75 {
-                @include draw-progress(75, #068DF5);
-              }
-
-              &.progress-90 {
-                @include draw-progress(90, #e67e22);
-              }
-
-              &.progress-95 {
-                @include draw-progress(95, #e74c3c);
-              }
-
-              &.progress-98 {
-                @include draw-progress(95, #068DF5);
-              }
-            }
+          }
 
         }
+        .col-md-6:last-of-type{
+          justify-content: flex-end !important;
+        }
       }
-    }
 
-  }
-
-  .project-process {
-    display: none;
-
-    >p{
-      font-size: 14px;
-      color: #3D3D3D;
-      font-weight: bold;
-      padding: 0 40px;
-      margin: 0 !important;
-    }
-
-    .row {
-      border-bottom: 0;
-      justify-content: space-evenly;
-      .col-2 {
-        padding: 3px 5px;
-        .process {
-          border-radius: 20px;
-          padding: 5px;
+      .row {
+        .projects-follow-card {
           background-color: #F3F5FD;
+          padding: 5px;
+          border-radius: 15px;
           text-align: center;
-          height: 130px;
 
-          img {
-            width: 70px;
-            border-radius: 50%;
+          h4 {
             margin: 5px 0;
+            color: #3D3D3D;
+            font-size: 18px;
+            font-weight: bold;
           }
 
-          p {
-            margin: 0 auto;
-            padding: 0;
-            color: #3D3D3D;
-            font-size: 14px;
-            font-weight: bold;
+          .number {
+            width: 100%;
+            background-color: #fff;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: column;
+
+            img {
+              width: 50px;
+
+            }
+
 
           }
         }
+
+        .col-sm-6:first-of-type {
+          .projects-follow-card {
+            .number {
+              p {
+                font-size: 14px;
+                font-weight: bold;
+                color: #3D3D3D;
+                padding: 0;
+                margin: 0;
+              }
+            }
+          }
+        }
+
+        .col-sm-6:nth-of-type(2) {
+          .projects-follow-card {
+            .number {
+              p {
+                font-size: 16px;
+                font-weight: bold;
+                color: #068DF5;
+                padding: 0;
+                margin: 0;
+              }
+
+              .progress {
+                width: 120px;
+                height: 5px;
+                outline: 0.5px solid #ccc;
+                border-radius: 5px;
+                padding: 0;
+                margin: 12px 0;
+                background-color: #eee;
+                .progress-bar {
+                  border-radius: 5px;
+                  overflow: hidden;
+                }
+              }
+
+              span {
+                font-size: 12px;
+                color: #3D3D3D;
+              }
+            }
+          }
+        }
+
+        .col-sm-6:nth-of-type(3) {
+          .projects-follow-card {
+            .number {
+              p {
+                font-size: 14px;
+                color: #068DF5;
+                padding: 2px 0;
+                margin: 0;
+              }
+            }
+          }
+        }
+
+        .col-sm-6:nth-of-type(4),.col-sm-6:nth-of-type(5) {
+          .projects-follow-card {
+            .number {
+
+                // -- vars
+                $bg-color: #34495e;
+                $default-size: 1em;
+                $label-font-size: $default-size / 4;
+                $label-font-size-redo: $default-size * 4;
+
+                // -- mixins
+                @mixin size($width, $height) {
+                  height: $height;
+                  width: $width;
+                }
+
+                @mixin draw-progress($progress, $color) {
+                  .pie {
+                    .half-circle {
+                      border-color: $color;
+                    }
+
+                    .left-side {
+                      transform: rotate($progress * 3.6deg);
+                    }
+
+                    @if $progress <= 50 {
+                      .right-side {
+                        display: none;
+                      }
+                    } @else {
+                      clip: rect(auto, auto, auto, auto);
+
+                      .right-side {
+                        transform: rotate(180deg);
+                      }
+                    }
+                  }
+                }
+
+                @mixin draw-progress--solid($progress, $color, $bg-color) {
+                  background: linear-gradient(to right, $color 50%, $bg-color 50%);
+
+                  &:before {
+                    @if $progress <= 50 {
+                      background: $bg-color;
+                      transform: rotate((100 - (50 - $progress)) / 100 * 360deg * -1);
+                    } @else {
+                      background: $color;
+                      transform: rotate((100 - $progress) / 100 * 360deg);
+                    }
+                  }
+                }
+
+                // -- selectors
+
+                .set-size {
+                  font-size: 5em;
+                }
+
+                .charts-container {
+                  &:after {
+                    clear: both;
+                    content: '';
+                    display: table;
+                  }
+                }
+
+                .pie-wrapper {
+                  @include size($default-size, $default-size);
+                  float: left;
+                  // margin: 15px 0;
+                  position: relative;
+
+                  &:nth-child(3n + 1) {
+                    clear: both;
+                  }
+
+                  .pie {
+                    @include size(100%, 100%);
+                    clip: rect(0, $default-size, $default-size, $default-size / 2);
+                    left: 0;
+                    position: absolute;
+                    top: 0;
+
+                    .half-circle {
+                      @include size(100%, 100%);
+                      border: ($default-size / 15) solid #3498db;
+                      border-radius: 50%;
+                      clip: rect(0, $default-size / 2, $default-size, 0);
+                      left: 0;
+                      position: absolute;
+                      top: 0;
+                    }
+                  }
+
+                  .label {
+                    background: $bg-color;
+                    border-radius: 50%;
+                    bottom: $label-font-size-redo / 10;
+                    color: #ecf0f1;
+                    cursor: default;
+                    display: block;
+                    font-size: $label-font-size;
+                    left: $label-font-size-redo / 10;
+                    line-height: $label-font-size-redo * .70;
+                    position: absolute;
+                    right: $label-font-size-redo / 10;
+                    text-align: center;
+                    top: $label-font-size-redo / 10;
+
+                    .smaller {
+                      color: #bdc3c7;
+                      font-size: .45em;
+                      padding-bottom: 20px;
+                      vertical-align: super;
+                    }
+                  }
+
+                  .shadow {
+                    @include size(100%, 100%);
+                    border: $default-size / 15 solid #eee;
+                    border-radius: 50%;
+                  }
+
+                  &.style-2 {
+                    .label {
+                      background: none;
+                      color: #7f8c8d;
+
+                      .smaller {
+                        color: #bdc3c7;
+                      }
+                    }
+                  }
+
+                  &.progress-10 {
+                    @include draw-progress(10, #068DF5);
+                  }
+
+                  &.progress-45 {
+                    @include draw-progress(45, #4CB871);
+                  }
+
+                  &.progress-50 {
+                    @include draw-progress(50, #F5E306);
+                  }
+
+                  &.progress-56 {
+                    @include draw-progress(56, #4CB871);
+                  }
+
+                  &.progress-57 {
+                    @include draw-progress(57, #F24773);
+                  }
+
+                  &.progress-60 {
+                    @include draw-progress(60, #F5E306);
+                  }
+
+                  &.progress-65 {
+                    @include draw-progress(65, #F24773);
+                  }
+
+
+                  &.progress-70 {
+                    @include draw-progress(70, #4CB871);
+                  }
+
+                  &.progress-75 {
+                    @include draw-progress(75, #068DF5);
+                  }
+
+                  &.progress-90 {
+                    @include draw-progress(90, #e67e22);
+                  }
+
+                  &.progress-95 {
+                    @include draw-progress(95, #e74c3c);
+                  }
+
+                  &.progress-98 {
+                    @include draw-progress(95, #068DF5);
+                  }
+                }
+
+            }
+          }
+        }
+
       }
-    }
-  }
 
-  .project-dates {
-    >p{
-      font-size: 14px;
-      color: #3D3D3D;
-      font-weight: bold;
-      padding: 0 40px;
-      margin: 0 !important;
-      text-align: left;
-    }
+      .project-process {
+        display: none;
 
-    .project-images {
-      border-bottom: none;
-      overflow: hidden;
-      .swiper {
-        width: 95%;
-        margin: auto;
-        text-align: center;
-        border-radius: 10px;
-        overflow: hidden;
+        >p{
+          font-size: 14px;
+          color: #3D3D3D;
+          font-weight: bold;
+          padding: 0 40px;
+          margin: 0 !important;
+        }
 
-        .swiperSlide{
-          width: 200px;
+        .row {
+          border-bottom: 0;
+          justify-content: center;
+          margin: 0 !important;
+          .col-sm-6 {
+            padding: 5px;
+            .process {
+              border-radius: 20px;
+              padding: 5px;
+              background-color: #F3F5FD;
+              text-align: center;
+              height: 130px;
 
-          .date {
+              img {
+                width: 70px;
+                border-radius: 50%;
+                margin: 5px 0;
+              }
+
+              p {
+                margin: 0 auto;
+                padding: 0;
+                color: #3D3D3D;
+                font-size: 14px;
+                font-weight: bold;
+
+              }
+            }
+
+            .update-popups{
+              position: fixed;
+              width: 100vw;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background-color: rgba(0,0,0, 0.5);
+              display: none;
+
+              .content {
+                width: 100%;
+                height: 100%;
+                padding: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .popup {
+                  position: relative;
+                  background-color: #fff;
+                  border-radius: 15px;
+                  min-width: 200px;
+                  max-width: 450px;
+                  padding: 50px 15px 15px 15px;
+                  text-align: center;
+
+                  .update-image {
+                    position: absolute;
+                    top: 0;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 50%;
+
+                    img{
+                      width: 100%;
+                      height: 100%;
+                    }
+                  }
+
+                  h4{
+                    color: #555;
+                    font-weight: bold;
+                    font-size: 18px;
+                  }
+
+                  .butns{
+                    width: 100%;
+                    padding: 10px;
+                    .row{
+                      .col-sm-6 {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        text-align: center;
+
+                        button {
+                          padding: 3px 45px;
+                          border-radius: 20px;
+                          border: none;
+                          outline: none;
+                          font-size: 14px;
+                          font-weight: 700;
+                          transition: all 0.3s;
+                          &:hover{
+                            box-shadow: 1px 1px 4px #aaa;
+                          }
+                        }
+
+                      }
+                      .col-sm-6:first-of-type button{
+                        background-color: #4CB871;
+                        color: #fff;
+                      }
+
+                      .col-sm-6:nth-of-type(2) button{
+                        color: #D50000;
+                      }
+
+                    }
+                  }
+
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .project-dates {
+        >p{
+          font-size: 14px;
+          color: #3D3D3D;
+          font-weight: bold;
+          padding: 0 40px;
+          margin: 0 !important;
+          text-align: left;
+        }
+
+        .project-images {
+          border-bottom: none;
+          overflow: hidden;
+          margin: 0;
+
+          .swiper {
             width: 100%;
-            background-color: #F3F5FD;
+            height: 100%;
             border-radius: 10px;
             overflow: hidden;
-            .date-img {
+          }
+
+          .swiper-slide {
+            width: 200px;
+            text-align: center;
+            font-size: 18px;
+
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+
+            .date {
               width: 100%;
-              img {
+              background-color: #F3F5FD;
+              border-radius: 10px;
+              overflow: hidden;
+              .date-img {
                 width: 100%;
-                height: 125px;
+                img {
+                  width: 100%;
+                  height: 125px;
+                }
+                &:hover{
+                  cursor: grab;
+                }
               }
-              &:hover{
-                cursor: grab;
+              p {
+                font-size: 14px;
+                font-weight: bold;
+                color: #3498db;
+                text-align: center;
+                padding: 5px;
+                margin: 0;
               }
-            }
-            p {
-              font-size: 14px;
-              font-weight: bold;
-              color: #3498db;
-              text-align: center;
-              padding: 5px;
-              margin: 0;
             }
           }
+
+
+
         }
+
+
+
       }
+    }
+  }
 
 
+}
+
+
+@media screen and (max-width: 768px) {
+  .project-card-details {
+    .row {
+      .col-md-6:last-of-type {
+        order: -1;
+      }
     }
   }
 }

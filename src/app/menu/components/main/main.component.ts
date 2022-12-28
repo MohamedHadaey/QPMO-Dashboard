@@ -9,7 +9,7 @@ declare var google: any;
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss'],
+  styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
   // price range inputs
@@ -132,11 +132,13 @@ export class MainComponent implements OnInit {
   };
   zoom = 8;
 
+
+
   projectslocations: googleMaps_ApiReturn[] = [
     {
       position: {
-        lat: 25.295213,
-        lng: 50.454654,
+        lat: 25.288776260967463,
+        lng: 51.52965965276464,
       },
       status: {
         scaledSize: {
@@ -146,7 +148,7 @@ export class MainComponent implements OnInit {
             return true;
           },
         },
-        url: '../../../../assets/maps_images/green.png',
+        url: '../../../../assets/maps_images/yellow.png',
       },
     },
     {
@@ -181,11 +183,40 @@ export class MainComponent implements OnInit {
         url: '../../../../assets/maps_images/red.png',
       },
     },
+    {
+      position: {
+        lat: 25.295213,
+        lng: 50.454654,
+      },
+      status: {
+        scaledSize: {
+          height: 40,
+          width: 40,
+          equals(other) {
+            return true;
+          },
+        },
+        url: '../../../../assets/maps_images/green.png',
+      },
+    },
   ];
 
   markerOptions: google.maps.MarkerOptions = {
     draggable: false,
   };
+
+
+
+
+  openProjectDetails(markerPosition:any){
+    this.showDayProjects()
+  }
+
+    // this function to open day projects panel
+    showDayProjects() {
+      $(".day-projects").slideToggle();
+      $(".project-card-details").slideUp();
+    }
   ////////////////////////////////////////////
   ngOnInit(): void {
     // for check directions after any refresh

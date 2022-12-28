@@ -15,10 +15,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { MyIntercetor } from './intercetor';
 import {  HTTP_INTERCEPTORS } from '@angular/common/http';
-import { GoogleMapsModule } from '@angular/google-maps';
-//import { AgmCoreModule } from '@agm/core';
-
-// import { NgxSliderModule } from '@angular-slider/ngx-slider';
 // import swiper
 import { SwiperModule } from "swiper/angular";
 
@@ -42,7 +38,6 @@ import { NgApexchartsModule } from "ng-apexcharts";
     HttpClientModule,
     BrowserAnimationsModule,
     SlickCarouselModule,
-    GoogleMapsModule,
     NgApexchartsModule,
     SwiperModule,
     NgChartsModule,

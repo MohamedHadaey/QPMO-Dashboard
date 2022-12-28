@@ -29,13 +29,5 @@ export class MessagesComponent implements OnInit {
     // $(".list ul li").css("background-color" , "#F3F5FD")
   }
 
-  // show full message
-  showFullMsg() {
-    if($(".message-height").css("height") == "94px"){
-      $(".message-height").css({"height": "auto"});
-    }else{
-      $(".message-height").css({"height": "94px"});
-    }
 
-  }
 }

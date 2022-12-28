@@ -15,12 +15,6 @@ import {
 import { EventColor } from 'calendar-utils';
 import { Subject } from 'rxjs';
 
-// import swiper components
-// import Swiper core and required modules
-import SwiperCore, { Navigation, Pagination, Scrollbar } from 'swiper';
-
-// install Swiper modules
-SwiperCore.use([Navigation, Pagination, Scrollbar]);
 declare const $: any;
 const colors: Record<string, EventColor> = {
   red: {

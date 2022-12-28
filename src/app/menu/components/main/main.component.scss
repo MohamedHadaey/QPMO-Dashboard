@@ -1,8 +1,16 @@
+.content {
+  >.row {
+
+    .sidebar {
+      z-index: 2;
+    }
+  }
+}
+
 .container-fluid {
   .row-map {
     min-height: 100vh !important;
   }
-
 
   //*******************  list theme style   ************************//
   .row-list {
@@ -306,6 +314,9 @@
 
 /* start small screen */
 @media screen and (max-width: 992px) {
+  .row-map {
+    padding: 10px 0 !important;
+  }
 }
 
 /* end small screen */
