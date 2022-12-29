@@ -10,6 +10,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { ProjectDetailsComponent } from './components/project-details/project-details.component';
 // import swiper
 import { SwiperModule } from "swiper/angular";
+import { BrowserModule } from '@angular/platform-browser';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { SwiperModule } from "swiper/angular";
     CommonModule,
     TranslateModule,
     NgChartsModule,
+    BrowserModule,
     SwiperModule
   ],
   exports: [

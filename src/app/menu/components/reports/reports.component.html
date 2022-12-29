@@ -108,10 +108,19 @@
                       </div>
                     </div>
                     <!-- begin:: chart -->
-                    <div class="chart-container">
-                      <apx-chart [chart]="stateChartDetails" [series]="stateChartSeries" [labels]="['لم يتم التعميد','الحالية','تنتهى قريبا','متأخرة','مكتملة']" [dataLabels]="statechartDetails"></apx-chart>
+                    <div id="chart" class="my-2">
+                      <apx-chart
+                        [series]="statechartOptions.series"
+                        [chart]="statechartOptions.chart"
+                        [dataLabels]="statechartOptions.dataLabels"
+                        [plotOptions]="statechartOptions.plotOptions"
+                        [yaxis]="statechartOptions.yaxis"
+                        [xaxis]="statechartOptions.xaxis"
+                        [legend]="statechartOptions.legend"
+                        [colors]="statechartOptions.colors"
+                        [grid]="statechartOptions.grid"
+                      ></apx-chart>
                     </div>
-
 
                     <!-- end:: charts -->
                   </div>
@@ -123,7 +132,6 @@
                         <img src="../../../../assets/images/Dashboard-icons/rate.png" alt="rate">
                         <h4>{{"project-states" | translate }}</h4>
                       </div>
-
                     </div>
                     <div class="employees-number py-0">
                       <div class="row">
@@ -190,8 +198,16 @@
                     </div>
                     <div class="employees-number py-0">
                       <div class="row">
-                        <div class="chart-container">
-                          <apx-chart [chart]="typeChartDetails" [series]="typeChartSeries" [labels]="[' إنارة طرق ',' طرق ',' صرف صحى ',' كبارى ']" [dataLabels]="typechartDetails" height="250"></apx-chart>
+                        <!--The content below is only a placeholder and can be replaced.-->
+                        <div id="chart">
+                          <apx-chart
+                            [series]="archivechartOptions.series"
+                            [chart]="archivechartOptions.chart"
+                            [xaxis]="archivechartOptions.xaxis"
+                            [stroke]="archivechartOptions.stroke"
+                            [tooltip]="archivechartOptions.tooltip"
+                            [dataLabels]="archivechartOptions.dataLabels"
+                          ></apx-chart>
                         </div>
                       </div>
                     </div>
