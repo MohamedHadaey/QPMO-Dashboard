@@ -45,8 +45,8 @@ export class MainComponent implements OnInit {
 
   /////////////////////Maps////////////////////
   center: google.maps.LatLngLiteral = {
-    lat: 25.295213,
-    lng: 50.454654,
+    lat: 24.742007867478183,
+    lng: 46.65728366258421,
   };
   mapsop: google.maps.MapOptions = {
     styles: [
@@ -130,15 +130,15 @@ export class MainComponent implements OnInit {
       },
     ],
   };
-  zoom = 8;
+  zoom = 7;
 
 
 
   projectslocations: googleMaps_ApiReturn[] = [
     {
       position: {
-        lat: 25.288776260967463,
-        lng: 51.52965965276464,
+        lat: 24.742007867478183,
+        lng: 46.65728366258421,
       },
       status: {
         scaledSize: {
@@ -197,6 +197,38 @@ export class MainComponent implements OnInit {
           },
         },
         url: '../../../../assets/maps_images/green.png',
+      },
+    },
+    {
+      position: {
+        lat: 23.77636944273777,
+        lng: 44.76241220442151,
+      },
+      status: {
+        scaledSize: {
+          height: 40,
+          width: 40,
+          equals(other) {
+            return true;
+          },
+        },
+        url: '../../../../assets/maps_images/white.png',
+      },
+    },
+    {
+      position: {
+        lat: 26.30282760999688,
+        lng: 44.81099865206671,
+      },
+      status: {
+        scaledSize: {
+          height: 40,
+          width: 40,
+          equals(other) {
+            return true;
+          },
+        },
+        url: '../../../../assets/maps_images/yellow.png',
       },
     },
   ];
@@ -268,7 +300,7 @@ export class MainComponent implements OnInit {
     $('#map').removeClass('active-theme');
     $('#card').removeClass('active-theme');
     this.showen = 'lists';
-   
+
   }
 
   // show map theme
