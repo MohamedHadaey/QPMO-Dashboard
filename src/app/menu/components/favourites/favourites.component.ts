@@ -82,4 +82,14 @@ export class FavouritesComponent implements OnInit {
   logOut() {
     this._AuthService.logout();
   }
+
+  showProjectCardDetails() {
+    $(".project-card-details").slideToggle();
+  }
+
+    // this function to open day projects panel
+    showDayProjects() {
+      $(".day-projects").slideToggle();
+      $(".project-card-details").slideUp();
+    }
 }
