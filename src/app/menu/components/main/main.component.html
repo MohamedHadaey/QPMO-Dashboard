@@ -253,7 +253,6 @@
             </google-map>
           </div>
         </div>
-          <app-project-details></app-project-details>
         <!-- end: map theme -->
         <!-- begin: list theme  -->
         <div class="row row-list" *ngIf="showen == 'lists'">
@@ -278,7 +277,7 @@
                     </td>
                     <td>
                       <div class="item">
-                        <p>{{"road-light" | translate }}</p>
+                        <p class="hover" (click)="showProjectCardDetails()">{{"road-light" | translate }}</p>
                       </div>
                     </td>
                     <td>
@@ -309,7 +308,7 @@
                     </td>
                     <td>
                       <div class="item">
-                        <p>{{"road" | translate }}</p>
+                        <p class="hover" (click)="showProjectCardDetails()">{{"road" | translate }}</p>
                       </div>
                     </td>
                     <td>
@@ -340,7 +339,7 @@
                     </td>
                     <td>
                       <div class="item">
-                        <p>{{"sanitaion" | translate }}</p>
+                        <p class="hover" (click)="showProjectCardDetails()">{{"sanitaion" | translate }}</p>
                       </div>
                     </td>
                     <td>
@@ -371,7 +370,7 @@
                     </td>
                     <td>
                       <div class="item">
-                        <p>{{"road" | translate }}</p>
+                        <p class="hover" (click)="showProjectCardDetails()">{{"road" | translate }}</p>
                       </div>
                     </td>
                     <td>
@@ -402,7 +401,7 @@
                     </td>
                     <td>
                       <div class="item">
-                        <p>{{"bridges" | translate }}</p>
+                        <p class="hover" (click)="showProjectCardDetails()">{{"bridges" | translate }}</p>
                       </div>
                     </td>
                     <td>
@@ -433,7 +432,7 @@
                     </td>
                     <td>
                       <div class="item">
-                        <p>{{"road-light" | translate }}</p>
+                        <p class="hover" (click)="showProjectCardDetails()">{{"road-light" | translate }}</p>
                       </div>
                     </td>
                     <td>
@@ -464,7 +463,7 @@
                     </td>
                     <td>
                       <div class="item">
-                        <p>{{"bridges" | translate }}</p>
+                        <p class="hover" (click)="showProjectCardDetails()">{{"bridges" | translate }}</p>
                       </div>
                     </td>
                     <td>
@@ -495,7 +494,7 @@
                     </td>
                     <td>
                       <div class="item">
-                        <p>{{"sanitaion" | translate }}</p>
+                        <p class="hover" (click)="showProjectCardDetails()">{{"sanitaion" | translate }}</p>
                       </div>
                     </td>
                     <td>
@@ -526,7 +525,7 @@
                     </td>
                     <td>
                       <div class="item">
-                        <p>{{"bridges" | translate }}</p>
+                        <p class="hover" (click)="showProjectCardDetails()">{{"bridges" | translate }}</p>
                       </div>
                     </td>
                     <td>
@@ -573,7 +572,7 @@
                     </td>
                     <td>
                       <div class="item">
-                        <p>{{"sanitaion" | translate }}</p>
+                        <p class="hover" (click)="showProjectCardDetails()">{{"sanitaion" | translate }}</p>
                       </div>
                     </td>
                     <td>
@@ -604,7 +603,7 @@
                     </td>
                     <td>
                       <div class="item">
-                        <p>{{"road-light" | translate }}</p>
+                        <p class="hover" (click)="showProjectCardDetails()">{{"road-light" | translate }}</p>
                       </div>
                     </td>
                     <td>
@@ -635,7 +634,7 @@
                     </td>
                     <td>
                       <div class="item">
-                        <p>{{"bridges" | translate }}</p>
+                        <p class="hover" (click)="showProjectCardDetails()">{{"bridges" | translate }}</p>
                       </div>
                     </td>
                     <td>
@@ -666,7 +665,7 @@
                     </td>
                     <td>
                       <div class="item">
-                        <p>{{"bridges" | translate }}</p>
+                        <p class="hover" (click)="showProjectCardDetails()">{{"bridges" | translate }}</p>
                       </div>
                     </td>
                     <td>
@@ -712,7 +711,7 @@
                             </tr>
                             <tr>
                               <th>{{"project-name" | translate }}</th>
-                              <td>{{"road-light" | translate }}</td>
+                              <td class="hover" (click)="showProjectCardDetails()">{{"road-light" | translate }}</td>
                             </tr>
                             <tr>
                               <th>{{"contractors-name" | translate }}</th>
@@ -761,7 +760,7 @@
                             </tr>
                             <tr>
                               <th>{{"project-name" | translate }}</th>
-                              <td>{{"road" | translate }}</td>
+                              <td class="hover" (click)="showProjectCardDetails()">{{"road" | translate }}</td>
                             </tr>
                             <tr>
                               <th>{{"contractors-name" | translate }}</th>
@@ -810,7 +809,7 @@
                             </tr>
                             <tr>
                               <th>{{"project-name" | translate }}</th>
-                              <td>{{"sanitaion" | translate }}</td>
+                              <td class="hover" (click)="showProjectCardDetails()">{{"sanitaion" | translate }}</td>
                             </tr>
                             <tr>
                               <th>{{"contractors-name" | translate }}</th>
@@ -859,7 +858,7 @@
                             </tr>
                             <tr>
                               <th>{{"project-name" | translate }}</th>
-                              <td>{{"raod" | translate }}</td>
+                              <td class="hover" (click)="showProjectCardDetails()">{{"raod" | translate }}</td>
                             </tr>
                             <tr>
                               <th>{{"contractors-name" | translate }}</th>
@@ -908,7 +907,7 @@
                             </tr>
                             <tr>
                               <th>{{"project-name" | translate }}</th>
-                              <td>{{"bridges" | translate }}</td>
+                              <td class="hover" (click)="showProjectCardDetails()">{{"bridges" | translate }}</td>
                             </tr>
                             <tr>
                               <th>{{"contractors-name" | translate }}</th>
@@ -957,7 +956,7 @@
                             </tr>
                             <tr>
                               <th>{{"project-name" | translate }}</th>
-                              <td>{{"road-light" | translate }}</td>
+                              <td class="hover" (click)="showProjectCardDetails()">{{"road-light" | translate }}</td>
                             </tr>
                             <tr>
                               <th>{{"contractors-name" | translate }}</th>
@@ -1006,7 +1005,7 @@
                             </tr>
                             <tr>
                               <th>{{"project-name" | translate }}</th>
-                              <td>{{"bridges" | translate }}</td>
+                              <td class="hover" (click)="showProjectCardDetails()">{{"bridges" | translate }}</td>
                             </tr>
                             <tr>
                               <th>{{"contractors-name" | translate }}</th>
@@ -1055,7 +1054,7 @@
                             </tr>
                             <tr>
                               <th>{{"project-name" | translate }}</th>
-                              <td>{{"sanitaion" | translate }}</td>
+                              <td class="hover" (click)="showProjectCardDetails()">{{"sanitaion" | translate }}</td>
                             </tr>
                             <tr>
                               <th>{{"contractors-name" | translate }}</th>
@@ -1104,7 +1103,7 @@
                             </tr>
                             <tr>
                               <th>{{"project-name" | translate }}</th>
-                              <td>{{"bridges" | translate }}</td>
+                              <td class="hover" (click)="showProjectCardDetails()">{{"bridges" | translate }}</td>
                             </tr>
                             <tr>
                               <th>{{"contractors-name" | translate }}</th>
@@ -1155,7 +1154,7 @@
                             </tr>
                             <tr>
                               <th>{{"project-name" | translate }}</th>
-                              <td>{{"sanitaion" | translate }}</td>
+                              <td class="hover" (click)="showProjectCardDetails()">{{"sanitaion" | translate }}</td>
                             </tr>
                             <tr>
                               <th>{{"contractors-name" | translate }}</th>
@@ -1204,7 +1203,7 @@
                             </tr>
                             <tr>
                               <th>{{"project-name" | translate }}</th>
-                              <td>{{"road-light" | translate }}</td>
+                              <td class="hover" (click)="showProjectCardDetails()">{{"road-light" | translate }}</td>
                             </tr>
                             <tr>
                               <th>{{"contractors-name" | translate }}</th>
@@ -1253,7 +1252,7 @@
                             </tr>
                             <tr>
                               <th>{{"project-name" | translate }}</th>
-                              <td>{{"bridges" | translate }}</td>
+                              <td class="hover" (click)="showProjectCardDetails()">{{"bridges" | translate }}</td>
                             </tr>
                             <tr>
                               <th>{{"contractors-name" | translate }}</th>
@@ -1302,7 +1301,7 @@
                             </tr>
                             <tr>
                               <th>{{"project-name" | translate }}</th>
-                              <td>{{"bridges" | translate }}</td>
+                              <td class="hover" (click)="showProjectCardDetails()">{{"bridges" | translate }}</td>
                             </tr>
                             <tr>
                               <th>{{"contractors-name" | translate }}</th>
@@ -1342,6 +1341,9 @@
           </div>
         </div>
         <!-- end: card theme -->
+        <div class="row">
+          <app-project></app-project>
+        </div>
       </div>
     </div>
   </div>

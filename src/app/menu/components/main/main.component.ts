@@ -209,7 +209,10 @@ export class MainComponent implements OnInit {
 
 
   openProjectDetails(markerPosition:any){
-    this.showDayProjects()
+    this.showProjectCardDetails()
+  }
+  showProjectCardDetails() {
+    $(".project-card-details").slideToggle();
   }
 
     // this function to open day projects panel
@@ -265,6 +268,7 @@ export class MainComponent implements OnInit {
     $('#map').removeClass('active-theme');
     $('#card').removeClass('active-theme');
     this.showen = 'lists';
+   
   }
 
   // show map theme
@@ -273,6 +277,7 @@ export class MainComponent implements OnInit {
     $('#list').removeClass('active-theme');
     $('#card').removeClass('active-theme');
     this.showen = 'maps';
+
   }
 
   // show card theme
@@ -281,6 +286,7 @@ export class MainComponent implements OnInit {
     $('#map').removeClass('active-theme');
     $('#list').removeClass('active-theme');
     this.showen = 'cards';
+
   }
 
   // this function to log out

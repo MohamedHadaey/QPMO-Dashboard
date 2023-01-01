@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { ChangeDetectionStrategy, ViewChild, TemplateRef } from '@angular/core';
 import {
@@ -39,6 +39,7 @@ const colors: Record<string, EventColor> = {
 // my trail to add calender cards
 import { ChangedEventArgs } from '@syncfusion/ej2-calendars';
 import { addClass } from '@syncfusion/ej2-base';
+import { F } from 'chart.js/dist/chunks/helpers.core';
 
 @Component({
   selector: 'app-calender',
@@ -116,6 +117,7 @@ export class CalenderComponent implements OnInit {
         afterEnd: true,
       },
       draggable: true,
+      cssClass: 'display-none',
     },
     {
       start: startOfDay(new Date()),
@@ -142,19 +144,19 @@ export class CalenderComponent implements OnInit {
     },
   ];
 
-  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
-    if (isSameMonth(date, this.viewDate)) {
-      if (
-        (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
-        events.length === 0
-      ) {
-        this.activeDayIsOpen = false;
-      } else {
-        this.activeDayIsOpen = true;
-      }
-      this.viewDate = date;
-    }
-  }
+  // dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+  //   if (isSameMonth(date, this.viewDate)) {
+  //     if (
+  //       (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
+  //       events.length === 0
+  //     ) {
+  //       this.activeDayIsOpen = false;
+  //     } else {
+  //       this.activeDayIsOpen = true;
+  //     }
+  //     this.viewDate = date;
+  //   }
+  // }
 
 
   setView(view: CalendarView) {

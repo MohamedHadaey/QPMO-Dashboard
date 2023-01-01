@@ -39,6 +39,7 @@ const routes: Routes = [
   {path:"Search", component: SearchComponent},
   {path:"slider", component: SliderComponent},
   {path:"project-details", component: ProjectDetailsComponent},
+  {path:"project", component: ProjectsComponent},
   {path:"**" , redirectTo: "login", pathMatch: "full"}
 ];
 

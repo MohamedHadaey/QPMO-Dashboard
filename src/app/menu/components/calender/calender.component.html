@@ -121,7 +121,7 @@
             </div>
           </div>
           <mwl-calendar-month-view style="width: 100%;" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
-            [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day);showDayProjects($event.day)">
+            [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="showDayProjects($event.day)">
           </mwl-calendar-month-view>
         </div>
       </div>

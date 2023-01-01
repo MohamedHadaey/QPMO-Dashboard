@@ -27,6 +27,9 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
 // import ApexCharts for charts
 import { NgApexchartsModule } from 'ng-apexcharts';
 
+// import swiper
+import { SwiperModule } from "swiper/angular";
+import { BrowserModule } from '@angular/platform-browser';
 
 
 @NgModule({
@@ -46,7 +49,9 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     NgApexchartsModule,
     NgxSliderModule,
     TranslateModule,
+    SwiperModule,
     GoogleMapsModule,
+    BrowserModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory,

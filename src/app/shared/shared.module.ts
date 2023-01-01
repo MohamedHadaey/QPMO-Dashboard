@@ -11,6 +11,7 @@ import { ProjectDetailsComponent } from './components/project-details/project-de
 // import swiper
 import { SwiperModule } from "swiper/angular";
 import { BrowserModule } from '@angular/platform-browser';
+import { ProjectComponent } from './components/project/project.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { BrowserModule } from '@angular/platform-browser';
     LanguageComponent,
     TogglerComponent,
     ProjectDetailsComponent,
+    ProjectComponent,
 
   ],
   imports: [
@@ -37,6 +39,7 @@ import { BrowserModule } from '@angular/platform-browser';
     LanguageComponent,
     TogglerComponent,
     ProjectDetailsComponent,
+    ProjectComponent
 
   ]
 })
