@@ -8,12 +8,11 @@ import {
   ApexPlotOptions,
   ApexYAxis,
   ApexLegend,
-  ApexGrid
-} from "ng-apexcharts";
-
+  ApexGrid,
+} from 'ng-apexcharts';
 
 type ApexXAxis = {
-  type?: "category" | "datetime" | "numeric";
+  type?: 'category' | 'datetime' | 'numeric';
   categories?: any;
   labels?: {
     style?: {
@@ -22,7 +21,6 @@ type ApexXAxis = {
     };
   };
 };
-
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -39,168 +37,150 @@ export type ChartOptions = {
 import { AuthService } from 'src/app/auth/services/auth.service';
 declare const $: any;
 
-
 @Component({
   selector: 'app-reports',
   templateUrl: './reports.component.html',
-  styleUrls: ['./reports.component.scss']
+  styleUrls: ['./reports.component.scss'],
 })
 export class ReportsComponent implements OnInit {
-
-  @ViewChild("chart") chart!: ChartComponent;
+  @ViewChild('chart') chart!: ChartComponent;
   public statechartOptions: Partial<ChartOptions> | any;
   public archivechartOptions: Partial<ChartOptions> | any;
 
   /*************************/
-  typeChartSeries: ApexNonAxisChartSeries = [26,16,18,40];
+  typeChartSeries: ApexNonAxisChartSeries = [26, 16, 18, 40];
   typeChartDetails: ApexChart = {
-    type: "donut",
+    type: 'donut',
     toolbar: {
-      show: false
-    }
+      show: false,
+    },
   };
 
   typechartDetails: ApexDataLabels = {
-    enabled: true
-  }
+    enabled: true,
+  };
   /******************** */
-  employees:number = 25;
-  workers:number = 8500 ;
-  completed:number = 6000;
-  completedText:boolean = true
-  constructor(private _AuthService:AuthService) {
-
+  employees: number = 25;
+  workers: number = 8500;
+  completed: number = 6000;
+  completedText: boolean = true;
+  constructor(private _AuthService: AuthService) {
     /* state projects  chart */
     this.statechartOptions = {
       series: [
         {
-          name: " ",
-          data: [80, 65, 85, 45, 5]
-        }
+          name: ' ',
+          data: [80, 65, 85, 45, 5],
+        },
       ],
       chart: {
         height: 250,
-        type: "bar",
+        type: 'bar',
         events: {
           // click: function(chart, w, e) {
           //   console.log(chart, w, e)
           // }
         },
-        toolbar: false
+        toolbar: false,
       },
-      colors: [
-        "#F5E306",
-        "#F24773",
-        "#4CB871",
-        "#068DF5",
-        "#CCCCCC"
-      ],
+      colors: ['#F5E306', '#F24773', '#4CB871', '#068DF5', '#CCCCCC'],
       plotOptions: {
         bar: {
-          columnWidth: "10%",
+          columnWidth: '10%',
           distributed: true,
-          endingShape: "rounded"
-        }
+          endingShape: 'rounded',
+        },
       },
       dataLabels: {
-        enabled: false
+        enabled: false,
       },
       stroke: {
-        width: 2
+        width: 2,
       },
       legend: {
-        show: false
+        show: false,
       },
       grid: {
-        show: true
+        show: true,
       },
       xaxis: {
         categories: [
-          "مكتملة",
-          "متأخرة",
-          "تنتهي قريباً",
-          "الحالية",
-          "لم يتم التعميد"
-
+          'مكتملة',
+          'متأخرة',
+          'تنتهي قريباً',
+          'الحالية',
+          'لم يتم التعميد',
         ],
         labels: {
           style: {
-            colors: [
-              "#F5E306",
-              "#F24773",
-              "#4CB871",
-              "#068DF5",
-              "#CCCCCC"
-            ],
-            fontSize: "14px"
-          }
-        }
-      }
+            colors: ['#F5E306', '#F24773', '#4CB871', '#068DF5', '#CCCCCC'],
+            fontSize: '14px',
+          },
+        },
+      },
     };
 
     /* archive projects chart */
     this.archivechartOptions = {
       series: [
         {
-          name: " غير مكتملة ",
-          data: [31, 40, 28, 51, 42, 109, 100]
+          name: ' غير مكتملة ',
+          data: [31, 40, 28, 51, 42, 109, 100],
         },
         {
-          name: " مكتملة ",
-          data: [11, 32, 45, 32, 34, 52, 41]
-        }
+          name: ' مكتملة ',
+          data: [11, 32, 45, 32, 34, 52, 41],
+        },
       ],
       chart: {
         height: 350,
-        type: "area",
+        type: 'area',
         zoom: {
-          enabled: false
+          enabled: false,
         },
-        toolbar: false
+        toolbar: false,
       },
       dataLabels: {
-        enabled: false
+        enabled: false,
       },
       stroke: {
-        curve: "smooth"
+        curve: 'smooth',
       },
       xaxis: {
-        type: "date",
+        type: 'date',
         categories: [
-          " Jan ",
-          " Feb ",
-          " Mar ",
-          " Apr ",
-          " May ",
-          " Jun ",
-          " Jul "
+          ' Jan ',
+          ' Feb ',
+          ' Mar ',
+          ' Apr ',
+          ' May ',
+          ' Jun ',
+          ' Jul ',
         ],
       },
       tooltip: {
         x: {
-          format: "dd/MM/yy"
-        }
-      }
+          format: 'dd/MM/yy',
+        },
+      },
     };
   }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 
   // this function to log out
   logOut() {
     this._AuthService.logout();
   }
 
-    // handle change in completing projects
-    handleCompleting(event:any) {
-      if(event.target.checked == false) {
-        this.completed = 4500;
-        this.completedText = false
-      }else {
-        this.completed = 6000;
-        this.completedText = true
-      }
+  // handle change in completing projects
+  handleCompleting(event: any) {
+    if (event.target.checked == false) {
+      this.completed = 4500;
+      this.completedText = false;
+    } else {
+      this.completed = 6000;
+      this.completedText = true;
     }
+  }
 }

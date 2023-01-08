@@ -2,10 +2,11 @@
   .row {
     min-height: 85vh !important;
     padding: 20px;
+
     .messages-content {
       box-shadow: 0px 0px 5px 2px #ccc;
       border-radius: 20px;
-      padding: 0 ;
+      padding: 0;
       overflow: hidden;
       display: flex;
       height: 85vh !important;
@@ -38,6 +39,7 @@
             border-bottom: 1px solid #E4E4E4;
             transition: background-color 0.4s;
             padding: 10px 15px;
+
             &:hover {
               background-color: #F3F5FD;
             }
@@ -52,6 +54,7 @@
                 font-size: 14px;
                 font-weight: bold;
                 color: #749BC4;
+
                 &:hover {
                   cursor: pointer;
                 }
@@ -63,6 +66,7 @@
                   margin: 0 10px;
 
                 }
+
                 span {
                   font-size: 12px;
                   font-weight: 500;
@@ -73,13 +77,14 @@
 
             .item-body {
               margin-top: 5px;
+
               p {
                 margin: 0;
                 padding: 0;
                 font-size: 12px;
               }
 
-              p:first-of-type{
+              p:first-of-type {
                 color: #3D3D3D;
                 font-weight: 700;
               }
@@ -127,6 +132,7 @@
             span:first-of-type {
               direction: ltr;
             }
+
             span {
               color: #3D3D3D;
               font-size: 14px;
@@ -180,9 +186,8 @@
                   font-size: 14px;
                 }
               }
-
-
             }
+
             .message-height {
               // height: 94px;
               overflow: hidden;
@@ -215,7 +220,7 @@
           form {
             display: flex;
 
-            input[type="text"]{
+            input[type="text"] {
               background-color: #eee;
               border: none;
               outline: none;
@@ -232,20 +237,19 @@
               width: 180px;
 
 
-              .image-upload > input
-                {
-                    display: none;
-                }
+              .image-upload>input {
+                display: none;
+              }
 
-                .image-upload img
-                {
-                  width: 20px;
-                  height: 20px;
-                  margin: 0 10px;
-                  &:hover {
-                    cursor: pointer;
-                  }
+              .image-upload img {
+                width: 20px;
+                height: 20px;
+                margin: 0 10px;
+
+                &:hover {
+                  cursor: pointer;
                 }
+              }
 
               button {
                 background-color: #749BC4;

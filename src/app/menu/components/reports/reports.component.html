@@ -3,8 +3,8 @@
     <div class="sidebar">
       <div class="bg-white pt-5 h-100">
         <ul class="h-100">
-          <li routerLink="/home"><img src="../../../../assets/images/Dashboard-icons/home.png"
-              alt="home"><span>{{"home" | translate }}</span></li>
+          <li routerLink="/home"><img src="../../../../assets/images/Dashboard-icons/home.png" alt="home"><span>{{"home"
+              | translate }}</span></li>
           <li routerLink="/projects"><img src="../../../../assets/images/Dashboard-icons/trackprojects.png"
               alt="projects"><span>{{"projects" | translate }}</span></li>
           <li routerLink="/calender"><img src="../../../../assets/images/Dashboard-icons/calender.png"
@@ -72,10 +72,12 @@
                 </div>
               </li>
               <li class="mt-2">
-                <button routerLink="/profile" class="hover bg-secondary"><span>{{"profile" | translate }}</span></button>
+                <button routerLink="/profile" class="hover bg-secondary"><span>{{"profile" | translate
+                    }}</span></button>
               </li>
               <li class="mb-2">
-                <button (click)="logOut()" routerLink="/login" class="hover bg-danger"><span>{{"log-out" | translate }}</span></button>
+                <button (click)="logOut()" routerLink="/login" class="hover bg-danger"><span>{{"log-out" | translate
+                    }}</span></button>
               </li>
             </ul>
           </div>
@@ -85,18 +87,17 @@
         <div class="row p-0">
           <div class="col-12 p-3">
             <div class="list p-3">
-
               <div class="row date-range">
                 <form action="">
-                <div class="range start">
-                  <span>{{"from" | translate }}</span>
-                  <input type="date" value="2022-01-01" id="start" name="range-start">
-                </div>
-                <div class="range end">
-                  <span>{{"to" | translate }}</span>
-                  <input type="date" value="2022-12-30" id="end" name="range-start">
-                </div>
-              </form>
+                  <div class="range start">
+                    <span>{{"from" | translate }}</span>
+                    <input type="date" value="2022-01-01" id="start" name="range-start">
+                  </div>
+                  <div class="range end">
+                    <span>{{"to" | translate }}</span>
+                    <input type="date" value="2022-12-30" id="end" name="range-start">
+                  </div>
+                </form>
               </div>
               <div class="row reports">
                 <div class="col-md-6 p-3">
@@ -109,19 +110,12 @@
                     </div>
                     <!-- begin:: chart -->
                     <div id="chart" class="my-2">
-                      <apx-chart
-                        [series]="statechartOptions.series"
-                        [chart]="statechartOptions.chart"
-                        [dataLabels]="statechartOptions.dataLabels"
-                        [plotOptions]="statechartOptions.plotOptions"
-                        [yaxis]="statechartOptions.yaxis"
-                        [xaxis]="statechartOptions.xaxis"
-                        [legend]="statechartOptions.legend"
-                        [colors]="statechartOptions.colors"
-                        [grid]="statechartOptions.grid"
-                      ></apx-chart>
+                      <apx-chart [series]="statechartOptions.series" [chart]="statechartOptions.chart"
+                        [dataLabels]="statechartOptions.dataLabels" [plotOptions]="statechartOptions.plotOptions"
+                        [yaxis]="statechartOptions.yaxis" [xaxis]="statechartOptions.xaxis"
+                        [legend]="statechartOptions.legend" [colors]="statechartOptions.colors"
+                        [grid]="statechartOptions.grid"></apx-chart>
                     </div>
-
                     <!-- end:: charts -->
                   </div>
                 </div>
@@ -136,7 +130,9 @@
                     <div class="employees-number py-0">
                       <div class="row">
                         <div class="chart-container">
-                          <apx-chart [chart]="typeChartDetails" [series]="typeChartSeries" [labels]="[' إنارة طرق ',' طرق ',' صرف صحى ',' كبارى ']" [dataLabels]="typechartDetails"></apx-chart>
+                          <apx-chart [chart]="typeChartDetails" [series]="typeChartSeries"
+                            [labels]="[' إنارة طرق ',' طرق ',' صرف صحى ',' كبارى ']"
+                            [dataLabels]="typechartDetails"></apx-chart>
                         </div>
                       </div>
                     </div>
@@ -184,7 +180,6 @@
                     </div>
                   </div>
                 </div>
-
               </div>
               <div class="row justify-content-center align-items-center">
                 <div class="col-sm-8">
@@ -194,20 +189,15 @@
                         <img src="../../../../assets/images/Dashboard-icons/archives.png" alt="rate">
                         <h4>{{"project-archive" | translate }}</h4>
                       </div>
-
                     </div>
                     <div class="employees-number py-0">
                       <div class="row">
                         <!--The content below is only a placeholder and can be replaced.-->
                         <div id="chart">
-                          <apx-chart
-                            [series]="archivechartOptions.series"
-                            [chart]="archivechartOptions.chart"
-                            [xaxis]="archivechartOptions.xaxis"
-                            [stroke]="archivechartOptions.stroke"
+                          <apx-chart [series]="archivechartOptions.series" [chart]="archivechartOptions.chart"
+                            [xaxis]="archivechartOptions.xaxis" [stroke]="archivechartOptions.stroke"
                             [tooltip]="archivechartOptions.tooltip"
-                            [dataLabels]="archivechartOptions.dataLabels"
-                          ></apx-chart>
+                            [dataLabels]="archivechartOptions.dataLabels"></apx-chart>
                         </div>
                       </div>
                     </div>

@@ -44,62 +44,9 @@ import { F } from 'chart.js/dist/chunks/helpers.core';
 @Component({
   selector: 'app-calender',
   templateUrl: './calender.component.html',
-  styleUrls: ['./calender.component.scss']
+  styleUrls: ['./calender.component.scss'],
 })
 export class CalenderComponent implements OnInit {
-  // // my trail to add calendar cards
-  // //if you want to put min and max date
-  // // public minDate: Date = new Date ("10/01/2022");
-  // // public maxDate: Date = new Date ("12/30/2022");
-  // // public value: Date = new Date ("05/16/2017");
-  // public value: Date [] = [new Date ("11/03/2022"), new Date ("11/16/2022"), new Date ("11/26/2022"), new Date ("11/28/2022"), new Date ("05/12/2017"), new Date ("10/02/2022"), new Date ("10/24/2022"), new Date ("10/22/2022")];
-  // public weekStart: number = 2;
-  // public cssClass = "e-custom";
-  // onValueChange(args: any): void {
-  //   /* to Displays selected date in the label*/
-  //   // (<HTMLInputElement>document.getElementById("selectedDate")).textContent =
-  //   //   "Selected Value: " + args.value.toLocaleDateString();
-  //   // console.log(args.value.toDateString())
-  //   // console.log(args.value.toLocaleDateString())
-  //   console.log(args.value.getDate())
-  //   // this.showDayProjects();
-  // }
-
-  //   onLoad(args: any) {
-	// /*Date need to be customized*/
-  //       if (args.date.getDate() === 10) {
-  //          let span: HTMLElement;
-  //           span = document.createElement('span');
-  //           span.setAttribute('class', 'e-icons highlight');
-  //           addClass([args.element], ['special', 'e-day', 'birthday']);
-  //            args.element.firstElementChild.setAttribute('title', 'Birthday !');
-  //           args.element.setAttribute('title', ' Birthday !');
-  //            args.element.setAttribute('data-val', 'Birthday!');
-  //           args.element.appendChild(span);
-  //       }
-  //       if (args.date.getDate() === 15) {
-  //           let span: HTMLElement;
-  //           span = document.createElement('span');
-  //           span.setAttribute('class', 'e-icons highlight');
-  //           addClass([args.element], ['special', 'e-day', 'farewell']);
-  //            args.element.firstElementChild.setAttribute('title', 'Farewell !');
-  //           args.element.setAttribute('title', 'Farewell !');
-  //           args.element.setAttribute('data-val', 'Farewell!');
-  //           args.element.appendChild(span);
-  //       }
-  //       if (args.date.getDate() === 20) {
-  //          let span: HTMLElement;
-  //           span = document.createElement('span');
-  //           span.setAttribute('class', 'e-icons highlight');
-  //           addClass([args.element], ['special', 'e-day', 'vacation']);
-  //           args.element.firstElementChild.setAttribute('title', 'Vacation !');
-  //           args.element.setAttribute('title', 'Vacation !');
-  //           args.element.setAttribute('data-val', 'Vacation!');
-  //           args.element.appendChild(span);
-  //       }
-  //   }
-
-  /****************/
   view: CalendarView = CalendarView.Month;
   CalendarView = CalendarView;
   refresh = new Subject<void>();
@@ -158,21 +105,19 @@ export class CalenderComponent implements OnInit {
   //   }
   // }
 
-
   setView(view: CalendarView) {
     this.view = view;
   }
 
-   closeOpenMonthViewDay() {
+  closeOpenMonthViewDay() {
     this.activeDayIsOpen = false;
   }
 
-  minimize:boolean= true;
-  fav:boolean = false;
-  constructor(private _AuthService:AuthService) { }
+  minimize: boolean = true;
+  fav: boolean = false;
+  constructor(private _AuthService: AuthService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   // this function to log out
   logOut() {
@@ -180,11 +125,10 @@ export class CalenderComponent implements OnInit {
   }
 
   // this function to open day projects panel
-  showDayProjects(e:any) {
-    if(e.badgeTotal > 0){
-      $(".day-projects").slideToggle();
-      $(".project-card-details").slideUp();
+  showDayProjects(e: any) {
+    if (e.badgeTotal > 0) {
+      $('.day-projects').slideToggle();
+      $('.project-card-details').slideUp();
     }
-
   }
 }

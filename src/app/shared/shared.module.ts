@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { SearchComponent } from './components/search/search.component';
-import { SliderComponent } from './components/slider/slider.component';
 import { LanguageComponent } from './components/language/language.component';
 import { TogglerComponent } from './components/toggler/toggler.component';
 import { TranslateModule } from '@ngx-translate/core';
@@ -16,9 +13,6 @@ import { ProjectComponent } from './components/project/project.component';
 
 @NgModule({
   declarations: [
-    NavbarComponent,
-    SearchComponent,
-    SliderComponent,
     LanguageComponent,
     TogglerComponent,
     ProjectDetailsComponent,
@@ -33,9 +27,6 @@ import { ProjectComponent } from './components/project/project.component';
     SwiperModule
   ],
   exports: [
-    NavbarComponent,
-    SearchComponent,
-    SliderComponent,
     LanguageComponent,
     TogglerComponent,
     ProjectDetailsComponent,

@@ -7,7 +7,7 @@ declare const $: any;
 @Component({
   selector: 'app-varify-pass',
   templateUrl: './varify-pass.component.html',
-  styleUrls: ['./varify-pass.component.scss']
+  styleUrls: ['./varify-pass.component.scss'],
 })
 export class VarifyPassComponent implements OnInit {
   // visible: boolean = true;
@@ -15,13 +15,9 @@ export class VarifyPassComponent implements OnInit {
   numbers = new Array(4);
   code: any = '';
   // data: any = { phone: this._AuthService.phoneChangePass, code: 2 };
-  constructor( private _AuthService: AuthService,
-    private _Router: Router) {
+  constructor(private _AuthService: AuthService, private _Router: Router) {}
 
-    }
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   varifyForm: FormGroup = new FormGroup({
     code1: new FormControl(null, [Validators.required]),
@@ -35,30 +31,27 @@ export class VarifyPassComponent implements OnInit {
       `${varifyForm.value.code1}${varifyForm.value.code2}${varifyForm.value.code3}${varifyForm.value.code4}`
     );
 
-
     if (varifyForm.invalid) {
       return;
     } else {
-      if(this.code == 1111) {
-        localStorage.setItem("isLogin", JSON.stringify(true));
+      if (this.code == 1111) {
+        localStorage.setItem('isLogin', JSON.stringify(true));
         this._Router.navigate(['/home']);
-      }else{
-        $("#validate-msg").slideDown();
-        setTimeout( this.deleteMsg , 4000)
+      } else {
+        $('#validate-msg').slideDown();
+        setTimeout(this.deleteMsg, 4000);
       }
     }
 
-
-    console.log(this.code)
+    console.log(this.code);
 
     this.varifyForm.reset();
   }
 
-    //  to delete message of wrong inputs value
-    deleteMsg() {
-      $("#validate-msg").slideUp()
-    }
-
+  //  to delete message of wrong inputs value
+  deleteMsg() {
+    $('#validate-msg').slideUp();
+  }
 
   // varify(code: any) {
   //   this.data.code = code;
@@ -79,5 +72,4 @@ export class VarifyPassComponent implements OnInit {
       }
     }
   }
-
 }

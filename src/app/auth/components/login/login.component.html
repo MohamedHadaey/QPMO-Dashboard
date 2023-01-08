@@ -26,11 +26,13 @@
                     <div class="checker pb-3  d-flex justify-content-between align-items-center ">
                       <label class="label-checker">
                         <input type="checkbox" formControlName="checker">
-                        <span class="checkmark" [ngClass]="currentLanguage == 'ar'?'checkmark-rtl':'checkmark-ltr'" ></span>
-                        {{"remember-me" | translate }}</label>
+                        <span class="checkmark"
+                          [ngClass]="currentLanguage == 'ar'?'checkmark-rtl':'checkmark-ltr'"></span> {{"remember-me" |
+                        translate }}</label>
                       <a routerLink="/forget-pass">{{"forget-pass" | translate }}</a>
                     </div>
-                    <button [disabled]="loginForm.invalid"  class="btn my-2" type="submit">{{"login" | translate }}</button>
+                    <button [disabled]="loginForm.invalid" class="btn my-2" type="submit">{{"login" | translate
+                      }}</button>
                   </form>
                   <div class="msg-validate">
                     <p class="text-danger" id="validate-msg">{{"credentials" | translate }}</p>

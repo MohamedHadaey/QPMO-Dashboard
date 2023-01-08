@@ -3,10 +3,11 @@
     <div class="sidebar">
       <div class="bg-white pt-5 h-100">
         <ul class="h-100">
-          <li routerLink="/home"><img src="../../../../assets/images/Dashboard-icons/home.png"
-              alt="home"><span>{{"home" | translate }}</span></li>
-          <li class="active" routerLink="/projects"><img src="../../../../assets/images/Dashboard-icons/trackprojects.png"
-              alt="projects"><span>{{"projects" | translate }}</span></li>
+          <li routerLink="/home"><img src="../../../../assets/images/Dashboard-icons/home.png" alt="home"><span>{{"home"
+              | translate }}</span></li>
+          <li class="active" routerLink="/projects"><img
+              src="../../../../assets/images/Dashboard-icons/trackprojects.png" alt="projects"><span>{{"projects" |
+              translate }}</span></li>
           <li routerLink="/calender"><img src="../../../../assets/images/Dashboard-icons/calender.png"
               alt="calender"><span>{{"calender" | translate }}</span></li>
           <li routerLink="/favourites"><img src="../../../../assets/images/Dashboard-icons/fav-darkgray.png"
@@ -28,8 +29,9 @@
             <ul class="h-100">
               <li routerLink="/home"><img src="../../../../assets/images/Dashboard-icons/home.png"
                   alt="home"><span>{{"home" | translate }}</span></li>
-              <li class="active" routerLink="/projects"><img src="../../../../assets/images/Dashboard-icons/trackprojects.png"
-                  alt="projects"><span>{{"projects" | translate }}</span></li>
+              <li class="active" routerLink="/projects"><img
+                  src="../../../../assets/images/Dashboard-icons/trackprojects.png" alt="projects"><span>{{"projects" |
+                  translate }}</span></li>
               <li routerLink="/calender"><img src="../../../../assets/images/Dashboard-icons/calender.png"
                   alt="calender"><span>{{"calender" | translate }}</span></li>
               <li routerLink="/favourites"><img src="../../../../assets/images/Dashboard-icons/fav-darkgray.png"
@@ -63,7 +65,7 @@
                       <div class="layer">
                         <img src="../../../../assets/images/Dashboard-icons/profile.jpg" alt="profile-img">
                       </div>
-                      </div>
+                    </div>
                   </div>
                   <div class="col-8">
                     <p>{{"ahmed-esmael" | translate }}</p>
@@ -71,10 +73,12 @@
                 </div>
               </li>
               <li class="mt-2">
-                <button routerLink="/profile" class="hover bg-secondary"><span>{{"profile" | translate }}</span></button>
+                <button routerLink="/profile" class="hover bg-secondary"><span>{{"profile" | translate
+                    }}</span></button>
               </li>
               <li class="mb-2">
-                <button (click)="logOut()" routerLink="/login" class="hover bg-danger"><span>{{"log-out" | translate }}</span></button>
+                <button (click)="logOut()" routerLink="/login" class="hover bg-danger"><span>{{"log-out" | translate
+                    }}</span></button>
               </li>
             </ul>
           </div>
@@ -87,13 +91,13 @@
               <span><i class="fa-solid fa-magnifying-glass"></i></span>
               <input type="search" [placeholder]="'search' | translate">
               <div class="dropdown">
-                <button class="dropdown-toggle me-2 p-0" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                  aria-expanded="false">
+                <button class="dropdown-toggle me-2 p-0" type="button" id="dropdownMenuButton1"
+                  data-bs-toggle="dropdown" aria-expanded="false">
                   <img src="../../../../assets/images/Dashboard-icons/filter-gray.png" alt="user" class="profile m-0">
                 </button>
                 <form [formGroup]="filterForm" (ngSubmit)="submitFilterForm(filterForm)">
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li >
+                    <li>
                       <div class="row">
                         <div class="col-5">
                           <p>{{"project-type" | translate }}</p>
@@ -106,7 +110,7 @@
                         </div>
                       </div>
                     </li>
-                    <li >
+                    <li>
                       <div class="row">
                         <div class="col-5">
                           <p>{{"project-state" | translate }}</p>
@@ -115,37 +119,42 @@
                           <div class="w-100 my-1 d-flex justify-content-between align-items-center">
                             <span>{{"current" | translate }}</span>
                             <div class="form-check form-switch">
-                              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked formControlName="now_check">
+                              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
+                                checked formControlName="now_check">
                             </div>
                           </div>
                           <div class="w-100 my-1 d-flex justify-content-between align-items-center">
                             <span>{{"completed" | translate }}</span>
                             <div class="form-check form-switch">
-                              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" formControlName="complete_check">
+                              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
+                                formControlName="complete_check">
                             </div>
                           </div>
                           <div class="w-100 my-1 d-flex justify-content-between align-items-center">
                             <span>{{"late" | translate }}</span>
                             <div class="form-check form-switch">
-                              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" formControlName="late_check">
+                              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
+                                formControlName="late_check">
                             </div>
                           </div>
                           <div class="w-100 my-1 d-flex justify-content-between align-items-center">
                             <span>{{"almost-done" | translate }}</span>
                             <div class="form-check form-switch">
-                              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked formControlName="end_check">
+                              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
+                                checked formControlName="end_check">
                             </div>
                           </div>
                           <div class="w-100 my-1 d-flex justify-content-between align-items-center">
                             <span>{{"not-financial" | translate }}</span>
                             <div class="form-check form-switch">
-                              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" formControlName="not_check">
+                              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
+                                formControlName="not_check">
                             </div>
                           </div>
                         </div>
                       </div>
                     </li>
-                    <li >
+                    <li>
                       <div class="row">
                         <div class="col-5">
                           <p>{{"starting-date" | translate }}</p>
@@ -157,7 +166,7 @@
                         </div>
                       </div>
                     </li>
-                    <li >
+                    <li>
                       <div class="row">
                         <div class="col-5">
                           <p>{{"ending-date" | translate }}</p>
@@ -177,7 +186,8 @@
                         <div class="col-7 ">
                           <!-- begin:: price range inputs -->
                           <div class="custom-slider w-100 px-0">
-                            <ngx-slider [(value)]="sectionMinValue" [(highValue)]="sectionMaxValue" [options]="sectionOptions"></ngx-slider>
+                            <ngx-slider [(value)]="sectionMinValue" [(highValue)]="sectionMaxValue"
+                              [options]="sectionOptions"></ngx-slider>
                           </div>
                           <!-- end:: price range inputs -->
                         </div>
@@ -191,13 +201,14 @@
                         <div class="col-7 ">
                           <!-- begin:: price range inputs -->
                           <div class="custom-slider w-100 px-0">
-                            <ngx-slider [(value)]="constructorMinValue" [(highValue)]="constructorMaxValue" [options]="constructorOptions"></ngx-slider>
+                            <ngx-slider [(value)]="constructorMinValue" [(highValue)]="constructorMaxValue"
+                              [options]="constructorOptions"></ngx-slider>
                           </div>
                           <!-- end:: price range inputs -->
                         </div>
                       </div>
                     </li>
-                    <li >
+                    <li>
                       <div class="row footer d-flex justify-content-center align-items-center">
                         <div class="col-6 p-2 d-flex justify-content-center align-items-center">
                           <button type="submit" id="agree">{{"apply" | translate }}</button>
@@ -226,69 +237,249 @@
                     <th scope="col">{{"expire-date" | translate }}</th>
                   </tr>
                 </thead>
-                <tbody >
+                <tbody>
                   <tr>
-                    <td><div class="item"><p>P0369873241</p></div></td>
-                    <td><div class="item"><p>{{"road-light" | translate }}</p></div></td>
-                    <td><div class="item"><p>{{"Abdullah Ibrahim" | translate }}</p></div></td>
-                    <td><div class="item"><p>{{"reason" | translate }}</p></div></td>
-                    <td><div class="item"><p>13-08-2022</p></div></td>
+                    <td>
+                      <div class="item">
+                        <p>P0369873241</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"road-light" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"Abdullah Ibrahim" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"reason" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>13-08-2022</p>
+                      </div>
+                    </td>
                   </tr>
                   <tr>
-                    <td><div class="item"><p>P0369659874</p></div></td>
-                    <td><div class="item"><p>{{"road" | translate }}</p></div></td>
-                    <td><div class="item"><p>{{"Mohamed Abdelrahman" | translate }}</p></div></td>
-                    <td><div class="item"><p>{{"reason" | translate }}</p></div></td>
-                    <td><div class="item"><p>13-08-2022</p></div></td>
+                    <td>
+                      <div class="item">
+                        <p>P0369659874</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"road" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"Mohamed Abdelrahman" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"reason" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>13-08-2022</p>
+                      </div>
+                    </td>
                   </tr>
                   <tr>
-                    <td><div class="item"><p>P0369873639</p></div></td>
-                    <td><div class="item"><p>{{"sanitaion" | translate }}</p></div></td>
-                    <td><div class="item"><p>{{"Yahia Abdullah" | translate }}</p></div></td>
-                    <td><div class="item"><p>{{"reason" | translate }}</p></div></td>
-                    <td><div class="item"><p>13-08-2022</p></div></td>
+                    <td>
+                      <div class="item">
+                        <p>P0369873639</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"sanitaion" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"Yahia Abdullah" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"reason" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>13-08-2022</p>
+                      </div>
+                    </td>
                   </tr>
                   <tr>
-                    <td><div class="item"><p>P036965441</p></div></td>
-                    <td><div class="item"><p>{{"road" | translate }}</p></div></td>
-                    <td><div class="item"><p>{{"Islam Hassan" | translate }}</p></div></td>
-                    <td><div class="item"><p>{{"reason" | translate }}</p></div></td>
-                    <td><div class="item"><p>13-08-2022</p></div></td>
+                    <td>
+                      <div class="item">
+                        <p>P036965441</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"road" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"Islam Hassan" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"reason" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>13-08-2022</p>
+                      </div>
+                    </td>
                   </tr>
                   <tr>
-                    <td><div class="item"><p>P0369873244</p></div></td>
-                    <td><div class="item"><p>{{"bridges" | translate }}</p></div></td>
-                    <td><div class="item"><p>{{"Zayn Mostafa" | translate }}</p></div></td>
-                    <td><div class="item"><p>{{"reason" | translate }}</p></div></td>
-                    <td><div class="item"><p>13-08-2022</p></div></td>
+                    <td>
+                      <div class="item">
+                        <p>P0369873244</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"bridges" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"Zayn Mostafa" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"reason" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>13-08-2022</p>
+                      </div>
+                    </td>
                   </tr>
                   <tr>
-                    <td><div class="item"><p>P0369873658</p></div></td>
-                    <td><div class="item"><p>{{"road-light" | translate }}</p></div></td>
-                    <td><div class="item"><p>{{"Tarek Ali" | translate }}</p></div></td>
-                    <td><div class="item"><p>{{"reason" | translate }}</p></div></td>
-                    <td><div class="item"><p>13-08-2022</p></div></td>
+                    <td>
+                      <div class="item">
+                        <p>P0369873658</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"road-light" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"Tarek Ali" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"reason" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>13-08-2022</p>
+                      </div>
+                    </td>
                   </tr>
                   <tr>
-                    <td><div class="item"><p>P0379873659</p></div></td>
-                    <td><div class="item"><p>{{"bridges" | translate }}</p></div></td>
-                    <td><div class="item"><p>{{"Hamza Sayed" | translate }}</p></div></td>
-                    <td><div class="item"><p>{{"reason" | translate }}</p></div></td>
-                    <td><div class="item"><p>13-08-2022</p></div></td>
+                    <td>
+                      <div class="item">
+                        <p>P0379873659</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"bridges" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"Hamza Sayed" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"reason" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>13-08-2022</p>
+                      </div>
+                    </td>
                   </tr>
                   <tr>
-                    <td><div class="item"><p>P0369873870</p></div></td>
-                    <td><div class="item"><p>{{"sanitaion" | translate }}</p></div></td>
-                    <td><div class="item"><p>{{"Zeyad Ahmed" | translate }}</p></div></td>
-                    <td><div class="item"><p>{{"reason" | translate }}</p></div></td>
-                    <td><div class="item"><p>13-08-2022</p></div></td>
+                    <td>
+                      <div class="item">
+                        <p>P0369873870</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"sanitaion" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"Zeyad Ahmed" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"reason" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>13-08-2022</p>
+                      </div>
+                    </td>
                   </tr>
                   <tr>
-                    <td><div class="item"><p>P0369873732</p></div></td>
-                    <td><div class="item"><p>{{"bridges" | translate }}</p></div></td>
-                    <td><div class="item"><p>{{"Gamal Elsayed" | translate }}</p></div></td>
-                    <td><div class="item"><p>{{"reason" | translate }}</p></div></td>
-                    <td><div class="item"><p>13-08-2022</p></div></td>
+                    <td>
+                      <div class="item">
+                        <p>P0369873732</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"bridges" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"Gamal Elsayed" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{"reason" | translate }}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>13-08-2022</p>
+                      </div>
+                    </td>
                   </tr>
                 </tbody>
               </table>

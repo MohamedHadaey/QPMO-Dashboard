@@ -9,7 +9,7 @@ declare var google: any;
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
   // price range inputs
@@ -132,8 +132,6 @@ export class MainComponent implements OnInit {
   };
   zoom = 7;
 
-
-
   projectslocations: googleMaps_ApiReturn[] = [
     {
       position: {
@@ -237,21 +235,18 @@ export class MainComponent implements OnInit {
     draggable: false,
   };
 
-
-
-
-  openProjectDetails(markerPosition:any){
-    this.showProjectCardDetails()
+  openProjectDetails(markerPosition: any) {
+    this.showProjectCardDetails();
   }
   showProjectCardDetails() {
-    $(".project-card-details").slideToggle();
+    $('.project-card-details').slideToggle();
   }
 
-    // this function to open day projects panel
-    showDayProjects() {
-      $(".day-projects").slideToggle();
-      $(".project-card-details").slideUp();
-    }
+  // this function to open day projects panel
+  showDayProjects() {
+    $('.day-projects').slideToggle();
+    $('.project-card-details').slideUp();
+  }
   ////////////////////////////////////////////
   ngOnInit(): void {
     // for check directions after any refresh
@@ -300,7 +295,6 @@ export class MainComponent implements OnInit {
     $('#map').removeClass('active-theme');
     $('#card').removeClass('active-theme');
     this.showen = 'lists';
-
   }
 
   // show map theme
@@ -309,7 +303,6 @@ export class MainComponent implements OnInit {
     $('#list').removeClass('active-theme');
     $('#card').removeClass('active-theme');
     this.showen = 'maps';
-
   }
 
   // show card theme
@@ -318,7 +311,6 @@ export class MainComponent implements OnInit {
     $('#map').removeClass('active-theme');
     $('#list').removeClass('active-theme');
     this.showen = 'cards';
-
   }
 
   // this function to log out

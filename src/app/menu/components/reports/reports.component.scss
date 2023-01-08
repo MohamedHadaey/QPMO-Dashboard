@@ -203,7 +203,8 @@
               }
             }
           }
-          .chart-container{
+
+          .chart-container {
             max-width: 450px;
             margin: auto;
 
@@ -216,59 +217,13 @@
 
         }
 
-        // dates-grade
-        // .dates-grade {
-        //   display: flex;
-        //   flex-direction: row;
-
-        //   p {
-        //     display: contents;
-        //   }
-
-        //   .datepicker-toggle {
-        //     position: relative;
-        //     width: 30px;
-        //     height: 30px;
-        //     margin: 0 10px;
-        //   }
-
-        //   .datepicker-toggle-button {
-        //     position: absolute;
-        //     left: 0;
-        //     top: 0;
-        //     width: 100%;
-        //     height: 100%;
-        //   }
-
-        //   .datepicker-input {
-        //     position: absolute;
-        //     left: 0;
-        //     top: 0;
-        //     width: 100%;
-        //     height: 100%;
-        //     opacity: 0;
-        //     cursor: pointer;
-        //     box-sizing: border-box;
-        //   }
-
-        //   .datepicker-input::-webkit-calendar-picker-indicator {
-        //     position: absolute;
-        //     left: 0;
-        //     top: 0;
-        //     width: 100%;
-        //     height: 100%;
-        //     margin: 0;
-        //     padding: 0;
-        //     cursor: pointer;
-        //   }
-        // }
-
         // date-range
         .date-range {
-          form{
+          form {
             display: flex;
             flex-direction: row;
             justify-content: end;
+
             .range {
               width: 200px;
               padding: 5px;
@@ -279,6 +234,7 @@
                 font-size: 15px;
                 font-weight: bold;
               }
+
               input {
                 margin: 0 10px;
                 width: 130px;
@@ -290,7 +246,7 @@
                 font-size: 14px;
                 font-weight: bold;
 
-                &:hover{
+                &:hover {
                   cursor: pointer;
                 }
               }
@@ -311,156 +267,117 @@
 /* start small screen */
 @media screen and (max-width:576px) {
   .container-fluid {
-      .row {
-        .col-12 {
-          .list {
-            .row {
-              .employees {
-                overflow: hidden;
-                .employees-head {
-                  padding: 7px 0px;
-                  border-bottom: 2px solid #eee;
+    .row {
+      .col-12 {
+        .list {
+          .row {
+            .employees {
+              overflow: hidden;
 
-                  .logo {
-                    h3 {
-                      font-size: 18px;
-                    }
+              .employees-head {
+                padding: 7px 0px;
+                border-bottom: 2px solid #eee;
 
-                    img {
-                      width: 35px;
-                    }
+                .logo {
+                  h3 {
+                    font-size: 18px;
                   }
-
-                  .radio {
-                    .form-check-input {
-                      height: 1.5em;
-                    }
-
-                    .form-switch .form-check-input {
-                      width: 3em;
-                    }
-                  }
-
-                  // for check completing of projects archieve
-                  .check-completing {
-                    border-radius: 20px;
-
-                    .form-check {
-                      div {
-                        span {
-                          font-size: 10px;
-                          font-weight: 300;
-                          margin-right: 5px;
-                          width: 100%;
-                          word-wrap: break-word;
-
-                        }
-                      }
-                    }
-
-                    .form-check-input {
-                      background-size: 50% 100%;
-                    }
-                  }
-                }
-
-                .employees-number {
-
 
                   img {
-                    width: 40px;
+                    width: 35px;
+                  }
+                }
+
+                .radio {
+                  .form-check-input {
+                    height: 1.5em;
                   }
 
-                  h2 {
-                    color: #749BC4;
-                    font-weight: bold;
-                    font-size: 50px;
+                  .form-switch .form-check-input {
+                    width: 3em;
                   }
+                }
 
-                  .row {
+                // for check completing of projects archieve
+                .check-completing {
+                  border-radius: 20px;
 
-                    #my-pie-chart-container {
-                      width: 100%;
-                      align-items: center;
-                      justify-content: center;
-                      flex-direction: column;
-                    }
-
-                    #legenda {
-                      margin: 0;
-                      width: 100%;
-                      padding-bottom: 20px;
-                    }
-
-                    .entry {
-
-
-                      >span {
-
-                      }
-                    }
-
-                    .entry-color {
-
-                    }
-
-                    .entry-text {
-
-
+                  .form-check {
+                    div {
                       span {
+                        font-size: 10px;
+                        font-weight: 300;
+                        margin-right: 5px;
+                        width: 100%;
+                        word-wrap: break-word;
 
                       }
                     }
                   }
-                }
-              }
-            }
 
-            .reports .col-md-6 .employees-head {
-              flex-direction: column;
-              justify-content: center;
-
-
-              .logo {
-                img{
-                  width: 30px;
-                }
-                h3 {
-                  font-size: 16px;
-
+                  .form-check-input {
+                    background-size: 50% 100%;
+                  }
                 }
               }
 
+              .employees-number {
 
+
+                img {
+                  width: 40px;
+                }
+
+                h2 {
+                  color: #749BC4;
+                  font-weight: bold;
+                  font-size: 50px;
+                }
+
+                .row {
+
+                  #my-pie-chart-container {
+                    width: 100%;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: column;
+                  }
+
+                  #legenda {
+                    margin: 0;
+                    width: 100%;
+                    padding-bottom: 20px;
+                  }
+                }
+              }
             }
+          }
+
+          .reports .col-md-6 .employees-head {
+            flex-direction: column;
+            justify-content: center;
+
+
+            .logo {
+              img {
+                width: 30px;
+              }
+
+              h3 {
+                font-size: 16px;
+
+              }
+            }
+
 
           }
+
         }
       }
     }
+  }
 
 }
+
 /* end small screen */
-/* start medium screen */
-@media screen and (min-width:577px) and (max-width:768px) {
-
-
-}
-/* end medium screen */
-/* start large screen */
-@media screen and (min-width:769px) and (max-width:992px) {
-
-}
-/* end large screen */
-/* start extra large screen */
-@media screen and (min-width:993px) and (max-width:1200px) {
-
-}
-/* end axtra large screen */
-/* start extra extra large screen */
-@media screen and (min-width:1201px) and (max-width:1400px) {
-
-}
-/* end extra extra large screen */
-
 /* end media queres*/

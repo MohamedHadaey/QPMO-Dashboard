@@ -4,11 +4,10 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 declare const $: any;
 
-
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html',
-  styleUrls: ['./change-password.component.scss']
+  styleUrls: ['./change-password.component.scss'],
 })
 export class ChangePasswordComponent implements OnInit {
   visiblePass: boolean = true;
@@ -19,12 +18,7 @@ export class ChangePasswordComponent implements OnInit {
   changeTypeRePass: boolean = true;
   visible: boolean = true;
   changeType: boolean = true;
-  constructor( private _AuthService: AuthService,
-    private _Router: Router) {
-
-    }
-
-
+  constructor(private _AuthService: AuthService, private _Router: Router) {}
 
   changePassForm: FormGroup = new FormGroup({
     newPassword: new FormControl(null, [
@@ -39,10 +33,8 @@ export class ChangePasswordComponent implements OnInit {
     ]),
   });
 
-
-
   submitChangedPasswordForm(changePassForm: FormGroup) {
-    console.log(changePassForm.value)
+    console.log(changePassForm.value);
     // if user delete [disabled]="registerForm.invalid" from html inspect
     if (changePassForm.invalid) {
       return;
@@ -52,25 +44,21 @@ export class ChangePasswordComponent implements OnInit {
     this.changePassForm.reset();
   }
 
-    //  to delete message of wrong inputs value
-    deleteMsg() {
-      $("#validate-msg").slideUp()
-    }
-
-
-
-  ngOnInit(): void {
+  //  to delete message of wrong inputs value
+  deleteMsg() {
+    $('#validate-msg').slideUp();
   }
 
+  ngOnInit(): void {}
 
-    // this function to show and hide new password
-    viewNewPassword() {
-      this.visibleNewPass = !this.visibleNewPass;
-      this.changeTypeNewPass = !this.changeTypeNewPass;
-    }
-    // this function to show and hide re password
-    viewRePassword() {
-      this.visibleRePass = !this.visibleRePass;
-      this.changeTypeRePass = !this.changeTypeRePass;
-    }
+  // this function to show and hide new password
+  viewNewPassword() {
+    this.visibleNewPass = !this.visibleNewPass;
+    this.changeTypeNewPass = !this.changeTypeNewPass;
+  }
+  // this function to show and hide re password
+  viewRePassword() {
+    this.visibleRePass = !this.visibleRePass;
+    this.changeTypeRePass = !this.changeTypeRePass;
+  }
 }

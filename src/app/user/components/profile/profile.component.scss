@@ -1,6 +1,7 @@
 .container-fluid {
   .row {
     padding: 10px !important;
+
     .profile-card {
       margin: 20px auto;
       max-width: 500px;
@@ -13,10 +14,10 @@
         margin: 10px auto;
         width: 100px;
         height: 100px;
-        //overflow: hidden;
         border-radius: 50%;
         background-color: #749BC4;
         padding: 3px;
+
         .layer {
           position: relative;
           width: 100%;
@@ -92,6 +93,7 @@
                   .header {
                     text-align: center;
                     padding: 20px 0;
+
                     h3 {
                       color: #3D3D3D;
                       font-size: 22px;
@@ -105,11 +107,13 @@
                       margin-top: 10px;
                     }
                   }
+
                   .body {
                     .form {
                       form {
                         text-align: center !important;
                         padding: 0 10px;
+
                         .form-group {
                           padding: 10px 10px;
                           margin: 20px auto;
@@ -119,18 +123,20 @@
                           overflow: hidden;
                           display: flex;
 
-                          input{
+                          input {
                             width: 100%;
                             padding: 0 10px;
                             border: none !important;
                             outline: none !important;
                             background-color: #F9F9F9;
                           }
-                          input::placeholder{
+
+                          input::placeholder {
                             color: #3D3D3D;
                             font-size: 16px;
                             font-weight: 600;
                           }
+
                           span {
                             width: 20px;
                             height: 20px;
@@ -140,6 +146,7 @@
                             align-items: center;
                             color: #888;
                             padding-top: 10px;
+
                             i {
                               font-size: 16px;
                             }
@@ -169,17 +176,12 @@
                           cursor: pointer;
                           box-shadow: 2px 2px 6px #00000029;
                         }
-
-
                       }
-
                     }
                   }
                 }
               }
             }
-
-
           }
         }
       }

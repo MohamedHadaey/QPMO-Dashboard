@@ -84,35 +84,21 @@
           </div>
         </div>
       </nav>
-      <div class="calendar-content p-3 pb-0" >
+      <div class="calendar-content p-3 pb-0">
         <div class="calendar-card">
           <div class="row py-2" style="direction: ltr;">
             <div class="col-sm-6">
               <div class="btn-group">
-                <div
-                  class="btn btn-primary"
-                  mwlCalendarPreviousView
-                  [view]="view"
-                  [(viewDate)]="viewDate"
-                  (viewDateChange)="closeOpenMonthViewDay()"
-                >
+                <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
+                  (viewDateChange)="closeOpenMonthViewDay()">
                   <p>{{"previous" | translate}}</p>
                 </div>
-                <div
-                  class="btn btn-outline-secondary"
-                  mwlCalendarToday
-                  [(viewDate)]="viewDate"
-                >
-                <p> {{"today" | translate}}</p>
+                <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
+                  <p> {{"today" | translate}}</p>
                 </div>
-                <div
-                  class="btn btn-primary"
-                  mwlCalendarNextView
-                  [view]="view"
-                  [(viewDate)]="viewDate"
-                  (viewDateChange)="closeOpenMonthViewDay()"
-                >
-                <p>{{"next" | translate}}</p>
+                <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
+                  (viewDateChange)="closeOpenMonthViewDay()">
+                  <p>{{"next" | translate}}</p>
                 </div>
               </div>
             </div>

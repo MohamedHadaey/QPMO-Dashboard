@@ -12,13 +12,9 @@ import { MainComponent } from './menu/components/main/main.component';
 import { ProjectsComponent } from './menu/components/projects/projects.component';
 import { ReportsComponent } from './menu/components/reports/reports.component';
 import { LanguageComponent } from './shared/components/language/language.component';
-import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { ProjectDetailsComponent } from './shared/components/project-details/project-details.component';
-import { SearchComponent } from './shared/components/search/search.component';
-import { SliderComponent } from './shared/components/slider/slider.component';
 import { MessagesComponent } from './user/components/messages/messages.component';
 import { ProfileComponent } from './user/components/profile/profile.component';
-
 
 const routes: Routes = [
   {path: "", redirectTo: "login", pathMatch: "full"},
@@ -34,10 +30,7 @@ const routes: Routes = [
   {path:"forget-pass", component: ForgetPassComponent},
   {path:"profile", component: ProfileComponent, canActivate:[AuthGuard]},
   {path:"messages", component: MessagesComponent, canActivate:[AuthGuard]},
-  {path:"navbar", component: NavbarComponent},
   {path:"language", component: LanguageComponent},
-  {path:"Search", component: SearchComponent},
-  {path:"slider", component: SliderComponent},
   {path:"project-details", component: ProjectDetailsComponent},
   {path:"project", component: ProjectsComponent},
   {path:"**" , redirectTo: "login", pathMatch: "full"}

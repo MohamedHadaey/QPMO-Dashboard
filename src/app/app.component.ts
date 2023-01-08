@@ -1,4 +1,3 @@
-import { Options } from '@angular-slider/ngx-slider';
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import disableDevtool from 'disable-devtool';
@@ -8,7 +7,7 @@ declare var $: any;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   title = 'qdpm-dashboard';
@@ -32,5 +31,5 @@ export class AppComponent {
 
     // to disable inspect element, f12 button and developer tools
     disableDevtool();
-}
+  }
 }

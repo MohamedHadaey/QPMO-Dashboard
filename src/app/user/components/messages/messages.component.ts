@@ -5,17 +5,14 @@ declare const $: any;
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.component.html',
-  styleUrls: ['./messages.component.scss']
+  styleUrls: ['./messages.component.scss'],
 })
 export class MessagesComponent implements OnInit {
-  messageDate:any;
-  show:boolean= false;
-  constructor(private _AuthService:AuthService) { }
+  messageDate: any;
+  show: boolean = false;
+  constructor(private _AuthService: AuthService) {}
 
-  ngOnInit(): void {
-
-
-  }
+  ngOnInit(): void {}
 
   // this function to log out
   logOut() {
@@ -24,10 +21,7 @@ export class MessagesComponent implements OnInit {
 
   // show details of any message
   showDetails() {
-    $("#message-details").fadeIn()
-    $("#message-details").css("display" , "flex");
-    // $(".list ul li").css("background-color" , "#F3F5FD")
+    $('#message-details').fadeIn();
+    $('#message-details').css('display', 'flex');
   }
-
-
 }

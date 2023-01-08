@@ -14,18 +14,15 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { MyIntercetor } from './intercetor';
-import {  HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 // import swiper
-import { SwiperModule } from "swiper/angular";
+import { SwiperModule } from 'swiper/angular';
 
 // import NgApexchartsModule for charts
-import { NgApexchartsModule } from "ng-apexcharts";
-
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -58,10 +55,9 @@ import { NgApexchartsModule } from "ng-apexcharts";
     },
   ],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
-
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class AppModule { }
+export class AppModule {}
 
 // this method make you able to use ngx-translate
 export function createTranslateLoader(http: HttpClient) {

@@ -5,7 +5,6 @@ declare const $: any;
 import { UserService } from '../../services/user.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
 
-
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -18,7 +17,11 @@ export class ProfileComponent implements OnInit {
   changeTypeNewPass: boolean = true;
   visibleRePass: boolean = true;
   changeTypeRePass: boolean = true;
-  constructor(private _UserService: UserService, private _Router: Router, private _AuthService:AuthService) {}
+  constructor(
+    private _UserService: UserService,
+    private _Router: Router,
+    private _AuthService: AuthService
+  ) {}
 
   passwordForm: FormGroup = new FormGroup({
     password: new FormControl(null, [
@@ -49,9 +52,7 @@ export class ProfileComponent implements OnInit {
     this.passwordForm.reset();
   }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 
   // this function to show and hide password
   viewPassword() {

@@ -3,62 +3,24 @@
 
     .calendar-card {
       .btn-group {
-        .btn{
+        .btn {
           padding: 5px 10px;
           border: 1px solid #749BC4;
           transition: all 0.4s;
           text-align: center;
 
-          p{
+          p {
             padding: 0;
             margin: 0;
             font-size: 16px;
           }
         }
-        .btn:first-of-type,.btn:last-of-type {
+
+        .btn:first-of-type,
+        .btn:last-of-type {
           background-color: #749BC4;
         }
       }
     }
   }
 }
-
-/* start media queres  */
-
-/* start small screen */
-@media screen and (max-width:576px) {
-  .content-body {
-
-    .calendar-content {
-
-      .calendar-card {
-
-      }
-    }
-  }
-
-}
-/* end small screen */
-/* start medium screen */
-@media screen and (min-width:577px) and (max-width:768px) {
-
-
-}
-/* end medium screen */
-/* start large screen */
-@media screen and (min-width:769px) and (max-width:992px) {
-
-}
-/* end large screen */
-/* start extra large screen */
-@media screen and (min-width:993px) and (max-width:1200px) {
-
-}
-/* end axtra large screen */
-/* start extra extra large screen */
-@media screen and (min-width:1201px) and (max-width:1400px) {
-
-}
-/* end extra extra large screen */
-
-/* end media queres*/
