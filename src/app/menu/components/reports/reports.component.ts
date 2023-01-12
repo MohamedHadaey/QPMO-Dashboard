@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import * as ApexCharts from 'apexcharts';
 import {
   ApexChart,
@@ -64,7 +65,13 @@ export class ReportsComponent implements OnInit {
   workers: number = 8500;
   completed: number = 6000;
   completedText: boolean = true;
-  constructor(private _AuthService: AuthService) {
+  constructor(private _AuthService: AuthService, private translate: TranslateService) {
+
+    if (localStorage.getItem('currentLanguage') == 'ar') {
+
+    } else {
+
+    }
     /* state projects  chart */
     this.statechartOptions = {
       series: [
@@ -124,12 +131,12 @@ export class ReportsComponent implements OnInit {
     this.archivechartOptions = {
       series: [
         {
-          name: ' غير مكتملة ',
-          data: [31, 40, 28, 51, 42, 109, 100],
+          name:  "غير مكتملة",
+          data: [11, 32, 45, 32, 34, 52, 41,31 , 40, 28, 51, 42],
         },
         {
-          name: ' مكتملة ',
-          data: [11, 32, 45, 32, 34, 52, 41],
+          name: "مكتملة",
+          data: [31, 40, 28, 51, 42, 109, 100 ,90, 80, 95, 100, 120],
         },
       ],
       chart: {
@@ -156,6 +163,11 @@ export class ReportsComponent implements OnInit {
           ' May ',
           ' Jun ',
           ' Jul ',
+          " Aug ",
+          " Sep ",
+          " Oct ",
+          " Nov ",
+          " Dec "
         ],
       },
       tooltip: {
@@ -165,6 +177,8 @@ export class ReportsComponent implements OnInit {
       },
     };
   }
+
+
 
   ngOnInit(): void {}
 

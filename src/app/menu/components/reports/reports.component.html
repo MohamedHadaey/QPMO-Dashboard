@@ -1,7 +1,7 @@
 <section class="content">
   <div class="row">
     <div class="sidebar">
-      <div class="bg-white pt-5 h-100">
+      <div class="bg-white h-100">
         <ul class="h-100">
           <li routerLink="/home"><img src="../../../../assets/images/Dashboard-icons/home.png" alt="home"><span>{{"home"
               | translate }}</span></li>
@@ -12,7 +12,7 @@
           <li routerLink="/favourites"><img src="../../../../assets/images/Dashboard-icons/fav-darkgray.png"
               alt="favourites"><span>{{"favourite" | translate }}</span></li>
           <li class="active" routerLink="/reports"><img src="../../../../assets/images/Dashboard-icons/report.png"
-              alt="reports"><span>{{"statistics" | translate }}</span></li>
+              alt="reports"><span>{{"statistic" | translate }}</span></li>
         </ul>
         <div class="list-group list-group-flush">
         </div>
@@ -35,7 +35,7 @@
               <li routerLink="/favourites"><img src="../../../../assets/images/Dashboard-icons/fav-darkgray.png"
                   alt="favourites"><span>{{"favourite" | translate }}</span></li>
               <li class="active" routerLink="/reports"><img src="../../../../assets/images/Dashboard-icons/report.png"
-                  alt="reports"><span>{{"statistics" | translate }}</span></li>
+                  alt="reports"><span>{{"statistic" | translate }}</span></li>
             </ul>
             <div class="list-group list-group-flush">
             </div>
@@ -87,24 +87,12 @@
         <div class="row p-0">
           <div class="col-12 p-3">
             <div class="list p-3">
-              <div class="row date-range">
-                <form action="">
-                  <div class="range start">
-                    <span>{{"from" | translate }}</span>
-                    <input type="date" value="2022-01-01" id="start" name="range-start">
-                  </div>
-                  <div class="range end">
-                    <span>{{"to" | translate }}</span>
-                    <input type="date" value="2022-12-30" id="end" name="range-start">
-                  </div>
-                </form>
-              </div>
               <div class="row reports">
                 <div class="col-md-6 p-3">
                   <div class="employees p-3">
                     <div class="employees-head w-100 d-flex justify-content-between align-items-center">
                       <div class="logo d-flex align-items-center">
-                        <img src="../../../../assets/images/Dashboard-icons/rate.png" alt="worker">
+                        <!-- <img src="../../../../assets/images/Dashboard-icons/rate.png" alt="worker"> -->
                         <h4>{{"projects-archive-states" | translate }}</h4>
                       </div>
                     </div>
@@ -123,9 +111,13 @@
                   <div class="employees p-3">
                     <div class="employees-head  w-100 d-flex justify-content-between align-items-center">
                       <div class="logo d-flex align-items-center flex-grow-1">
-                        <img src="../../../../assets/images/Dashboard-icons/rate.png" alt="rate">
+                        <!-- <img src="../../../../assets/images/Dashboard-icons/rate.png" alt="rate"> -->
                         <h4>{{"project-states" | translate }}</h4>
                       </div>
+                      <span>{{"from" | translate}}</span>
+                      <span class="datepicker-toggle"><img  src="../../../../assets/images/Dashboard-icons/date.png" alt="date icon" class="datepicker-toggle-button"><input  type="date" class="datepicker-input"></span>
+                      <span>{{"to" | translate}}</span>
+                      <span  class="datepicker-toggle"><img  src="../../../../assets/images/Dashboard-icons/date.png" alt="date icon" class="datepicker-toggle-button"><input  type="date" class="datepicker-input"></span>
                     </div>
                     <div class="employees-number py-0">
                       <div class="row">
@@ -142,7 +134,7 @@
               <div class="row">
                 <div class="col-sm-6 col-md-4 col-lg p-3">
                   <div class="projects-follow-card">
-                    <h4>{{"completed-projects" | translate }}</h4>
+                    <h4>{{"archieved-projects" | translate }}</h4>
                     <div class="number p-3">
                       <h3 id="color-yellow">80</h3>
                     </div>
@@ -150,7 +142,7 @@
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg p-3">
                   <div class="projects-follow-card">
-                    <h4>{{"delayed-projects" | translate }}</h4>
+                    <h4>{{"correctly-completed" | translate }}</h4>
                     <div class="number p-3">
                       <h3 id="color-red">25</h3>
                     </div>
@@ -158,7 +150,7 @@
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg p-3">
                   <div class="projects-follow-card">
-                    <h4>{{"projects-neering" | translate }}</h4>
+                    <h4>{{"incorrectly-completed" | translate }}</h4>
                     <div class="number p-3">
                       <h3 id="color-green">70</h3>
                     </div>
@@ -166,7 +158,7 @@
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg p-3">
                   <div class="projects-follow-card">
-                    <h4>{{"current-projects" | translate }}</h4>
+                    <h4>{{"delayed-projects" | translate }}</h4>
                     <div class="number p-3">
                       <h3 id="color-primary">122</h3>
                     </div>
@@ -182,12 +174,12 @@
                 </div>
               </div>
               <div class="row justify-content-center align-items-center">
-                <div class="col-sm-8">
+                <div class="col-12">
                   <div class="employees p-3">
                     <div class="employees-head  w-100 d-flex justify-content-between align-items-center">
                       <div class="logo d-flex align-items-center flex-grow-1">
-                        <img src="../../../../assets/images/Dashboard-icons/archives.png" alt="rate">
-                        <h4>{{"project-archive" | translate }}</h4>
+                        <!-- <img src="../../../../assets/images/Dashboard-icons/archives.png" alt="rate"> -->
+                        <h4>{{"project-movement" | translate }}</h4>
                       </div>
                     </div>
                     <div class="employees-number py-0">
