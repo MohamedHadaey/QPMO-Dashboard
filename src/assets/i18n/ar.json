@@ -51,6 +51,8 @@
   "archieved-projects": "المشاريع المؤرشفة",
   "correctly-completed": "المكتملة بشكل صحيح",
   "incorrectly-completed": "المكتملة بشكل غير صحيح",
+  "correctly-archieved": "المؤرشفة بشكل صحيح",
+  "incorrectly-archieved": "المؤرشفة بشكل غير صحيح",
 
   "completed-projects": "مشاريع مكتملة",
   "not-completed-projects": "مشاريع غير مكتملة",

@@ -53,6 +53,8 @@
 "archieved-projects": "Archived projects",
 "correctly-completed": "Correctly Completed",
 "incorrectly-completed": "Incorrectly Completed",
+"correctly-archieved": "Properly Archived",
+"incorrectly-archieved": "Incorrectly Archived",
 "completed-projects": "Completed Projects",
 "not-completed-projects" : "Not Completed Projects",
 "delayed-projects": "Delayed Projects",

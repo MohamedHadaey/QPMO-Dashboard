@@ -6,12 +6,19 @@ import { Options } from '@angular-slider/ngx-slider';
 declare const $: any;
 declare var google: any;
 
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
+  value: number = 40;
+  highValue: number = 60;
+  options: Options = {
+    floor: 0,
+    ceil: 100
+  };
   // price range inputs
   // section input
   sectionMinValue: any = 25;

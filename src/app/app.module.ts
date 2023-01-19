@@ -20,6 +20,8 @@ import { SwiperModule } from 'swiper/angular';
 
 // import NgApexchartsModule for charts
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,6 +38,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     BrowserAnimationsModule,
     SlickCarouselModule,
     NgApexchartsModule,
+    NgxSliderModule,
     SwiperModule,
     NgChartsModule,
     TranslateModule.forRoot({

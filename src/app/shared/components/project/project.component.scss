@@ -505,6 +505,24 @@
           text-align: left;
         }
 
+        .date-span {
+          background-color: #F0F2FA;
+          padding: 5px !important;
+          border-radius: 15px;
+          overflow: hidden;
+          margin: 0 5px 3px 5px !important;
+          max-width: 150px;
+          max-height: 29px;
+
+          input{
+            border: none;
+            outline: none;
+            background-color: transparent;
+            color: #3D3D3D;
+          }
+        }
+
+
         .project-images {
           border-bottom: none;
           overflow: hidden;
