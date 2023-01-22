@@ -10,7 +10,6 @@ import { SwiperModule } from "swiper/angular";
 import { BrowserModule } from '@angular/platform-browser';
 import { ProjectComponent } from './components/project/project.component';
 
-
 @NgModule({
   declarations: [
     LanguageComponent,

@@ -53,13 +53,5 @@ export class ProjectComponent implements OnInit {
     this.fav = !this.fav;
   }
 
-  // request to update images
-  updateImages() {
-    $('.update-popups').show();
-  }
 
-  // close update images popup
-  closeUpdateImagesPopup() {
-    $('.update-popups').hide();
-  }
 }

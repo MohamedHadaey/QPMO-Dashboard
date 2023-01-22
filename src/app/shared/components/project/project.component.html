@@ -105,52 +105,32 @@
         <p>{{"project-phases" | translate }}</p>
         <div class="row">
           <div class="col-sm-6 col-md-4 col-lg-2 ">
-            <div class="process">
+            <div class="process hover" data-bs-toggle="modal" data-bs-target="#deliveryModal">
               <img src="../../../../assets/images/Dashboard-icons/alert-delay.png" alt="alert delay icon">
               <p>{{"delivery-alert" | translate }}</p>
             </div>
           </div>
           <div class="col-sm-6 col-md-4 col-lg-2">
-            <div class="process" (click)="updateImages()">
+            <div class="process hover" data-bs-toggle="modal" data-bs-target="#imageUpdateModal">
               <img src="../../../../assets/images/Dashboard-icons/update-photos.png" alt="update-photos icon"
                 class="hover">
               <p>{{"request-update-images" | translate }}</p>
             </div>
-            <div class="update-popups">
-              <div class="content">
-                <div class="popup">
-                  <div class="update-image">
-                    <img src="../../../../assets/images/Dashboard-icons/update-photos.png" alt="update photos">
-                  </div>
-                  <h4>{{"request-update-images-msg" | translate}}</h4>
-                  <div class="butns">
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <button>{{"confirm" | translate}}</button>
-                      </div>
-                      <div class="col-sm-6">
-                        <button (click)="closeUpdateImagesPopup()">{{"cancel" | translate}}</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
           <div class="col-sm-6 col-md-4 col-lg-2">
-            <div class="process">
+            <div class="process hover" data-bs-toggle="modal" data-bs-target="#completionRateUpdateModal">
               <img src="../../../../assets/images/Dashboard-icons/refresh-ratio.png" alt="refresh-ratio icon">
               <p>{{"request-update-completion-rate" | translate }}</p>
             </div>
           </div>
           <div class="col-sm-6 col-md-4 col-lg-2">
-            <div class="process">
+            <div class="process hover" data-bs-toggle="modal" data-bs-target="#deadlineAlertModal">
               <img src="../../../../assets/images/Dashboard-icons/alert-timeout.png" alt="alert timeout icon">
               <p>{{"request-alert" | translate }}</p>
             </div>
           </div>
           <div class="col-sm-6 col-md-4 col-lg-2">
-            <div class="process">
+            <div class="process hover" data-bs-toggle="modal" data-bs-target="#inventoryModal">
               <img src="../../../../assets/images/Dashboard-icons/inventory.png" alt="inventory icon">
               <p>{{"an-inventory" | translate }}</p>
             </div>
@@ -253,4 +233,144 @@
       </div>
     </div>
   </div>
+<!-- delivery alert Modal -->
+<div class="modal fade" id="deliveryModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="update-image">
+          <img src="../../../../assets/images/Dashboard-icons/alert-delay.png" alt="delivery alert delay icon">
+        </div>
+      </div>
+      <div class="modal-body px-2 py-0">
+        <h4>{{"request-delivery-alert" | translate}}</h4>
+      </div>
+      <div class="modal-footer py-0">
+        <div class="butns py-0">
+          <div class="row">
+            <div class="col-sm-6">
+              <button type="button" data-bs-dismiss="modal" id="liveToastBtn">{{"confirm" | translate}}</button>
+            </div>
+            <div class="col-sm-6">
+              <button type="button" data-bs-dismiss="modal">{{"cancel" | translate}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- image update alert Modal -->
+<div class="modal fade" id="imageUpdateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="update-image">
+          <img src="../../../../assets/images/Dashboard-icons/update-photos.png" alt="update photos">
+        </div>
+      </div>
+      <div class="modal-body px-2 py-0">
+        <h4>{{"request-update-images-msg" | translate}}</h4>
+      </div>
+      <div class="modal-footer py-0">
+        <div class="butns py-0">
+          <div class="row">
+            <div class="col-sm-6">
+              <button type="button" data-bs-dismiss="modal">{{"confirm" | translate}}</button>
+            </div>
+            <div class="col-sm-6">
+              <button type="button" data-bs-dismiss="modal">{{"cancel" | translate}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- update completion rate modal -->
+<div class="modal fade" id="completionRateUpdateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="update-image">
+          <img src="../../../../assets/images/Dashboard-icons/refresh-ratio.png" alt="refresh-ratio icon">
+        </div>
+      </div>
+      <div class="modal-body px-2 py-0">
+        <h4>{{"request-completion-rate" | translate}}</h4>
+      </div>
+      <div class="modal-footer py-0">
+        <div class="butns py-0">
+          <div class="row">
+            <div class="col-sm-6">
+              <button type="button" data-bs-dismiss="modal">{{"confirm" | translate}}</button>
+            </div>
+            <div class="col-sm-6">
+              <button type="button" data-bs-dismiss="modal">{{"cancel" | translate}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- deadline alert modal -->
+<div class="modal fade" id="deadlineAlertModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="update-image">
+          <img src="../../../../assets/images/Dashboard-icons/alert-timeout.png" alt="refresh-ratio icon">
+        </div>
+      </div>
+      <div class="modal-body px-2 py-0">
+        <h4>{{"request-deadline-alert" | translate}}</h4>
+      </div>
+      <div class="modal-footer py-0">
+        <div class="butns py-0">
+          <div class="row">
+            <div class="col-sm-6">
+              <button type="button" data-bs-dismiss="modal">{{"confirm" | translate}}</button>
+            </div>
+            <div class="col-sm-6">
+              <button type="button" data-bs-dismiss="modal">{{"cancel" | translate}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- inventory modal -->
+<div class="modal fade" id="inventoryModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="update-image">
+          <img src="../../../../assets/images/Dashboard-icons/inventory.png" alt="refresh-ratio icon">
+        </div>
+      </div>
+      <div class="modal-body px-2 py-0">
+        <h4>{{"inventory-alert" | translate}}</h4>
+      </div>
+      <div class="modal-footer py-0">
+        <div class="butns py-0">
+          <div class="row">
+            <div class="col-sm-6">
+              <button type="button" data-bs-dismiss="modal">{{"confirm" | translate}}</button>
+            </div>
+            <div class="col-sm-6">
+              <button type="button" data-bs-dismiss="modal">{{"cancel" | translate}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 </div>

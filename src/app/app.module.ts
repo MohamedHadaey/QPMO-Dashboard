@@ -23,6 +23,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
 
+
 @NgModule({
   declarations: [AppComponent],
   imports: [

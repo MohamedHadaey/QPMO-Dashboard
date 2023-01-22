@@ -588,6 +588,90 @@
       }
     }
   }
+
+  .modal {
+    .modal-dialog {
+        min-width: 200px;
+        max-width: 450px;
+      .modal-header {
+        position: relative;
+        border-radius: 15px;
+        padding: 50px 15px 0 15px;
+        text-align: center;
+        border: none;
+        outline: none;
+
+        .update-image {
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+
+      .modal-body {
+        text-align: center;
+        h4 {
+          color: #555;
+          font-weight: bold;
+          font-size: 18px;
+        }
+      }
+
+      .modal-footer {
+        border: none;
+        outline: none;
+
+        .butns {
+          width: 100%;
+          padding: 10px;
+
+          .row {
+            .col-sm-6 {
+              padding: 10px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              text-align: center;
+
+              button {
+                padding: 3px 45px;
+                border-radius: 20px;
+                border: none;
+                outline: none;
+                font-size: 14px;
+                font-weight: 700;
+                transition: all 0.3s;
+
+                &:hover {
+                  box-shadow: 1px 1px 4px #aaa;
+                }
+              }
+
+            }
+
+            .col-sm-6:first-of-type button {
+              background-color: #4CB871;
+              color: #fff;
+            }
+
+            .col-sm-6:nth-of-type(2) button {
+              color: #D50000;
+            }
+
+          }
+        }
+      }
+    }
+  }
 }
 
 
