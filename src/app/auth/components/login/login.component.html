@@ -14,11 +14,11 @@
                 <div class="form">
                   <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm(loginForm)">
                     <div class="form-group">
-                      <input type="text" [placeholder]="'username' | translate" formControlName="username">
+                      <input type="text" [placeholder]="'username' | translate" formControlName="username" autofocus>
                     </div>
                     <div class="form-group mb-2">
                       <input [type]="changeType?'password':'text'" [placeholder]="'password' | translate" id="userPass"
-                        formControlName="password" autocomplete="">
+                        formControlName="password" autocomplete="off">
                       <!-- to show or hide password -->
                       <span (click)="viewPassword()" id="view-pass"><i
                           [ngClass]="visible?'fa fa-eye-slash':'fa fa-eye'"></i></span>

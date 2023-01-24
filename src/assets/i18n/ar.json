@@ -117,7 +117,7 @@
   "username": "اسم المستخدم",
   "remember-me": "تذكرني",
   "login": "دخول",
-  "credentials": "These credentials do not match our affiliate data.",
+  "credentials": "بيانات الاعتماد هذه لا تتطابق مع بيانات الشركة التابعة الخاصة بنا.",
 
   "security-code": "الرجاء إدخال كود التحقق",
   "security-msg": "تم ارسال رسالة قصيرة برمز التحقيق المكون من 4 ارقام ",

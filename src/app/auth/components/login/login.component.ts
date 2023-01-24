@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   currentLanguage: any = localStorage.getItem('currentLanguage');
   constructor(private _AuthService: AuthService, private _Router: Router) {}
 
+  // login form validation
   loginForm: FormGroup = new FormGroup({
     username: new FormControl(null, [
       Validators.required,
@@ -26,7 +27,9 @@ export class LoginComponent implements OnInit {
       Validators.minLength(5),
       Validators.maxLength(100),
     ]),
-    checker: new FormControl(null, []),
+    checker: new FormControl(null, [
+      Validators.required
+    ]),
   });
 
   submitLoginForm(loginForm: FormGroup) {

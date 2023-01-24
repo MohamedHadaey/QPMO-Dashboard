@@ -19,6 +19,7 @@ export class VarifyPassComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  // varify form validation
   varifyForm: FormGroup = new FormGroup({
     code1: new FormControl(null, [Validators.required]),
     code2: new FormControl(null, [Validators.required]),
@@ -42,9 +43,6 @@ export class VarifyPassComponent implements OnInit {
         setTimeout(this.deleteMsg, 4000);
       }
     }
-
-    console.log(this.code);
-
     this.varifyForm.reset();
   }
 
