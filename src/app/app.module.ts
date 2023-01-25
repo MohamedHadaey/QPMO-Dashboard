@@ -13,7 +13,6 @@ import { NgChartsModule } from 'ng2-charts';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
-import { MyIntercetor } from './intercetor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 // import swiper
 import { SwiperModule } from 'swiper/angular';
@@ -51,11 +50,6 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
     }),
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: MyIntercetor,
-      multi: true,
-    },
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
