@@ -257,7 +257,7 @@ export class MainComponent implements OnInit {
   ////////////////////////////////////////////
   ngOnInit(): void {
     // for check directions after any refresh
-    if (this.currentLanguage == 'ar') {
+    if (this.currentLanguage == 'ar-sa') {
       $('.content-body').removeClass('content-body-ltr');
       $('.content-body').addClass('content-body-rtl');
     } else {

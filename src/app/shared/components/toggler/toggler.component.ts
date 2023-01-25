@@ -11,7 +11,7 @@ export class TogglerComponent implements OnInit {
   // for responsive toggle sidebar
   toggle() {
     const currentLanguage = localStorage.getItem('currentLanguage');
-    if (currentLanguage == 'ar') {
+    if (currentLanguage == 'ar-sa') {
       if ($('.sidebar').css('width') == '220px') {
         $('.sidebar').css('width', '55px');
         $('.sidebar li span').fadeOut(0);
@@ -43,7 +43,7 @@ export class TogglerComponent implements OnInit {
 
   ngOnInit(): void {
     // for check directions after any refresh
-    if (this.currentLanguage == 'ar') {
+    if (this.currentLanguage == 'ar-sa') {
       $('.content-body').removeClass('content-body-ltr');
       $('.content-body').addClass('content-body-rtl');
       $('.dropdown-menu').css('left', '0');

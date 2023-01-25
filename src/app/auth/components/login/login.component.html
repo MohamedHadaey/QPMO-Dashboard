@@ -9,16 +9,16 @@
           <div class="col-md-6">
             <div class="login-form">
               <div class="form-data">
-                <img src="../../../../assets/images/Dashboard-icons/logo-login.png" alt="login-logo">
+                <img src="../../../../assets/images/Dashboard-icons/final_logo.png" alt="login-logo">
                 <h3>{{"login-account" | translate }}</h3>
                 <div class="form">
                   <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm(loginForm)">
                     <div class="form-group">
-                      <input type="text" [placeholder]="'username' | translate" formControlName="username" autofocus>
+                      <input type="text" [placeholder]="'username' | translate" formControlName="Username" autofocus>
                     </div>
                     <div class="form-group mb-2">
                       <input [type]="changeType?'password':'text'" [placeholder]="'password' | translate" id="userPass"
-                        formControlName="password" autocomplete="off">
+                        formControlName="pass" autocomplete="off">
                       <!-- to show or hide password -->
                       <span (click)="viewPassword()" id="view-pass"><i
                           [ngClass]="visible?'fa fa-eye-slash':'fa fa-eye'"></i></span>
@@ -27,7 +27,7 @@
                       <label class="label-checker">
                         <input type="checkbox" formControlName="checker">
                         <span class="checkmark"
-                          [ngClass]="currentLanguage == 'ar'?'checkmark-rtl':'checkmark-ltr'"></span> {{"remember-me" |
+                          [ngClass]="currentLanguage == 'ar-sa'?'checkmark-rtl':'checkmark-ltr'"></span> {{"remember-me" |
                         translate }}</label>
                       <a routerLink="/forget-pass">{{"forget-pass" | translate }}</a>
                     </div>

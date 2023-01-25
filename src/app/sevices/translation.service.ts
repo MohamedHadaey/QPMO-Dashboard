@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
   providedIn: 'root',
 })
 export class TranslationService {
-  lang = new BehaviorSubject<string>('ar');
+  lang = new BehaviorSubject<string>('ar-sa');
   currentlang = this.lang.asObservable();
   constructor(public translate: TranslateService) {}
   // this service has been specially created for making website with more than one language

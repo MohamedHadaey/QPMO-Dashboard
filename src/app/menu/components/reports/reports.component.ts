@@ -67,7 +67,7 @@ export class ReportsComponent implements OnInit {
   completedText: boolean = true;
   constructor(private _AuthService: AuthService, private translate: TranslateService) {
 
-    if (localStorage.getItem('currentLanguage') == 'ar') {
+    if (localStorage.getItem('currentLanguage') == 'ar-sa') {
 
     } else {
 

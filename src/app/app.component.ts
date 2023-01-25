@@ -16,13 +16,13 @@ export class AppComponent {
     public translate: TranslateService,
     private _TranslationService: TranslationService
   ) {
-    this.currentLanguage = localStorage.getItem('currentLanguage') || 'ar';
+    this.currentLanguage = localStorage.getItem('currentLanguage') || 'ar-sa';
     this.translate.use(this.currentLanguage);
     this._TranslationService.currentLang(this.currentLanguage);
     const body = document.getElementsByTagName('body');
     this._TranslationService.currentlang.subscribe((lang) => {
       // this if condition to check direction of all project according to current language
-      if (lang == 'ar') {
+      if (lang == 'ar-sa') {
         body[0].setAttribute('dir', 'rtl');
       } else {
         body[0].setAttribute('dir', 'ltr');
@@ -30,6 +30,6 @@ export class AppComponent {
     });
 
     // to disable inspect element, f12 button and developer tools
-    disableDevtool();
+    // disableDevtool();
   }
 }

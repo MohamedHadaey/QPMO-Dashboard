@@ -8,6 +8,7 @@ import {  ReactiveFormsModule } from '@angular/forms';
 import { VarifyChangedPassComponent } from './components/varify-changed-pass/varify-changed-pass.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -23,7 +24,14 @@ import { TranslateModule } from '@ngx-translate/core';
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
-    TranslateModule
+    TranslateModule,
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      progressBar: true,
+      progressAnimation: 'increasing',
+      preventDuplicates: true,
+      closeButton: true,
+    }),
   ],
   exports: [
     LoginComponent,

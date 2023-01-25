@@ -19,8 +19,8 @@ export class LanguageComponent implements OnInit {
 
   // get english language
   getEnglish() {
-    this._TranslationService.currentLang('en');
-    this.currentLanguage = 'en';
+    this._TranslationService.currentLang('en-sa');
+    this.currentLanguage = 'en-sa';
     if ($('.sidebar').css('width') == '220px') {
       $('.content-body').css('padding-right', '0');
       $('.content-body').css('padding-left', '220px');
@@ -33,8 +33,8 @@ export class LanguageComponent implements OnInit {
 
   // get arabic language
   getArabic() {
-    this._TranslationService.currentLang('ar');
-    this.currentLanguage = 'ar';
+    this._TranslationService.currentLang('ar-sa');
+    this.currentLanguage = 'ar-sa';
     if ($('.sidebar').css('width') == '220px') {
       $('.content-body').css('padding-left', '0');
       $('.content-body').css('padding-right', '220px');

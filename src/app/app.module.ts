@@ -23,7 +23,6 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
 
-
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -43,7 +42,7 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
     SwiperModule,
     NgChartsModule,
     TranslateModule.forRoot({
-      defaultLanguage: 'ar',
+      defaultLanguage: 'ar-sa',
       loader: {
         provide: TranslateLoader,
         useFactory: createTranslateLoader,
