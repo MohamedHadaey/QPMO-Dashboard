@@ -11,7 +11,7 @@ declare var $: any;
 })
 export class AppComponent {
   title = 'qdpm-dashboard';
-  currentLanguage: any = '';
+  currentLanguage: any = 'ar-sa';
   constructor(
     public translate: TranslateService,
     private _TranslationService: TranslationService
