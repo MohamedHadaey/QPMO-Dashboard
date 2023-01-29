@@ -1,6 +1,8 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { id } from 'date-fns/locale';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/auth.service';
 declare const $: any;
@@ -15,6 +17,7 @@ export class LoginComponent implements OnInit {
   changeType: boolean = true;
   currentLanguage: any = localStorage.getItem('currentLanguage');
   constructor(private _AuthService: AuthService, private _Router: Router,private toastr: ToastrService) {}
+  ngOnInit(): void {}
 
   // login form validation
   loginForm: FormGroup = new FormGroup({
@@ -59,7 +62,7 @@ export class LoginComponent implements OnInit {
     $('#validate-msg').slideUp();
   }
 
-  ngOnInit(): void {}
+
 
   // this function to show and hide password
   viewPassword() {

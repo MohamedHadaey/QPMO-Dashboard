@@ -15,10 +15,7 @@ export class AuthService {
    // 1- sign in function
    signIn(Username:any, pass:any): Observable<any> {
     return this.http.post(`${this.baseUrl}/api/Dashboard/v${this.version}/Auth/SignIn?Username=${Username}&pass=${pass}&culture=${this.currentLanguage}`, pass);
-
   }
-
-  
 
 
   // logOut function
