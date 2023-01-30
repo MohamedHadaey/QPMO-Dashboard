@@ -17,7 +17,11 @@ export class LoginComponent implements OnInit {
   changeType: boolean = true;
   currentLanguage: any = localStorage.getItem('currentLanguage');
   constructor(private _AuthService: AuthService, private _Router: Router,private toastr: ToastrService) {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // this._AuthService.testPost().subscribe((res) => {
+    //   console.log(res);
+    // })
+  }
 
   // login form validation
   loginForm: FormGroup = new FormGroup({
@@ -36,23 +40,47 @@ export class LoginComponent implements OnInit {
     ]),
   });
 
+  // submitLoginForm(loginForm: FormGroup) {
+  //   console.log(loginForm.value);
+  //   // if user delete [disabled]="registerForm.invalid" from html inspect
+  //   if (loginForm.invalid) {
+  //     return;
+  //   } else {
+  //     if (
+  //       loginForm.value.Username == 'admin' &&
+  //       loginForm.value.pass == '12345'
+  //     ) {
+  //       this.toastr.success("Success");
+  //       this._Router.navigate(['/varify-pass']);
+  //     } else {
+  //       this.toastr.error("Failed");
+  //       $('#validate-msg').slideDown();
+  //       setTimeout(this.deleteMsg, 4000);
+  //     }
+  //   }
+  //   this.loginForm.reset();
+  // }
+
   submitLoginForm(loginForm: FormGroup) {
     console.log(loginForm.value);
     // if user delete [disabled]="registerForm.invalid" from html inspect
     if (loginForm.invalid) {
       return;
     } else {
-      if (
-        loginForm.value.Username == 'admin' &&
-        loginForm.value.pass == '12345'
-      ) {
-        this.toastr.success("Success");
-        this._Router.navigate(['/varify-pass']);
-      } else {
-        this.toastr.error("Failed");
-        $('#validate-msg').slideDown();
-        setTimeout(this.deleteMsg, 4000);
-      }
+      this._AuthService.signIn(this.loginForm.value.Username, this.loginForm.value.pass ).subscribe((res) => {
+        console.log(res)
+      })
+      // if (
+      //   loginForm.value.Username == 'admin' &&
+      //   loginForm.value.pass == '12345'
+      // ) {
+      //   this.toastr.success("Success");
+      //   this._Router.navigate(['/varify-pass']);
+      // } else {
+      //   this.toastr.error("Failed");
+      //   $('#validate-msg').slideDown();
+      //   setTimeout(this.deleteMsg, 4000);
+      // }
     }
     this.loginForm.reset();
   }
