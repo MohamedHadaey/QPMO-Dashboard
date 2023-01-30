@@ -1,5 +1,6 @@
 export interface user
 {
+    Id:number,
     UserName:string,
     PasswordChanged:boolean,
     Name:string,
