@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 declare const $: any;
 import { UserService } from '../../services/user.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { user } from 'src/app/models/user';
 
 @Component({
   selector: 'app-profile',
@@ -17,12 +18,26 @@ export class ProfileComponent implements OnInit {
   changeTypeNewPass: boolean = true;
   visibleRePass: boolean = true;
   changeTypeRePass: boolean = true;
+
+  User_Data: user = new user();
+
   constructor(
     private _UserService: UserService,
     private _Router: Router,
     private _AuthService: AuthService
   ) {}
 
+  ngOnInit() {
+    this._UserService.GetInfo().subscribe(
+      (res) => {
+        if (res.Code == 200) {
+          this.User_Data = res.data as user;
+          // console.log(this.User_Data);
+        }
+      },
+      (err) => {}
+    );
+  }
   passwordForm: FormGroup = new FormGroup({
     password: new FormControl(null, [
       Validators.required,
@@ -51,8 +66,6 @@ export class ProfileComponent implements OnInit {
     }
     this.passwordForm.reset();
   }
-
-  ngOnInit(): void {}
 
   // this function to show and hide password
   viewPassword() {
