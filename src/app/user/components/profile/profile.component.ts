@@ -41,17 +41,17 @@ export class ProfileComponent implements OnInit {
   passwordForm: FormGroup = new FormGroup({
     password: new FormControl(null, [
       Validators.required,
-      Validators.minLength(5),
+      // Validators.minLength(5),
       Validators.maxLength(100),
     ]),
     newPassword: new FormControl(null, [
       Validators.required,
-      Validators.minLength(5),
+      Validators.minLength(4),
       Validators.maxLength(100),
     ]),
     rePassword: new FormControl(null, [
       Validators.required,
-      Validators.minLength(5),
+      Validators.minLength(4),
       Validators.maxLength(100),
     ]),
   });
@@ -59,12 +59,29 @@ export class ProfileComponent implements OnInit {
   submitPasswordForm(passwordForm: FormGroup) {
     // console.log(passwordForm.value)
     // if user delete [disabled]="registerForm.invalid" from html inspect
+    // console.log(passwordForm.invalid);
     if (passwordForm.invalid) {
       return;
     } else {
-      this._Router.navigate(['/profile']);
+      if (
+        passwordForm.get('newPassword')?.value ==
+        passwordForm.get('rePassword')?.value
+      )
+        this._UserService
+          .ChangePass(
+            passwordForm.get('password')?.value,
+            passwordForm.get('newPassword')?.value
+          )
+          .subscribe(
+            (res) => {
+              if (res.Code == 200) {
+                this.passwordForm.reset();
+                this._Router.navigate(['/profile']);
+              }
+            },
+            (err) => {}
+          );
     }
-    this.passwordForm.reset();
   }
 
   // this function to show and hide password

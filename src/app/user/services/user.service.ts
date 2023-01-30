@@ -24,4 +24,19 @@ export class UserService {
       httpOp
     );
   }
+  ChangePass(
+    currentpass: string,
+    newpass: string
+  ): Observable<GlobalReceivier> {
+    let httpOp = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + localStorage.getItem('tok'),
+      }),
+    };
+    return this.http.post<GlobalReceivier>(
+      `${this.baseUrl}/api/Dashboard/v${this.version}/Auth/ChangePassword?OldPass=${currentpass}&NewPass=${newpass}&culture=${this.currentLanguage}`,
+      null,
+      httpOp
+    );
+  }
 }
