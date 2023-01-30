@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 declare const $: any;
+import { HttpUrlEncodingCodec } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-varify-pass',
@@ -10,15 +12,14 @@ declare const $: any;
   styleUrls: ['./varify-pass.component.scss'],
 })
 export class VarifyPassComponent implements OnInit {
-  // visible: boolean = true;
-  // changeType: boolean = true;
   numbers = new Array(4);
-  code: any = '';
-  // data: any = { phone: this._AuthService.phoneChangePass, code: 2 };
+  code!: any;
   constructor(private _AuthService: AuthService, private _Router: Router) {}
 
   ngOnInit(): void {}
-
+  codec = new HttpUrlEncodingCodec;
+  UserID:any = Number(localStorage.getItem("UserID"));
+  C_Code:any = localStorage.getItem("C_Code")
   // varify form validation
   varifyForm: FormGroup = new FormGroup({
     code1: new FormControl(null, [Validators.required]),
@@ -28,6 +29,7 @@ export class VarifyPassComponent implements OnInit {
   });
 
   submitVarifyForm(varifyForm: FormGroup) {
+    var finalToken = this.codec.encodeValue(this.C_Code);
     this.code = Number(
       `${varifyForm.value.code1}${varifyForm.value.code2}${varifyForm.value.code3}${varifyForm.value.code4}`
     );
@@ -35,13 +37,17 @@ export class VarifyPassComponent implements OnInit {
     if (varifyForm.invalid) {
       return;
     } else {
-      if (this.code == 1111) {
-        localStorage.setItem('isLogin', JSON.stringify(true));
-        this._Router.navigate(['/home']);
-      } else {
-        $('#validate-msg').slideDown();
-        setTimeout(this.deleteMsg, 4000);
-      }
+      this._AuthService.varifyPass(this.UserID, this.code ,finalToken).subscribe((response) => {
+        if(response.Code == 200 ) {
+          localStorage.setItem("isLogin", "true")
+          this._Router.navigate(['/home']);
+          localStorage.setItem('C_Code', response.data);
+        }
+        else {
+          $('#validate-msg').slideDown();
+          setTimeout(this.deleteMsg, 4000);
+        }
+      })
     }
     this.varifyForm.reset();
   }
@@ -51,9 +57,6 @@ export class VarifyPassComponent implements OnInit {
     $('#validate-msg').slideUp();
   }
 
-  // varify(code: any) {
-  //   this.data.code = code;
-  // }
 
   // this is the best method to handle the code inputs in angular
   move(e: any, p: any, c: any, n: any) {

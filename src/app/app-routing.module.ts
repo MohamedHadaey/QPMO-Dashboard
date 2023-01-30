@@ -33,7 +33,7 @@ const routes: Routes = [
   {path:"language", component: LanguageComponent},
   {path:"project-details", component: ProjectDetailsComponent},
   {path:"project", component: ProjectsComponent},
-  {path:"**" , redirectTo: "login", pathMatch: "full"}
+  {path:"**" , redirectTo: "home", pathMatch: "full"}
 ];
 
 @NgModule({
