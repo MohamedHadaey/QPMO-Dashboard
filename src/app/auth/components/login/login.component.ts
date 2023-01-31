@@ -37,7 +37,8 @@ export class LoginComponent implements OnInit {
     if (loginForm.invalid) {
       return;
     } else {
-      this._AuthService.signIn(this.loginForm.value.Username, this.loginForm.value.pass ).subscribe((response) => {
+      this._AuthService.signIn(this.loginForm.value.Username, this.loginForm.value.pass ).subscribe(
+        (response) => {
         if(response.Code == 200 ) {
           this._Router.navigate(['/varify-pass']);
           localStorage.setItem('C_Code', response.data.token);
@@ -46,6 +47,12 @@ export class LoginComponent implements OnInit {
         else {
           $('#validate-msg').slideDown();
           setTimeout(this.deleteMsg, 4000);
+        }
+      }, (error) => {
+        if (this.currentLanguage == "ar-sa") {
+          this.toastr.error("هناك مشكلة ما فى السيرفر")
+        }else {
+          this.toastr.error("There is a problem with the server")
         }
       })
     }

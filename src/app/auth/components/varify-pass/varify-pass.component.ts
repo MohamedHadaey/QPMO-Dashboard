@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 declare const $: any;
 import { HttpUrlEncodingCodec } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -14,7 +15,8 @@ import { HttpUrlEncodingCodec } from '@angular/common/http';
 export class VarifyPassComponent implements OnInit {
   numbers = new Array(4);
   code!: any;
-  constructor(private _AuthService: AuthService, private _Router: Router) {}
+  currentLanguage: any = localStorage.getItem('currentLanguage');
+  constructor(private _AuthService: AuthService, private _Router: Router, private toastr: ToastrService) {}
 
   ngOnInit(): void {}
   codec = new HttpUrlEncodingCodec;
@@ -46,6 +48,12 @@ export class VarifyPassComponent implements OnInit {
         else {
           $('#validate-msg').slideDown();
           setTimeout(this.deleteMsg, 4000);
+        }
+      }, (error) => {
+        if (this.currentLanguage == "ar-sa") {
+          this.toastr.error("هناك مشكلة ما فى السيرفر")
+        }else {
+          this.toastr.error("There is a problem with the server")
         }
       })
     }

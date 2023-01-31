@@ -15,7 +15,7 @@
                 <div class="form">
                   <form [formGroup]="forgetPassForm" (ngSubmit)="submitForgetPassForm(forgetPassForm)">
                     <div class="form-group my-5">
-                      <input type="number" [placeholder]="'phone-no' | translate" formControlName="phone">
+                      <input type="test" [placeholder]="'phone-no' | translate" formControlName="Phone">
                     </div>
                     <button [disabled]="forgetPassForm.invalid" class="btn my-2" type="submit">{{"varify" | translate
                       }}</button>

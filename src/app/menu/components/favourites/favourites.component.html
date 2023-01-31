@@ -238,7 +238,28 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr *ngFor="let favProject of favouriteProjects">
+                    <td>
+                      <div class="item">
+                        <p class="hover" (click)="showProjectCardDetails()">{{favProject.Project_Name}}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{favProject.Maqawl.Maqawl_Name}}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item">
+                        <p>{{favProject.Project_EndDate}}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="item"><img src="../../../../assets/images/Dashboard-icons/Favorite-blue.png"
+                          alt="favourite"></div>
+                    </td>
+                  </tr>
+                  <!-- <tr>
                     <td>
                       <div class="item">
                         <p class="hover" (click)="showProjectCardDetails()">{{"road-light" | translate }}</p>
@@ -426,7 +447,7 @@
                       <div class="item"><img src="../../../../assets/images/Dashboard-icons/Favorite-blue.png"
                           alt="favourite"></div>
                     </td>
-                  </tr>
+                  </tr> -->
                 </tbody>
               </table>
             </div>

@@ -18,28 +18,28 @@ export class ChangePasswordComponent implements OnInit {
   changeTypeRePass: boolean = true;
   visible: boolean = true;
   changeType: boolean = true;
+  C_Code:any = localStorage.getItem("C_Code");
+  Phone:any = localStorage.getItem("userPhone");
+  varifyCode:any = localStorage.getItem("varifyCode")
   constructor(private _AuthService: AuthService, private _Router: Router) {}
 
   changePassForm: FormGroup = new FormGroup({
     newPassword: new FormControl(null, [
       Validators.required,
-      Validators.minLength(5),
-      Validators.maxLength(100),
     ]),
     rePassword: new FormControl(null, [
       Validators.required,
-      Validators.minLength(5),
-      Validators.maxLength(100),
     ]),
   });
 
   submitChangedPasswordForm(changePassForm: FormGroup) {
-    console.log(changePassForm.value);
-    // if user delete [disabled]="registerForm.invalid" from html inspect
     if (changePassForm.invalid) {
       return;
     } else {
-      this._Router.navigate(['/login']);
+      if (changePassForm.get('newPassword')?.value == changePassForm.get('rePassword')?.value) {
+        this._AuthService.makeNewPassword(this.C_Code,this.Phone ,this.varifyCode , changePassForm.get('newPassword')?.value)
+        //this._Router.navigate(['/login']);
+      }
     }
     this.changePassForm.reset();
   }

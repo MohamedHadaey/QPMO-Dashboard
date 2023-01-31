@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Options } from '@angular-slider/ngx-slider';
+import { MenuService } from '../../services/menu.service';
+import { ToastrService } from 'ngx-toastr';
 declare const $: any;
 
 @Component({
@@ -10,6 +12,7 @@ declare const $: any;
   styleUrls: ['./favourites.component.scss'],
 })
 export class FavouritesComponent implements OnInit {
+  favouriteProjects:any[] = [];
   // price range inputs
   // section input
   sectionMinValue: any = 25;
@@ -26,9 +29,12 @@ export class FavouritesComponent implements OnInit {
     ceil: 100,
   };
   /**************************/
-  constructor(private _AuthService: AuthService) {}
+  constructor(private _AuthService: AuthService, private _MenuService:MenuService, private toastr: ToastrService) {}
 
-  ngOnInit(): void {}
+
+  ngOnInit(): void {
+    this.getFavProjects();
+  }
 
   filterForm: FormGroup = new FormGroup({
     project_type: new FormControl('1', [
@@ -67,5 +73,17 @@ export class FavouritesComponent implements OnInit {
   showDayProjects() {
     $('.day-projects').slideToggle();
     $('.project-card-details').slideUp();
+  }
+
+
+  // fav Projects
+  getFavProjects(){
+    this._MenuService.getFavProjects().subscribe((response => {
+      if(response.Code == 200) {
+        this.favouriteProjects = response.data;
+      } else {
+        this.toastr.error(response.Error_Resp)
+      }
+    }))
   }
 }

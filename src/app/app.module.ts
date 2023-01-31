@@ -20,6 +20,7 @@ import { SwiperModule } from 'swiper/angular';
 // import NgApexchartsModule for charts
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { MyIntercetor } from './intercetor';
 
 
 @NgModule({
@@ -50,6 +51,11 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
     }),
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MyIntercetor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

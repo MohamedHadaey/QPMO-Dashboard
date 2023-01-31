@@ -15,7 +15,7 @@ export class UserService {
   GetInfo(): Observable<GlobalReceivier> {
     let httpOp = {
       headers: new HttpHeaders({
-        Authorization: 'Bearer ' + localStorage.getItem('tok'),
+        Authorization: 'Bearer ' + localStorage.getItem('C_Code'),
       }),
     };
     return this.http.post<GlobalReceivier>(

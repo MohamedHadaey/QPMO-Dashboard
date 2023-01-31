@@ -27,6 +27,13 @@ export class AuthService {
   }
 
 
+  forgetPassword(Phone:any ): Observable<any> {
+    return this.http.post(`${this.baseUrl}/api/Dashboard/v${this.version}/Auth/ForgetPass?Phone=${Phone}&culture=${this.currentLanguage}`, null);
+  }
+
+  makeNewPassword(C_Code:string , Phone: string, code:number, NewPass:string): Observable<any> {
+    return this.http.post(`${this.baseUrl}/api/Dashboard/v${this.version}/Auth/ForgetPass_Confirm?C_Code=${C_Code}&Phone=${Phone}&code=${code}&NewPass=${NewPass}&culture=${this.currentLanguage}`, null);
+  }
 
   // logOut function
   logout() {

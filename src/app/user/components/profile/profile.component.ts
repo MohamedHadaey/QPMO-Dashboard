@@ -5,6 +5,7 @@ declare const $: any;
 import { UserService } from '../../services/user.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { user } from 'src/app/models/user';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-profile',
@@ -20,11 +21,13 @@ export class ProfileComponent implements OnInit {
   changeTypeRePass: boolean = true;
 
   User_Data: user = new user();
+  currentLanguage: any = localStorage.getItem('currentLanguage');
 
   constructor(
     private _UserService: UserService,
     private _Router: Router,
-    private _AuthService: AuthService
+    private _AuthService: AuthService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -32,37 +35,41 @@ export class ProfileComponent implements OnInit {
       (res) => {
         if (res.Code == 200) {
           this.User_Data = res.data as user;
-          // console.log(this.User_Data);
+          console.log(this.User_Data)
         }
-      },
-      (err) => {}
+      }, (error) => {
+        if (this.currentLanguage == "ar-sa") {
+          this.toastr.error("هناك مشكلة ما فى السيرفر")
+        } else {
+          this.toastr.error("There is a problem with the server")
+        }
+      }
     );
   }
   passwordForm: FormGroup = new FormGroup({
     password: new FormControl(null, [
-      Validators.required,
-      // Validators.minLength(5),
-      Validators.maxLength(100),
+      Validators.required
     ]),
     newPassword: new FormControl(null, [
-      Validators.required,
-      Validators.minLength(4),
-      Validators.maxLength(100),
+      Validators.required
     ]),
     rePassword: new FormControl(null, [
-      Validators.required,
-      Validators.minLength(4),
-      Validators.maxLength(100),
+      Validators.required
     ]),
   });
 
   submitPasswordForm(passwordForm: FormGroup) {
-    // console.log(passwordForm.value)
-    // if user delete [disabled]="registerForm.invalid" from html inspect
-    // console.log(passwordForm.invalid);
-    if (passwordForm.invalid) {
+    if (passwordForm.invalid )  {
       return;
-    } else {
+    } else if (passwordForm.get('newPassword')?.value != passwordForm.get('rePassword')?.value) {
+      if (this.currentLanguage == "ar-sa") {
+        this.toastr.error("كلمة المرور الجديدة وإعادة كلمة المرور الجديدة غير متطابقة")
+      } else {
+        this.toastr.error("New password and re new password not identical")
+      }
+      this.passwordForm.reset();
+    }
+    else {
       if (
         passwordForm.get('newPassword')?.value ==
         passwordForm.get('rePassword')?.value
@@ -77,9 +84,19 @@ export class ProfileComponent implements OnInit {
               if (res.Code == 200) {
                 this.passwordForm.reset();
                 this._Router.navigate(['/profile']);
+                if (this.currentLanguage == "ar-sa") {
+                  this.toastr.success("تم تغيير كلمة السر بنجاح")
+                } else {
+                  this.toastr.success("Password changed successfully")
+                }
               }
-            },
-            (err) => {}
+            }, (error) => {
+              if (this.currentLanguage == "ar-sa") {
+                this.toastr.error("هناك مشكلة ما فى السيرفر")
+              } else {
+                this.toastr.error("There is a problem with the server")
+              }
+            }
           );
     }
   }

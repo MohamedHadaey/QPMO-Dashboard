@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/auth.service';
 declare const $: any;
 
@@ -12,12 +13,11 @@ declare const $: any;
 export class ForgetPassComponent implements OnInit {
   visible: boolean = true;
   changeType: boolean = true;
-  constructor(private _AuthService: AuthService, private _Router: Router) {}
+  currentLanguage: any = localStorage.getItem('currentLanguage');
+  constructor(private _AuthService: AuthService, private _Router: Router, private toastr: ToastrService) {}
   forgetPassForm: FormGroup = new FormGroup({
-    phone: new FormControl(null, [
+    Phone: new FormControl(null, [
       Validators.required,
-      Validators.minLength(5),
-      Validators.maxLength(100),
     ]),
   });
 
@@ -27,7 +27,30 @@ export class ForgetPassComponent implements OnInit {
     if (forgetPassForm.invalid) {
       return;
     } else {
-      this._Router.navigate(['/varify-changed-pass']);
+
+      this._AuthService.forgetPassword(forgetPassForm.get('Phone')?.value).subscribe((response) => {
+        if (response.Code == 200) {
+          localStorage.setItem("userPhone" , forgetPassForm.get('Phone')?.value)
+            this._Router.navigate(['/varify-changed-pass']);
+        } else if(response.Code == 204) {
+          if (this.currentLanguage == "ar-sa") {
+            this.toastr.error("هذا الرقم غير موجود")
+          } else {
+            this.toastr.error("This number does not exist")
+          }
+        }
+         else {
+          this.toastr.error(response.Error_Resp)
+         }
+      }, (error) => {
+        if (this.currentLanguage == "ar-sa") {
+          this.toastr.error("هناك مشكلة ما فى السيرفر")
+        }else {
+          this.toastr.error("There is a problem with the server")
+        }
+      })
+
+
     }
     this.forgetPassForm.reset();
   }
