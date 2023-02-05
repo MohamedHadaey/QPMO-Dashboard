@@ -42,6 +42,7 @@
 
             &:hover {
               background-color: #F3F5FD;
+              cursor: pointer;
             }
 
             .item-header {
@@ -93,6 +94,10 @@
                 font-size: 12px;
               }
             }
+          }
+
+          .selected {
+             background-color: #F3F5FD;
           }
         }
 
@@ -188,6 +193,7 @@
               }
             }
 
+
             .message-height {
               // height: 94px;
               overflow: hidden;
@@ -217,7 +223,7 @@
           background-color: #fff;
           padding: 8px;
 
-          form {
+          div {
             display: flex;
 
             input[type="text"] {
@@ -226,41 +232,44 @@
               outline: none;
               border-radius: 5px;
               flex-grow: 1;
-              padding: 3px 5px;
+              padding: 3px 10px;
             }
 
-            .send {
-              padding: 0 10px;
-              display: flex;
-              align-items: center;
-              justify-content: space-between;
-              width: 180px;
-
-
-              .image-upload>input {
-                display: none;
-              }
-
-              .image-upload img {
-                width: 20px;
-                height: 20px;
-                margin: 0 10px;
-
-                &:hover {
-                  cursor: pointer;
-                }
-              }
-
-              button {
-                background-color: #749BC4;
-                color: #fff;
-                border-radius: 5px;
-                border: none;
-                outline: none;
-                padding: 3px 30px !important;
-                text-align: center;
-              }
+            button {
+              background-color: #749BC4;
+              color: #fff;
+              border-radius: 5px;
+              border: none;
+              outline: none;
+              padding: 3px 30px !important;
+              text-align: center;
+              margin: 0 10px;
             }
+
+            // .send {
+            //   padding: 0 10px;
+            //   display: flex;
+            //   align-items: center;
+            //   justify-content: space-between;
+            //   width: 180px;
+
+
+            //   .image-upload>input {
+            //     display: none;
+            //   }
+
+            //   .image-upload img {
+            //     width: 20px;
+            //     height: 20px;
+            //     margin: 0 10px;
+
+            //     &:hover {
+            //       cursor: pointer;
+            //     }
+            //   }
+
+
+            // }
           }
 
         }

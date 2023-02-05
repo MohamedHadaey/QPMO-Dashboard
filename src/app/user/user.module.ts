@@ -6,18 +6,22 @@ import { RouterModule } from '@angular/router';
 import {  ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     ProfileComponent,
-    MessagesComponent
+    MessagesComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
     SharedModule,
-    TranslateModule
+    TranslateModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule
   ],
   exports: [
     ProfileComponent,

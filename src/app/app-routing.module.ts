@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ChangePasswordComponent } from './auth/components/change-password/change-password.component';
 import { ForgetPassComponent } from './auth/components/forget-pass/forget-pass.component';
 import { LoginComponent } from './auth/components/login/login.component';
-import { VarifyChangedPassComponent } from './auth/components/varify-changed-pass/varify-changed-pass.component';
+import { VarifyForgetPassComponent } from './auth/components/varify-forget-pass/varify-forget-pass.component';
 import { VarifyPassComponent } from './auth/components/varify-pass/varify-pass.component';
 import { AuthGuard } from './auth/services/auth.guard';
 import { CalenderComponent } from './menu/components/calender/calender.component';
@@ -25,7 +25,7 @@ const routes: Routes = [
   {path:"reports", component: ReportsComponent, canActivate:[AuthGuard]},
   {path:"login", component: LoginComponent},
   {path:"varify-pass", component: VarifyPassComponent},
-  {path:"varify-changed-pass", component: VarifyChangedPassComponent},
+  {path:"varify-forget-pass", component: VarifyForgetPassComponent},
   {path:"change-pass", component: ChangePasswordComponent},
   {path:"forget-pass", component: ForgetPassComponent},
   {path:"profile", component: ProfileComponent, canActivate:[AuthGuard]},

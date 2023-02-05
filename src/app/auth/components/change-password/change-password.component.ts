@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/auth.service';
+import { HttpUrlEncodingCodec } from '@angular/common/http';
 declare const $: any;
 
 @Component({
@@ -16,29 +19,75 @@ export class ChangePasswordComponent implements OnInit {
   changeTypeNewPass: boolean = true;
   visibleRePass: boolean = true;
   changeTypeRePass: boolean = true;
-  visible: boolean = true;
-  changeType: boolean = true;
-  C_Code:any = localStorage.getItem("C_Code");
-  Phone:any = localStorage.getItem("userPhone");
-  varifyCode:any = localStorage.getItem("varifyCode")
-  constructor(private _AuthService: AuthService, private _Router: Router) {}
+  codec = new HttpUrlEncodingCodec();
+  C_Code: any = localStorage.getItem('C_Code');
+  Phone: any = localStorage.getItem('Phone');
+  code: number = Number(localStorage.getItem('varifyChangedPassCode'));
+  currentLanguage: any = localStorage.getItem('currentLanguage');
+  constructor(
+    private _AuthService: AuthService,
+    private _Router: Router,
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService
+  ) {}
 
   changePassForm: FormGroup = new FormGroup({
-    newPassword: new FormControl(null, [
-      Validators.required,
-    ]),
-    rePassword: new FormControl(null, [
-      Validators.required,
-    ]),
+    NewPass: new FormControl('', [Validators.required]),
+    RePass: new FormControl('', [Validators.required]),
   });
 
+  // change password function 
   submitChangedPasswordForm(changePassForm: FormGroup) {
+    var finalToken = this.codec.encodeValue(this.C_Code);
+    this.spinner.show();
     if (changePassForm.invalid) {
+      this.spinner.hide();
       return;
+    } else if (
+      changePassForm.get('NewPass')?.value !=
+      changePassForm.get('RePass')?.value
+    ) {
+      this.spinner.hide();
+      if (this.currentLanguage == 'ar-sa') {
+        this.toastr.error(
+          'كلمة المرور الجديدة وإعادة كلمة المرور الجديدة غير متطابقة'
+        );
+      } else {
+        this.toastr.error('New password and re new password not identical');
+      }
+      this.changePassForm.reset();
     } else {
-      if (changePassForm.get('newPassword')?.value == changePassForm.get('rePassword')?.value) {
-        this._AuthService.makeNewPassword(this.C_Code,this.Phone ,this.varifyCode , changePassForm.get('newPassword')?.value)
-        //this._Router.navigate(['/login']);
+      if (
+        changePassForm.get('NewPass')?.value ==
+        changePassForm.get('RePass')?.value
+      ) {
+        let NewPass = changePassForm.get('NewPass')?.value;
+        this._AuthService
+          .makeNewPassword(finalToken, this.Phone, this.code, NewPass)
+          .subscribe(
+            (response) => {
+              if (response.Code == 200) {
+                this.spinner.hide();
+                if (this.currentLanguage == 'ar-sa') {
+                  this.toastr.success('تم تغيير كلمة المرور ');
+                } else {
+                  this.toastr.success('Password has been changed');
+                }
+                this._Router.navigate(['/login']);
+              } else {
+                this.spinner.hide();
+                this.toastr.error(response.Error_Resp);
+              }
+            },
+            (error) => {
+              this.spinner.hide();
+              if (this.currentLanguage == 'ar-sa') {
+                this.toastr.error('خطأ غير معروف من الخادم !!');
+              } else {
+                this.toastr.error('Unknown error From Server!!');
+              }
+            }
+          );
       }
     }
     this.changePassForm.reset();

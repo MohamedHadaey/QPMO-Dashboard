@@ -1,3 +1,6 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-clip-rotate-multiple" [fullScreen]="true">
+  <h6 style="color: white;"> {{"loading" | translate}} </h6>
+</ngx-spinner>
 <section class="content">
   <div class="row">
     <div class="sidebar">
@@ -92,46 +95,20 @@
                 <h2>{{"incoming-mail" | translate }}</h2>
               </header>
               <ul>
-                <li>
+                <li *ngFor="let message of messages" (click)="showDetails();getMessageDetails(message.ID)" [class.selected]="message.ID == messageDetails.ID">
                   <div class="item-header">
-                    <a (click)="showDetails()">{{"al-salama-project" | translate }}</a>
+                    <a >{{message.ProjectName}}</a>
                     <div class="message-date d-flex justify-content-center align-items-center">
-                      <span>11:40 am</span>
-                      <span>22/03/2021</span>
+                      <span>{{message.Date}}</span>
                     </div>
                   </div>
                   <div class="item-body">
-                    <p>{{"notice-of-approval" | translate }}</p>
-                    <p>{{"project-msg" | translate }}</p>
+                    <p>{{message.Title}}</p>
+                    <p>{{message.Message}}</p>
                   </div>
                 </li>
-                <li>
-                  <div class="item-header">
-                    <a (click)="showDetails()">{{"buraydah-project" | translate }}</a>
-                    <div class="message-date d-flex justify-content-center align-items-center">
-                      <span>07:10 am</span>
-                      <span>27/06/2021</span>
-                    </div>
-                  </div>
-                  <div class="item-body">
-                    <p>{{"notice-of-approval" | translate }}</p>
-                    <p>{{"project-msg" | translate }}</p>
-                  </div>
-                </li>
-                <li>
-                  <div class="item-header">
-                    <a (click)="showDetails()">{{"al-salama-project" | translate }}</a>
-                    <div class="message-date d-flex justify-content-center align-items-center">
-                      <span>11:40 am</span>
-                      <span>22/03/2021</span>
-                    </div>
-                  </div>
-                  <div class="item-body">
-                    <p>{{"notice-of-approval" | translate }}</p>
-                    <p>{{"project-msg" | translate }}</p>
-                  </div>
-                </li>
-                <li>
+
+                <!-- <li>
                   <div class="item-header">
                     <a (click)="showDetails()">{{"buraydah-project" | translate }}</a>
                     <div class="message-date d-flex justify-content-center align-items-center">
@@ -248,14 +225,39 @@
                     <p>{{"project-msg" | translate }}</p>
                   </div>
                 </li>
+                <li>
+                  <div class="item-header">
+                    <a (click)="showDetails()">{{"al-salama-project" | translate }}</a>
+                    <div class="message-date d-flex justify-content-center align-items-center">
+                      <span>11:40 am</span>
+                      <span>22/03/2021</span>
+                    </div>
+                  </div>
+                  <div class="item-body">
+                    <p>{{"notice-of-approval" | translate }}</p>
+                    <p>{{"project-msg" | translate }}</p>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-header">
+                    <a (click)="showDetails()">{{"buraydah-project" | translate }}</a>
+                    <div class="message-date d-flex justify-content-center align-items-center">
+                      <span>07:10 am</span>
+                      <span>27/06/2021</span>
+                    </div>
+                  </div>
+                  <div class="item-body">
+                    <p>{{"notice-of-approval" | translate }}</p>
+                    <p>{{"project-msg" | translate }}</p>
+                  </div>
+                </li> -->
               </ul>
             </div>
             <div class="message-details" id="message-details">
               <header>
                 <h3>{{"buraydah-project" | translate }}</h3>
                 <div class="message-date d-flex justify-content-center align-items-center">
-                  <span>11:40 am</span>
-                  <span>22/03/2021</span>
+                  <span>{{messageDetails.Date}}</span>
                 </div>
               </header>
               <section>
@@ -265,7 +267,7 @@
                       <p>{{"subject" | translate }}</p>
                     </div>
                     <div class="msg-body">
-                      <p>{{"subject-text" | translate }}</p>
+                      <p>{{messageDetails.Title}}</p>
                     </div>
                   </li>
                   <li>
@@ -273,7 +275,7 @@
                       <p>{{"project" | translate }}</p>
                     </div>
                     <div class="msg-body">
-                      <p>{{"project-text" | translate }}</p>
+                      <p>{{messageDetails.ProjectName}}</p>
                     </div>
                   </li>
                   <li class="message-height">
@@ -281,24 +283,24 @@
                       <p>{{"details" | translate }}</p>
                     </div>
                     <div class="msg-body">
-                      <p>{{"details-text" | translate }}</p>
+                      <p>{{messageDetails.Message}}</p>
                     </div>
                   </li>
                 </ul>
               </section>
               <footer>
-                <form>
-                  <input type="text">
-                  <div class="send">
+                <div>
+                  <input type="text" id="message" autocomplete="off" placeholder="{{'message' | translate}}">
+                  <!-- <div class="send">
                     <div class="image-upload">
                       <label for="file-input">
                         <img src="../../../../assets/images/Dashboard-icons/attachedfile.png" alt="attashedfile-icon">
                       </label>
                       <input id="file-input" type="file" />
                     </div>
-                    <button type="submit">{{"send" | translate }}</button>
-                  </div>
-                </form>
+                  </div> -->
+                  <button type="submit" id="submitBtn" (click)="sendMessage()">{{"send" | translate }}</button>
+                </div>
               </footer>
             </div>
           </div>

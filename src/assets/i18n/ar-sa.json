@@ -100,6 +100,7 @@
   "cancel": "الغاء",
 
   "messages": "Messages",
+  "message" : "مراسلة ...",
   "incoming-mail": "البريد الوارد",
   "buraydah-project": "مشروع بريدة",
   "al-salama-project": "مشروع السلامة",
@@ -139,6 +140,8 @@
   "roads-bridges": "طرق وكباري",
   "current": "حالية",
   "late": "متأخرة",
-  "almost-done": "قاربت على الإنتهاء"
+  "almost-done": "قاربت على الإنتهاء",
+
+  "loading": " جارى التحميل ..."
   }
 

@@ -1,3 +1,6 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-atom" [fullScreen]="true">
+  <h6 style="color: white;"> {{"loading" | translate}} </h6>
+</ngx-spinner>
 <div class="content">
   <div class="navbar d-flex justify-content-center align-items-center">
     <h2>QPMO<sub>system</sub></h2>
@@ -13,11 +16,11 @@
                 <h3>{{"reset" | translate }}</h3>
                 <h6>{{"phone-please-msg" | translate }}</h6>
                 <div class="form">
-                  <form [formGroup]="forgetPassForm" (ngSubmit)="submitForgetPassForm(forgetPassForm)">
+                  <form [formGroup]="phoneForm" (ngSubmit)="submitPhoneForm(phoneForm)">
                     <div class="form-group my-5">
                       <input type="test" [placeholder]="'phone-no' | translate" formControlName="Phone">
                     </div>
-                    <button [disabled]="forgetPassForm.invalid" class="btn my-2" type="submit">{{"varify" | translate
+                    <button [disabled]="phoneForm.invalid" class="btn my-2" type="submit">{{"varify" | translate
                       }}</button>
                   </form>
                   <div class="msg-validate">

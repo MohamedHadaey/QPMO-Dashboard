@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MenuService } from '../../services/menu.service';
 import { Options } from '@angular-slider/ngx-slider';
+import { ToastrService } from 'ngx-toastr';
 declare const $: any;
 declare var google: any;
 
@@ -47,7 +48,8 @@ export class MainComponent implements OnInit {
 
   constructor(
     private _AuthService: AuthService,
-    private _MenuService: MenuService
+    private _MenuService: MenuService,
+    private toastr: ToastrService
   ) {}
 
   /////////////////////Maps////////////////////
@@ -264,8 +266,72 @@ export class MainComponent implements OnInit {
       $('.content-body').removeClass('content-body-rtl');
       $('.content-body').addClass('content-body-ltr');
     }
+
+    this.getListsProjects();
+    this.getMapProjects();
+    this.getCardsProjects();
   }
   /*********************************/
+
+  allListsProjects:any[] = [];
+  allMapProjects:any[] = [];
+  allCardsProjects:any[] = [];
+
+    // function of get all list projects
+    getListsProjects(){
+      this._MenuService.getAllListsProjects().subscribe((response) => {
+        if (response.Code == 200) {
+          this.allListsProjects = response.data;
+          console.log("list view",this.allListsProjects);
+        }else {
+          this.toastr.error(response.Error_Resp)
+        }
+      }, (error) => {
+        if (this.currentLanguage == "ar-sa") {
+          this.toastr.error("خطأ غير معروف من الخادم !!")
+        }else {
+          this.toastr.error("Unknown error From Server!!")
+        }
+      })
+    }
+
+       // function of get all Map projects
+       getMapProjects(){
+        this._MenuService.getAllMapProjects().subscribe((response) => {
+          if (response.Code == 200) {
+            this.allMapProjects = response.data;
+            console.log("map view",this.allMapProjects);
+          }else {
+            this.toastr.error(response.Error_Resp)
+          }
+        }, (error) => {
+          if (this.currentLanguage == "ar-sa") {
+            this.toastr.error("خطأ غير معروف من الخادم !!")
+          }else {
+            this.toastr.error("Unknown error From Server!!")
+          }
+        })
+      }
+
+  // function of get all cards projects
+  getCardsProjects(){
+    this._MenuService.getAllCardsProjects().subscribe((response) => {
+      if (response.Code == 200) {
+        this.allCardsProjects = response.data;
+        console.log("card view",this.allCardsProjects);
+      }else {
+        this.toastr.error(response.Error_Resp)
+      }
+    }, (error) => {
+      if (this.currentLanguage == "ar-sa") {
+        this.toastr.error("خطأ غير معروف من الخادم !!")
+      }else {
+        this.toastr.error("Unknown error From Server!!")
+      }
+    })
+  }
+  /*********************************/
+
 
   // filter form inputs
   filterForm: FormGroup = new FormGroup({

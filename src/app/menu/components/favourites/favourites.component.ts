@@ -12,6 +12,7 @@ declare const $: any;
   styleUrls: ['./favourites.component.scss'],
 })
 export class FavouritesComponent implements OnInit {
+  currentLanguage: any = localStorage.getItem('currentLanguage');
   favouriteProjects:any[] = [];
   // price range inputs
   // section input
@@ -84,6 +85,12 @@ export class FavouritesComponent implements OnInit {
       } else {
         this.toastr.error(response.Error_Resp)
       }
-    }))
+    }) ,(error) => {
+      if (this.currentLanguage == "ar-sa") {
+        this.toastr.error("خطأ غير معروف من الخادم !!")
+      }else {
+        this.toastr.error("Unknown error From Server!!")
+      }
+    })
   }
 }

@@ -39,4 +39,16 @@ export class UserService {
       httpOp
     );
   }
+
+  getInbox():Observable<any> {
+    return this.http.get(`${this.baseUrl}/api/Dashboard/v${this.version}/Messages/MyInbox?culture=${this.currentLanguage}`)
+  }
+
+  getMessage(id:any):Observable<any> {
+    return this.http.get(`${this.baseUrl}/api/Dashboard/v${this.version}/Messages/GetMessageAndReplays?MessageId=${id}&culture=${this.currentLanguage}`)
+  }
+
+  replyMesaage(projectID:any,Messageid:any,Message:any,Title:any):Observable<any> {
+    return this.http.post(`${this.baseUrl}/api/Dashboard/v${this.version}/Messages/ReplyToMessage?projectID=${projectID}&Messageid=${Messageid}&Message=${Message}&Title=${Title}&culture=${this.currentLanguage}` , null)
+  }
 }

@@ -21,6 +21,7 @@ import { SwiperModule } from 'swiper/angular';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { MyIntercetor } from './intercetor';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { MyIntercetor } from './intercetor';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    NgxSpinnerModule,
     SlickCarouselModule,
     NgApexchartsModule,
     NgxSliderModule,

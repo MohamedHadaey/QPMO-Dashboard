@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/auth.service';
 declare const $: any;
@@ -14,45 +15,56 @@ export class ForgetPassComponent implements OnInit {
   visible: boolean = true;
   changeType: boolean = true;
   currentLanguage: any = localStorage.getItem('currentLanguage');
-  constructor(private _AuthService: AuthService, private _Router: Router, private toastr: ToastrService) {}
-  forgetPassForm: FormGroup = new FormGroup({
-    Phone: new FormControl(null, [
-      Validators.required,
-    ]),
+  constructor(
+    private _AuthService: AuthService,
+    private _Router: Router,
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService
+  ) {}
+
+  phoneForm: FormGroup = new FormGroup({
+    Phone: new FormControl('', [Validators.required]),
   });
 
-  submitForgetPassForm(forgetPassForm: FormGroup) {
-    console.log(forgetPassForm.value);
-    // if user delete [disabled]="registerForm.invalid" from html inspect
-    if (forgetPassForm.invalid) {
+  // function of enter user phone
+  submitPhoneForm(phoneForm: FormGroup) {
+    this.spinner.show();
+    let userPhone = phoneForm.value.Phone;
+    if (phoneForm.invalid) {
+      this.spinner.hide();
       return;
     } else {
-
-      this._AuthService.forgetPassword(forgetPassForm.get('Phone')?.value).subscribe((response) => {
-        if (response.Code == 200) {
-          localStorage.setItem("userPhone" , forgetPassForm.get('Phone')?.value)
-            this._Router.navigate(['/varify-changed-pass']);
-        } else if(response.Code == 204) {
-          if (this.currentLanguage == "ar-sa") {
-            this.toastr.error("هذا الرقم غير موجود")
+      this._AuthService.forgetPassword(phoneForm.get('Phone')?.value).subscribe(
+        (response) => {
+          if (response.Code == 200) {
+            this.spinner.hide();
+            localStorage.setItem('Phone', userPhone);
+            localStorage.setItem('C_Code', response.data.token);
+            localStorage.setItem('UserID', response.data.UserID);
+            this._Router.navigate(['/varify-forget-pass']);
+          } else if (response.Code == 204) {
+            this.spinner.hide();
+            if (this.currentLanguage == 'ar-sa') {
+              this.toastr.error('هذا الرقم غير موجود');
+            } else {
+              this.toastr.error('This number does not exist');
+            }
           } else {
-            this.toastr.error("This number does not exist")
+            this.spinner.hide();
+            this.toastr.error(response.Error_Resp);
+          }
+        },
+        (error) => {
+          this.spinner.hide();
+          if (this.currentLanguage == 'ar-sa') {
+            this.toastr.error('خطأ غير معروف من الخادم !!');
+          } else {
+            this.toastr.error('Unknown error From Server!!');
           }
         }
-         else {
-          this.toastr.error(response.Error_Resp)
-         }
-      }, (error) => {
-        if (this.currentLanguage == "ar-sa") {
-          this.toastr.error("هناك مشكلة ما فى السيرفر")
-        }else {
-          this.toastr.error("There is a problem with the server")
-        }
-      })
-
-
+      );
     }
-    this.forgetPassForm.reset();
+    this.phoneForm.reset();
   }
 
   //  to delete message of wrong inputs value

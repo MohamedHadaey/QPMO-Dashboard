@@ -35,13 +35,12 @@ export class ProfileComponent implements OnInit {
       (res) => {
         if (res.Code == 200) {
           this.User_Data = res.data as user;
-          console.log(this.User_Data)
         }
       }, (error) => {
         if (this.currentLanguage == "ar-sa") {
-          this.toastr.error("هناك مشكلة ما فى السيرفر")
-        } else {
-          this.toastr.error("There is a problem with the server")
+          this.toastr.error("خطأ غير معروف من الخادم !!")
+        }else {
+          this.toastr.error("Unknown error From Server!!")
         }
       }
     );
@@ -92,9 +91,9 @@ export class ProfileComponent implements OnInit {
               }
             }, (error) => {
               if (this.currentLanguage == "ar-sa") {
-                this.toastr.error("هناك مشكلة ما فى السيرفر")
-              } else {
-                this.toastr.error("There is a problem with the server")
+                this.toastr.error("خطأ غير معروف من الخادم !!")
+              }else {
+                this.toastr.error("Unknown error From Server!!")
               }
             }
           );
