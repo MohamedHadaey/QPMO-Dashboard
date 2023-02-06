@@ -226,8 +226,11 @@
             <div class="theme">
               <div class="fav">
                 <img
-                  [src]="map?'../../../../assets/images/Dashboard-icons/Favorite-gray.png':'../../../../assets/images/Dashboard-icons/Favorite-blue.png'"
-                  alt="favourite" (click)="showFav()">
+                  src="../../../../assets/images/Dashboard-icons/Favorite-blue.png"
+                  alt="favourite" (click)="showUnFav()" *ngIf="isFav">
+                  <img
+                  src="../../../../assets/images/Dashboard-icons/Favorite-gray.png"
+                  alt="favourite"  (click)="showFav()" *ngIf="!isFav">
               </div>
               <div class="theme-styles">
                 <ul>
@@ -282,7 +285,7 @@
                     </td>
                     <td>
                       <div class="item">
-                        <p>{{project.Maqawl.Maqawl_UserName}}</p>
+                        <p>{{project.Maqawl.Maqawl_Name}}</p>
                       </div>
                     </td>
                     <td>
@@ -292,10 +295,10 @@
                     </td>
                     <td>
                       <div class="item">
-                        <p>50%</p>
+                        <p>{{project.Project_User_Percentage}}%</p>
                         <div class="progress">
                           <div class="progress-bar bg-warning" role="progressbar" aria-label="Success example"
-                            style="width: 50%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            style="width: {{project.Project_User_Percentage}}%"  aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                       </div>
                     </td>
@@ -719,28 +722,27 @@
                             </tr>
                             <tr>
                               <th>{{"expire-date" | translate }}</th>
-                              <td>13-08-2022</td>
+                              <td>{{project.EndDate}}</td>
                             </tr>
                           </tbody>
                         </table>
                       </div>
                     </div>
-                    <div class="col-4">
+                    <div class="col-4 p-0">
                       <div class="card-degree">
-                        <div class="degree ">
-                          <div class="set-size charts-container">
-                            <div class="pie-wrapper progress-50 style-2">
-                              <span class="label">50%<span class="smaller"></span></span>
-                              <div class="pie">
-                                <div class="left-side half-circle"></div>
-                                <div class="right-side half-circle"></div>
-                              </div>
-                              <div class="shadow"></div>
-                            </div>
+                        <div class="degree">
+                          <div id="chart">
+                            <apx-chart
+                              [series]="[project.Project_UserPercentage]"
+                              [chart]="chartOptions.chart"
+                              [plotOptions]="chartOptions.plotOptions"
+                              [labels]="chartOptions.labels"
+                            ></apx-chart>
                           </div>
                         </div>
                         <div class="fav-icon w-100 text-start px-3 py-2">
-                          <img src="../../../../assets/images/Dashboard-icons/Favorite-gray.png" alt="fav-icon">
+                          <img src="../../../../assets/images/Dashboard-icons/Favorite-gray.png" *ngIf="!project.Project_ISFav" alt="fav-icon">
+                          <img src="../../../../assets/images/Dashboard-icons/Favorite-blue.png" *ngIf="project.Project_ISFav" alt="fav-icon">
                         </div>
                       </div>
                     </div>

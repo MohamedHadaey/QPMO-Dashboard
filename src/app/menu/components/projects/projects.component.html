@@ -238,15 +238,15 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr *ngFor="let followProject of followedProjects">
                     <td>
                       <div class="item">
-                        <p>P0369873241</p>
+                        <p>{{followProject.ProjectDTO.Project_ContractCode}}</p>
                       </div>
                     </td>
                     <td>
                       <div class="item">
-                        <p>{{"road-light" | translate }}</p>
+                        <p>{{followProject.ProjectDTO.Project_Name}}</p>
                       </div>
                     </td>
                     <td>
@@ -265,7 +265,7 @@
                       </div>
                     </td>
                   </tr>
-                  <tr>
+                  <!-- <tr>
                     <td>
                       <div class="item">
                         <p>P0369659874</p>
@@ -480,7 +480,7 @@
                         <p>13-08-2022</p>
                       </div>
                     </td>
-                  </tr>
+                  </tr> -->
                 </tbody>
               </table>
             </div>

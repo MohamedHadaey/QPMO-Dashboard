@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MenuService } from '../../services/menu.service';
@@ -6,6 +6,27 @@ import { Options } from '@angular-slider/ngx-slider';
 import { ToastrService } from 'ngx-toastr';
 declare const $: any;
 declare var google: any;
+import * as ApexCharts from 'apexcharts';
+import {
+  ApexNonAxisChartSeries,
+  ApexPlotOptions,
+  ApexChart,
+  ChartComponent,
+} from "ng-apexcharts";
+
+
+
+export type ChartOptions = {
+  series: ApexNonAxisChartSeries;
+  chart: ApexChart;
+  plotOptions: ApexPlotOptions;
+
+
+
+  labels: string[];
+  fill: ApexFill;
+  stroke: ApexStroke;
+};
 
 
 @Component({
@@ -14,6 +35,11 @@ declare var google: any;
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
+
+  @ViewChild("chart") chart!: ChartComponent;
+  public chartOptions: Partial<ChartOptions> | any;
+
+
   value: number = 40;
   highValue: number = 60;
   options: Options = {
@@ -51,6 +77,38 @@ export class MainComponent implements OnInit {
     private _MenuService: MenuService,
     private toastr: ToastrService
   ) {}
+
+  ngOnInit(): void {
+
+    this.chartOptions = {
+      chart: {
+        height: 150,
+        type: "radialBar"
+      },
+      plotOptions: {
+        radialBar: {
+          hollow: {
+            size: "60%"
+          }
+        },
+      },
+      labels: ["Percent"],
+    };
+    // for check directions after any refresh
+    if (this.currentLanguage == 'ar-sa') {
+      $('.content-body').removeClass('content-body-ltr');
+      $('.content-body').addClass('content-body-rtl');
+    } else {
+      $('.content-body').removeClass('content-body-rtl');
+      $('.content-body').addClass('content-body-ltr');
+    }
+
+    this.getListsProjects();
+    this.getMapProjects();
+    this.getCardsProjects();
+    this.getFavProjects_lists();
+    this.getFavProjects_cards()
+  }
 
   /////////////////////Maps////////////////////
   center: google.maps.LatLngLiteral = {
@@ -144,6 +202,7 @@ export class MainComponent implements OnInit {
   projectslocations: googleMaps_ApiReturn[] = [
     {
       position: {
+        // this.allMapProjects[0].Project_Location
         lat: 24.742007867478183,
         lng: 46.65728366258421,
       },
@@ -257,22 +316,9 @@ export class MainComponent implements OnInit {
     $('.project-card-details').slideUp();
   }
   ////////////////////////////////////////////
-  ngOnInit(): void {
-    // for check directions after any refresh
-    if (this.currentLanguage == 'ar-sa') {
-      $('.content-body').removeClass('content-body-ltr');
-      $('.content-body').addClass('content-body-rtl');
-    } else {
-      $('.content-body').removeClass('content-body-rtl');
-      $('.content-body').addClass('content-body-ltr');
-    }
 
-    this.getListsProjects();
-    this.getMapProjects();
-    this.getCardsProjects();
-  }
-  /*********************************/
-
+  /*********** all  **********************/
+  isFav:boolean = false;
   allListsProjects:any[] = [];
   allMapProjects:any[] = [];
   allCardsProjects:any[] = [];
@@ -301,6 +347,13 @@ export class MainComponent implements OnInit {
           if (response.Code == 200) {
             this.allMapProjects = response.data;
             console.log("map view",this.allMapProjects);
+            console.log(this.allMapProjects[0].Project_Location);
+
+            let lat = (this.allMapProjects[0].Project_Location).substring(0, (this.allMapProjects[0].Project_Location).indexOf(","));
+            let lng= (this.allMapProjects[0].Project_Location).split(',')[1].trim();
+            console.log("lat: ", lat);
+            console.log("lng: ", lng);
+
           }else {
             this.toastr.error(response.Error_Resp)
           }
@@ -330,9 +383,47 @@ export class MainComponent implements OnInit {
       }
     })
   }
-  /*********************************/
+  /*************   fav ********************/
+  favProjects_list:any[] = [];
+  favProjects_card:any[] = [];
 
+ // fav Projects_list
+ getFavProjects_lists(){
+  this._MenuService.getFavProjects_list().subscribe((response => {
+    if(response.Code == 200) {
+      this.favProjects_list = response.data;
+      console.log("fav_lists",this.favProjects_list)
+    } else {
+      this.toastr.error(response.Error_Resp)
+    }
+  }) ,(error) => {
+    if (this.currentLanguage == "ar-sa") {
+      this.toastr.error("خطأ غير معروف من الخادم !!")
+    }else {
+      this.toastr.error("Unknown error From Server!!")
+    }
+  })
+}
 
+ // fav Projects_card
+ getFavProjects_cards(){
+  this._MenuService.getFavProjects_card().subscribe((response => {
+    if(response.Code == 200) {
+      this.favProjects_card = response.data;
+      console.log("fav_cards",this.favProjects_card)
+    } else {
+      this.toastr.error(response.Error_Resp)
+    }
+  }) ,(error) => {
+    if (this.currentLanguage == "ar-sa") {
+      this.toastr.error("خطأ غير معروف من الخادم !!")
+    }else {
+      this.toastr.error("Unknown error From Server!!")
+    }
+  })
+}
+
+  /***************************************/
   // filter form inputs
   filterForm: FormGroup = new FormGroup({
     project_type: new FormControl('1', [
@@ -357,9 +448,16 @@ export class MainComponent implements OnInit {
 
   // show favourites projects in all themes
   showFav() {
-    this.map = !this.map;
-    this.list = !this.list;
-    this.card = !this.card;
+    this.isFav = true;
+    this.allListsProjects = this.favProjects_list;
+    this.allCardsProjects = this.favProjects_card;
+  }
+
+  // show favourites projects in all themes
+  showUnFav() {
+    this.isFav = false;
+    this.getListsProjects();
+    this.getCardsProjects();
   }
 
   // show list theme

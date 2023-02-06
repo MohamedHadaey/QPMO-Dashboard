@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Options } from '@angular-slider/ngx-slider';
+import { ToastrService } from 'ngx-toastr';
+import { MenuService } from '../../services/menu.service';
 declare const $: any;
 
 @Component({
@@ -10,6 +12,7 @@ declare const $: any;
   styleUrls: ['./projects.component.scss'],
 })
 export class ProjectsComponent implements OnInit {
+  currentLanguage: any = localStorage.getItem('currentLanguage');
   // price range inputs
   // section input
   sectionMinValue: any = 25;
@@ -31,7 +34,7 @@ export class ProjectsComponent implements OnInit {
   card: boolean = true;
   showen: string = 'maps';
 
-  constructor(private _AuthService: AuthService) {}
+  constructor(private _AuthService: AuthService, private _MenuService:MenuService, private toastr: ToastrService) {}
 
   filterForm: FormGroup = new FormGroup({
     project_type: new FormControl('1', [
@@ -57,10 +60,34 @@ export class ProjectsComponent implements OnInit {
     // console.log(filterForm.value)
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getProjectsFollowed()
+  }
 
   // this function to log out
   logOut() {
     this._AuthService.logout();
   }
+
+  followedProjects:any[] = []
+   // Projects that follow
+   getProjectsFollowed(){
+    this._MenuService.getFollowProjects().subscribe((response => {
+      if(response.Code == 200) {
+        this.followedProjects = response.data;
+        console.log(this.followedProjects);
+      } else {
+        this.toastr.error(response.Error_Resp)
+      }
+    }) ,(error) => {
+      if (this.currentLanguage == "ar-sa") {
+        this.toastr.error("خطأ غير معروف من الخادم !!")
+      }else {
+        this.toastr.error("Unknown error From Server!!")
+      }
+    })
+  }
+
+
+
 }

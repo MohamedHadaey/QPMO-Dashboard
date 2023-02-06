@@ -22,8 +22,16 @@ export class MenuService {
     return this.http.get(`${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/Projects/GetProjects_Cards?culture=${this._AuthService.currentLanguage}`)
   }
 
-  getFavProjects():Observable<any> {
+  getFavProjects_list():Observable<any> {
     return this.http.get( `${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/FavProjects/GetFavoriteProjects_Table?culture=${this._AuthService.currentLanguage}` )
+  }
+
+  getFavProjects_card():Observable<any> {
+    return this.http.get( `${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/FavProjects/GetFavoriteProjects_Card?culture=${this._AuthService.currentLanguage}` )
+  }
+
+  getFollowProjects():Observable<any> {
+    return this.http.get( `${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/ProjectHistory/GetProjectsLog?culture=${this._AuthService.currentLanguage}` )
   }
 
 }

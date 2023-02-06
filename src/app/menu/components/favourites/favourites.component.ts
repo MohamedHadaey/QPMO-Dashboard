@@ -79,7 +79,7 @@ export class FavouritesComponent implements OnInit {
 
   // fav Projects
   getFavProjects(){
-    this._MenuService.getFavProjects().subscribe((response => {
+    this._MenuService.getFavProjects_list().subscribe((response => {
       if(response.Code == 200) {
         this.favouriteProjects = response.data;
       } else {
