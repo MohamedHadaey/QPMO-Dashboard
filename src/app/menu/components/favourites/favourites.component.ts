@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Options } from '@angular-slider/ngx-slider';
 import { MenuService } from '../../services/menu.service';
 import { ToastrService } from 'ngx-toastr';
 declare const $: any;
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-favourites',
@@ -66,8 +67,10 @@ export class FavouritesComponent implements OnInit {
     this._AuthService.logout();
   }
 
-  showProjectCardDetails() {
+
+  showProjectCardDetails(projectId:any) {
     $('.project-card-details').slideToggle();
+    this.getProjectDetails(projectId)
   }
 
   // this function to open day projects panel
@@ -82,6 +85,7 @@ export class FavouritesComponent implements OnInit {
     this._MenuService.getFavProjects_list().subscribe((response => {
       if(response.Code == 200) {
         this.favouriteProjects = response.data;
+        //console.log(this.favouriteProjects)
       } else {
         this.toastr.error(response.Error_Resp)
       }
@@ -91,6 +95,56 @@ export class FavouritesComponent implements OnInit {
       }else {
         this.toastr.error("Unknown error From Server!!")
       }
+    })
+  }
+
+
+
+  projectDetails!:any;
+  // function of get specific project
+  getProjectDetails(id:any) {
+    this._MenuService.getProjectDetails(id).subscribe((response => {
+      if(response.Code == 200) {
+        this.projectDetails = response.data;
+        console.log(this.projectDetails)
+      } else {
+        if (this.currentLanguage == 'ar-sa') {
+          Swal.fire({
+            title: 'خطأ !!',
+            text: response.Error_Resp,
+            icon: 'error',
+            confirmButtonText: 'موافق',
+          })
+        } else {
+          Swal.fire({
+            title: 'Error !!',
+            text: response.Error_Resp,
+            icon: 'error',
+            confirmButtonText: 'OK',
+          })
+        }
+      }
+    }) ,(error) => {
+      if (this.currentLanguage == 'ar-sa') {
+        Swal.fire({
+          title: 'خطأ !!',
+          text: 'خطأ غير معروف من الخادم !!',
+          icon: 'error',
+          confirmButtonText: 'موافق',
+        })
+      } else {
+        Swal.fire({
+          title: 'Error !!',
+          text: 'Unknown error From Server!!',
+          icon: 'error',
+          confirmButtonText: 'OK',
+        })
+      }
+      // if (this.currentLanguage == "ar-sa") {
+      //   this.toastr.error("خطأ غير معروف من الخادم !!")
+      // }else {
+      //   this.toastr.error("Unknown error From Server!!")
+      // }
     })
   }
 }

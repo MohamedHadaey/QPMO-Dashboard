@@ -4,11 +4,11 @@
       <div class="row">
         <div class="col-md-6 col-lg-3">
           <p>{{"project-name" | translate }}</p>
-          <span>xxxxxxxxxxxx</span>
+          <span>{{data.Project_Name}}</span>
         </div>
         <div class="col-md-6 col-lg-3">
           <p>{{"contractors-name" | translate }}</p>
-          <span>xxxxxxxxxxxx</span>
+          <span>{{data.Project_Maqawl.Maqawl_Name}}</span>
         </div>
         <div class="col-md-6 col-lg-3">
           <p>{{"contract-no" | translate }}</p>
@@ -48,7 +48,7 @@
                 <div class="progress-bar bg-danger" role="progressbar" aria-label="Success example" style="width: 75%"
                   aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
-              <span>30/10/2022</span>
+              <span>{{data.Project_EndDate || 30/10/2022 | date }} </span>
             </div>
           </div>
         </div>
@@ -68,8 +68,9 @@
             <div class="number p-3">
               <div class="degree ">
                 <div class="set-size charts-container">
-                  <div class="pie-wrapper progress-60 style-2">
-                    <span class="label">60%<span class="smaller"></span></span>
+                  <!-- class="pie-wrapper progress-60 style-2" -->
+                  <div class="pie-wrapper progress-{{data.Project_Maqawl_Percentage}} style-2">
+                    <span class="label">{{data.Project_Maqawl_Percentage}}%<span class="smaller"></span></span>
                     <div class="pie">
                       <div class="left-side half-circle"></div>
                       <div class="right-side half-circle"></div>
@@ -87,8 +88,8 @@
             <div class="number p-3">
               <div class="degree ">
                 <div class="set-size charts-container">
-                  <div class="pie-wrapper progress-56 style-2">
-                    <span class="label">56%<span class="smaller"></span></span>
+                  <div class="pie-wrapper progress-{{data.Project_Maqawl_Percentage}} style-2">
+                    <span class="label">{{data.Project_Maqawl_Percentage}}%<span class="smaller"></span></span>
                     <div class="pie">
                       <div class="left-side half-circle"></div>
                       <div class="right-side half-circle"></div>

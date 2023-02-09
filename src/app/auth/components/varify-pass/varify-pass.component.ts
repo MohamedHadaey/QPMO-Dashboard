@@ -6,6 +6,7 @@ declare const $: any;
 import { HttpUrlEncodingCodec } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-varify-pass',
   templateUrl: './varify-pass.component.html',
@@ -58,21 +59,49 @@ export class VarifyPassComponent implements OnInit {
             } else if (response.Code == 401) {
               this.spinner.hide();
               if (this.currentLanguage == 'ar-sa') {
-                this.toastr.error('انتهت صلاحية الرمز المميز !!');
+                Swal.fire({
+                  title: 'خطأ !!',
+                  text: 'انتهت صلاحية الرمز المميز !!',
+                  icon: 'error',
+                  confirmButtonText: 'موافق',
+                })
               } else {
-                this.toastr.error('Token is Expire !!');
+                Swal.fire({
+                  title: 'Error !!',
+                  text: 'Token is Expire !!',
+                  icon: 'error',
+                  confirmButtonText: 'OK',
+                })
               }
+              // if (this.currentLanguage == 'ar-sa') {
+              //   this.toastr.error('انتهت صلاحية الرمز المميز !!');
+              // } else {
+              //   this.toastr.error('Token is Expire !!');
+              // }
             } else if (response.Code == 403) {
               this.spinner.hide();
               if (this.currentLanguage == 'ar-sa') {
-                this.toastr.error(
-                  'الرجاء كتابة الرمز بشكل صحيح والمحاولة مرة أخرى أو إرساله مرة أخرى !!'
-                );
+                Swal.fire({
+                  title: 'خطأ !!',
+                  text: 'الرجاء كتابة الرمز بشكل صحيح والمحاولة مرة أخرى أو إرساله مرة أخرى !!',
+                  icon: 'error',
+                  confirmButtonText: 'موافق',
+                })
               } else {
-                this.toastr.error(
-                  'please write the code correct and try again or send it again !!'
-                );
+                Swal.fire({
+                  title: 'Error !!',
+                  text: 'please write the code correct and try again or send it again !!',
+                  icon: 'error',
+                  confirmButtonText: 'OK',
+                })
               }
+              // if (this.currentLanguage == 'ar-sa') {
+              //   this.toastr.error('الرجاء كتابة الرمز بشكل صحيح والمحاولة مرة أخرى أو إرساله مرة أخرى !!');
+              // } else {
+              //   this.toastr.error(
+              //     'please write the code correct and try again or send it again !!'
+              //   );
+              // }
             } else {
               this.spinner.hide();
               $('#validate-msg').slideDown();
@@ -82,10 +111,25 @@ export class VarifyPassComponent implements OnInit {
           (error) => {
             this.spinner.hide();
             if (this.currentLanguage == 'ar-sa') {
-              this.toastr.error('خطأ غير معروف من الخادم !!');
+              Swal.fire({
+                title: 'خطأ !!',
+                text: 'خطأ غير معروف من الخادم !!',
+                icon: 'error',
+                confirmButtonText: 'موافق',
+              })
             } else {
-              this.toastr.error('Unknown error From Server!!');
+              Swal.fire({
+                title: 'Error !!',
+                text: 'Unknown error From Server!!',
+                icon: 'error',
+                confirmButtonText: 'OK',
+              })
             }
+            // if (this.currentLanguage == 'ar-sa') {
+            //   this.toastr.error('خطأ غير معروف من الخادم !!');
+            // } else {
+            //   this.toastr.error('Unknown error From Server!!');
+            // }
           }
         );
     }

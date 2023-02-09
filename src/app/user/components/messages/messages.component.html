@@ -49,10 +49,11 @@
     <div class="content-body">
       <nav class="navbar">
         <app-toggler></app-toggler>
-        <h2>QPMO<sub>system</sub></h2>
+        <!-- <h2>QPMO<sub>system</sub></h2> -->
+        <img src="../../../../assets/images/Dashboard-icons/final_logo.png" style="width: 90px; margin: 5px 0" alt="qpmo_logo">
         <div class="d-flex justify-content-center align-items-center icons">
           <app-language></app-language>
-          <img src="../../../../assets/images/Dashboard-icons/msg01.png" alt="msgs" class="message"
+          <img src="../../../../assets/images/Dashboard-icons/msg.png" alt="msgs" class="message"
             routerLink="/messages">
           <div class="dropdown">
             <button class="dropdown-toggle mx-2 p-0" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
@@ -99,7 +100,7 @@
                   <div class="item-header">
                     <a >{{message.ProjectName}}</a>
                     <div class="message-date d-flex justify-content-center align-items-center">
-                      <span>{{message.Date}}</span>
+                      <span>{{message.Date | date:'medium' }}</span>
                     </div>
                   </div>
                   <div class="item-body">
@@ -255,39 +256,65 @@
             </div>
             <div class="message-details" id="message-details">
               <header>
-                <h3>{{"buraydah-project" | translate }}</h3>
+                <h3>{{messageDetails.ProjectName}}</h3>
                 <div class="message-date d-flex justify-content-center align-items-center">
-                  <span>{{messageDetails.Date}}</span>
+                  <span>{{messageDetails.Date | date:'medium' }}</span>
                 </div>
               </header>
-              <section>
-                <ul>
-                  <li>
-                    <div class="msg-title">
-                      <p>{{"subject" | translate }}</p>
-                    </div>
-                    <div class="msg-body">
-                      <p>{{messageDetails.Title}}</p>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="msg-title">
-                      <p>{{"project" | translate }}</p>
-                    </div>
-                    <div class="msg-body">
-                      <p>{{messageDetails.ProjectName}}</p>
-                    </div>
-                  </li>
-                  <li class="message-height">
-                    <div class="msg-title">
-                      <p>{{"details" | translate }}</p>
-                    </div>
-                    <div class="msg-body">
-                      <p>{{messageDetails.Message}}</p>
-                    </div>
-                  </li>
-                </ul>
-              </section>
+              <div class="message-content">
+                <section>
+                  <ul class="parent-message" >
+                    <li>
+                      <div class="msg-title">
+                        <p>{{"subject" | translate }}</p>
+                      </div>
+                      <div class="msg-body">
+                        <p>{{messageDetails.Title}}</p>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="msg-title">
+                        <p>{{"project" | translate }}</p>
+                      </div>
+                      <div class="msg-body">
+                        <p>{{messageDetails.ProjectName}}</p>
+                      </div>
+                    </li>
+                    <li class="message-height">
+                      <div class="msg-title">
+                        <p>{{"details" | translate }}</p>
+                      </div>
+                      <div class="msg-body">
+                        <p>{{messageDetails.Message}}</p>
+                      </div>
+                    </li>
+                  </ul>
+                </section>
+                <section *ngIf="subMessages.length > 0" class="px-4">
+                  <ul *ngFor="let subMessage of subMessages" class="subParent-message py-0 mt-3">
+                      <div class="msg-body w-100 px-2 py-0 my-0  d-flex justify-content-end">
+                        <p class="fw-normal py-0 my-0">{{subMessage.Date | date:'medium' }}</p>
+                      </div>
+                    <li>
+                      <div class="msg-title">
+                        <p>{{"subject" | translate }}</p>
+                      </div>
+                      <div class="msg-body">
+                        <p class="fw-bold">{{subMessage.Title}}</p>
+                      </div>
+                    </li>
+
+                    <li class="message-height">
+                      <div class="msg-title">
+                        <p>{{"details" | translate }}</p>
+                      </div>
+                      <div class="msg-body">
+                        <p>{{subMessage.Message}}</p>
+                      </div>
+                    </li>
+                  </ul>
+                </section>
+              </div>
               <footer>
                 <div>
                   <input type="text" id="message" autocomplete="off" placeholder="{{'message' | translate}}">
@@ -299,7 +326,7 @@
                       <input id="file-input" type="file" />
                     </div>
                   </div> -->
-                  <button type="submit" id="submitBtn" (click)="sendMessage()">{{"send" | translate }}</button>
+                  <button type="submit" id="submitBtn" (click)="sendMessage();getMessageDetails(messageDetails.ID)">{{"send" | translate }}</button>
                 </div>
               </footer>
             </div>

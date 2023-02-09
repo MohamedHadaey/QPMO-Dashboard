@@ -6,13 +6,7 @@ import { Options } from '@angular-slider/ngx-slider';
 import { ToastrService } from 'ngx-toastr';
 declare const $: any;
 declare var google: any;
-import * as ApexCharts from 'apexcharts';
-import {
-  ApexNonAxisChartSeries,
-  ApexPlotOptions,
-  ApexChart,
-  ChartComponent,
-} from "ng-apexcharts";
+import Swal from 'sweetalert2';
 
 
 
@@ -36,7 +30,7 @@ export type ChartOptions = {
 })
 export class MainComponent implements OnInit {
 
-  @ViewChild("chart") chart!: ChartComponent;
+
   public chartOptions: Partial<ChartOptions> | any;
 
 
@@ -330,14 +324,44 @@ export class MainComponent implements OnInit {
           this.allListsProjects = response.data;
           console.log("list view",this.allListsProjects);
         }else {
-          this.toastr.error(response.Error_Resp)
+          // this.toastr.error(response.Error_Resp)
+          if (this.currentLanguage == 'ar-sa') {
+            Swal.fire({
+              title: 'خطأ !!',
+              text: response.Error_Resp,
+              icon: 'error',
+              confirmButtonText: 'موافق',
+            })
+          } else {
+            Swal.fire({
+              title: 'Error !!',
+              text: response.Error_Resp,
+              icon: 'error',
+              confirmButtonText: 'OK',
+            })
+          }
         }
       }, (error) => {
-        if (this.currentLanguage == "ar-sa") {
-          this.toastr.error("خطأ غير معروف من الخادم !!")
-        }else {
-          this.toastr.error("Unknown error From Server!!")
+        if (this.currentLanguage == 'ar-sa') {
+          Swal.fire({
+            title: 'خطأ !!',
+            text: 'خطأ غير معروف من الخادم !!',
+            icon: 'error',
+            confirmButtonText: 'موافق',
+          })
+        } else {
+          Swal.fire({
+            title: 'Error !!',
+            text: 'Unknown error From Server!!',
+            icon: 'error',
+            confirmButtonText: 'OK',
+          })
         }
+        // if (this.currentLanguage == "ar-sa") {
+        //   this.toastr.error("خطأ غير معروف من الخادم !!")
+        // }else {
+        //   this.toastr.error("Unknown error From Server!!")
+        // }
       })
     }
 
@@ -355,14 +379,44 @@ export class MainComponent implements OnInit {
             console.log("lng: ", lng);
 
           }else {
-            this.toastr.error(response.Error_Resp)
+            // this.toastr.error(response.Error_Resp)
+            if (this.currentLanguage == 'ar-sa') {
+              Swal.fire({
+                title: 'خطأ !!',
+                text: response.Error_Resp,
+                icon: 'error',
+                confirmButtonText: 'موافق',
+              })
+            } else {
+              Swal.fire({
+                title: 'Error !!',
+                text: response.Error_Resp,
+                icon: 'error',
+                confirmButtonText: 'OK',
+              })
+            }
           }
         }, (error) => {
-          if (this.currentLanguage == "ar-sa") {
-            this.toastr.error("خطأ غير معروف من الخادم !!")
-          }else {
-            this.toastr.error("Unknown error From Server!!")
+          if (this.currentLanguage == 'ar-sa') {
+            Swal.fire({
+              title: 'خطأ !!',
+              text: 'خطأ غير معروف من الخادم !!',
+              icon: 'error',
+              confirmButtonText: 'موافق',
+            })
+          } else {
+            Swal.fire({
+              title: 'Error !!',
+              text: 'Unknown error From Server!!',
+              icon: 'error',
+              confirmButtonText: 'OK',
+            })
           }
+          // if (this.currentLanguage == "ar-sa") {
+          //   this.toastr.error("خطأ غير معروف من الخادم !!")
+          // }else {
+          //   this.toastr.error("Unknown error From Server!!")
+          // }
         })
       }
 
@@ -373,14 +427,44 @@ export class MainComponent implements OnInit {
         this.allCardsProjects = response.data;
         console.log("card view",this.allCardsProjects);
       }else {
-        this.toastr.error(response.Error_Resp)
+        // this.toastr.error(response.Error_Resp)
+        if (this.currentLanguage == 'ar-sa') {
+          Swal.fire({
+            title: 'خطأ !!',
+            text: response.Error_Resp,
+            icon: 'error',
+            confirmButtonText: 'موافق',
+          })
+        } else {
+          Swal.fire({
+            title: 'Error !!',
+            text: response.Error_Resp,
+            icon: 'error',
+            confirmButtonText: 'OK',
+          })
+        }
       }
     }, (error) => {
-      if (this.currentLanguage == "ar-sa") {
-        this.toastr.error("خطأ غير معروف من الخادم !!")
-      }else {
-        this.toastr.error("Unknown error From Server!!")
+      if (this.currentLanguage == 'ar-sa') {
+        Swal.fire({
+          title: 'خطأ !!',
+          text: 'خطأ غير معروف من الخادم !!',
+          icon: 'error',
+          confirmButtonText: 'موافق',
+        })
+      } else {
+        Swal.fire({
+          title: 'Error !!',
+          text: 'Unknown error From Server!!',
+          icon: 'error',
+          confirmButtonText: 'OK',
+        })
       }
+      // if (this.currentLanguage == "ar-sa") {
+      //   this.toastr.error("خطأ غير معروف من الخادم !!")
+      // }else {
+      //   this.toastr.error("Unknown error From Server!!")
+      // }
     })
   }
   /*************   fav ********************/
@@ -394,14 +478,44 @@ export class MainComponent implements OnInit {
       this.favProjects_list = response.data;
       console.log("fav_lists",this.favProjects_list)
     } else {
-      this.toastr.error(response.Error_Resp)
+      // this.toastr.error(response.Error_Resp)
+      if (this.currentLanguage == 'ar-sa') {
+        Swal.fire({
+          title: 'خطأ !!',
+          text: response.Error_Resp,
+          icon: 'error',
+          confirmButtonText: 'موافق',
+        })
+      } else {
+        Swal.fire({
+          title: 'Error !!',
+          text: response.Error_Resp,
+          icon: 'error',
+          confirmButtonText: 'OK',
+        })
+      }
     }
   }) ,(error) => {
-    if (this.currentLanguage == "ar-sa") {
-      this.toastr.error("خطأ غير معروف من الخادم !!")
-    }else {
-      this.toastr.error("Unknown error From Server!!")
+    if (this.currentLanguage == 'ar-sa') {
+      Swal.fire({
+        title: 'خطأ !!',
+        text: 'خطأ غير معروف من الخادم !!',
+        icon: 'error',
+        confirmButtonText: 'موافق',
+      })
+    } else {
+      Swal.fire({
+        title: 'Error !!',
+        text: 'Unknown error From Server!!',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      })
     }
+    // if (this.currentLanguage == "ar-sa") {
+    //   this.toastr.error("خطأ غير معروف من الخادم !!")
+    // }else {
+    //   this.toastr.error("Unknown error From Server!!")
+    // }
   })
 }
 
@@ -412,13 +526,38 @@ export class MainComponent implements OnInit {
       this.favProjects_card = response.data;
       console.log("fav_cards",this.favProjects_card)
     } else {
-      this.toastr.error(response.Error_Resp)
+      // this.toastr.error(response.Error_Resp)
+      if (this.currentLanguage == 'ar-sa') {
+        Swal.fire({
+          title: 'خطأ !!',
+          text: response.Error_Resp,
+          icon: 'error',
+          confirmButtonText: 'موافق',
+        })
+      } else {
+        Swal.fire({
+          title: 'Error !!',
+          text: response.Error_Resp,
+          icon: 'error',
+          confirmButtonText: 'OK',
+        })
+      }
     }
   }) ,(error) => {
-    if (this.currentLanguage == "ar-sa") {
-      this.toastr.error("خطأ غير معروف من الخادم !!")
-    }else {
-      this.toastr.error("Unknown error From Server!!")
+    if (this.currentLanguage == 'ar-sa') {
+      Swal.fire({
+        title: 'خطأ !!',
+        text: 'خطأ غير معروف من الخادم !!',
+        icon: 'error',
+        confirmButtonText: 'موافق',
+      })
+    } else {
+      Swal.fire({
+        title: 'Error !!',
+        text: 'Unknown error From Server!!',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      })
     }
   })
 }

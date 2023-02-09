@@ -706,7 +706,7 @@ a {
 
         .navbar {
           img {
-            width: 22px !important;
+            width: 22px ;
           }
 
           .profile {
@@ -715,6 +715,14 @@ a {
 
           .lang-icon {
             width: 16px !important;
+          }
+
+          .ar-icon{
+            width: 22px !important;
+          }
+
+          .en-icon{
+            width: 18px !important;
           }
 
           h2 {

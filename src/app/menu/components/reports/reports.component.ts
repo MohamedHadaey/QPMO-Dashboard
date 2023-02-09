@@ -38,6 +38,8 @@ export type ChartOptions = {
 import { AuthService } from 'src/app/auth/services/auth.service';
 declare const $: any;
 
+
+
 @Component({
   selector: 'app-reports',
   templateUrl: './reports.component.html',

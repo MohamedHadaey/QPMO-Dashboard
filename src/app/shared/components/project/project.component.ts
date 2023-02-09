@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { EventColor } from 'calendar-utils';
-
+import { ToastrService } from 'ngx-toastr';
 // import swiper components
 // import Swiper core and required modules
 import SwiperCore, {
@@ -10,6 +10,7 @@ import SwiperCore, {
   Pagination,
   Scrollbar,
 } from 'swiper';
+import { SharedService } from '../../services/shared.service';
 
 // install Swiper modules
 SwiperCore.use([Autoplay, Navigation, Pagination, Scrollbar]);
@@ -22,11 +23,36 @@ declare const $: any;
   encapsulation: ViewEncapsulation.None,
 })
 export class ProjectComponent implements OnInit {
+  @Input() data:any = {};
   minimize: boolean = true;
   fav: boolean = false;
-  constructor() {}
+  currentLanguage: any = localStorage.getItem('currentLanguage');
+  constructor(private _SharedService:SharedService, private toastr: ToastrService) {
+    console.log(" data on constructor  " , this.data)
 
-  ngOnInit(): void {}
+  }
+
+  ngOnInit(): void {
+    this.data ={
+      ID:0,
+      Project_Category:{},
+      Project_EndDate:0,
+      Project_Images:[],
+      Project_Location:"",
+      Project_ManPower:0,
+      Project_Maqawl: {
+        Maqawl_Name:""
+      },
+      Project_Maqawl_Percentage: 0,
+      Project_Name: "",
+      Project_ProjectPeriod: 0,
+      Project_Status: {},
+      Project_User:{},
+      Project_User_Percentage:0
+    };
+    console.log(" data on ngOnInit  " , this.data)
+
+  }
 
   // this function to close day projects panel
   closeDayProjects() {
@@ -52,6 +78,5 @@ export class ProjectComponent implements OnInit {
   favProject() {
     this.fav = !this.fav;
   }
-
 
 }

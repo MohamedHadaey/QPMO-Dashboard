@@ -48,10 +48,11 @@
     <div class="content-body">
       <nav class="navbar">
         <app-toggler></app-toggler>
-        <h2>QPMO<sub>system</sub></h2>
+        <!-- <h2>QPMO<sub>system</sub></h2> -->
+        <img src="../../../../assets/images/Dashboard-icons/final_logo.png" style="width: 90px; margin: 5px 0" alt="qpmo_logo">
         <div class="d-flex justify-content-center align-items-center icons">
           <app-language></app-language>
-          <img src="../../../../assets/images/Dashboard-icons/msg01.png" alt="msgs" routerLink="/messages">
+          <img src="../../../../assets/images/Dashboard-icons/msg.png" alt="msgs" routerLink="/messages">
           <div class="dropdown">
             <button class="dropdown-toggle mx-2 p-0" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
               aria-expanded="false">
@@ -241,7 +242,7 @@
                   <tr *ngFor="let favProject of favouriteProjects">
                     <td>
                       <div class="item">
-                        <p class="hover" (click)="showProjectCardDetails()">{{favProject.Project_Name}}</p>
+                        <p class="hover" (click)="showProjectCardDetails(favProject.ID)">{{favProject.Project_Name}}</p>
                       </div>
                     </td>
                     <td>
@@ -279,174 +280,6 @@
                       <div class="item"><img src="../../../../assets/images/Dashboard-icons/Favorite-blue.png"
                           alt="favourite"></div>
                     </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="item">
-                        <p class="hover" (click)="showProjectCardDetails()">{{"road" | translate }}</p>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="item">
-                        <p>{{"Mohamed Abdelrahman" | translate }}</p>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="item">
-                        <p>13-08-2022</p>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="item"><img src="../../../../assets/images/Dashboard-icons/Favorite-blue.png"
-                          alt="favourite"></div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="item">
-                        <p class="hover" (click)="showProjectCardDetails()">{{"sanitaion" | translate }}</p>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="item">
-                        <p>{{"Yahia Abdullah" | translate }}</p>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="item">
-                        <p>13-08-2022</p>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="item"><img src="../../../../assets/images/Dashboard-icons/Favorite-blue.png"
-                          alt="favourite"></div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="item">
-                        <p class="hover" (click)="showProjectCardDetails()">{{"road" | translate }}</p>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="item">
-                        <p>{{"Islam Hassan" | translate }}</p>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="item">
-                        <p>13-08-2022</p>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="item"><img src="../../../../assets/images/Dashboard-icons/Favorite-blue.png"
-                          alt="favourite"></div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="item">
-                        <p class="hover" (click)="showProjectCardDetails()">{{"bridges" | translate }}</p>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="item">
-                        <p>{{"Zayn Mostafa" | translate }}</p>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="item">
-                        <p>13-08-2022</p>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="item"><img src="../../../../assets/images/Dashboard-icons/Favorite-blue.png"
-                          alt="favourite"></div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="item">
-                        <p class="hover" (click)="showProjectCardDetails()">{{"road-light" | translate }}</p>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="item">
-                        <p>{{"Tarek Ali" | translate }}</p>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="item">
-                        <p>13-08-2022</p>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="item"><img src="../../../../assets/images/Dashboard-icons/Favorite-blue.png"
-                          alt="favourite"></div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="item">
-                        <p class="hover" (click)="showProjectCardDetails()">{{"bridges" | translate }}</p>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="item">
-                        <p>{{"Hamza Sayed" | translate }}</p>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="item">
-                        <p>13-08-2022</p>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="item"><img src="../../../../assets/images/Dashboard-icons/Favorite-blue.png"
-                          alt="favourite"></div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="item">
-                        <p class="hover" (click)="showProjectCardDetails()">{{"sanitaion" | translate }}</p>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="item">
-                        <p>{{"Zeyad Ahmed" | translate }}</p>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="item">
-                        <p>13-08-2022</p>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="item"><img src="../../../../assets/images/Dashboard-icons/Favorite-blue.png"
-                          alt="favourite"></div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="item">
-                        <p class="hover" (click)="showProjectCardDetails()">{{"bridges" | translate }}</p>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="item">
-                        <p>{{"Gamal Elsayed" | translate }}</p>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="item">
-                        <p>13-08-2022</p>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="item"><img src="../../../../assets/images/Dashboard-icons/Favorite-blue.png"
-                          alt="favourite"></div>
-                    </td>
                   </tr> -->
                 </tbody>
               </table>
@@ -454,7 +287,7 @@
           </div>
         </div>
         <div class="row">
-          <app-project></app-project>
+          <app-project [data]="projectDetails"></app-project>
         </div>
       </div>
     </div>

@@ -365,6 +365,10 @@
           &.progress-98 {
             @include draw-progress(95, #068df5);
           }
+
+          &.progress-100 {
+            @include draw-progress(100, #068df5);
+          }
         }
 
         /******************************************/

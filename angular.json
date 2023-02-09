@@ -41,14 +41,16 @@
               "node_modules/highcharts/css/highcharts.scss",
               "node_modules/ngx-toastr/toastr.css",
               "node_modules/ngx-spinner/animations/ball-atom.css",
-              "node_modules/ngx-spinner/animations/ball-clip-rotate-multiple.css"
+              "node_modules/ngx-spinner/animations/ball-clip-rotate-multiple.css",
+              "node_modules/sweetalert2/src/sweetalert2.scss"
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
               "node_modules/popper.js/dist/umd/popper.min.js",
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/slick-carousel/slick/slick.min.js",
-              "node_modules/apexcharts/dist/apexcharts.min.js"
+              "node_modules/apexcharts/dist/apexcharts.min.js",
+              "node_modules/sweetalert2/dist/sweetalert2.js"
             ]
           },
           "configurations": {

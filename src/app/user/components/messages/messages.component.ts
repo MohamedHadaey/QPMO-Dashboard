@@ -4,6 +4,8 @@ import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { UserService } from '../../services/user.service';
 declare const $: any;
+import Swal from 'sweetalert2';
+import { Colors } from 'chart.js';
 
 @Component({
   selector: 'app-messages',
@@ -16,6 +18,7 @@ export class MessagesComponent implements OnInit {
   currentLanguage: any = localStorage.getItem('currentLanguage');
   messages: any[] = [];
   messageDetails: any = {};
+  subMessages:any[] = [];
   constructor(
     private _AuthService: AuthService,
     private _UserService: UserService,
@@ -47,15 +50,40 @@ export class MessagesComponent implements OnInit {
           this.spinner.hide();
         } else {
           this.spinner.hide();
-          this.toastr.error(response.Error_Resp);
+          // this.toastr.error(response.Error_Resp);
+          if (this.currentLanguage == 'ar-sa') {
+            Swal.fire({
+              title: 'خطأ !!',
+              text: response.Error_Resp,
+              icon: 'error',
+              confirmButtonText: 'موافق',
+            })
+          } else {
+            Swal.fire({
+              title: 'Error !!',
+              text: response.Error_Resp,
+              icon: 'error',
+              confirmButtonText: 'OK',
+            })
+          }
         }
       },
       (error) => {
         this.spinner.hide();
         if (this.currentLanguage == 'ar-sa') {
-          this.toastr.error('خطأ غير معروف من الخادم !!');
+          Swal.fire({
+            title: 'خطأ !!',
+            text: 'خطأ غير معروف من الخادم !!',
+            icon: 'error',
+            confirmButtonText: 'موافق',
+          })
         } else {
-          this.toastr.error('Unknown error From Server!!');
+          Swal.fire({
+            title: 'Error !!',
+            text: 'Unknown error From Server!!',
+            icon: 'error',
+            confirmButtonText: 'OK',
+          })
         }
       }
     );
@@ -67,18 +95,45 @@ export class MessagesComponent implements OnInit {
       (response) => {
         if (response.Code == 200) {
           this.messageDetails = response.data[0];
+          this.subMessages = this.messageDetails.SubMessages;
+          console.log(this.messageDetails);
           // this.spinner.hide();
         } else {
          // this.spinner.hide();
-          this.toastr.error(response.Error_Resp);
+          // this.toastr.error(response.Error_Resp);
+          if (this.currentLanguage == 'ar-sa') {
+            Swal.fire({
+              title: 'خطأ !!',
+              text: response.Error_Resp,
+              icon: 'error',
+              confirmButtonText: 'موافق',
+            })
+          } else {
+            Swal.fire({
+              title: 'Error !!',
+              text: response.Error_Resp,
+              icon: 'error',
+              confirmButtonText: 'OK',
+            })
+          }
         }
       },
       (error) => {
         // this.spinner.hide();
         if (this.currentLanguage == 'ar-sa') {
-          this.toastr.error('خطأ غير معروف من الخادم !!');
+          Swal.fire({
+            title: 'خطأ !!',
+            text: 'خطأ غير معروف من الخادم !!',
+            icon: 'error',
+            confirmButtonText: 'موافق',
+          })
         } else {
-          this.toastr.error('Unknown error From Server!!');
+          Swal.fire({
+            title: 'Error !!',
+            text: 'Unknown error From Server!!',
+            icon: 'error',
+            confirmButtonText: 'OK',
+          })
         }
       }
     );
@@ -87,10 +142,26 @@ export class MessagesComponent implements OnInit {
   sendMessage() {
     var message = document.getElementById('message') as HTMLInputElement;
     if (message.value == '' || message.value == null || message.value == ' ') {
-      if (this.currentLanguage == 'en-sa') {
-        this.toastr.warning('Please type any thing !!');
+      // if (this.currentLanguage == 'en-sa') {
+      //   this.toastr.warning('Please type any thing !!');
+      // } else {
+      //   this.toastr.warning('الرجاء إدخال الرسالة اولا !!');
+      // }
+
+      if (this.currentLanguage == 'ar-sa') {
+        Swal.fire({
+          title: 'خطأ !!',
+          text: 'الرجاء إدخال الرسالة اولا !!',
+          icon: 'warning',
+          confirmButtonText: 'موافق',
+        })
       } else {
-        this.toastr.warning('الرجاء إدخال الرسالة اولا !!');
+        Swal.fire({
+          title: 'Error !!',
+          text: 'Please type any thing !!',
+          icon: 'warning',
+          confirmButtonText: 'OK',
+        })
       }
     } else {
       this.spinner.show();
@@ -107,22 +178,61 @@ export class MessagesComponent implements OnInit {
               message.value = '';
               this.getMyInbox();
               this.spinner.hide();
-              if (this.currentLanguage == 'en-sa') {
-                this.toastr.success('Message sent successfully');
+              if (this.currentLanguage == 'ar-sa') {
+                Swal.fire({
+                  title: 'نجاح !!',
+                  text: 'تم ارسال الرسالة بنجاح',
+                  icon: 'success',
+                  confirmButtonText: 'موافق',
+                })
               } else {
-                this.toastr.success('تم ارسال الرسالة بنجاح');
+                Swal.fire({
+                  title: 'Success !!',
+                  text: 'Message sent successfully',
+                  icon: 'success',
+                  confirmButtonText: 'OK',
+                })
               }
+              // if (this.currentLanguage == 'en-sa') {
+              //   this.toastr.success('Message sent successfully');
+              // } else {
+              //   this.toastr.success('تم ارسال الرسالة بنجاح');
+              // }
             } else {
               this.spinner.hide();
-              this.toastr.error(response.Error_Resp);
+              if (this.currentLanguage == 'ar-sa') {
+                Swal.fire({
+                  title: 'خطأ !!',
+                  text: response.Error_Resp,
+                  icon: 'error',
+                  confirmButtonText: 'موافق',
+                })
+              } else {
+                Swal.fire({
+                  title: 'Error !!',
+                  text: response.Error_Resp,
+                  icon: 'error',
+                  confirmButtonText: 'OK',
+                })
+              }
             }
           },
           (error) => {
             this.spinner.hide();
             if (this.currentLanguage == 'ar-sa') {
-              this.toastr.error('خطأ غير معروف من الخادم !!');
+              Swal.fire({
+                title: 'خطأ !!',
+                text: 'خطأ غير معروف من الخادم !!',
+                icon: 'error',
+                confirmButtonText: 'موافق',
+              })
             } else {
-              this.toastr.error('Unknown error From Server!!');
+              Swal.fire({
+                title: 'Error !!',
+                text: 'Unknown error From Server!!',
+                icon: 'error',
+                confirmButtonText: 'OK',
+              })
             }
           }
         );

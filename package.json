@@ -43,6 +43,7 @@
     "encodeurl": "^1.0.2",
     "highcharts": "^10.3.2",
     "jquery": "^3.6.1",
+    "js-datepicker": "^5.18.2",
     "jwt-decode": "^3.1.2",
     "ng-apexcharts": "^1.7.4",
     "ng2-charts": "^4.1.1",
@@ -52,6 +53,7 @@
     "popper.js": "^1.16.1",
     "rxjs": "~7.5.0",
     "slick-carousel": "^1.8.1",
+    "sweetalert2": "^11.7.1",
     "swiper": "^8.4.5",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

@@ -6,6 +6,7 @@ import { HttpUrlEncodingCodec } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 declare const $: any;
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-varify-forget-pass',
@@ -53,34 +54,64 @@ export class VarifyForgetPassComponent implements OnInit {
         (response) => {
           if (response.Code == 200) {
             this.spinner.hide();
-            if (this.currentLanguage == 'ar-sa') {
-              this.toastr.success('كود التحقق صحيح.');
-            } else {
-              this.toastr.success('The verification code is correct');
-            }
+            // if (this.currentLanguage == 'ar-sa') {
+            //   this.toastr.success('كود التحقق صحيح.');
+            // } else {
+            //   this.toastr.success('The verification code is correct');
+            // }
             this._Router.navigate(['/change-pass']);
           } else if (response.Code == 401) {
             this.spinner.hide();
             if (this.currentLanguage == 'ar-sa') {
-              this.toastr.error(
-                'الرجاء كتابة الرمز بشكل صحيح والمحاولة مرة أخرى !!'
-              );
+              Swal.fire({
+                title: 'خطأ !!',
+                text: 'الرجاء كتابة الرمز بشكل صحيح والمحاولة مرة أخرى !!',
+                icon: 'error',
+                confirmButtonText: 'موافق',
+              })
             } else {
-              this.toastr.error(
-                'please write the code correct and try again or send it again !!'
-              );
+              Swal.fire({
+                title: 'Error !!',
+                text: 'please write the code correct and try again or send it again !!',
+                icon: 'error',
+                confirmButtonText: 'OK',
+              })
             }
+            // if (this.currentLanguage == 'ar-sa') {
+            //   this.toastr.error(
+            //     'الرجاء كتابة الرمز بشكل صحيح والمحاولة مرة أخرى !!'
+            //   );
+            // } else {
+            //   this.toastr.error(
+            //     'please write the code correct and try again or send it again !!'
+            //   );
+            // }
           } else if (response.Code == 403) {
             this.spinner.hide();
             if (this.currentLanguage == 'ar-sa') {
-              this.toastr.error(
-                'الرجاء كتابة الرمز بشكل صحيح والمحاولة مرة أخرى أو إرساله مرة أخرى !!'
-              );
+              Swal.fire({
+                title: 'خطأ !!',
+                text: 'الرجاء كتابة الرمز بشكل صحيح والمحاولة مرة أخرى أو إرساله مرة أخرى !!',
+                icon: 'error',
+                confirmButtonText: 'موافق',
+              })
             } else {
-              this.toastr.error(
-                'please write the code correct and try again !!'
-              );
+              Swal.fire({
+                title: 'Error !!',
+                text: 'please write the code correct and try again or send it again !!',
+                icon: 'error',
+                confirmButtonText: 'OK',
+              })
             }
+            // if (this.currentLanguage == 'ar-sa') {
+            //   this.toastr.error(
+            //     'الرجاء كتابة الرمز بشكل صحيح والمحاولة مرة أخرى أو إرساله مرة أخرى !!'
+            //   );
+            // } else {
+            //   this.toastr.error(
+            //     'please write the code correct and try again !!'
+            //   );
+            // }
           } else {
             this.spinner.hide();
             $('#validate-msg').slideDown();
@@ -90,10 +121,25 @@ export class VarifyForgetPassComponent implements OnInit {
         (error) => {
           this.spinner.hide();
           if (this.currentLanguage == 'ar-sa') {
-            this.toastr.error('خطأ غير معروف من الخادم !!');
+            Swal.fire({
+              title: 'خطأ !!',
+              text: 'خطأ غير معروف من الخادم !!',
+              icon: 'error',
+              confirmButtonText: 'موافق',
+            })
           } else {
-            this.toastr.error('Unknown error From Server!!');
+            Swal.fire({
+              title: 'Error !!',
+              text: 'Unknown error From Server!!',
+              icon: 'error',
+              confirmButtonText: 'OK',
+            })
           }
+          // if (this.currentLanguage == 'ar-sa') {
+          //   this.toastr.error('خطأ غير معروف من الخادم !!');
+          // } else {
+          //   this.toastr.error('Unknown error From Server!!');
+          // }
         }
       );
     }

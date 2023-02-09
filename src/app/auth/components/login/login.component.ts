@@ -5,6 +5,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/auth.service';
 declare const $: any;
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-login',
@@ -42,24 +43,67 @@ export class LoginComponent implements OnInit {
           (response) => {
             if (response.Code == 200) {
               this.spinner.hide();
+              // if (this.currentLanguage == 'ar-sa') {
+              //   const Toast = Swal.mixin({
+              //     toast: true,
+              //     position: 'top-end',
+              //     showConfirmButton: false,
+              //     timer: 3000,
+              //     timerProgressBar: true,
+              //     didOpen: (toast) => {
+              //       toast.addEventListener('mouseenter', Swal.stopTimer)
+              //       toast.addEventListener('mouseleave', Swal.resumeTimer)
+              //     }
+              //   })
+
+              //   Toast.fire({
+              //     icon: 'success',
+              //     title: 'Signed in successfully'
+              //   })
+
+              // } else {
+
+              // }
               this._Router.navigate(['/varify-pass']);
               localStorage.setItem('C_Code', response.data.token);
               localStorage.setItem('UserID', response.data.UserID);
             } else if (response.Code == 204) {
               this.spinner.hide();
               if (this.currentLanguage == 'ar-sa') {
-                this.toastr.error('اسم المستخدم / كلمة المرور غير صحيحة !!');
+                Swal.fire({
+                  title: 'خطأ !!',
+                  text: 'اسم المستخدم / كلمة المرور غير صحيحة !!',
+                  icon: 'error',
+                  confirmButtonText: 'موافق',
+                })
+                // this.toastr.error('اسم المستخدم / كلمة المرور غير صحيحة !!');
               } else {
-                this.toastr.error('Your Username/ Password is incorrect !!');
+                Swal.fire({
+                  title: 'Error !!',
+                  text: 'Your Username/ Password is incorrect !!',
+                  icon: 'error',
+                  confirmButtonText: 'OK',
+                })
+                // this.toastr.error('Your Username/ Password is incorrect !!');
               }
             } else if (response.Code == 404) {
               this.spinner.hide();
               if (this.currentLanguage == 'ar-sa') {
-                this.toastr.error(
-                  'خطأ في الخادم يمكنك المحاولة مرة أخرى لاحقًا !! !!'
-                );
+                Swal.fire({
+                  title: 'خطأ !!',
+                  text: 'خطأ في الخادم يمكنك المحاولة مرة أخرى لاحقًا !! !!',
+                  icon: 'error',
+                  confirmButtonText: 'موافق',
+                })
+               // this.toastr.error('خطأ في الخادم يمكنك المحاولة مرة أخرى لاحقًا !! !!');
               } else {
-                this.toastr.error('Server Error you can try again later !! !!');
+                Swal.fire({
+                  title: 'Error !!',
+                  text: 'Server Error you can try again later !! !!',
+                  icon: 'error',
+                  confirmButtonText: 'OK',
+                })
+                // this.toastr.error('Server Error you can try again later !! !!');
               }
             } else {
               this.spinner.hide();
@@ -70,10 +114,25 @@ export class LoginComponent implements OnInit {
           (error) => {
             this.spinner.hide();
             if (this.currentLanguage == 'ar-sa') {
-              this.toastr.error('خطأ غير معروف من الخادم !!');
+              Swal.fire({
+                title: 'خطأ !!',
+                text: 'خطأ غير معروف من الخادم !!',
+                icon: 'error',
+                confirmButtonText: 'موافق',
+              })
             } else {
-              this.toastr.error('Unknown error From Server!!');
+              Swal.fire({
+                title: 'Error !!',
+                text: 'Unknown error From Server!!',
+                icon: 'error',
+                confirmButtonText: 'OK',
+              })
             }
+            // if (this.currentLanguage == 'ar-sa') {
+            //   this.toastr.error('خطأ غير معروف من الخادم !!');
+            // } else {
+            //   this.toastr.error('Unknown error From Server!!');
+            // }
           }
         );
     }

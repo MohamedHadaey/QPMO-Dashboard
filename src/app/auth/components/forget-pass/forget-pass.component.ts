@@ -5,6 +5,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/auth.service';
 declare const $: any;
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-forget-pass',
@@ -45,22 +46,69 @@ export class ForgetPassComponent implements OnInit {
           } else if (response.Code == 204) {
             this.spinner.hide();
             if (this.currentLanguage == 'ar-sa') {
-              this.toastr.error('هذا الرقم غير موجود');
+              Swal.fire({
+                title: 'خطأ !!',
+                text:'هذا الرقم غير موجود',
+                icon: 'error',
+                confirmButtonText: 'موافق',
+              })
             } else {
-              this.toastr.error('This number does not exist');
+              Swal.fire({
+                title: 'Error !!',
+                text: 'This number does not exist',
+                icon: 'error',
+                confirmButtonText: 'OK',
+              })
             }
+            // if (this.currentLanguage == 'ar-sa') {
+            //   this.toastr.error('هذا الرقم غير موجود');
+            // } else {
+            //   this.toastr.error('This number does not exist');
+            // }
           } else {
             this.spinner.hide();
-            this.toastr.error(response.Error_Resp);
+            // this.toastr.error(response.Error_Resp);
+            if (this.currentLanguage == 'ar-sa') {
+              Swal.fire({
+                title: 'خطأ !!',
+                text: response.Error_Resp,
+                icon: 'error',
+                confirmButtonText: 'موافق',
+              })
+            } else {
+              Swal.fire({
+                title: 'Error !!',
+                text: response.Error_Resp,
+                icon: 'error',
+                confirmButtonText: 'OK',
+              })
+            }
+
           }
         },
         (error) => {
           this.spinner.hide();
           if (this.currentLanguage == 'ar-sa') {
-            this.toastr.error('خطأ غير معروف من الخادم !!');
+            Swal.fire({
+              title: 'خطأ !!',
+              text: 'خطأ غير معروف من الخادم !!',
+              icon: 'error',
+              confirmButtonText: 'موافق',
+            })
           } else {
-            this.toastr.error('Unknown error From Server!!');
+            Swal.fire({
+              title: 'Error !!',
+              text: 'Unknown error From Server!!',
+              icon: 'error',
+              confirmButtonText: 'OK',
+            })
           }
+
+          // if (this.currentLanguage == 'ar-sa') {
+          //   this.toastr.error('خطأ غير معروف من الخادم !!');
+          // } else {
+          //   this.toastr.error('Unknown error From Server!!');
+          // }
         }
       );
     }

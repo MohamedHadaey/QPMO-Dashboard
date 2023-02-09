@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../services/auth.service';
 import { HttpUrlEncodingCodec } from '@angular/common/http';
 declare const $: any;
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-change-password',
@@ -36,7 +37,7 @@ export class ChangePasswordComponent implements OnInit {
     RePass: new FormControl('', [Validators.required]),
   });
 
-  // change password function 
+  // change password function
   submitChangedPasswordForm(changePassForm: FormGroup) {
     var finalToken = this.codec.encodeValue(this.C_Code);
     this.spinner.show();
@@ -48,13 +49,28 @@ export class ChangePasswordComponent implements OnInit {
       changePassForm.get('RePass')?.value
     ) {
       this.spinner.hide();
+
+
       if (this.currentLanguage == 'ar-sa') {
-        this.toastr.error(
-          'كلمة المرور الجديدة وإعادة كلمة المرور الجديدة غير متطابقة'
-        );
+        Swal.fire({
+          title: 'خطأ !!',
+          text: 'كلمة المرور الجديدة وإعادة كلمة المرور الجديدة غير متطابقة',
+          icon: 'error',
+          confirmButtonText: 'موافق',
+        })
       } else {
-        this.toastr.error('New password and re new password not identical');
+        Swal.fire({
+          title: 'Error !!',
+          text: 'New password and re new password not identical',
+          icon: 'error',
+          confirmButtonText: 'OK',
+        })
       }
+      // if (this.currentLanguage == 'ar-sa') {
+      //   this.toastr.error('كلمة المرور الجديدة وإعادة كلمة المرور الجديدة غير متطابقة');
+      // } else {
+      //   this.toastr.error('New password and re new password not identical');
+      // }
       this.changePassForm.reset();
     } else {
       if (
@@ -68,24 +84,83 @@ export class ChangePasswordComponent implements OnInit {
             (response) => {
               if (response.Code == 200) {
                 this.spinner.hide();
-                if (this.currentLanguage == 'ar-sa') {
-                  this.toastr.success('تم تغيير كلمة المرور ');
-                } else {
-                  this.toastr.success('Password has been changed');
-                }
+
+                const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                  }
+                })
+              if (this.currentLanguage == 'ar-sa') {
+                Toast.fire({
+                  icon: 'success',
+                  title: 'تم تغيير كلمة المرور '
+                })
+
+              } else {
+                Toast.fire({
+                  icon: 'success',
+                  title: 'Password has been changed'
+                })
+
+              }
+                // if (this.currentLanguage == 'ar-sa') {
+                //   this.toastr.success('تم تغيير كلمة المرور ');
+                // } else {
+                //   this.toastr.success('Password has been changed');
+                // }
                 this._Router.navigate(['/login']);
               } else {
                 this.spinner.hide();
-                this.toastr.error(response.Error_Resp);
+                // this.toastr.error(response.Error_Resp);
+
+
+                if (this.currentLanguage == 'ar-sa') {
+                  Swal.fire({
+                    title: 'خطأ !!',
+                    text: response.Error_Resp,
+                    icon: 'error',
+                    confirmButtonText: 'موافق',
+                  })
+                } else {
+                  Swal.fire({
+                    title: 'Error !!',
+                    text: response.Error_Resp,
+                    icon: 'error',
+                    confirmButtonText: 'OK',
+                  })
+                }
+
+
               }
             },
             (error) => {
               this.spinner.hide();
               if (this.currentLanguage == 'ar-sa') {
-                this.toastr.error('خطأ غير معروف من الخادم !!');
+                Swal.fire({
+                  title: 'خطأ !!',
+                  text: 'خطأ غير معروف من الخادم !!',
+                  icon: 'error',
+                  confirmButtonText: 'موافق',
+                })
               } else {
-                this.toastr.error('Unknown error From Server!!');
+                Swal.fire({
+                  title: 'Error !!',
+                  text: 'Unknown error From Server!!',
+                  icon: 'error',
+                  confirmButtonText: 'OK',
+                })
               }
+              // if (this.currentLanguage == 'ar-sa') {
+              //   this.toastr.error('خطأ غير معروف من الخادم !!');
+              // } else {
+              //   this.toastr.error('Unknown error From Server!!');
+              // }
             }
           );
       }

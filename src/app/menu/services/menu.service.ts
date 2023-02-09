@@ -34,4 +34,7 @@ export class MenuService {
     return this.http.get( `${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/ProjectHistory/GetProjectsLog?culture=${this._AuthService.currentLanguage}` )
   }
 
+  getProjectDetails(id:any):Observable<any> {
+    return this.http.get( `${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/Projects/GetProjectDetails?ProjectID=${id}&culture=${this._AuthService.currentLanguage}`)
+  }
 }

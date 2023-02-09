@@ -6,6 +6,7 @@ import { UserService } from '../../services/user.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { user } from 'src/app/models/user';
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-profile',
@@ -35,12 +36,44 @@ export class ProfileComponent implements OnInit {
       (res) => {
         if (res.Code == 200) {
           this.User_Data = res.data as user;
+        }else {
+          if (this.currentLanguage == 'ar-sa') {
+            Swal.fire({
+              title: 'خطأ !!',
+              text: res.Error_Resp,
+              icon: 'error',
+              confirmButtonText: 'موافق',
+            })
+          } else {
+            Swal.fire({
+              title: 'Error !!',
+              text: res.Error_Resp,
+              icon: 'error',
+              confirmButtonText: 'OK',
+            })
+          }
         }
       }, (error) => {
-        if (this.currentLanguage == "ar-sa") {
-          this.toastr.error("خطأ غير معروف من الخادم !!")
-        }else {
-          this.toastr.error("Unknown error From Server!!")
+        // if (this.currentLanguage == "ar-sa") {
+        //   this.toastr.error("خطأ غير معروف من الخادم !!")
+        // }else {
+        //   this.toastr.error("Unknown error From Server!!")
+        // }
+
+        if (this.currentLanguage == 'ar-sa') {
+          Swal.fire({
+            title: 'خطأ !!',
+            text: 'خطأ غير معروف من الخادم !!',
+            icon: 'error',
+            confirmButtonText: 'موافق',
+          })
+        } else {
+          Swal.fire({
+            title: 'Error !!',
+            text: 'Unknown error From Server!!',
+            icon: 'error',
+            confirmButtonText: 'OK',
+          })
         }
       }
     );
@@ -61,11 +94,29 @@ export class ProfileComponent implements OnInit {
     if (passwordForm.invalid )  {
       return;
     } else if (passwordForm.get('newPassword')?.value != passwordForm.get('rePassword')?.value) {
-      if (this.currentLanguage == "ar-sa") {
-        this.toastr.error("كلمة المرور الجديدة وإعادة كلمة المرور الجديدة غير متطابقة")
+
+
+
+      if (this.currentLanguage == 'ar-sa') {
+        Swal.fire({
+          title: 'خطأ !!',
+          text: "كلمة المرور الجديدة وإعادة كلمة المرور الجديدة غير متطابقة",
+          icon: 'error',
+          confirmButtonText: 'موافق',
+        })
       } else {
-        this.toastr.error("New password and re new password not identical")
+        Swal.fire({
+          title: 'Error !!',
+          text: "New password and re new password not identical",
+          icon: 'error',
+          confirmButtonText: 'OK',
+        })
       }
+      // if (this.currentLanguage == "ar-sa") {
+      //   this.toastr.error("كلمة المرور الجديدة وإعادة كلمة المرور الجديدة غير متطابقة")
+      // } else {
+      //   this.toastr.error("New password and re new password not identical")
+      // }
       this.passwordForm.reset();
     }
     else {
@@ -80,20 +131,87 @@ export class ProfileComponent implements OnInit {
           )
           .subscribe(
             (res) => {
+              console.log(res)
               if (res.Code == 200) {
                 this.passwordForm.reset();
                 this._Router.navigate(['/profile']);
-                if (this.currentLanguage == "ar-sa") {
-                  this.toastr.success("تم تغيير كلمة السر بنجاح")
+
+
+
+                if (this.currentLanguage == 'ar-sa') {
+                  Swal.fire({
+                    title: 'نجاح !!',
+                    text: "تم تغيير كلمة السر بنجاح",
+                    icon: 'success',
+                    confirmButtonText: 'موافق',
+                  })
                 } else {
-                  this.toastr.success("Password changed successfully")
+                  Swal.fire({
+                    title: 'Success !!',
+                    text: "Password changed successfully",
+                    icon: 'success',
+                    confirmButtonText: 'OK',
+                  })
+                }
+                // if (this.currentLanguage == "ar-sa") {
+                //   this.toastr.success("تم تغيير كلمة السر بنجاح")
+                // } else {
+                //   this.toastr.success("Password changed successfully")
+                // }
+              } else if (res.Code == 204) {
+                if (this.currentLanguage == 'ar-sa') {
+                  Swal.fire({
+                    title: 'خطأ !!',
+                    text: "كلمة المرور القديمة خطأ !!",
+                    icon: 'error',
+                    confirmButtonText: 'موافق',
+                  })
+                } else {
+                  Swal.fire({
+                    title: 'Error !!',
+                    text: "The old password is wrong !!",
+                    icon: 'error',
+                    confirmButtonText: 'OK',
+                  })
+                }
+              }
+              else {
+                if (this.currentLanguage == 'ar-sa') {
+                  Swal.fire({
+                    title: 'خطأ !!',
+                    text: res.Error_Resp,
+                    icon: 'error',
+                    confirmButtonText: 'موافق',
+                  })
+                } else {
+                  Swal.fire({
+                    title: 'Error !!',
+                    text: res.Error_Resp,
+                    icon: 'error',
+                    confirmButtonText: 'OK',
+                  })
                 }
               }
             }, (error) => {
-              if (this.currentLanguage == "ar-sa") {
-                this.toastr.error("خطأ غير معروف من الخادم !!")
-              }else {
-                this.toastr.error("Unknown error From Server!!")
+              // if (this.currentLanguage == "ar-sa") {
+              //   this.toastr.error("خطأ غير معروف من الخادم !!")
+              // }else {
+              //   this.toastr.error("Unknown error From Server!!")
+              // }
+              if (this.currentLanguage == 'ar-sa') {
+                Swal.fire({
+                  title: 'خطأ !!',
+                  text: 'خطأ غير معروف من الخادم !!',
+                  icon: 'error',
+                  confirmButtonText: 'موافق',
+                })
+              } else {
+                Swal.fire({
+                  title: 'Error !!',
+                  text: 'Unknown error From Server!!',
+                  icon: 'error',
+                  confirmButtonText: 'OK',
+                })
               }
             }
           );

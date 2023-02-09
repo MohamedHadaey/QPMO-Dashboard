@@ -5,7 +5,7 @@ import { Options } from '@angular-slider/ngx-slider';
 import { ToastrService } from 'ngx-toastr';
 import { MenuService } from '../../services/menu.service';
 declare const $: any;
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
@@ -77,13 +77,37 @@ export class ProjectsComponent implements OnInit {
         this.followedProjects = response.data;
         console.log(this.followedProjects);
       } else {
-        this.toastr.error(response.Error_Resp)
+        if (this.currentLanguage == 'ar-sa') {
+          Swal.fire({
+            title: 'خطأ !!',
+            text: response.Error_Resp,
+            icon: 'error',
+            confirmButtonText: 'موافق',
+          })
+        } else {
+          Swal.fire({
+            title: 'Error !!',
+            text: response.Error_Resp,
+            icon: 'error',
+            confirmButtonText: 'OK',
+          })
+        }
       }
     }) ,(error) => {
-      if (this.currentLanguage == "ar-sa") {
-        this.toastr.error("خطأ غير معروف من الخادم !!")
-      }else {
-        this.toastr.error("Unknown error From Server!!")
+      if (this.currentLanguage == 'ar-sa') {
+        Swal.fire({
+          title: 'خطأ !!',
+          text: 'خطأ غير معروف من الخادم !!',
+          icon: 'error',
+          confirmButtonText: 'موافق',
+        })
+      } else {
+        Swal.fire({
+          title: 'Error !!',
+          text: 'Unknown error From Server!!',
+          icon: 'error',
+          confirmButtonText: 'OK',
+        })
       }
     })
   }

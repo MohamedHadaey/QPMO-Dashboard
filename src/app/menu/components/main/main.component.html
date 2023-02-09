@@ -46,10 +46,11 @@
     <div class="content-body content-body-rtl">
       <nav class="navbar">
         <app-toggler></app-toggler>
-        <h2>QPMO<sub>system</sub></h2>
+        <!-- <h2 class="bg-danger">QPMO<sub>system</sub></h2> -->
+        <img src="../../../../assets/images/Dashboard-icons/final_logo.png" style="width: 90px; margin: 5px 0" alt="qpmo_logo">
         <div class="d-flex justify-content-center align-items-center icons">
           <app-language></app-language>
-          <img src="../../../../assets/images/Dashboard-icons/msg01.png" alt="msgs" routerLink="/messages">
+          <img src="../../../../assets/images/Dashboard-icons/msg.png" alt="msgs" routerLink="/messages">
           <div class="dropdown">
             <button class="dropdown-toggle mx-2 p-0" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
               aria-expanded="false">
@@ -298,7 +299,7 @@
                         <p>{{project.Project_User_Percentage}}%</p>
                         <div class="progress">
                           <div class="progress-bar bg-warning" role="progressbar" aria-label="Success example"
-                            style="width: {{project.Project_User_Percentage}}%"  aria-valuemin="0" aria-valuemax="100"></div>
+                          style="width: {{project.Project_User_Percentage}}%"  aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                       </div>
                     </td>
@@ -731,13 +732,15 @@
                     <div class="col-4 p-0">
                       <div class="card-degree">
                         <div class="degree">
-                          <div id="chart">
-                            <apx-chart
-                              [series]="[project.Project_UserPercentage]"
-                              [chart]="chartOptions.chart"
-                              [plotOptions]="chartOptions.plotOptions"
-                              [labels]="chartOptions.labels"
-                            ></apx-chart>
+                          <div class="set-size charts-container">
+                            <div class="pie-wrapper progress-{{project.Project_UserPercentage}} style-2">
+                              <span class="label">{{project.Project_UserPercentage}}%<span class="smaller"></span></span>
+                              <div class="pie">
+                                <div class="left-side half-circle"></div>
+                                <div class="right-side half-circle"></div>
+                              </div>
+                              <div class="shadow"></div>
+                            </div>
                           </div>
                         </div>
                         <div class="fav-icon w-100 text-start px-3 py-2">
@@ -749,7 +752,7 @@
                   </div>
                 </div>
               </div>
-              <!-- <div class="col-sm-12 col-md-6 col-lg-4 p-2">
+              <!--  <div class="col-sm-12 col-md-6 col-lg-4 p-2">
                 <div class="card">
                   <div class="row">
                     <div class="col-8">
@@ -798,7 +801,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-sm-12 col-md-6 col-lg-4 p-2">
+            <div class="col-sm-12 col-md-6 col-lg-4 p-2">
                 <div class="card">
                   <div class="row">
                     <div class="col-8">
@@ -1142,7 +1145,7 @@
                 </div>
               </div> -->
             </div>
-            <div class="row" *ngIf="!card">
+            <!-- <div class="row" *ngIf="!card">
               <div class="col-sm-12 col-md-6 col-lg-4 p-2">
                 <div class="card">
                   <div class="row">
@@ -1339,7 +1342,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
         <!-- end: card theme -->
