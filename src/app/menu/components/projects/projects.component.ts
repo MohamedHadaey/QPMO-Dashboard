@@ -61,7 +61,8 @@ export class ProjectsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getProjectsFollowed()
+    this.getProjectsFollowed();
+    //this.getTestData();
   }
 
   // this function to log out
@@ -75,7 +76,7 @@ export class ProjectsComponent implements OnInit {
     this._MenuService.getFollowProjects().subscribe((response => {
       if(response.Code == 200) {
         this.followedProjects = response.data;
-        console.log(this.followedProjects);
+        console.log("followedProjectst", this.followedProjects);
       } else {
         if (this.currentLanguage == 'ar-sa') {
           Swal.fire({
@@ -114,4 +115,56 @@ export class ProjectsComponent implements OnInit {
 
 
 
+showProjectCardDetails(projectId:any) {
+  this.getProjectDetails(projectId)
+  $('.project-card-details').slideToggle();
+}
+
+projectDetails!:any;
+// function of get specific project
+getProjectDetails(id:any) {
+  this._MenuService.getProjectDetails(id).subscribe((response => {
+    if(response.Code == 200) {
+      this.projectDetails = response.data;
+      console.log(this.projectDetails)
+    } else {
+      if (this.currentLanguage == 'ar-sa') {
+        Swal.fire({
+          title: 'خطأ !!',
+          text: response.Error_Resp,
+          icon: 'error',
+          confirmButtonText: 'موافق',
+        })
+      } else {
+        Swal.fire({
+          title: 'Error !!',
+          text: response.Error_Resp,
+          icon: 'error',
+          confirmButtonText: 'OK',
+        })
+      }
+    }
+  }) ,(error) => {
+    if (this.currentLanguage == 'ar-sa') {
+      Swal.fire({
+        title: 'خطأ !!',
+        text: 'خطأ غير معروف من الخادم !!',
+        icon: 'error',
+        confirmButtonText: 'موافق',
+      })
+    } else {
+      Swal.fire({
+        title: 'Error !!',
+        text: 'Unknown error From Server!!',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      })
+    }
+    // if (this.currentLanguage == "ar-sa") {
+    //   this.toastr.error("خطأ غير معروف من الخادم !!")
+    // }else {
+    //   this.toastr.error("Unknown error From Server!!")
+    // }
+  })
+}
 }

@@ -31,6 +31,11 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { SwiperModule } from "swiper/angular";
 import { BrowserModule } from '@angular/platform-browser';
 
+// angular material date picker
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatInputModule } from "@angular/material/input";
+
+
 
 @NgModule({
   declarations: [
@@ -51,6 +56,8 @@ import { BrowserModule } from '@angular/platform-browser';
     TranslateModule,
     SwiperModule,
     GoogleMapsModule,
+    MatDatepickerModule,
+    MatInputModule,
     BrowserModule,
     CalendarModule.forRoot({
       provide: DateAdapter,

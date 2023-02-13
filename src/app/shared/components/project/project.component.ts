@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Data } from '@angular/router';
 
 import { EventColor } from 'calendar-utils';
 import { ToastrService } from 'ngx-toastr';
@@ -11,7 +12,6 @@ import SwiperCore, {
   Scrollbar,
 } from 'swiper';
 import { SharedService } from '../../services/shared.service';
-
 // install Swiper modules
 SwiperCore.use([Autoplay, Navigation, Pagination, Scrollbar]);
 declare const $: any;
@@ -23,13 +23,16 @@ declare const $: any;
   encapsulation: ViewEncapsulation.None,
 })
 export class ProjectComponent implements OnInit {
-  @Input() data:any = {};
+
+  // @Input() data:any = {};
+  @Input() data:Data = {};
+
   minimize: boolean = true;
   fav: boolean = false;
   currentLanguage: any = localStorage.getItem('currentLanguage');
   constructor(private _SharedService:SharedService, private toastr: ToastrService) {
-    console.log(" data on constructor  " , this.data)
 
+    console.log(" data on constructor  " , this.data)
   }
 
   ngOnInit(): void {
@@ -51,7 +54,6 @@ export class ProjectComponent implements OnInit {
       Project_User_Percentage:0
     };
     console.log(" data on ngOnInit  " , this.data)
-
   }
 
   // this function to close day projects panel

@@ -1,14 +1,16 @@
+<ng-container *ngIf="data">
 <div class="row project-detail px-3 mb-5">
   <div class="day-project">
     <div class="project-card-details">
       <div class="row">
         <div class="col-md-6 col-lg-3">
           <p>{{"project-name" | translate }}</p>
-          <span>{{data.Project_Name}}</span>
+          <span>{{data['Project_Name']}}</span>
+          <!-- <span>{{data.Project_Name}}</span> -->
         </div>
         <div class="col-md-6 col-lg-3">
           <p>{{"contractors-name" | translate }}</p>
-          <span>{{data.Project_Maqawl.Maqawl_Name}}</span>
+          <span>{{data['Project_Maqawl']['Maqawl_Name']}}</span>
         </div>
         <div class="col-md-6 col-lg-3">
           <p>{{"contract-no" | translate }}</p>
@@ -16,10 +18,10 @@
         </div>
         <div class="col-md-6 col-lg-3">
           <div class="icons">
-            <img src="../../../../assets/images/Dashboard-icons/Favorite-gray.png" alt="favourite icon" *ngIf="!fav"
-              (click)="favProject()">
-            <img src="../../../../assets/images/Dashboard-icons/Favorite-blue.png" alt="favourite icon" *ngIf="fav"
-              (click)="favProject()">
+            <img src="../../../../assets/images/Dashboard-icons/Favorite-gray.png" alt="favourite icon" *ngIf="data['IsFav'] == false"
+              >
+            <img src="../../../../assets/images/Dashboard-icons/Favorite-blue.png" alt="favourite icon" *ngIf="data['IsFav'] == true"
+            >
             <img src="../../../../assets/images/Dashboard-icons/maximize.png" alt="maximize icon"
               (click)="showProjectProcess()" *ngIf="!minimize">
             <img src="../../../../assets/images/Dashboard-icons/minimize.png" alt="minimize icon"
@@ -48,7 +50,7 @@
                 <div class="progress-bar bg-danger" role="progressbar" aria-label="Success example" style="width: 75%"
                   aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
-              <span>{{data.Project_EndDate || 30/10/2022 | date }} </span>
+              <span>{{data['Project_EndDate'] || 30/10/2022 | date }} </span>
             </div>
           </div>
         </div>
@@ -69,8 +71,8 @@
               <div class="degree ">
                 <div class="set-size charts-container">
                   <!-- class="pie-wrapper progress-60 style-2" -->
-                  <div class="pie-wrapper progress-{{data.Project_Maqawl_Percentage}} style-2">
-                    <span class="label">{{data.Project_Maqawl_Percentage}}%<span class="smaller"></span></span>
+                  <div class="pie-wrapper progress-{{data['Project_Maqawl_Percentage']}} style-2">
+                    <span class="label">{{data['Project_Maqawl_Percentage']}}%<span class="smaller"></span></span>
                     <div class="pie">
                       <div class="left-side half-circle"></div>
                       <div class="right-side half-circle"></div>
@@ -88,8 +90,8 @@
             <div class="number p-3">
               <div class="degree ">
                 <div class="set-size charts-container">
-                  <div class="pie-wrapper progress-{{data.Project_Maqawl_Percentage}} style-2">
-                    <span class="label">{{data.Project_Maqawl_Percentage}}%<span class="smaller"></span></span>
+                  <div class="pie-wrapper progress-{{data['Project_Maqawl_Percentage']}} style-2">
+                    <span class="label">{{data['Project_User_Percentage']}}%<span class="smaller"></span></span>
                     <div class="pie">
                       <div class="left-side half-circle"></div>
                       <div class="right-side half-circle"></div>
@@ -152,7 +154,7 @@
             <ng-template swiperSlide class="swiperSlide">
               <div class="date">
                 <div class="date-img">
-                  <img src="../../../../assets/images/Dashboard-icons/imagesoon.png" alt="image soon">
+                  <img src="../../../../assets/images/Dashboard-icons/imagesoon.png" class="project-image" alt="image soon">
                 </div>
                 <p>05/02/2020</p>
               </div>
@@ -160,7 +162,7 @@
             <ng-template swiperSlide class="swiperSlide">
               <div class="date">
                 <div class="date-img">
-                  <img src="../../../../assets/images/Dashboard-icons/imagesoon.png" alt="image soon">
+                  <img src="../../../../assets/images/Dashboard-icons/imagesoon.png" class="project-image" alt="image soon">
                 </div>
                 <p>05/02/2020</p>
               </div>
@@ -168,7 +170,7 @@
             <ng-template swiperSlide class="swiperSlide">
               <div class="date">
                 <div class="date-img">
-                  <img src="../../../../assets/images/Dashboard-icons/imagesoon.png" alt="image soon">
+                  <img src="../../../../assets/images/Dashboard-icons/imagesoon.png" class="project-image" alt="image soon">
                 </div>
                 <p>05/02/2020</p>
               </div>
@@ -176,7 +178,7 @@
             <ng-template swiperSlide class="swiperSlide">
               <div class="date">
                 <div class="date-img">
-                  <img src="../../../../assets/images/Dashboard-icons/imagesoon.png" alt="image soon">
+                  <img src="../../../../assets/images/Dashboard-icons/imagesoon.png" class="project-image" alt="image soon">
                 </div>
                 <p>05/02/2020</p>
               </div>
@@ -184,7 +186,7 @@
             <ng-template swiperSlide class="swiperSlide">
               <div class="date">
                 <div class="date-img">
-                  <img src="../../../../assets/images/Dashboard-icons/imagesoon.png" alt="image soon">
+                  <img src="../../../../assets/images/Dashboard-icons/imagesoon.png" class="project-image" alt="image soon">
                 </div>
                 <p>05/02/2020</p>
               </div>
@@ -192,7 +194,7 @@
             <ng-template swiperSlide class="swiperSlide">
               <div class="date">
                 <div class="date-img">
-                  <img src="../../../../assets/images/Dashboard-icons/imagesoon.png" alt="image soon">
+                  <img src="../../../../assets/images/Dashboard-icons/imagesoon.png" class="project-image" alt="image soon">
                 </div>
                 <p>05/02/2020</p>
               </div>
@@ -200,7 +202,7 @@
             <ng-template swiperSlide class="swiperSlide">
               <div class="date">
                 <div class="date-img">
-                  <img src="../../../../assets/images/Dashboard-icons/imagesoon.png" alt="image soon">
+                  <img src="../../../../assets/images/Dashboard-icons/imagesoon.png" class="project-image" alt="image soon">
                 </div>
                 <p>05/02/2020</p>
               </div>
@@ -208,7 +210,7 @@
             <ng-template swiperSlide class="swiperSlide">
               <div class="date">
                 <div class="date-img">
-                  <img src="../../../../assets/images/Dashboard-icons/imagesoon.png" alt="image soon">
+                  <img src="../../../../assets/images/Dashboard-icons/imagesoon.png" class="project-image" alt="image soon">
                 </div>
                 <p>05/02/2020</p>
               </div>
@@ -216,7 +218,7 @@
             <ng-template swiperSlide class="swiperSlide">
               <div class="date">
                 <div class="date-img">
-                  <img src="../../../../assets/images/Dashboard-icons/imagesoon.png" alt="image soon">
+                  <img src="../../../../assets/images/Dashboard-icons/imagesoon.png" class="project-image" alt="image soon">
                 </div>
                 <p>05/02/2020</p>
               </div>
@@ -224,7 +226,7 @@
             <ng-template swiperSlide class="swiperSlide">
               <div class="date">
                 <div class="date-img">
-                  <img src="../../../../assets/images/Dashboard-icons/imagesoon.png" alt="image soon">
+                  <img src="../../../../assets/images/Dashboard-icons/imagesoon.png" class="project-image" alt="image soon">
                 </div>
                 <p>05/02/2020</p>
               </div>
@@ -375,3 +377,4 @@
 </div>
 
 </div>
+</ng-container>

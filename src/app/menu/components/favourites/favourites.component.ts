@@ -69,8 +69,8 @@ export class FavouritesComponent implements OnInit {
 
 
   showProjectCardDetails(projectId:any) {
-    $('.project-card-details').slideToggle();
     this.getProjectDetails(projectId)
+    $('.project-card-details').slideToggle();
   }
 
   // this function to open day projects panel
@@ -85,7 +85,7 @@ export class FavouritesComponent implements OnInit {
     this._MenuService.getFavProjects_list().subscribe((response => {
       if(response.Code == 200) {
         this.favouriteProjects = response.data;
-        //console.log(this.favouriteProjects)
+        console.log(this.favouriteProjects)
       } else {
         this.toastr.error(response.Error_Resp)
       }
@@ -145,6 +145,62 @@ export class FavouritesComponent implements OnInit {
       // }else {
       //   this.toastr.error("Unknown error From Server!!")
       // }
+    })
+  }
+
+  removeProjectFromFav(id:any) {
+    this._MenuService.removeFromFav(id).subscribe((response) => {
+      if(response.Code == 200) {
+        if (this.currentLanguage == 'ar-sa') {
+          Swal.fire({
+            title: 'نجاح !!',
+            text: "تم حذف المشروع بنجاح",
+            icon: 'success',
+            confirmButtonText: 'موافق',
+          })
+        } else {
+          Swal.fire({
+            title: 'Success !!',
+            text: "The project has been successfully deleted",
+            icon: 'success',
+            confirmButtonText: 'OK',
+          })
+        }
+        this.getFavProjects();
+        $('.project-card-details').slideUp();
+      } else {
+        if (this.currentLanguage == 'ar-sa') {
+          Swal.fire({
+            title: 'خطأ !!',
+            text: response.Error_Resp,
+            icon: 'error',
+            confirmButtonText: 'موافق',
+          })
+        } else {
+          Swal.fire({
+            title: 'Error !!',
+            text: response.Error_Resp,
+            icon: 'error',
+            confirmButtonText: 'OK',
+          })
+        }
+      }
+    }, (errorr) => {
+      if (this.currentLanguage == 'ar-sa') {
+        Swal.fire({
+          title: 'خطأ !!',
+          text: 'خطأ غير معروف من الخادم !!',
+          icon: 'error',
+          confirmButtonText: 'موافق',
+        })
+      } else {
+        Swal.fire({
+          title: 'Error !!',
+          text: 'Unknown error From Server!!',
+          icon: 'error',
+          confirmButtonText: 'OK',
+        })
+      }
     })
   }
 }

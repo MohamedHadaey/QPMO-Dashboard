@@ -73,7 +73,7 @@ export class MainComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
+   // this.getProjectDetails(6)
     this.chartOptions = {
       chart: {
         height: 150,
@@ -101,7 +101,7 @@ export class MainComponent implements OnInit {
     this.getMapProjects();
     this.getCardsProjects();
     this.getFavProjects_lists();
-    this.getFavProjects_cards()
+    this.getFavProjects_cards();
   }
 
   /////////////////////Maps////////////////////
@@ -298,9 +298,14 @@ export class MainComponent implements OnInit {
   };
 
   openProjectDetails(markerPosition: any) {
-    this.showProjectCardDetails();
+    this.showProjectCardDetails(markerPosition);
   }
-  showProjectCardDetails() {
+  // showProjectCardDetails() {
+  //   $('.project-card-details').slideToggle();
+  // }
+
+  showProjectCardDetails(projectId:any) {
+    this.getProjectDetails(projectId)
     $('.project-card-details').slideToggle();
   }
 
@@ -562,6 +567,176 @@ export class MainComponent implements OnInit {
   })
 }
 
+
+projectDetails!:any;
+// function of get specific project
+getProjectDetails(id:any) {
+  this._MenuService.getProjectDetails(id).subscribe((response => {
+    if(response.Code == 200) {
+      this.projectDetails = response.data;
+      console.log(this.projectDetails , " and " , response)
+    } else {
+      if (this.currentLanguage == 'ar-sa') {
+        Swal.fire({
+          title: 'خطأ !!',
+          text: response.Error_Resp,
+          icon: 'error',
+          confirmButtonText: 'موافق',
+        })
+      } else {
+        Swal.fire({
+          title: 'Error !!',
+          text: response.Error_Resp,
+          icon: 'error',
+          confirmButtonText: 'OK',
+        })
+      }
+    }
+  }) ,(error) => {
+    if (this.currentLanguage == 'ar-sa') {
+      Swal.fire({
+        title: 'خطأ !!',
+        text: 'خطأ غير معروف من الخادم !!',
+        icon: 'error',
+        confirmButtonText: 'موافق',
+      })
+    } else {
+      Swal.fire({
+        title: 'Error !!',
+        text: 'Unknown error From Server!!',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      })
+    }
+    // if (this.currentLanguage == "ar-sa") {
+    //   this.toastr.error("خطأ غير معروف من الخادم !!")
+    // }else {
+    //   this.toastr.error("Unknown error From Server!!")
+    // }
+  })
+};
+
+
+//********         add to fav       ************/
+addProjectToFav(id:any) {
+  this._MenuService.addToFav(id).subscribe((response) => {
+    if(response.Code == 200) {
+      if (this.currentLanguage == 'ar-sa') {
+        Swal.fire({
+          title: 'نجاح !!',
+          text: "تم إضافة المشروع بنجاح",
+          icon: 'success',
+          confirmButtonText: 'موافق',
+        })
+      } else {
+        Swal.fire({
+          title: 'Success !!',
+          text: "The project has been successfully added",
+          icon: 'success',
+          confirmButtonText: 'OK',
+        })
+      }
+      this.getListsProjects();
+      this.getMapProjects();
+      this.getCardsProjects();
+      this.getFavProjects_lists();
+      this.getFavProjects_cards();
+    } else {
+      if (this.currentLanguage == 'ar-sa') {
+        Swal.fire({
+          title: 'خطأ !!',
+          text: response.Error_Resp,
+          icon: 'error',
+          confirmButtonText: 'موافق',
+        })
+      } else {
+        Swal.fire({
+          title: 'Error !!',
+          text: response.Error_Resp,
+          icon: 'error',
+          confirmButtonText: 'OK',
+        })
+      }
+    }
+  }, (errorr) => {
+    if (this.currentLanguage == 'ar-sa') {
+      Swal.fire({
+        title: 'خطأ !!',
+        text: 'خطأ غير معروف من الخادم !!',
+        icon: 'error',
+        confirmButtonText: 'موافق',
+      })
+    } else {
+      Swal.fire({
+        title: 'Error !!',
+        text: 'Unknown error From Server!!',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      })
+    }
+  })
+}
+
+//********         remove from fav         ************/
+
+removeProjectFromFav(id:any) {
+  this._MenuService.removeFromFav(id).subscribe((response) => {
+    if(response.Code == 200) {
+      if (this.currentLanguage == 'ar-sa') {
+        Swal.fire({
+          title: 'نجاح !!',
+          text: "تم حذف المشروع بنجاح",
+          icon: 'success',
+          confirmButtonText: 'موافق',
+        })
+      } else {
+        Swal.fire({
+          title: 'Success !!',
+          text: "The project has been successfully deleted",
+          icon: 'success',
+          confirmButtonText: 'OK',
+        })
+      }
+      this.getListsProjects();
+      this.getMapProjects();
+      this.getCardsProjects();
+      this.getFavProjects_lists();
+      this.getFavProjects_cards();
+    } else {
+      if (this.currentLanguage == 'ar-sa') {
+        Swal.fire({
+          title: 'خطأ !!',
+          text: response.Error_Resp,
+          icon: 'error',
+          confirmButtonText: 'موافق',
+        })
+      } else {
+        Swal.fire({
+          title: 'Error !!',
+          text: response.Error_Resp,
+          icon: 'error',
+          confirmButtonText: 'OK',
+        })
+      }
+    }
+  }, (errorr) => {
+    if (this.currentLanguage == 'ar-sa') {
+      Swal.fire({
+        title: 'خطأ !!',
+        text: 'خطأ غير معروف من الخادم !!',
+        icon: 'error',
+        confirmButtonText: 'موافق',
+      })
+    } else {
+      Swal.fire({
+        title: 'Error !!',
+        text: 'Unknown error From Server!!',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      })
+    }
+  })
+}
   /***************************************/
   // filter form inputs
   filterForm: FormGroup = new FormGroup({

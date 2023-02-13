@@ -9,6 +9,10 @@ import { ProjectDetailsComponent } from './components/project-details/project-de
 import { SwiperModule } from "swiper/angular";
 import { BrowserModule } from '@angular/platform-browser';
 import { ProjectComponent } from './components/project/project.component';
+// angular material date picker
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatInputModule } from "@angular/material/input";
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,11 @@ import { ProjectComponent } from './components/project/project.component';
     TranslateModule,
     NgChartsModule,
     BrowserModule,
-    SwiperModule
+    SwiperModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule,
+    
   ],
   exports: [
     LanguageComponent,

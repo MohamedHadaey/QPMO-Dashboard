@@ -247,7 +247,7 @@
                     </td>
                     <td>
                       <div class="item">
-                        <p>{{followProject.ProjectDTO.Project_Name}}</p>
+                        <p (click)="showProjectCardDetails(followProject.ProjectDTO.Project_Id)" class="hover">{{followProject.ProjectDTO.Project_Name}}</p>
                       </div>
                     </td>
                     <td>
@@ -486,6 +486,9 @@
               </table>
             </div>
           </div>
+        </div>
+        <div class="row">
+          <app-project [data]="projectDetails"></app-project>
         </div>
       </div>
     </div>

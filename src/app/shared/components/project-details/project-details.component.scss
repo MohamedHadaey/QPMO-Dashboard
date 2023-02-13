@@ -393,53 +393,308 @@
                   }
                 }
 
+                &.progress-0 {
+                  @include draw-progress(0, #F24773);
+                }
+                &.progress-1 {
+                  @include draw-progress(1, #F24773);
+                }
+                &.progress-2 {
+                  @include draw-progress(2, #F24773);
+                }
+                &.progress-3 {
+                  @include draw-progress(3, #F24773);
+                }
+                &.progress-4 {
+                  @include draw-progress(4, #F24773);
+                }
+                &.progress-5 {
+                  @include draw-progress(5, #F24773);
+                }
+                &.progress-6 {
+                  @include draw-progress(6, #F24773);
+                }
+                &.progress-7 {
+                  @include draw-progress(7, #F24773);
+                }
+                &.progress-8 {
+                  @include draw-progress(8, #F24773);
+                }
+                &.progress-9 {
+                  @include draw-progress(9, #F24773);
+                }
                 &.progress-10 {
-                  @include draw-progress(10, #068DF5);
+                  @include draw-progress(10, #F24773);
                 }
-
+                &.progress-11 {
+                  @include draw-progress(11, #F24773);
+                }
+                &.progress-12 {
+                  @include draw-progress(12, #F24773);
+                }
+                &.progress-13 {
+                  @include draw-progress(13, #F24773);
+                }
+                &.progress-14 {
+                  @include draw-progress(14, #F24773);
+                }
+                &.progress-15 {
+                  @include draw-progress(15, #F24773);
+                }
+                &.progress-16 {
+                  @include draw-progress(16, #F24773);
+                }
+                &.progress-17 {
+                  @include draw-progress(17, #F24773);
+                }
+                &.progress-18 {
+                  @include draw-progress(18, #F24773);
+                }
+                &.progress-19 {
+                  @include draw-progress(19, #F24773);
+                }
+                &.progress-20 {
+                  @include draw-progress(20, #F24773);
+                }
+                &.progress-21 {
+                  @include draw-progress(21, #F24773);
+                }
+                &.progress-22 {
+                  @include draw-progress(22, #F24773);
+                }
+                &.progress-23 {
+                  @include draw-progress(23, #F24773);
+                }
+                &.progress-24 {
+                  @include draw-progress(24, #F24773);
+                }
+                &.progress-25 {
+                  @include draw-progress(25, #F24773);
+                }
+                &.progress-26 {
+                  @include draw-progress(26, #F5E306);
+                }
+                &.progress-27 {
+                  @include draw-progress(27, #F5E306);
+                }
+                &.progress-28 {
+                  @include draw-progress(28, #F5E306);
+                }
+                &.progress-29 {
+                  @include draw-progress(29, #F5E306);
+                }
+                &.progress-30 {
+                  @include draw-progress(30, #F5E306);
+                }
+                &.progress-31 {
+                  @include draw-progress(31, #F5E306);
+                }
+                &.progress-32 {
+                  @include draw-progress(32, #F5E306);
+                }
+                &.progress-33 {
+                  @include draw-progress(33, #F5E306);
+                }
+                &.progress-34 {
+                  @include draw-progress(34, #F5E306);
+                }
+                &.progress-35 {
+                  @include draw-progress(35, #F5E306);
+                }
+                &.progress-36 {
+                  @include draw-progress(36, #F5E306);
+                }
+                &.progress-37 {
+                  @include draw-progress(37, #F5E306);
+                }
+                &.progress-38 {
+                  @include draw-progress(38, #F5E306);
+                }
+                &.progress-39 {
+                  @include draw-progress(39, #F5E306);
+                }
+                &.progress-40 {
+                  @include draw-progress(40, #F5E306);
+                }
+                &.progress-41 {
+                  @include draw-progress(41, #F5E306);
+                }
+                &.progress-42 {
+                  @include draw-progress(42, #F5E306);
+                }
+                &.progress-43 {
+                  @include draw-progress(43, #F5E306);
+                }
+                &.progress-44 {
+                  @include draw-progress(44, #F5E306);
+                }
                 &.progress-45 {
-                  @include draw-progress(45, #4CB871);
+                  @include draw-progress(45, #F5E306);
                 }
-
+                &.progress-46 {
+                  @include draw-progress(46, #F5E306);
+                }
+                &.progress-47 {
+                  @include draw-progress(47, #F5E306);
+                }
+                &.progress-48 {
+                  @include draw-progress(48, #F5E306);
+                }
+                &.progress-49 {
+                  @include draw-progress(49, #F5E306);
+                }
                 &.progress-50 {
                   @include draw-progress(50, #F5E306);
                 }
-
+                &.progress-51 {
+                  @include draw-progress(51, #4CB871);
+                }
+                &.progress-52 {
+                  @include draw-progress(52, #4CB871);
+                }
+                &.progress-53 {
+                  @include draw-progress(53, #4CB871);
+                }
+                &.progress-54 {
+                  @include draw-progress(54, #4CB871);
+                }
+                &.progress-55 {
+                  @include draw-progress(55, #4CB871);
+                }
                 &.progress-56 {
                   @include draw-progress(56, #4CB871);
                 }
-
                 &.progress-57 {
-                  @include draw-progress(57, #F24773);
+                  @include draw-progress(57, #4CB871);
                 }
-
+                &.progress-58 {
+                  @include draw-progress(58, #4CB871);
+                }
+                &.progress-59 {
+                  @include draw-progress(59, #4CB871);
+                }
                 &.progress-60 {
-                  @include draw-progress(60, #F5E306);
+                  @include draw-progress(60, #4CB871);
                 }
-
+                &.progress-61 {
+                  @include draw-progress(61, #4CB871);
+                }
+                &.progress-62 {
+                  @include draw-progress(62, #4CB871);
+                }
+                &.progress-63 {
+                  @include draw-progress(63, #4CB871);
+                }
+                &.progress-64 {
+                  @include draw-progress(64, #4CB871);
+                }
                 &.progress-65 {
-                  @include draw-progress(65, #F24773);
+                  @include draw-progress(65, #4CB871);
                 }
-
-
+                &.progress-66 {
+                  @include draw-progress(66, #4CB871);
+                }
+                &.progress-67 {
+                  @include draw-progress(67, #4CB871);
+                }
+                &.progress-68 {
+                  @include draw-progress(68, #4CB871);
+                }
+                &.progress-69 {
+                  @include draw-progress(69, #4CB871);
+                }
                 &.progress-70 {
                   @include draw-progress(70, #4CB871);
                 }
-
+                &.progress-71 {
+                  @include draw-progress(71, #4CB871);
+                }
+                &.progress-72 {
+                  @include draw-progress(72, #4CB871);
+                }
+                &.progress-73 {
+                  @include draw-progress(73, #4CB871);
+                }
+                &.progress-74 {
+                  @include draw-progress(74, #4CB871);
+                }
                 &.progress-75 {
-                  @include draw-progress(75, #068DF5);
+                  @include draw-progress(75, #4CB871);
                 }
-
+                &.progress-76 {
+                  @include draw-progress(76, #068DF5);
+                }
+                &.progress-77 {
+                  @include draw-progress(77, #068DF5);
+                }
+                &.progress-78 {
+                  @include draw-progress(78, #068DF5);
+                }
+                &.progress-79 {
+                  @include draw-progress(79, #068DF5);
+                }
+                &.progress-80 {
+                  @include draw-progress(80, #068DF5);
+                }
+                &.progress-81 {
+                  @include draw-progress(81, #068DF5);
+                }
+                &.progress-82 {
+                  @include draw-progress(82, #068DF5);
+                }
+                &.progress-83 {
+                  @include draw-progress(83, #068DF5);
+                }
+                &.progress-84 {
+                  @include draw-progress(84, #068DF5);
+                }
+                &.progress-85 {
+                  @include draw-progress(85, #068DF5);
+                }
+                &.progress-86 {
+                  @include draw-progress(86, #068DF5);
+                }
+                &.progress-87 {
+                  @include draw-progress(87, #068DF5);
+                }
+                &.progress-88 {
+                  @include draw-progress(88, #068DF5);
+                }
+                &.progress-89 {
+                  @include draw-progress(89, #068DF5);
+                }
                 &.progress-90 {
-                  @include draw-progress(90, #e67e22);
+                  @include draw-progress(90, #068DF5);
                 }
-
+                &.progress-91 {
+                  @include draw-progress(91, #068DF5);
+                }
+                &.progress-92 {
+                  @include draw-progress(92, #068DF5);
+                }
+                &.progress-93 {
+                  @include draw-progress(93, #068DF5);
+                }
+                &.progress-94 {
+                  @include draw-progress(94, #068DF5);
+                }
                 &.progress-95 {
-                  @include draw-progress(95, #e74c3c);
-                }
-
-                &.progress-98 {
                   @include draw-progress(95, #068DF5);
+                }
+                &.progress-96 {
+                  @include draw-progress(96, #068DF5);
+                }
+                &.progress-97 {
+                  @include draw-progress(97, #068DF5);
+                }
+                &.progress-98 {
+                  @include draw-progress(98, #068DF5);
+                }
+                &.progress-99 {
+                  @include draw-progress(99, #068DF5);
+                }
+                &.progress-100 {
+                  @include draw-progress(100, #068DF5);
                 }
               }
 

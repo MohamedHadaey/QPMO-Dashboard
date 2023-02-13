@@ -37,4 +37,13 @@ export class MenuService {
   getProjectDetails(id:any):Observable<any> {
     return this.http.get( `${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/Projects/GetProjectDetails?ProjectID=${id}&culture=${this._AuthService.currentLanguage}`)
   }
+
+  addToFav(projectId:any):Observable<any> {
+    return this.http.post( `${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/FavProjects/AddToFavorite?projectId=${projectId}&culture=${this._AuthService.currentLanguage}`, null )
+  }
+
+  removeFromFav(projectId:any):Observable<any> {
+    return this.http.post( `${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/FavProjects/RemoveFromFavorite?projectId=${projectId}&culture=${this._AuthService.currentLanguage}`, null )
+  }
+
 }
