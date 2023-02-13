@@ -18,4 +18,5 @@ export class ProjectDetails
     Project_Status:Status=new Status();
     Project_User_Percentage:number=0;
     Project_Maqawl_Percentage:number=0;
+    //public ICollection<ProjectImageUpdateDTO> Project_Images { get; set; }
 }
