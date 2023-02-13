@@ -1,9 +1,9 @@
-export interface status
+export class Status
 {
-    Id:number,
-    Name:string,
-    NameEn:string,
-    ColorImagePath:string,
-    Enabled:boolean,
-    Desc:string
+    Status_Id:number=0;
+    Status_Name:string='';
+    //Status_NameEn:string='';
+    Status_ColorImagePath:string='';
+    Status_Enabled:boolean=false;
+    Status_Desc:string='';
 }

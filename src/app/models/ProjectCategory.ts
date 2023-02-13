@@ -1,7 +1,7 @@
-export interface ProjectCategory
+export class ProjectCategory
     {
-        Id:number,
-        Name:string,
-        NameEn:string,
-        Enabled:boolean
+        ProjectCat_Id:number=0;
+        ProjectCat_Name:string='';
+        //ProjectCat_NameEn:string='';
+        ProjectCat_Enabled:boolean=false;
     }
