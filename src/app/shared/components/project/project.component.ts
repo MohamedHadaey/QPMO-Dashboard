@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { Data } from '@angular/router';
-
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { EventColor } from 'calendar-utils';
 import { ToastrService } from 'ngx-toastr';
 // import swiper components
@@ -15,7 +15,8 @@ import { SharedService } from '../../services/shared.service';
 // install Swiper modules
 SwiperCore.use([Autoplay, Navigation, Pagination, Scrollbar]);
 declare const $: any;
-
+import { Options , ChangeContext} from '@angular-slider/ngx-slider';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
@@ -79,6 +80,88 @@ export class ProjectComponent implements OnInit {
 
   favProject() {
     this.fav = !this.fav;
+  };
+
+  // change completion rate of project
+  completionRateOptions: Options = {
+    floor: 0,
+    ceil: 100,
+    showSelectionBar: true,
+    getSelectionBarColor: (value: number): string => {
+
+      if (value <= 30) {
+          return 'red';
+      }
+      if (value <= 60) {
+          return 'orange';
+      }
+      if (value <= 90) {
+          return 'yellow';
+      }
+      return '#2AE02A';
+    }
+  };
+
+  finalRangeValue:any;
+  onUserChange(changeContext: ChangeContext): void {
+   this.finalRangeValue = changeContext.value
   }
+
+  changeCompletionRange(project_id:any) {
+    this._SharedService.updateProjectPercentage(project_id, this.finalRangeValue).subscribe((response) => {
+      if(response.Code == 200) {
+        if (this.currentLanguage == 'ar-sa') {
+          Swal.fire({
+            title: 'نجاح !!',
+            text: "تم تحديث نسبة انجاز المشروع",
+            icon: 'success',
+            confirmButtonText: 'موافق',
+          })
+        } else {
+          Swal.fire({
+            title: 'Success !!',
+            text: "The percentage of completion of the project has been updated",
+            icon: 'success',
+            confirmButtonText: 'OK',
+          })
+        };
+      } else {
+        if (this.currentLanguage == 'ar-sa') {
+          Swal.fire({
+            title: 'خطأ !!',
+            text: response.Error_Resp,
+            icon: 'error',
+            confirmButtonText: 'موافق',
+          })
+        } else {
+          Swal.fire({
+            title: 'Error !!',
+            text: response.Error_Resp,
+            icon: 'error',
+            confirmButtonText: 'OK',
+          })
+        }
+      }
+
+    }, (error) => {
+      if (this.currentLanguage == 'ar-sa') {
+        Swal.fire({
+          title: 'خطأ !!',
+          text: 'خطأ غير معروف من الخادم !!',
+          icon: 'error',
+          confirmButtonText: 'موافق',
+        })
+      } else {
+        Swal.fire({
+          title: 'Error !!',
+          text: 'Unknown error From Server!!',
+          icon: 'error',
+          confirmButtonText: 'OK',
+        })
+      }
+    })
+  }
+
+
 
 }

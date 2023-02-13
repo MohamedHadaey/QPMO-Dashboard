@@ -14,6 +14,10 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatInputModule } from "@angular/material/input";
 import { MatNativeDateModule } from '@angular/material/core';
 
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     LanguageComponent,
@@ -31,7 +35,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     MatInputModule,
     MatNativeDateModule,
-    
+    NgxSliderModule,
+    ReactiveFormsModule,
+    RouterModule
   ],
   exports: [
     LanguageComponent,
