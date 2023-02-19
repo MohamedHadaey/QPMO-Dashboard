@@ -32,8 +32,6 @@ export class MainComponent implements OnInit {
 
 
   public chartOptions: Partial<ChartOptions> | any;
-
-
   value: number = 40;
   highValue: number = 60;
   options: Options = {
@@ -73,7 +71,8 @@ export class MainComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-   // this.getProjectDetails(6)
+    // $(".dropdown-toggle").dropdown('toggle');
+   this.getProjectDetails(6)
     this.chartOptions = {
       chart: {
         height: 150,
@@ -102,6 +101,8 @@ export class MainComponent implements OnInit {
     this.getCardsProjects();
     this.getFavProjects_lists();
     this.getFavProjects_cards();
+    this.getProjectsTypes();
+    this.getProjectsStates();
   }
 
   /////////////////////Maps////////////////////
@@ -736,28 +737,103 @@ removeProjectFromFav(id:any) {
       })
     }
   })
-}
+};
+
+
+ // get projcts types
+ projectsTypes:any[] = [];
+ getProjectsTypes() {
+   this._MenuService.getAllCategoties().subscribe((response => {
+     if(response.Code == 200) {
+       this.projectsTypes = response.data;
+       console.log(this.projectsTypes)
+     } else {
+       if (this.currentLanguage == 'ar-sa') {
+         Swal.fire({
+           title: 'خطأ !!',
+           text: response.Error_Resp,
+           icon: 'error',
+           confirmButtonText: 'موافق',
+         })
+       } else {
+         Swal.fire({
+           title: 'Error !!',
+           text: response.Error_Resp,
+           icon: 'error',
+           confirmButtonText: 'OK',
+         })
+       }
+     }
+   }) ,(error) => {
+     if (this.currentLanguage == "ar-sa") {
+       this.toastr.error("خطأ غير معروف من الخادم !!")
+     }else {
+       this.toastr.error("Unknown error From Server!!")
+     }
+   })
+ };
+
+   // get projcts states
+   projectsStates:any[] = [];
+   getProjectsStates() {
+     this._MenuService.getAllStates().subscribe((response => {
+       if(response.Code == 200) {
+         this.projectsStates = response.data;
+         console.log(this.projectsStates)
+       } else {
+         if (this.currentLanguage == 'ar-sa') {
+           Swal.fire({
+             title: 'خطأ !!',
+             text: response.Error_Resp,
+             icon: 'error',
+             confirmButtonText: 'موافق',
+           })
+         } else {
+           Swal.fire({
+             title: 'Error !!',
+             text: response.Error_Resp,
+             icon: 'error',
+             confirmButtonText: 'OK',
+           })
+         }
+       }
+     }) ,(error) => {
+       if (this.currentLanguage == "ar-sa") {
+         this.toastr.error("خطأ غير معروف من الخادم !!")
+       }else {
+         this.toastr.error("Unknown error From Server!!")
+       }
+     })
+   }
   /***************************************/
   // filter form inputs
   filterForm: FormGroup = new FormGroup({
-    project_type: new FormControl('1', [
-      Validators.required,
-      Validators.min(1),
-      Validators.max(200),
+    ProjectType: new FormControl('1', [
+      Validators.required
     ]),
-    now_check: new FormControl('checked', [Validators.required]),
-    complete_check: new FormControl(false, [Validators.required]),
-    late_check: new FormControl(false, [Validators.required]),
-    end_check: new FormControl('checked', [Validators.required]),
-    not_check: new FormControl(false, [Validators.required]),
+    ProjectStatus: new FormControl('1', [
+      Validators.required
+    ]),
+    // now_check: new FormControl('checked', [Validators.required]),
+    // complete_check: new FormControl(false, [Validators.required]),
+
+    // late_check: new FormControl(false, [Validators.required]),
+
+    // end_check: new FormControl('checked', [Validators.required]),
+
+    // not_check: new FormControl(false, [Validators.required]),
     project_start: new FormControl(null, [Validators.required]),
     project_end: new FormControl(null, [Validators.required]),
-    task_range: new FormControl(null, [Validators.required]),
-    constructor_range: new FormControl(null, [Validators.required]),
+    UserPer: new FormControl([25, 75], [Validators.required]),
+    MaqawlPer: new FormControl([25, 75], [Validators.required]),
   });
 
   submitFilterForm(filterForm: FormGroup) {
-    // console.log(filterForm.value)
+    filterForm.value.UserPer = (filterForm.value.UserPer[1]-filterForm.value.UserPer[0]) ;
+    filterForm.value.MaqawlPer = (filterForm.value.MaqawlPer[1]-filterForm.value.MaqawlPer[0]) ;
+    console.log(filterForm.value.UserPer);
+    console.log(filterForm.value.MaqawlPer);
+    console.log(filterForm.value)
   }
 
   // show favourites projects in all themes
@@ -801,6 +877,10 @@ removeProjectFromFav(id:any) {
   // this function to log out
   logOut() {
     this._AuthService.logout();
+  };
+
+  closeDropdown() {
+    $(".form-dropdown-menu").removeClass("show");
   }
 }
 

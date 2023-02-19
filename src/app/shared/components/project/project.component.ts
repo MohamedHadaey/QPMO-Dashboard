@@ -54,7 +54,8 @@ export class ProjectComponent implements OnInit {
       Project_User:{},
       Project_User_Percentage:0
     };
-    console.log(" data on ngOnInit  " , this.data)
+    console.log(" data on ngOnInit  " , this.data);
+    this.getProjectProcesses();
   }
 
   // this function to close day projects panel
@@ -162,6 +163,47 @@ export class ProjectComponent implements OnInit {
     })
   }
 
-
+  projectProcesses:any[] = [];
+  // get project actions or project processes
+  getProjectProcesses() {
+    this._SharedService.getProjectActions().subscribe((response) => {
+      if (response.Code == 200) {
+        this.projectProcesses = response.data;
+        console.log("projectProcesses: " , this.projectProcesses)
+      }else {
+        if (this.currentLanguage == 'ar-sa') {
+          Swal.fire({
+            title: 'خطأ !!',
+            text: response.Error_Resp,
+            icon: 'error',
+            confirmButtonText: 'موافق',
+          })
+        } else {
+          Swal.fire({
+            title: 'Error !!',
+            text: response.Error_Resp,
+            icon: 'error',
+            confirmButtonText: 'OK',
+          })
+        }
+      }
+    }, (error) => {
+      if (this.currentLanguage == 'ar-sa') {
+        Swal.fire({
+          title: 'خطأ !!',
+          text: 'خطأ غير معروف من الخادم !!',
+          icon: 'error',
+          confirmButtonText: 'موافق',
+        })
+      } else {
+        Swal.fire({
+          title: 'Error !!',
+          text: 'Unknown error From Server!!',
+          icon: 'error',
+          confirmButtonText: 'OK',
+        })
+      }
+    })
+  }
 
 }

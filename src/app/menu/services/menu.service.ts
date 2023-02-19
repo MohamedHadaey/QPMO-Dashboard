@@ -46,4 +46,11 @@ export class MenuService {
     return this.http.post( `${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/FavProjects/RemoveFromFavorite?projectId=${projectId}&culture=${this._AuthService.currentLanguage}`, null )
   }
 
+  getAllCategoties():Observable<any> {
+    return this.http.get( `${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/ProjectCategory/GetAll?culture=${this._AuthService.currentLanguage}` )
+  }
+
+  getAllStates():Observable<any> {
+    return this.http.get( `${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/ProjectStatus/GetAll?culture=${this._AuthService.currentLanguage}` )
+  }
 }

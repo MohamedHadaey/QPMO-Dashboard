@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { TranslationService } from 'src/app/sevices/translation.service';
 declare const $: any;
 
@@ -12,10 +13,13 @@ export class LanguageComponent implements OnInit {
   currentLanguage: any = localStorage.getItem('currentLanguage');
   constructor(
     public translate: TranslateService,
-    public _TranslationService: TranslationService
+    public _TranslationService: TranslationService,
+    private spinner: NgxSpinnerService
+
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   // get english language
   getEnglish() {
@@ -29,6 +33,7 @@ export class LanguageComponent implements OnInit {
       $('.content-body').css('padding-left', '55px');
     }
     $('.dropdown-menu').css('left', '-120px');
+    window.location.reload();
   }
 
   // get arabic language
@@ -43,5 +48,6 @@ export class LanguageComponent implements OnInit {
       $('.content-body').css('padding-right', '55px');
     }
     $('.dropdown-menu').css('left', '0');
+    window.location.reload();
   }
 }

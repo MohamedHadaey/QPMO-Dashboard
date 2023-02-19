@@ -21,7 +21,6 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { MatSliderModule } from '@angular/material/slider';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
-
 // my trail to add calender cards
 
 // import ApexCharts for charts

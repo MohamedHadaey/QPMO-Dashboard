@@ -17,6 +17,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatNativeDateModule,
     NgxSliderModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule
   ],
   exports: [
     LanguageComponent,

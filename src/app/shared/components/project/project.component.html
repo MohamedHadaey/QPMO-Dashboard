@@ -108,31 +108,40 @@
       <div class="row project-process w-100 m-auto  px-0 mx-0">
         <p>{{"project-phases" | translate }}</p>
         <div class="row">
-          <div class="col-sm-6 col-md-4 col-lg-2 ">
+          <div class="col-sm-6 col-md-4 col-lg-2 " *ngFor="let projectProcess of projectProcesses">
+            <div class="process hover" data-bs-toggle="modal" data-bs-target="#deliveryModal">
+              <img src="projectProcess.ProjectAction_IconPath" alt="alert delay icon">
+              <p>{{projectProcess.ProjectAction_Name}}</p>
+            </div>
+          </div>
+
+
+          <!-- <div class="col-sm-6 col-md-4 col-lg-2 ">
             <div class="process hover" data-bs-toggle="modal" data-bs-target="#deliveryModal">
               <img src="../../../../assets/images/Dashboard-icons/alert-delay.png" alt="alert delay icon">
               <p>{{"delivery-alert" | translate }}</p>
             </div>
-          </div>
-          <div class="col-sm-6 col-md-4 col-lg-2">
+          </div> -->
+          <!-- <div class="col-sm-6 col-md-4 col-lg-2">
             <div class="process hover" data-bs-toggle="modal" data-bs-target="#imageUpdateModal">
               <img src="../../../../assets/images/Dashboard-icons/update-photos.png" alt="update-photos icon"
                 class="hover">
               <p>{{"request-update-images" | translate }}</p>
             </div>
-          </div>
+          </div> -->
           <div class="col-sm-6 col-md-4 col-lg-2">
             <div class="process hover" data-bs-toggle="modal" data-bs-target="#completionRateUpdateModal">
               <img src="../../../../assets/images/Dashboard-icons/refresh-ratio.png" alt="refresh-ratio icon">
               <p>{{"request-update-completion-rate" | translate }}</p>
             </div>
           </div>
-          <div class="col-sm-6 col-md-4 col-lg-2">
+
+          <!-- <div class="col-sm-6 col-md-4 col-lg-2">
             <div class="process hover" data-bs-toggle="modal" data-bs-target="#deadlineAlertModal">
               <img src="../../../../assets/images/Dashboard-icons/alert-timeout.png" alt="alert timeout icon">
               <p>{{"request-alert" | translate }}</p>
             </div>
-          </div>
+          </div> -->
           <div class="col-sm-6 col-md-4 col-lg-2">
             <div class="process hover" data-bs-toggle="modal" data-bs-target="#inventoryModal">
               <img src="../../../../assets/images/Dashboard-icons/inventory.png" alt="inventory icon">

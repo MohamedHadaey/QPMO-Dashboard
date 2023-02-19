@@ -449,6 +449,7 @@ a {
                     margin: 0;
                     display: flex;
 
+
                     .col-5,
                     .col-7 {
                       padding: 3px 5px;
@@ -457,7 +458,9 @@ a {
                     }
 
                     .col-5 {
-                      text-align: right;
+                      display: flex;
+                      justify-content: flex-start;
+                      align-items: center;
 
                       p {
                         padding: 0;
@@ -465,6 +468,7 @@ a {
                         margin: 0;
                         font-size: 14px;
                         font-weight: 600;
+                        width: fit-content;
                       }
                     }
 
@@ -569,6 +573,8 @@ a {
                       }
 
                       /*********************************************/
+                      
+
                     }
                   }
 
