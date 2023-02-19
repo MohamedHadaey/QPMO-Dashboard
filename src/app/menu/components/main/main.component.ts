@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 declare const $: any;
 declare var google: any;
 import Swal from 'sweetalert2';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 
@@ -29,14 +30,12 @@ export type ChartOptions = {
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
-
-
   public chartOptions: Partial<ChartOptions> | any;
   value: number = 40;
   highValue: number = 60;
   options: Options = {
     floor: 0,
-    ceil: 100
+    ceil: 100,
   };
   // price range inputs
   // section input
@@ -72,20 +71,20 @@ export class MainComponent implements OnInit {
 
   ngOnInit(): void {
     // $(".dropdown-toggle").dropdown('toggle');
-   this.getProjectDetails(6)
+    this.getProjectDetails(6);
     this.chartOptions = {
       chart: {
         height: 150,
-        type: "radialBar"
+        type: 'radialBar',
       },
       plotOptions: {
         radialBar: {
           hollow: {
-            size: "60%"
-          }
+            size: '60%',
+          },
         },
       },
-      labels: ["Percent"],
+      labels: ['Percent'],
     };
     // for check directions after any refresh
     if (this.currentLanguage == 'ar-sa') {
@@ -305,8 +304,8 @@ export class MainComponent implements OnInit {
   //   $('.project-card-details').slideToggle();
   // }
 
-  showProjectCardDetails(projectId:any) {
-    this.getProjectDetails(projectId)
+  showProjectCardDetails(projectId: any) {
+    this.getProjectDetails(projectId);
     $('.project-card-details').slideToggle();
   }
 
@@ -318,18 +317,23 @@ export class MainComponent implements OnInit {
   ////////////////////////////////////////////
 
   /*********** all  **********************/
-  isFav:boolean = false;
-  allListsProjects:any[] = [];
-  allMapProjects:any[] = [];
-  allCardsProjects:any[] = [];
+  isFav: boolean = false;
+  allListsProjects: any[] = [];
+  allMapProjects: any[] = [];
+  allCardsProjects: any[] = [];
 
-    // function of get all list projects
-    getListsProjects(){
-      this._MenuService.getAllListsProjects().subscribe((response) => {
+  // function of get all list projects
+  getListsProjects() {
+    this._MenuService.getAllListsProjects().subscribe(
+      (response) => {
         if (response.Code == 200) {
           this.allListsProjects = response.data;
-          console.log("list view",this.allListsProjects);
-        }else {
+          console.log('list view', this.allListsProjects);
+          localStorage.setItem(
+            'allListsProjects',
+            JSON.stringify(this.allListsProjects)
+          );
+        } else {
           // this.toastr.error(response.Error_Resp)
           if (this.currentLanguage == 'ar-sa') {
             Swal.fire({
@@ -337,483 +341,512 @@ export class MainComponent implements OnInit {
               text: response.Error_Resp,
               icon: 'error',
               confirmButtonText: 'موافق',
-            })
+            });
           } else {
             Swal.fire({
               title: 'Error !!',
               text: response.Error_Resp,
               icon: 'error',
               confirmButtonText: 'OK',
-            })
+            });
           }
         }
-      }, (error) => {
+      },
+      (error) => {
         if (this.currentLanguage == 'ar-sa') {
           Swal.fire({
             title: 'خطأ !!',
             text: 'خطأ غير معروف من الخادم !!',
             icon: 'error',
             confirmButtonText: 'موافق',
-          })
+          });
         } else {
           Swal.fire({
             title: 'Error !!',
             text: 'Unknown error From Server!!',
             icon: 'error',
             confirmButtonText: 'OK',
-          })
+          });
         }
         // if (this.currentLanguage == "ar-sa") {
         //   this.toastr.error("خطأ غير معروف من الخادم !!")
         // }else {
         //   this.toastr.error("Unknown error From Server!!")
         // }
-      })
-    }
+      }
+    );
+  }
 
-       // function of get all Map projects
-       getMapProjects(){
-        this._MenuService.getAllMapProjects().subscribe((response) => {
-          if (response.Code == 200) {
-            this.allMapProjects = response.data;
-            console.log("map view",this.allMapProjects);
-            console.log(this.allMapProjects[0].Project_Location);
+  // function of get all Map projects
+  getMapProjects() {
+    this._MenuService.getAllMapProjects().subscribe(
+      (response) => {
+        if (response.Code == 200) {
+          this.allMapProjects = response.data;
+          localStorage.setItem('allMapProjects', JSON.stringify(this.allMapProjects));
+          console.log('map view', this.allMapProjects);
+          console.log(this.allMapProjects[0].Project_Location);
 
-            let lat = (this.allMapProjects[0].Project_Location).substring(0, (this.allMapProjects[0].Project_Location).indexOf(","));
-            let lng= (this.allMapProjects[0].Project_Location).split(',')[1].trim();
-            console.log("lat: ", lat);
-            console.log("lng: ", lng);
-
-          }else {
-            // this.toastr.error(response.Error_Resp)
-            if (this.currentLanguage == 'ar-sa') {
-              Swal.fire({
-                title: 'خطأ !!',
-                text: response.Error_Resp,
-                icon: 'error',
-                confirmButtonText: 'موافق',
-              })
-            } else {
-              Swal.fire({
-                title: 'Error !!',
-                text: response.Error_Resp,
-                icon: 'error',
-                confirmButtonText: 'OK',
-              })
-            }
-          }
-        }, (error) => {
+          let lat = this.allMapProjects[0].Project_Location.substring(
+            0,
+            this.allMapProjects[0].Project_Location.indexOf(',')
+          );
+          let lng =
+            this.allMapProjects[0].Project_Location.split(',')[1].trim();
+          console.log('lat: ', lat);
+          console.log('lng: ', lng);
+        } else {
+          // this.toastr.error(response.Error_Resp)
           if (this.currentLanguage == 'ar-sa') {
             Swal.fire({
               title: 'خطأ !!',
-              text: 'خطأ غير معروف من الخادم !!',
+              text: response.Error_Resp,
               icon: 'error',
               confirmButtonText: 'موافق',
-            })
+            });
           } else {
             Swal.fire({
               title: 'Error !!',
-              text: 'Unknown error From Server!!',
+              text: response.Error_Resp,
               icon: 'error',
               confirmButtonText: 'OK',
-            })
+            });
           }
-          // if (this.currentLanguage == "ar-sa") {
-          //   this.toastr.error("خطأ غير معروف من الخادم !!")
-          // }else {
-          //   this.toastr.error("Unknown error From Server!!")
-          // }
-        })
-      }
-
-  // function of get all cards projects
-  getCardsProjects(){
-    this._MenuService.getAllCardsProjects().subscribe((response) => {
-      if (response.Code == 200) {
-        this.allCardsProjects = response.data;
-        console.log("card view",this.allCardsProjects);
-      }else {
-        // this.toastr.error(response.Error_Resp)
+        }
+      },
+      (error) => {
         if (this.currentLanguage == 'ar-sa') {
           Swal.fire({
             title: 'خطأ !!',
-            text: response.Error_Resp,
+            text: 'خطأ غير معروف من الخادم !!',
             icon: 'error',
             confirmButtonText: 'موافق',
-          })
+          });
         } else {
           Swal.fire({
             title: 'Error !!',
-            text: response.Error_Resp,
+            text: 'Unknown error From Server!!',
             icon: 'error',
             confirmButtonText: 'OK',
-          })
+          });
         }
+        // if (this.currentLanguage == "ar-sa") {
+        //   this.toastr.error("خطأ غير معروف من الخادم !!")
+        // }else {
+        //   this.toastr.error("Unknown error From Server!!")
+        // }
       }
-    }, (error) => {
-      if (this.currentLanguage == 'ar-sa') {
-        Swal.fire({
-          title: 'خطأ !!',
-          text: 'خطأ غير معروف من الخادم !!',
-          icon: 'error',
-          confirmButtonText: 'موافق',
-        })
-      } else {
-        Swal.fire({
-          title: 'Error !!',
-          text: 'Unknown error From Server!!',
-          icon: 'error',
-          confirmButtonText: 'OK',
-        })
+    );
+  }
+
+  // function of get all cards projects
+  getCardsProjects() {
+    this._MenuService.getAllCardsProjects().subscribe(
+      (response) => {
+        if (response.Code == 200) {
+          this.allCardsProjects = response.data;
+          localStorage.setItem('allCardsProjects', JSON.stringify(this.allCardsProjects));
+          console.log('card view', this.allCardsProjects);
+        } else {
+          // this.toastr.error(response.Error_Resp)
+          if (this.currentLanguage == 'ar-sa') {
+            Swal.fire({
+              title: 'خطأ !!',
+              text: response.Error_Resp,
+              icon: 'error',
+              confirmButtonText: 'موافق',
+            });
+          } else {
+            Swal.fire({
+              title: 'Error !!',
+              text: response.Error_Resp,
+              icon: 'error',
+              confirmButtonText: 'OK',
+            });
+          }
+        }
+      },
+      (error) => {
+        if (this.currentLanguage == 'ar-sa') {
+          Swal.fire({
+            title: 'خطأ !!',
+            text: 'خطأ غير معروف من الخادم !!',
+            icon: 'error',
+            confirmButtonText: 'موافق',
+          });
+        } else {
+          Swal.fire({
+            title: 'Error !!',
+            text: 'Unknown error From Server!!',
+            icon: 'error',
+            confirmButtonText: 'OK',
+          });
+        }
+        // if (this.currentLanguage == "ar-sa") {
+        //   this.toastr.error("خطأ غير معروف من الخادم !!")
+        // }else {
+        //   this.toastr.error("Unknown error From Server!!")
+        // }
       }
-      // if (this.currentLanguage == "ar-sa") {
-      //   this.toastr.error("خطأ غير معروف من الخادم !!")
-      // }else {
-      //   this.toastr.error("Unknown error From Server!!")
-      // }
-    })
+    );
   }
   /*************   fav ********************/
-  favProjects_list:any[] = [];
-  favProjects_card:any[] = [];
+  favProjects_list: any[] = [];
+  favProjects_card: any[] = [];
 
- // fav Projects_list
- getFavProjects_lists(){
-  this._MenuService.getFavProjects_list().subscribe((response => {
-    if(response.Code == 200) {
-      this.favProjects_list = response.data;
-      console.log("fav_lists",this.favProjects_list)
-    } else {
-      // this.toastr.error(response.Error_Resp)
-      if (this.currentLanguage == 'ar-sa') {
-        Swal.fire({
-          title: 'خطأ !!',
-          text: response.Error_Resp,
-          icon: 'error',
-          confirmButtonText: 'موافق',
-        })
-      } else {
-        Swal.fire({
-          title: 'Error !!',
-          text: response.Error_Resp,
-          icon: 'error',
-          confirmButtonText: 'OK',
-        })
+  // fav Projects_list
+  getFavProjects_lists() {
+    this._MenuService.getFavProjects_list().subscribe(
+      (response) => {
+        if (response.Code == 200) {
+          this.favProjects_list = response.data;
+          localStorage.setItem('favProjects_list', JSON.stringify(this.favProjects_list));
+          console.log('fav_lists', this.favProjects_list);
+        } else {
+          // this.toastr.error(response.Error_Resp)
+          if (this.currentLanguage == 'ar-sa') {
+            Swal.fire({
+              title: 'خطأ !!',
+              text: response.Error_Resp,
+              icon: 'error',
+              confirmButtonText: 'موافق',
+            });
+          } else {
+            Swal.fire({
+              title: 'Error !!',
+              text: response.Error_Resp,
+              icon: 'error',
+              confirmButtonText: 'OK',
+            });
+          }
+        }
+      },
+      (error) => {
+        if (this.currentLanguage == 'ar-sa') {
+          Swal.fire({
+            title: 'خطأ !!',
+            text: 'خطأ غير معروف من الخادم !!',
+            icon: 'error',
+            confirmButtonText: 'موافق',
+          });
+        } else {
+          Swal.fire({
+            title: 'Error !!',
+            text: 'Unknown error From Server!!',
+            icon: 'error',
+            confirmButtonText: 'OK',
+          });
+        }
+        // if (this.currentLanguage == "ar-sa") {
+        //   this.toastr.error("خطأ غير معروف من الخادم !!")
+        // }else {
+        //   this.toastr.error("Unknown error From Server!!")
+        // }
       }
-    }
-  }) ,(error) => {
-    if (this.currentLanguage == 'ar-sa') {
-      Swal.fire({
-        title: 'خطأ !!',
-        text: 'خطأ غير معروف من الخادم !!',
-        icon: 'error',
-        confirmButtonText: 'موافق',
-      })
-    } else {
-      Swal.fire({
-        title: 'Error !!',
-        text: 'Unknown error From Server!!',
-        icon: 'error',
-        confirmButtonText: 'OK',
-      })
-    }
-    // if (this.currentLanguage == "ar-sa") {
-    //   this.toastr.error("خطأ غير معروف من الخادم !!")
-    // }else {
-    //   this.toastr.error("Unknown error From Server!!")
-    // }
-  })
-}
+    );
+  }
 
- // fav Projects_card
- getFavProjects_cards(){
-  this._MenuService.getFavProjects_card().subscribe((response => {
-    if(response.Code == 200) {
-      this.favProjects_card = response.data;
-      console.log("fav_cards",this.favProjects_card)
-    } else {
-      // this.toastr.error(response.Error_Resp)
-      if (this.currentLanguage == 'ar-sa') {
-        Swal.fire({
-          title: 'خطأ !!',
-          text: response.Error_Resp,
-          icon: 'error',
-          confirmButtonText: 'موافق',
-        })
-      } else {
-        Swal.fire({
-          title: 'Error !!',
-          text: response.Error_Resp,
-          icon: 'error',
-          confirmButtonText: 'OK',
-        })
+  // fav Projects_card
+  getFavProjects_cards() {
+    this._MenuService.getFavProjects_card().subscribe(
+      (response) => {
+        if (response.Code == 200) {
+          this.favProjects_card = response.data;
+          localStorage.setItem('favProjects_card', JSON.stringify(this.favProjects_card));
+          console.log('fav_cards', this.favProjects_card);
+        } else {
+          // this.toastr.error(response.Error_Resp)
+          if (this.currentLanguage == 'ar-sa') {
+            Swal.fire({
+              title: 'خطأ !!',
+              text: response.Error_Resp,
+              icon: 'error',
+              confirmButtonText: 'موافق',
+            });
+          } else {
+            Swal.fire({
+              title: 'Error !!',
+              text: response.Error_Resp,
+              icon: 'error',
+              confirmButtonText: 'OK',
+            });
+          }
+        }
+      },
+      (error) => {
+        if (this.currentLanguage == 'ar-sa') {
+          Swal.fire({
+            title: 'خطأ !!',
+            text: 'خطأ غير معروف من الخادم !!',
+            icon: 'error',
+            confirmButtonText: 'موافق',
+          });
+        } else {
+          Swal.fire({
+            title: 'Error !!',
+            text: 'Unknown error From Server!!',
+            icon: 'error',
+            confirmButtonText: 'OK',
+          });
+        }
       }
-    }
-  }) ,(error) => {
-    if (this.currentLanguage == 'ar-sa') {
-      Swal.fire({
-        title: 'خطأ !!',
-        text: 'خطأ غير معروف من الخادم !!',
-        icon: 'error',
-        confirmButtonText: 'موافق',
-      })
-    } else {
-      Swal.fire({
-        title: 'Error !!',
-        text: 'Unknown error From Server!!',
-        icon: 'error',
-        confirmButtonText: 'OK',
-      })
-    }
-  })
-}
+    );
+  }
 
-
-projectDetails!:any;
-// function of get specific project
-getProjectDetails(id:any) {
-  this._MenuService.getProjectDetails(id).subscribe((response => {
-    if(response.Code == 200) {
-      this.projectDetails = response.data;
-      console.log(this.projectDetails , " and " , response)
-    } else {
-      if (this.currentLanguage == 'ar-sa') {
-        Swal.fire({
-          title: 'خطأ !!',
-          text: response.Error_Resp,
-          icon: 'error',
-          confirmButtonText: 'موافق',
-        })
-      } else {
-        Swal.fire({
-          title: 'Error !!',
-          text: response.Error_Resp,
-          icon: 'error',
-          confirmButtonText: 'OK',
-        })
+  projectDetails!: any;
+  // function of get specific project
+  getProjectDetails(id: any) {
+    this._MenuService.getProjectDetails(id).subscribe(
+      (response) => {
+        if (response.Code == 200) {
+          this.projectDetails = response.data;
+          console.log(this.projectDetails, ' and ', response);
+        } else {
+          if (this.currentLanguage == 'ar-sa') {
+            Swal.fire({
+              title: 'خطأ !!',
+              text: response.Error_Resp,
+              icon: 'error',
+              confirmButtonText: 'موافق',
+            });
+          } else {
+            Swal.fire({
+              title: 'Error !!',
+              text: response.Error_Resp,
+              icon: 'error',
+              confirmButtonText: 'OK',
+            });
+          }
+        }
+      },
+      (error) => {
+        if (this.currentLanguage == 'ar-sa') {
+          Swal.fire({
+            title: 'خطأ !!',
+            text: 'خطأ غير معروف من الخادم !!',
+            icon: 'error',
+            confirmButtonText: 'موافق',
+          });
+        } else {
+          Swal.fire({
+            title: 'Error !!',
+            text: 'Unknown error From Server!!',
+            icon: 'error',
+            confirmButtonText: 'OK',
+          });
+        }
+        // if (this.currentLanguage == "ar-sa") {
+        //   this.toastr.error("خطأ غير معروف من الخادم !!")
+        // }else {
+        //   this.toastr.error("Unknown error From Server!!")
+        // }
       }
-    }
-  }) ,(error) => {
-    if (this.currentLanguage == 'ar-sa') {
-      Swal.fire({
-        title: 'خطأ !!',
-        text: 'خطأ غير معروف من الخادم !!',
-        icon: 'error',
-        confirmButtonText: 'موافق',
-      })
-    } else {
-      Swal.fire({
-        title: 'Error !!',
-        text: 'Unknown error From Server!!',
-        icon: 'error',
-        confirmButtonText: 'OK',
-      })
-    }
-    // if (this.currentLanguage == "ar-sa") {
-    //   this.toastr.error("خطأ غير معروف من الخادم !!")
-    // }else {
-    //   this.toastr.error("Unknown error From Server!!")
-    // }
-  })
-};
+    );
+  }
 
-
-//********         add to fav       ************/
-addProjectToFav(id:any) {
-  this._MenuService.addToFav(id).subscribe((response) => {
-    if(response.Code == 200) {
-      if (this.currentLanguage == 'ar-sa') {
-        Swal.fire({
-          title: 'نجاح !!',
-          text: "تم إضافة المشروع بنجاح",
-          icon: 'success',
-          confirmButtonText: 'موافق',
-        })
-      } else {
-        Swal.fire({
-          title: 'Success !!',
-          text: "The project has been successfully added",
-          icon: 'success',
-          confirmButtonText: 'OK',
-        })
+  //********         add to fav       ************/
+  addProjectToFav(id: any) {
+    this._MenuService.addToFav(id).subscribe(
+      (response) => {
+        if (response.Code == 200) {
+          if (this.currentLanguage == 'ar-sa') {
+            Swal.fire({
+              title: 'نجاح !!',
+              text: 'تم إضافة المشروع بنجاح',
+              icon: 'success',
+              confirmButtonText: 'موافق',
+            });
+          } else {
+            Swal.fire({
+              title: 'Success !!',
+              text: 'The project has been successfully added',
+              icon: 'success',
+              confirmButtonText: 'OK',
+            });
+          }
+          this.getListsProjects();
+          this.getMapProjects();
+          this.getCardsProjects();
+          this.getFavProjects_lists();
+          this.getFavProjects_cards();
+        } else {
+          if (this.currentLanguage == 'ar-sa') {
+            Swal.fire({
+              title: 'خطأ !!',
+              text: response.Error_Resp,
+              icon: 'error',
+              confirmButtonText: 'موافق',
+            });
+          } else {
+            Swal.fire({
+              title: 'Error !!',
+              text: response.Error_Resp,
+              icon: 'error',
+              confirmButtonText: 'OK',
+            });
+          }
+        }
+      },
+      (errorr) => {
+        if (this.currentLanguage == 'ar-sa') {
+          Swal.fire({
+            title: 'خطأ !!',
+            text: 'خطأ غير معروف من الخادم !!',
+            icon: 'error',
+            confirmButtonText: 'موافق',
+          });
+        } else {
+          Swal.fire({
+            title: 'Error !!',
+            text: 'Unknown error From Server!!',
+            icon: 'error',
+            confirmButtonText: 'OK',
+          });
+        }
       }
-      this.getListsProjects();
-      this.getMapProjects();
-      this.getCardsProjects();
-      this.getFavProjects_lists();
-      this.getFavProjects_cards();
-    } else {
-      if (this.currentLanguage == 'ar-sa') {
-        Swal.fire({
-          title: 'خطأ !!',
-          text: response.Error_Resp,
-          icon: 'error',
-          confirmButtonText: 'موافق',
-        })
-      } else {
-        Swal.fire({
-          title: 'Error !!',
-          text: response.Error_Resp,
-          icon: 'error',
-          confirmButtonText: 'OK',
-        })
+    );
+  }
+
+  //********         remove from fav         ************/
+
+  removeProjectFromFav(id: any) {
+    this._MenuService.removeFromFav(id).subscribe(
+      (response) => {
+        if (response.Code == 200) {
+          if (this.currentLanguage == 'ar-sa') {
+            Swal.fire({
+              title: 'نجاح !!',
+              text: 'تم حذف المشروع بنجاح',
+              icon: 'success',
+              confirmButtonText: 'موافق',
+            });
+          } else {
+            Swal.fire({
+              title: 'Success !!',
+              text: 'The project has been successfully deleted',
+              icon: 'success',
+              confirmButtonText: 'OK',
+            });
+          }
+          this.getListsProjects();
+          this.getMapProjects();
+          this.getCardsProjects();
+          this.getFavProjects_lists();
+          this.getFavProjects_cards();
+        } else {
+          if (this.currentLanguage == 'ar-sa') {
+            Swal.fire({
+              title: 'خطأ !!',
+              text: response.Error_Resp,
+              icon: 'error',
+              confirmButtonText: 'موافق',
+            });
+          } else {
+            Swal.fire({
+              title: 'Error !!',
+              text: response.Error_Resp,
+              icon: 'error',
+              confirmButtonText: 'OK',
+            });
+          }
+        }
+      },
+      (errorr) => {
+        if (this.currentLanguage == 'ar-sa') {
+          Swal.fire({
+            title: 'خطأ !!',
+            text: 'خطأ غير معروف من الخادم !!',
+            icon: 'error',
+            confirmButtonText: 'موافق',
+          });
+        } else {
+          Swal.fire({
+            title: 'Error !!',
+            text: 'Unknown error From Server!!',
+            icon: 'error',
+            confirmButtonText: 'OK',
+          });
+        }
       }
-    }
-  }, (errorr) => {
-    if (this.currentLanguage == 'ar-sa') {
-      Swal.fire({
-        title: 'خطأ !!',
-        text: 'خطأ غير معروف من الخادم !!',
-        icon: 'error',
-        confirmButtonText: 'موافق',
-      })
-    } else {
-      Swal.fire({
-        title: 'Error !!',
-        text: 'Unknown error From Server!!',
-        icon: 'error',
-        confirmButtonText: 'OK',
-      })
-    }
-  })
-}
+    );
+  }
 
-//********         remove from fav         ************/
-
-removeProjectFromFav(id:any) {
-  this._MenuService.removeFromFav(id).subscribe((response) => {
-    if(response.Code == 200) {
-      if (this.currentLanguage == 'ar-sa') {
-        Swal.fire({
-          title: 'نجاح !!',
-          text: "تم حذف المشروع بنجاح",
-          icon: 'success',
-          confirmButtonText: 'موافق',
-        })
-      } else {
-        Swal.fire({
-          title: 'Success !!',
-          text: "The project has been successfully deleted",
-          icon: 'success',
-          confirmButtonText: 'OK',
-        })
+  // get projcts types
+  projectsTypes: any[] = [];
+  getProjectsTypes() {
+    this._MenuService.getAllCategoties().subscribe(
+      (response) => {
+        if (response.Code == 200) {
+          this.projectsTypes = response.data;
+          console.log(this.projectsTypes);
+        } else {
+          if (this.currentLanguage == 'ar-sa') {
+            Swal.fire({
+              title: 'خطأ !!',
+              text: response.Error_Resp,
+              icon: 'error',
+              confirmButtonText: 'موافق',
+            });
+          } else {
+            Swal.fire({
+              title: 'Error !!',
+              text: response.Error_Resp,
+              icon: 'error',
+              confirmButtonText: 'OK',
+            });
+          }
+        }
+      },
+      (error) => {
+        if (this.currentLanguage == 'ar-sa') {
+          this.toastr.error('خطأ غير معروف من الخادم !!');
+        } else {
+          this.toastr.error('Unknown error From Server!!');
+        }
       }
-      this.getListsProjects();
-      this.getMapProjects();
-      this.getCardsProjects();
-      this.getFavProjects_lists();
-      this.getFavProjects_cards();
-    } else {
-      if (this.currentLanguage == 'ar-sa') {
-        Swal.fire({
-          title: 'خطأ !!',
-          text: response.Error_Resp,
-          icon: 'error',
-          confirmButtonText: 'موافق',
-        })
-      } else {
-        Swal.fire({
-          title: 'Error !!',
-          text: response.Error_Resp,
-          icon: 'error',
-          confirmButtonText: 'OK',
-        })
+    );
+  }
+
+  // get projcts states
+  projectsStates: any[] = [];
+  getProjectsStates() {
+    this._MenuService.getAllStates().subscribe(
+      (response) => {
+        if (response.Code == 200) {
+          this.projectsStates = response.data;
+          console.log(this.projectsStates);
+        } else {
+          if (this.currentLanguage == 'ar-sa') {
+            Swal.fire({
+              title: 'خطأ !!',
+              text: response.Error_Resp,
+              icon: 'error',
+              confirmButtonText: 'موافق',
+            });
+          } else {
+            Swal.fire({
+              title: 'Error !!',
+              text: response.Error_Resp,
+              icon: 'error',
+              confirmButtonText: 'OK',
+            });
+          }
+        }
+      },
+      (error) => {
+        if (this.currentLanguage == 'ar-sa') {
+          this.toastr.error('خطأ غير معروف من الخادم !!');
+        } else {
+          this.toastr.error('Unknown error From Server!!');
+        }
       }
-    }
-  }, (errorr) => {
-    if (this.currentLanguage == 'ar-sa') {
-      Swal.fire({
-        title: 'خطأ !!',
-        text: 'خطأ غير معروف من الخادم !!',
-        icon: 'error',
-        confirmButtonText: 'موافق',
-      })
-    } else {
-      Swal.fire({
-        title: 'Error !!',
-        text: 'Unknown error From Server!!',
-        icon: 'error',
-        confirmButtonText: 'OK',
-      })
-    }
-  })
-};
-
-
- // get projcts types
- projectsTypes:any[] = [];
- getProjectsTypes() {
-   this._MenuService.getAllCategoties().subscribe((response => {
-     if(response.Code == 200) {
-       this.projectsTypes = response.data;
-       console.log(this.projectsTypes)
-     } else {
-       if (this.currentLanguage == 'ar-sa') {
-         Swal.fire({
-           title: 'خطأ !!',
-           text: response.Error_Resp,
-           icon: 'error',
-           confirmButtonText: 'موافق',
-         })
-       } else {
-         Swal.fire({
-           title: 'Error !!',
-           text: response.Error_Resp,
-           icon: 'error',
-           confirmButtonText: 'OK',
-         })
-       }
-     }
-   }) ,(error) => {
-     if (this.currentLanguage == "ar-sa") {
-       this.toastr.error("خطأ غير معروف من الخادم !!")
-     }else {
-       this.toastr.error("Unknown error From Server!!")
-     }
-   })
- };
-
-   // get projcts states
-   projectsStates:any[] = [];
-   getProjectsStates() {
-     this._MenuService.getAllStates().subscribe((response => {
-       if(response.Code == 200) {
-         this.projectsStates = response.data;
-         console.log(this.projectsStates)
-       } else {
-         if (this.currentLanguage == 'ar-sa') {
-           Swal.fire({
-             title: 'خطأ !!',
-             text: response.Error_Resp,
-             icon: 'error',
-             confirmButtonText: 'موافق',
-           })
-         } else {
-           Swal.fire({
-             title: 'Error !!',
-             text: response.Error_Resp,
-             icon: 'error',
-             confirmButtonText: 'OK',
-           })
-         }
-       }
-     }) ,(error) => {
-       if (this.currentLanguage == "ar-sa") {
-         this.toastr.error("خطأ غير معروف من الخادم !!")
-       }else {
-         this.toastr.error("Unknown error From Server!!")
-       }
-     })
-   }
+    );
+  }
   /***************************************/
   // filter form inputs
   filterForm: FormGroup = new FormGroup({
-    ProjectType: new FormControl('1', [
-      Validators.required
-    ]),
-    ProjectStatus: new FormControl('1', [
-      Validators.required
-    ]),
+    ProjectType: new FormControl('1', [Validators.required]),
+    ProjectStatus: new FormControl('1', [Validators.required]),
     // now_check: new FormControl('checked', [Validators.required]),
     // complete_check: new FormControl(false, [Validators.required]),
 
@@ -822,18 +855,28 @@ removeProjectFromFav(id:any) {
     // end_check: new FormControl('checked', [Validators.required]),
 
     // not_check: new FormControl(false, [Validators.required]),
-    project_start: new FormControl(null, [Validators.required]),
-    project_end: new FormControl(null, [Validators.required]),
+    StartDate: new FormControl(null, [Validators.required]),
+    EndDate: new FormControl(null, [Validators.required]),
     UserPer: new FormControl([25, 75], [Validators.required]),
     MaqawlPer: new FormControl([25, 75], [Validators.required]),
   });
 
   submitFilterForm(filterForm: FormGroup) {
-    filterForm.value.UserPer = (filterForm.value.UserPer[1]-filterForm.value.UserPer[0]) ;
-    filterForm.value.MaqawlPer = (filterForm.value.MaqawlPer[1]-filterForm.value.MaqawlPer[0]) ;
+    filterForm.value.UserPer =
+      filterForm.value.UserPer[1] - filterForm.value.UserPer[0];
+    filterForm.value.MaqawlPer =
+      filterForm.value.MaqawlPer[1] - filterForm.value.MaqawlPer[0];
     console.log(filterForm.value.UserPer);
     console.log(filterForm.value.MaqawlPer);
-    console.log(filterForm.value)
+    console.log(filterForm.value);
+    this._MenuService.filterProjects(filterForm.value).subscribe(
+      (response) => {
+        console.log(response);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   // show favourites projects in all themes
@@ -877,10 +920,53 @@ removeProjectFromFav(id:any) {
   // this function to log out
   logOut() {
     this._AuthService.logout();
-  };
+  }
 
   closeDropdown() {
-    $(".form-dropdown-menu").removeClass("show");
+    $('.form-dropdown-menu').removeClass('show');
+  }
+
+  // function of search
+  search(x: any) {
+    if (
+      x.target.value == null ||
+      x.target.value == '' ||
+      x.target.value == ' '
+    ) {
+      if (this.isFav == false) {
+        this.allListsProjects = JSON.parse(localStorage.getItem('allListsProjects') || '{}');
+        this.allMapProjects = JSON.parse(localStorage.getItem('allMapProjects') || '{}');
+        this.allCardsProjects = JSON.parse(localStorage.getItem('allCardsProjects') || '{}');
+      }else {
+        this.favProjects_list = JSON.parse(localStorage.getItem('favProjects_list') || '{}');
+        this.favProjects_card = JSON.parse(localStorage.getItem('favProjects_card') || '{}');
+      }
+      
+    } else {
+      if (this.isFav == false) { 
+        this.allListsProjects = JSON.parse(localStorage.getItem('allListsProjects') || '{}');
+        this.allMapProjects = JSON.parse(localStorage.getItem('allMapProjects') || '{}');
+        this.allCardsProjects = JSON.parse(localStorage.getItem('allCardsProjects') || '{}');
+        
+        this.allListsProjects = this.allListsProjects.filter((project) => project.Project_Name.toLowerCase().includes(x.target.value.toLowerCase()));
+        this.allMapProjects = this.allMapProjects.filter((project) => project.Project_Name.toLowerCase().includes(x.target.value.toLowerCase()));
+        this.allCardsProjects = this.allCardsProjects.filter((project) => project.Project_Name.toLowerCase().includes(x.target.value.toLowerCase()));
+      } else {
+        this.favProjects_list = JSON.parse(localStorage.getItem('favProjects_list') || '{}');
+        this.favProjects_card = JSON.parse(localStorage.getItem('favProjects_card') || '{}');
+
+        this.favProjects_list = this.favProjects_list.filter((project) => project.Project_Name.toLowerCase().includes(x.target.value.toLowerCase()));
+        this.allListsProjects = this.favProjects_list
+        this.favProjects_card = this.favProjects_card.filter((project) => project.Project_Name.toLowerCase().includes(x.target.value.toLowerCase()));
+        this.allCardsProjects = this.favProjects_card
+      }
+      
+
+ 
+
+
+
+    }
   }
 }
 

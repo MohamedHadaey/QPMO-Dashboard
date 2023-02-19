@@ -42,8 +42,9 @@ export class FavouritesComponent implements OnInit {
     this.getFavProjects();
     this.getProjectsTypes();
     this.getProjectsStates();
-  
-  }
+  };
+
+
 
   // selectedDate: Date = new Date();
   // getDate(date:any){
@@ -71,8 +72,8 @@ export class FavouritesComponent implements OnInit {
     // end_check: new FormControl('checked', [Validators.required]),
 
     // not_check: new FormControl(false, [Validators.required]),
-    project_start: new FormControl(null, [Validators.required]),
-    project_end: new FormControl(null, [Validators.required]),
+    StartDate: new FormControl(null, [Validators.required]),
+    EndDate: new FormControl(null, [Validators.required]),
     UserPer: new FormControl([25, 75], [Validators.required]),
     MaqawlPer: new FormControl([25, 75], [Validators.required]),
   });
@@ -82,7 +83,12 @@ export class FavouritesComponent implements OnInit {
     filterForm.value.MaqawlPer = (filterForm.value.MaqawlPer[1]-filterForm.value.MaqawlPer[0]) ;
     console.log(filterForm.value.UserPer);
     console.log(filterForm.value.MaqawlPer);
-    console.log(filterForm.value)
+    console.log(filterForm.value);
+    this._MenuService.filterProjects(filterForm.value).subscribe((response) => {
+      console.log(response);
+    } , (error) => {
+      console.log(error);
+    })
   }
 
   // this function to log out
@@ -108,7 +114,8 @@ export class FavouritesComponent implements OnInit {
     this._MenuService.getFavProjects_list().subscribe((response => {
       if(response.Code == 200) {
         this.favouriteProjects = response.data;
-        console.log(this.favouriteProjects)
+        console.log(this.favouriteProjects);
+        localStorage.setItem("favProjects", JSON.stringify(this.favouriteProjects));
       } else {
         if (this.currentLanguage == 'ar-sa') {
           Swal.fire({
@@ -309,5 +316,17 @@ export class FavouritesComponent implements OnInit {
         this.toastr.error("Unknown error From Server!!")
       }
     })
+  }
+
+
+  // function of search
+  search(x:any) { 
+    console.log(x.target.value)
+    if (x.target.value == null || x.target.value == "" || x.target.value == " " ){
+      this.favouriteProjects = JSON.parse(localStorage.getItem("favProjects") || '{}');
+    }else {
+      this.favouriteProjects = JSON.parse(localStorage.getItem("favProjects") || '{}');
+      this.favouriteProjects = this.favouriteProjects.filter(project => project.Project_Name.toLowerCase().includes(x.target.value.toLowerCase()));
+    }
   }
 }

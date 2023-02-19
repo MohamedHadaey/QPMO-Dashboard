@@ -53,4 +53,8 @@ export class MenuService {
   getAllStates():Observable<any> {
     return this.http.get( `${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/ProjectStatus/GetAll?culture=${this._AuthService.currentLanguage}` )
   }
+
+  filterProjects(data:any):Observable<any> {
+    return this.http.post( `${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/Projects/FilterProjects_Table?culture=${this._AuthService.currentLanguage}`, data)
+  }
 }

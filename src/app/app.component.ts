@@ -14,7 +14,8 @@ export class AppComponent {
   currentLanguage: any = 'ar-sa';
   constructor(
     public translate: TranslateService,
-    private _TranslationService: TranslationService
+    private _TranslationService: TranslationService,
+    
   ) {
     this.currentLanguage = localStorage.getItem('currentLanguage') || 'ar-sa';
     this.translate.use(this.currentLanguage);
@@ -30,6 +31,6 @@ export class AppComponent {
     });
 
     // to disable inspect element, f12 button and developer tools
-    // disableDevtool();
+    disableDevtool();
   }
 }

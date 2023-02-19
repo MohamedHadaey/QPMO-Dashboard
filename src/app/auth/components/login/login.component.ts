@@ -22,7 +22,12 @@ export class LoginComponent implements OnInit {
     private toastr: ToastrService,
     private spinner: NgxSpinnerService
   ) {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.spinner.show();
+    $(window).on("load" , () => {
+      this.spinner.hide()
+    })
+  }
 
   // login form validation
   loginForm: FormGroup = new FormGroup({

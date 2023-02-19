@@ -33,6 +33,9 @@ import { BrowserModule } from '@angular/platform-browser';
 // angular material date picker
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatInputModule } from "@angular/material/input";
+import { NgxSpinnerModule } from "ngx-spinner";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -53,9 +56,12 @@ import { MatInputModule } from "@angular/material/input";
     NgApexchartsModule,
     NgxSliderModule,
     TranslateModule,
+    FormsModule,
     SwiperModule,
     GoogleMapsModule,
     MatDatepickerModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule,
     MatInputModule,
     BrowserModule,
     CalendarModule.forRoot({

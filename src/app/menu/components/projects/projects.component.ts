@@ -51,8 +51,8 @@ export class ProjectsComponent implements OnInit {
     // end_check: new FormControl('checked', [Validators.required]),
 
     // not_check: new FormControl(false, [Validators.required]),
-    project_start: new FormControl(null, [Validators.required]),
-    project_end: new FormControl(null, [Validators.required]),
+    StartDate: new FormControl(null, [Validators.required]),
+    EndDate: new FormControl(null, [Validators.required]),
     UserPer: new FormControl([25, 75], [Validators.required]),
     MaqawlPer: new FormControl([25, 75], [Validators.required]),
   });
@@ -62,7 +62,13 @@ export class ProjectsComponent implements OnInit {
     filterForm.value.MaqawlPer = (filterForm.value.MaqawlPer[1]-filterForm.value.MaqawlPer[0]) ;
     console.log(filterForm.value.UserPer);
     console.log(filterForm.value.MaqawlPer);
-    console.log(filterForm.value)
+    console.log(filterForm.value);
+
+    this._MenuService.filterProjects(filterForm.value).subscribe((response) => {
+      console.log(response);
+    } , (error) => {
+      console.log(error);
+    })
   }
 
   ngOnInit(): void {
@@ -83,6 +89,7 @@ export class ProjectsComponent implements OnInit {
       if(response.Code == 200) {
         this.followedProjects = response.data;
         console.log("followedProjectst", this.followedProjects);
+        localStorage.setItem("followedProjects", JSON.stringify(this.followedProjects));
       } else {
         if (this.currentLanguage == 'ar-sa') {
           Swal.fire({
@@ -242,5 +249,15 @@ getProjectDetails(id:any) {
 
 closeDropdown() {
   $(".form-dropdown-menu").removeClass("show");
+}
+
+// function of search
+search(x:any) { 
+  if (x.target.value == null || x.target.value == "" || x.target.value == " " ){
+    this.followedProjects = JSON.parse(localStorage.getItem("followedProjects") || '{}');
+  }else {
+    this.followedProjects = JSON.parse(localStorage.getItem("followedProjects") || '{}');
+    this.followedProjects = this.followedProjects.filter(project => project.ProjectDTO.Project_Name.toLowerCase().includes(x.target.value.toLowerCase()));
+  }
 }
 }
