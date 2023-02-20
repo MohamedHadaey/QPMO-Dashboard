@@ -321,7 +321,6 @@ export class FavouritesComponent implements OnInit {
 
   // function of search
   search(x:any) { 
-    console.log(x.target.value)
     if (x.target.value == null || x.target.value == "" || x.target.value == " " ){
       this.favouriteProjects = JSON.parse(localStorage.getItem("favProjects") || '{}');
     }else {

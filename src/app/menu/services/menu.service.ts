@@ -26,6 +26,10 @@ export class MenuService {
     return this.http.get( `${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/FavProjects/GetFavoriteProjects_Table?culture=${this._AuthService.currentLanguage}` )
   }
 
+  getFavProjects_map():Observable<any> {
+    return this.http.get( `${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/FavProjects/GetFavoriteProjects_Map?culture=${this._AuthService.currentLanguage}` )
+  }
+
   getFavProjects_card():Observable<any> {
     return this.http.get( `${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/FavProjects/GetFavoriteProjects_Card?culture=${this._AuthService.currentLanguage}` )
   }

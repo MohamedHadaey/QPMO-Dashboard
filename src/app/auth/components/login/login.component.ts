@@ -23,10 +23,6 @@ export class LoginComponent implements OnInit {
     private spinner: NgxSpinnerService
   ) {}
   ngOnInit(): void {
-    this.spinner.show();
-    $(window).on("load" , () => {
-      this.spinner.hide()
-    })
   }
 
   // login form validation

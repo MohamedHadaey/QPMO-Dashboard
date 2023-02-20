@@ -24,7 +24,7 @@ export class ForgetPassComponent implements OnInit {
   ) {}
 
   phoneForm: FormGroup = new FormGroup({
-    Phone: new FormControl('', [Validators.required]),
+    Phone: new FormControl('', [Validators.required,Validators.min(10),Validators.pattern(/^05[0-9]{8}$/),]),
   });
 
   // function of enter user phone

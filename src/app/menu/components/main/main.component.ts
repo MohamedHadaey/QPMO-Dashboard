@@ -66,21 +66,6 @@ export class MainComponent implements OnInit {
 
   ngOnInit(): void {
     // $(".dropdown-toggle").dropdown('toggle');
-    this.getProjectDetails(6);
-    this.chartOptions = {
-      chart: {
-        height: 150,
-        type: 'radialBar',
-      },
-      plotOptions: {
-        radialBar: {
-          hollow: {
-            size: '60%',
-          },
-        },
-      },
-      labels: ['Percent'],
-    };
     // for check directions after any refresh
     if (this.currentLanguage == 'ar-sa') {
       $('.content-body').removeClass('content-body-ltr');
@@ -207,10 +192,10 @@ export class MainComponent implements OnInit {
   }
 
   // this function to open day projects panel
-  showDayProjects() {
-    $('.day-projects').slideToggle();
-    $('.project-card-details').slideUp();
-  }
+  // showDayProjects() {
+  //   $('.day-projects').slideToggle();
+  //   $('.project-card-details').slideUp();
+  // }
   ////////////////////////////////////////////
 
   /*********** all  **********************/
@@ -225,7 +210,7 @@ export class MainComponent implements OnInit {
       (response) => {
         if (response.Code == 200) {
           this.allListsProjects = response.data;
-          console.log('list view', this.allListsProjects);
+         // console.log('list view', this.allListsProjects);
           localStorage.setItem(
             'allListsProjects',
             JSON.stringify(this.allListsProjects)
@@ -280,22 +265,14 @@ export class MainComponent implements OnInit {
       (response) => {
         if (response.Code == 200) {
           this.allMapProjects = response.data;
-          localStorage.setItem(
-            'allMapProjects',
-            JSON.stringify(this.allMapProjects)
-          );
+          localStorage.setItem('allMapProjects', JSON.stringify(this.allMapProjects));
           console.log('map view', this.allMapProjects);
-          console.log(this.allMapProjects[0].Project_Location);
+          // console.log(this.allMapProjects[0].Project_Location);
           // debugger;
           this.projectslocations = [];
-
           this.allMapProjects.forEach((i) => {
-            let lat = this.allMapProjects[0].Project_Location.substring(
-              0,
-              this.allMapProjects[0].Project_Location.indexOf(',')
-            );
-            let lng =
-              this.allMapProjects[0].Project_Location.split(',')[1].trim();
+            let lat = i.Project_Location.substring(0,this.allMapProjects[0].Project_Location.indexOf(','));
+            let lng = i.Project_Location.split(',')[1].trim();
             this.projectslocations.push({
               ID: i.ID,
               position: {
@@ -313,10 +290,10 @@ export class MainComponent implements OnInit {
                 url: '../../../../assets/maps_images/yellow.png',
               },
             });
-            console.log('lat: ', parseFloat(lat));
-            console.log('lng: ', parseFloat(lng));
+            console.log('lat: ', parseFloat(lat),'lng: ', parseFloat(lng));
+
           });
-          console.log(this.projectslocations);
+          //console.log("projectslocations" ,this.projectslocations);
         } else {
           // this.toastr.error(response.Error_Resp)
           if (this.currentLanguage == 'ar-sa') {
@@ -371,7 +348,7 @@ export class MainComponent implements OnInit {
             'allCardsProjects',
             JSON.stringify(this.allCardsProjects)
           );
-          console.log('card view', this.allCardsProjects);
+          // console.log('card view', this.allCardsProjects);
         } else {
           // this.toastr.error(response.Error_Resp)
           if (this.currentLanguage == 'ar-sa') {
@@ -417,6 +394,7 @@ export class MainComponent implements OnInit {
   }
   /*************   fav ********************/
   favProjects_list: any[] = [];
+  favProjects_map: any[] = [];
   favProjects_card: any[] = [];
 
   // fav Projects_list
@@ -429,7 +407,85 @@ export class MainComponent implements OnInit {
             'favProjects_list',
             JSON.stringify(this.favProjects_list)
           );
-          console.log('fav_lists', this.favProjects_list);
+          // console.log('fav_lists', this.favProjects_list);
+        } else {
+          // this.toastr.error(response.Error_Resp)
+          if (this.currentLanguage == 'ar-sa') {
+            Swal.fire({
+              title: 'خطأ !!',
+              text: response.Error_Resp,
+              icon: 'error',
+              confirmButtonText: 'موافق',
+            });
+          } else {
+            Swal.fire({
+              title: 'Error !!',
+              text: response.Error_Resp,
+              icon: 'error',
+              confirmButtonText: 'OK',
+            });
+          }
+        }
+      },
+      (error) => {
+        if (this.currentLanguage == 'ar-sa') {
+          Swal.fire({
+            title: 'خطأ !!',
+            text: 'خطأ غير معروف من الخادم !!',
+            icon: 'error',
+            confirmButtonText: 'موافق',
+          });
+        } else {
+          Swal.fire({
+            title: 'Error !!',
+            text: 'Unknown error From Server!!',
+            icon: 'error',
+            confirmButtonText: 'OK',
+          });
+        }
+        // if (this.currentLanguage == "ar-sa") {
+        //   this.toastr.error("خطأ غير معروف من الخادم !!")
+        // }else {
+        //   this.toastr.error("Unknown error From Server!!")
+        // }
+      }
+    );
+  };
+
+   // fav Projects_list
+   getFavProjects_map() {
+    this._MenuService.getFavProjects_map().subscribe(
+      (response) => {
+        if (response.Code == 200) {
+          this.favProjects_map = response.data;
+          localStorage.setItem('favProjects_map',JSON.stringify(this.favProjects_map));
+          console.log('fav_maps', this.favProjects_map);
+
+
+          this.projectslocations = [];
+          this.favProjects_map.forEach((i) => {
+            let lat = i.Project_Location.substring(0,this.favProjects_map[0].Project_Location.indexOf(','));
+            let lng = i.Project_Location.split(',')[1].trim();
+            this.projectslocations.push({
+              ID: i.ID,
+              position: {
+                lat: parseFloat(lat),
+                lng: parseFloat(lng),
+              },
+              status: {
+                scaledSize: {
+                  height: 40,
+                  width: 40,
+                  equals(other) {
+                    return true;
+                  },
+                },
+                url: '../../../../assets/maps_images/yellow.png',
+              },
+            });
+            console.log('lat: ', parseFloat(lat),'lng: ', parseFloat(lng));
+
+          });
         } else {
           // this.toastr.error(response.Error_Resp)
           if (this.currentLanguage == 'ar-sa') {
@@ -484,7 +540,7 @@ export class MainComponent implements OnInit {
             'favProjects_card',
             JSON.stringify(this.favProjects_card)
           );
-          console.log('fav_cards', this.favProjects_card);
+          // console.log('fav_cards', this.favProjects_card);
         } else {
           // this.toastr.error(response.Error_Resp)
           if (this.currentLanguage == 'ar-sa') {
@@ -531,7 +587,7 @@ export class MainComponent implements OnInit {
       (response) => {
         if (response.Code == 200) {
           this.projectDetails = response.data;
-          console.log(this.projectDetails, ' and ', response);
+          // console.log(this.projectDetails, ' and ', response);
         } else {
           if (this.currentLanguage == 'ar-sa') {
             Swal.fire({
@@ -709,7 +765,7 @@ export class MainComponent implements OnInit {
       (response) => {
         if (response.Code == 200) {
           this.projectsTypes = response.data;
-          console.log(this.projectsTypes);
+          // console.log(this.projectsTypes);
         } else {
           if (this.currentLanguage == 'ar-sa') {
             Swal.fire({
@@ -745,7 +801,7 @@ export class MainComponent implements OnInit {
       (response) => {
         if (response.Code == 200) {
           this.projectsStates = response.data;
-          console.log(this.projectsStates);
+          // console.log(this.projectsStates);
         } else {
           if (this.currentLanguage == 'ar-sa') {
             Swal.fire({
@@ -797,9 +853,9 @@ export class MainComponent implements OnInit {
       filterForm.value.UserPer[1] - filterForm.value.UserPer[0];
     filterForm.value.MaqawlPer =
       filterForm.value.MaqawlPer[1] - filterForm.value.MaqawlPer[0];
-    console.log(filterForm.value.UserPer);
-    console.log(filterForm.value.MaqawlPer);
-    console.log(filterForm.value);
+    // console.log(filterForm.value.UserPer);
+    // console.log(filterForm.value.MaqawlPer);
+    // console.log(filterForm.value);
     this._MenuService.filterProjects(filterForm.value).subscribe(
       (response) => {
         console.log(response);
@@ -814,7 +870,9 @@ export class MainComponent implements OnInit {
   showFav() {
     this.isFav = true;
     this.allListsProjects = this.favProjects_list;
+    this.allMapProjects = this.favProjects_map;
     this.allCardsProjects = this.favProjects_card;
+    this.getFavProjects_map();
   }
 
   // show favourites projects in all themes
@@ -822,6 +880,7 @@ export class MainComponent implements OnInit {
     this.isFav = false;
     this.getListsProjects();
     this.getCardsProjects();
+    this.getMapProjects();
   }
 
   // show list theme
@@ -865,70 +924,135 @@ export class MainComponent implements OnInit {
       x.target.value == ' '
     ) {
       if (this.isFav == false) {
-        this.allListsProjects = JSON.parse(
-          localStorage.getItem('allListsProjects') || '{}'
-        );
-        this.allMapProjects = JSON.parse(
-          localStorage.getItem('allMapProjects') || '{}'
-        );
-        this.allCardsProjects = JSON.parse(
-          localStorage.getItem('allCardsProjects') || '{}'
-        );
+        this.allListsProjects = JSON.parse(localStorage.getItem('allListsProjects') || '{}');
+        this.allMapProjects = JSON.parse(localStorage.getItem('allMapProjects') || '{}');
+        this.allCardsProjects = JSON.parse(localStorage.getItem('allCardsProjects') || '{}');
+
+        this.projectslocations = [];
+        this.allMapProjects.forEach((i) => {
+          let lat = i.Project_Location.substring(0,this.allMapProjects[0].Project_Location.indexOf(','));
+          let lng = i.Project_Location.split(',')[1].trim();
+          this.projectslocations.push({
+            ID: i.ID,
+            position: {
+              lat: parseFloat(lat),
+              lng: parseFloat(lng),
+            },
+            status: {
+              scaledSize: {
+                height: 40,
+                width: 40,
+                equals(other) {
+                  return true;
+                },
+              },
+              url: '../../../../assets/maps_images/yellow.png',
+            },
+          });
+          console.log('lat: ', parseFloat(lat),'lng: ', parseFloat(lng));
+
+        });
       } else {
-        this.favProjects_list = JSON.parse(
-          localStorage.getItem('favProjects_list') || '{}'
-        );
-        this.favProjects_card = JSON.parse(
-          localStorage.getItem('favProjects_card') || '{}'
-        );
+        this.favProjects_list = JSON.parse(localStorage.getItem('favProjects_list') || '{}');
+        this.favProjects_map = JSON.parse(localStorage.getItem('favProjects_map') || '{}');
+        this.favProjects_card = JSON.parse(localStorage.getItem('favProjects_card') || '{}');
+
+        this.projectslocations = [];
+          this.favProjects_map.forEach((i) => {
+            let lat = i.Project_Location.substring(0,this.favProjects_map[0].Project_Location.indexOf(','));
+            let lng = i.Project_Location.split(',')[1].trim();
+            this.projectslocations.push({
+              ID: i.ID,
+              position: {
+                lat: parseFloat(lat),
+                lng: parseFloat(lng),
+              },
+              status: {
+                scaledSize: {
+                  height: 40,
+                  width: 40,
+                  equals(other) {
+                    return true;
+                  },
+                },
+                url: '../../../../assets/maps_images/yellow.png',
+              },
+            });
+            console.log('lat: ', parseFloat(lat),'lng: ', parseFloat(lng));
+
+          });
       }
     } else {
       if (this.isFav == false) {
-        this.allListsProjects = JSON.parse(
-          localStorage.getItem('allListsProjects') || '{}'
-        );
-        this.allMapProjects = JSON.parse(
-          localStorage.getItem('allMapProjects') || '{}'
-        );
-        this.allCardsProjects = JSON.parse(
-          localStorage.getItem('allCardsProjects') || '{}'
-        );
+        this.allListsProjects = JSON.parse(localStorage.getItem('allListsProjects') || '{}');
+        this.allMapProjects = JSON.parse(localStorage.getItem('allMapProjects') || '{}');
+        this.allCardsProjects = JSON.parse(localStorage.getItem('allCardsProjects') || '{}');
 
-        this.allListsProjects = this.allListsProjects.filter((project) =>
-          project.Project_Name.toLowerCase().includes(
-            x.target.value.toLowerCase()
-          )
-        );
-        this.allMapProjects = this.allMapProjects.filter((project) =>
-          project.Project_Name.toLowerCase().includes(
-            x.target.value.toLowerCase()
-          )
-        );
-        this.allCardsProjects = this.allCardsProjects.filter((project) =>
-          project.Project_Name.toLowerCase().includes(
-            x.target.value.toLowerCase()
-          )
-        );
+        this.allListsProjects = this.allListsProjects.filter((project) => project.Project_Name.toLowerCase().includes(x.target.value.toLowerCase()));
+        this.allMapProjects = this.allMapProjects.filter((project) => project.Project_Name.toLowerCase().includes(x.target.value.toLowerCase()));
+        this.allCardsProjects = this.allCardsProjects.filter((project) => project.Project_Name.toLowerCase().includes(x.target.value.toLowerCase()));
+
+        this.projectslocations = [];
+        this.allMapProjects.forEach((i) => {
+          let lat = i.Project_Location.substring(0,this.allMapProjects[0].Project_Location.indexOf(','));
+          let lng = i.Project_Location.split(',')[1].trim();
+          this.projectslocations.push({
+            ID: i.ID,
+            position: {
+              lat: parseFloat(lat),
+              lng: parseFloat(lng),
+            },
+            status: {
+              scaledSize: {
+                height: 40,
+                width: 40,
+                equals(other) {
+                  return true;
+                },
+              },
+              url: '../../../../assets/maps_images/yellow.png',
+            },
+          });
+          console.log('lat: ', parseFloat(lat),'lng: ', parseFloat(lng));
+
+        });
+
       } else {
-        this.favProjects_list = JSON.parse(
-          localStorage.getItem('favProjects_list') || '{}'
-        );
-        this.favProjects_card = JSON.parse(
-          localStorage.getItem('favProjects_card') || '{}'
-        );
+        this.favProjects_list = JSON.parse(localStorage.getItem('favProjects_list') || '{}');
+        this.favProjects_map = JSON.parse(localStorage.getItem('favProjects_map') || '{}');
+        this.favProjects_card = JSON.parse(localStorage.getItem('favProjects_card') || '{}');
 
-        this.favProjects_list = this.favProjects_list.filter((project) =>
-          project.Project_Name.toLowerCase().includes(
-            x.target.value.toLowerCase()
-          )
-        );
+        this.favProjects_list = this.favProjects_list.filter((project) => project.Project_Name.toLowerCase().includes(x.target.value.toLowerCase()));
         this.allListsProjects = this.favProjects_list;
-        this.favProjects_card = this.favProjects_card.filter((project) =>
-          project.Project_Name.toLowerCase().includes(
-            x.target.value.toLowerCase()
-          )
-        );
+        this.favProjects_map = this.favProjects_map.filter((project) => project.Project_Name.toLowerCase().includes(x.target.value.toLowerCase()));
+        this.allMapProjects = this.favProjects_map;
+        this.favProjects_card = this.favProjects_card.filter((project) =>  project.Project_Name.toLowerCase().includes(x.target.value.toLowerCase()));
         this.allCardsProjects = this.favProjects_card;
+
+        this.projectslocations = [];
+          this.favProjects_map.forEach((i) => {
+            let lat = i.Project_Location.substring(0,this.favProjects_map[0].Project_Location.indexOf(','));
+            let lng = i.Project_Location.split(',')[1].trim();
+            this.projectslocations.push({
+              ID: i.ID,
+              position: {
+                lat: parseFloat(lat),
+                lng: parseFloat(lng),
+              },
+              status: {
+                scaledSize: {
+                  height: 40,
+                  width: 40,
+                  equals(other) {
+                    return true;
+                  },
+                },
+                url: '../../../../assets/maps_images/yellow.png',
+              },
+            });
+            console.log('lat: ', parseFloat(lat),'lng: ', parseFloat(lng));
+
+          });
       }
     }
   }
