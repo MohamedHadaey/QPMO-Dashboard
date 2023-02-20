@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MenuService } from '../../services/menu.service';
@@ -9,20 +9,15 @@ declare var google: any;
 import Swal from 'sweetalert2';
 import { NgxSpinnerService } from 'ngx-spinner';
 
-
-
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
   chart: ApexChart;
   plotOptions: ApexPlotOptions;
 
-
-
   labels: string[];
   fill: ApexFill;
   stroke: ApexStroke;
 };
-
 
 @Component({
   selector: 'app-main',
@@ -193,112 +188,14 @@ export class MainComponent implements OnInit {
   };
   zoom = 7;
 
-  projectslocations: googleMaps_ApiReturn[] = [
-    {
-      position: {
-        // this.allMapProjects[0].Project_Location
-        lat: 24.742007867478183,
-        lng: 46.65728366258421,
-      },
-      status: {
-        scaledSize: {
-          height: 40,
-          width: 40,
-          equals(other) {
-            return true;
-          },
-        },
-        url: '../../../../assets/maps_images/yellow.png',
-      },
-    },
-    {
-      position: {
-        lat: 24.295213,
-        lng: 50.454654,
-      },
-      status: {
-        scaledSize: {
-          height: 40,
-          width: 40,
-          equals(other) {
-            return true;
-          },
-        },
-        url: '../../../../assets/maps_images/yellow.png',
-      },
-    },
-    {
-      position: {
-        lat: 24.895213,
-        lng: 49.454654,
-      },
-      status: {
-        scaledSize: {
-          height: 40,
-          width: 40,
-          equals(other) {
-            return true;
-          },
-        },
-        url: '../../../../assets/maps_images/red.png',
-      },
-    },
-    {
-      position: {
-        lat: 25.295213,
-        lng: 50.454654,
-      },
-      status: {
-        scaledSize: {
-          height: 40,
-          width: 40,
-          equals(other) {
-            return true;
-          },
-        },
-        url: '../../../../assets/maps_images/green.png',
-      },
-    },
-    {
-      position: {
-        lat: 23.77636944273777,
-        lng: 44.76241220442151,
-      },
-      status: {
-        scaledSize: {
-          height: 40,
-          width: 40,
-          equals(other) {
-            return true;
-          },
-        },
-        url: '../../../../assets/maps_images/white.png',
-      },
-    },
-    {
-      position: {
-        lat: 26.30282760999688,
-        lng: 44.81099865206671,
-      },
-      status: {
-        scaledSize: {
-          height: 40,
-          width: 40,
-          equals(other) {
-            return true;
-          },
-        },
-        url: '../../../../assets/maps_images/yellow.png',
-      },
-    },
-  ];
+  projectslocations: googleMaps_ApiReturn[] = [];
 
   markerOptions: google.maps.MarkerOptions = {
     draggable: false,
   };
 
   openProjectDetails(markerPosition: any) {
-    this.showProjectCardDetails(markerPosition);
+    this.showProjectCardDetails(markerPosition.ID);
   }
   // showProjectCardDetails() {
   //   $('.project-card-details').slideToggle();
@@ -383,14 +280,43 @@ export class MainComponent implements OnInit {
       (response) => {
         if (response.Code == 200) {
           this.allMapProjects = response.data;
-          localStorage.setItem('allMapProjects', JSON.stringify(this.allMapProjects));
+          localStorage.setItem(
+            'allMapProjects',
+            JSON.stringify(this.allMapProjects)
+          );
           console.log('map view', this.allMapProjects);
           console.log(this.allMapProjects[0].Project_Location);
+          // debugger;
+          this.projectslocations = [];
 
-          let lat = this.allMapProjects[0].Project_Location.substring(0,this.allMapProjects[0].Project_Location.indexOf(','));
-          let lng = this.allMapProjects[0].Project_Location.split(',')[1].trim();
-          console.log('lat: ', lat);
-          console.log('lng: ', lng);
+          this.allMapProjects.forEach((i) => {
+            let lat = this.allMapProjects[0].Project_Location.substring(
+              0,
+              this.allMapProjects[0].Project_Location.indexOf(',')
+            );
+            let lng =
+              this.allMapProjects[0].Project_Location.split(',')[1].trim();
+            this.projectslocations.push({
+              ID: i.ID,
+              position: {
+                lat: parseFloat(lat),
+                lng: parseFloat(lng),
+              },
+              status: {
+                scaledSize: {
+                  height: 40,
+                  width: 40,
+                  equals(other) {
+                    return true;
+                  },
+                },
+                url: '../../../../assets/maps_images/yellow.png',
+              },
+            });
+            console.log('lat: ', parseFloat(lat));
+            console.log('lng: ', parseFloat(lng));
+          });
+          console.log(this.projectslocations);
         } else {
           // this.toastr.error(response.Error_Resp)
           if (this.currentLanguage == 'ar-sa') {
@@ -441,7 +367,10 @@ export class MainComponent implements OnInit {
       (response) => {
         if (response.Code == 200) {
           this.allCardsProjects = response.data;
-          localStorage.setItem('allCardsProjects', JSON.stringify(this.allCardsProjects));
+          localStorage.setItem(
+            'allCardsProjects',
+            JSON.stringify(this.allCardsProjects)
+          );
           console.log('card view', this.allCardsProjects);
         } else {
           // this.toastr.error(response.Error_Resp)
@@ -496,7 +425,10 @@ export class MainComponent implements OnInit {
       (response) => {
         if (response.Code == 200) {
           this.favProjects_list = response.data;
-          localStorage.setItem('favProjects_list', JSON.stringify(this.favProjects_list));
+          localStorage.setItem(
+            'favProjects_list',
+            JSON.stringify(this.favProjects_list)
+          );
           console.log('fav_lists', this.favProjects_list);
         } else {
           // this.toastr.error(response.Error_Resp)
@@ -548,7 +480,10 @@ export class MainComponent implements OnInit {
       (response) => {
         if (response.Code == 200) {
           this.favProjects_card = response.data;
-          localStorage.setItem('favProjects_card', JSON.stringify(this.favProjects_card));
+          localStorage.setItem(
+            'favProjects_card',
+            JSON.stringify(this.favProjects_card)
+          );
           console.log('fav_cards', this.favProjects_card);
         } else {
           // this.toastr.error(response.Error_Resp)
@@ -930,38 +865,71 @@ export class MainComponent implements OnInit {
       x.target.value == ' '
     ) {
       if (this.isFav == false) {
-        this.allListsProjects = JSON.parse(localStorage.getItem('allListsProjects') || '{}');
-        this.allMapProjects = JSON.parse(localStorage.getItem('allMapProjects') || '{}');
-        this.allCardsProjects = JSON.parse(localStorage.getItem('allCardsProjects') || '{}');
-      }else {
-        this.favProjects_list = JSON.parse(localStorage.getItem('favProjects_list') || '{}');
-        this.favProjects_card = JSON.parse(localStorage.getItem('favProjects_card') || '{}');
+        this.allListsProjects = JSON.parse(
+          localStorage.getItem('allListsProjects') || '{}'
+        );
+        this.allMapProjects = JSON.parse(
+          localStorage.getItem('allMapProjects') || '{}'
+        );
+        this.allCardsProjects = JSON.parse(
+          localStorage.getItem('allCardsProjects') || '{}'
+        );
+      } else {
+        this.favProjects_list = JSON.parse(
+          localStorage.getItem('favProjects_list') || '{}'
+        );
+        this.favProjects_card = JSON.parse(
+          localStorage.getItem('favProjects_card') || '{}'
+        );
       }
-
     } else {
       if (this.isFav == false) {
-        this.allListsProjects = JSON.parse(localStorage.getItem('allListsProjects') || '{}');
-        this.allMapProjects = JSON.parse(localStorage.getItem('allMapProjects') || '{}');
-        this.allCardsProjects = JSON.parse(localStorage.getItem('allCardsProjects') || '{}');
+        this.allListsProjects = JSON.parse(
+          localStorage.getItem('allListsProjects') || '{}'
+        );
+        this.allMapProjects = JSON.parse(
+          localStorage.getItem('allMapProjects') || '{}'
+        );
+        this.allCardsProjects = JSON.parse(
+          localStorage.getItem('allCardsProjects') || '{}'
+        );
 
-        this.allListsProjects = this.allListsProjects.filter((project) => project.Project_Name.toLowerCase().includes(x.target.value.toLowerCase()));
-        this.allMapProjects = this.allMapProjects.filter((project) => project.Project_Name.toLowerCase().includes(x.target.value.toLowerCase()));
-        this.allCardsProjects = this.allCardsProjects.filter((project) => project.Project_Name.toLowerCase().includes(x.target.value.toLowerCase()));
+        this.allListsProjects = this.allListsProjects.filter((project) =>
+          project.Project_Name.toLowerCase().includes(
+            x.target.value.toLowerCase()
+          )
+        );
+        this.allMapProjects = this.allMapProjects.filter((project) =>
+          project.Project_Name.toLowerCase().includes(
+            x.target.value.toLowerCase()
+          )
+        );
+        this.allCardsProjects = this.allCardsProjects.filter((project) =>
+          project.Project_Name.toLowerCase().includes(
+            x.target.value.toLowerCase()
+          )
+        );
       } else {
-        this.favProjects_list = JSON.parse(localStorage.getItem('favProjects_list') || '{}');
-        this.favProjects_card = JSON.parse(localStorage.getItem('favProjects_card') || '{}');
+        this.favProjects_list = JSON.parse(
+          localStorage.getItem('favProjects_list') || '{}'
+        );
+        this.favProjects_card = JSON.parse(
+          localStorage.getItem('favProjects_card') || '{}'
+        );
 
-        this.favProjects_list = this.favProjects_list.filter((project) => project.Project_Name.toLowerCase().includes(x.target.value.toLowerCase()));
-        this.allListsProjects = this.favProjects_list
-        this.favProjects_card = this.favProjects_card.filter((project) => project.Project_Name.toLowerCase().includes(x.target.value.toLowerCase()));
-        this.allCardsProjects = this.favProjects_card
+        this.favProjects_list = this.favProjects_list.filter((project) =>
+          project.Project_Name.toLowerCase().includes(
+            x.target.value.toLowerCase()
+          )
+        );
+        this.allListsProjects = this.favProjects_list;
+        this.favProjects_card = this.favProjects_card.filter((project) =>
+          project.Project_Name.toLowerCase().includes(
+            x.target.value.toLowerCase()
+          )
+        );
+        this.allCardsProjects = this.favProjects_card;
       }
-
-
-
-
-
-
     }
   }
 }
@@ -971,6 +939,7 @@ interface ProjectStatus {
 }
 
 interface googleMaps_ApiReturn {
+  ID: number;
   position: google.maps.LatLngLiteral;
   status: google.maps.Icon;
 }
