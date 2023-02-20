@@ -61,4 +61,34 @@ export class MenuService {
   filterProjects(data:any):Observable<any> {
     return this.http.post( `${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/Projects/FilterProjects_Table?culture=${this._AuthService.currentLanguage}`, data)
   }
+
+
+
+  GetStatistics_ProjectArchived():Observable<any> {
+    return this.http.get( `${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/Statistics/GetStatistics_ProjectArchived?culture=${this._AuthService.currentLanguage}` )
+  }
+
+  GetStatistics_ArchivedCorrectly():Observable<any> {
+    return this.http.get( `${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/Statistics/GetStatistics_ProjectArchivedCorrectly?culture=${this._AuthService.currentLanguage}` )
+  }
+
+  GetStatistics_ArchivedInCorrectly():Observable<any> {
+    return this.http.get( `${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/Statistics/GetStatistics_ProjectArchivedInCorrectly?culture=${this._AuthService.currentLanguage}` )
+  }
+
+  GetStatistics_ProjectNotLaunched():Observable<any> {
+    return this.http.get( `${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/Statistics/GetStatistics_ProjectNotLaunched?culture=${this._AuthService.currentLanguage}` )
+  }
+
+  GetStatistics_ProjectByStatus():Observable<any> {
+    return this.http.get( `${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/Statistics/GetStatistics_ProjectByStatus?culture=${this._AuthService.currentLanguage}` )
+  }
+
+  GetStatistics_ProjectByCategory():Observable<any> {
+    return this.http.get( `${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/Statistics/GetStatistics_ProjectByCategory?culture=${this._AuthService.currentLanguage}` )
+  }
+
+  GetStatistics_ProjectTracking():Observable<any> {
+    return this.http.get( `${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/Statistics/GetStatistics_ProjectTracking?culture=${this._AuthService.currentLanguage}` )
+  }
 }
