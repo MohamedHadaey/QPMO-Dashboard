@@ -47,6 +47,7 @@ export class MessagesComponent implements OnInit {
       (response) => {
         if (response.Code == 200) {
           this.messages = response.data;
+          console.log(this.messages)
           this.spinner.hide();
         } else {
           this.spinner.hide();
@@ -94,7 +95,7 @@ export class MessagesComponent implements OnInit {
     this._UserService.getMessage(id).subscribe(
       (response) => {
         if (response.Code == 200) {
-          this.messageDetails = response.data[0];
+          this.messageDetails = response.data;
           this.subMessages = this.messageDetails.SubMessages;
           console.log(this.messageDetails);
           // this.spinner.hide();
@@ -177,6 +178,7 @@ export class MessagesComponent implements OnInit {
             if (response.Code == 200) {
               message.value = '';
               this.getMyInbox();
+              this.getMessageDetails(this.messageDetails.ID)
               this.spinner.hide();
               if (this.currentLanguage == 'ar-sa') {
                 Swal.fire({

@@ -15,7 +15,7 @@ export class AppComponent {
   constructor(
     public translate: TranslateService,
     private _TranslationService: TranslationService,
-    
+
   ) {
     this.currentLanguage = localStorage.getItem('currentLanguage') || 'ar-sa';
     this.translate.use(this.currentLanguage);

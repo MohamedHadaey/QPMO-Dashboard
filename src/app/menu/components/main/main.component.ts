@@ -387,12 +387,8 @@ export class MainComponent implements OnInit {
           console.log('map view', this.allMapProjects);
           console.log(this.allMapProjects[0].Project_Location);
 
-          let lat = this.allMapProjects[0].Project_Location.substring(
-            0,
-            this.allMapProjects[0].Project_Location.indexOf(',')
-          );
-          let lng =
-            this.allMapProjects[0].Project_Location.split(',')[1].trim();
+          let lat = this.allMapProjects[0].Project_Location.substring(0,this.allMapProjects[0].Project_Location.indexOf(','));
+          let lng = this.allMapProjects[0].Project_Location.split(',')[1].trim();
           console.log('lat: ', lat);
           console.log('lng: ', lng);
         } else {
@@ -941,13 +937,13 @@ export class MainComponent implements OnInit {
         this.favProjects_list = JSON.parse(localStorage.getItem('favProjects_list') || '{}');
         this.favProjects_card = JSON.parse(localStorage.getItem('favProjects_card') || '{}');
       }
-      
+
     } else {
-      if (this.isFav == false) { 
+      if (this.isFav == false) {
         this.allListsProjects = JSON.parse(localStorage.getItem('allListsProjects') || '{}');
         this.allMapProjects = JSON.parse(localStorage.getItem('allMapProjects') || '{}');
         this.allCardsProjects = JSON.parse(localStorage.getItem('allCardsProjects') || '{}');
-        
+
         this.allListsProjects = this.allListsProjects.filter((project) => project.Project_Name.toLowerCase().includes(x.target.value.toLowerCase()));
         this.allMapProjects = this.allMapProjects.filter((project) => project.Project_Name.toLowerCase().includes(x.target.value.toLowerCase()));
         this.allCardsProjects = this.allCardsProjects.filter((project) => project.Project_Name.toLowerCase().includes(x.target.value.toLowerCase()));
@@ -960,9 +956,9 @@ export class MainComponent implements OnInit {
         this.favProjects_card = this.favProjects_card.filter((project) => project.Project_Name.toLowerCase().includes(x.target.value.toLowerCase()));
         this.allCardsProjects = this.favProjects_card
       }
-      
 
- 
+
+
 
 
 
