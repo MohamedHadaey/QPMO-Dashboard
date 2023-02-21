@@ -133,7 +133,7 @@
                       <div class="row">
                         <div class="chart-container">
                           <apx-chart [chart]="typeChartDetails" [series]="typeChartSeries"
-                            [labels]="[' إنارة طرق ',' طرق ',' صرف صحى ',' كبارى ']"
+                            [labels]="Category"
                             [dataLabels]="typechartDetails"></apx-chart>
                         </div>
                       </div>
@@ -146,7 +146,7 @@
                   <div class="projects-follow-card">
                     <h4>{{"archieved-projects" | translate }}</h4>
                     <div class="number p-3">
-                      <h3 id="color-yellow">80</h3>
+                      <h3 id="color-yellow">{{ProjectArchived}}</h3>
                     </div>
                   </div>
                 </div>
@@ -154,7 +154,7 @@
                   <div class="projects-follow-card">
                     <h4>{{"correctly-archieved" | translate }}</h4>
                     <div class="number p-3">
-                      <h3 id="color-red">25</h3>
+                      <h3 id="color-red">{{ArchivedCorrectly}}</h3>
                     </div>
                   </div>
                 </div>
@@ -162,7 +162,7 @@
                   <div class="projects-follow-card">
                     <h4>{{"incorrectly-archieved" | translate }}</h4>
                     <div class="number p-3">
-                      <h3 id="color-green">70</h3>
+                      <h3 id="color-green">{{ArchivedInCorrectly}}</h3>
                     </div>
                   </div>
                 </div>
@@ -170,7 +170,7 @@
                   <div class="projects-follow-card">
                     <h4>{{"delayed-projects" | translate }}</h4>
                     <div class="number p-3">
-                      <h3 id="color-primary">122</h3>
+                      <h3 id="color-primary">1</h3>
                     </div>
                   </div>
                 </div>
@@ -178,7 +178,7 @@
                   <div class="projects-follow-card">
                     <h4>{{"not-financial" | translate }}</h4>
                     <div class="number p-3">
-                      <h3 id="color-secondary">08</h3>
+                      <h3 id="color-secondary">{{ProjectNotLaunched}}</h3>
                     </div>
                   </div>
                 </div>

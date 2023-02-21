@@ -16,7 +16,11 @@ export class AppComponent {
     public translate: TranslateService,
     private _TranslationService: TranslationService
   ) {
-    this.currentLanguage = localStorage.getItem('currentLanguage') || 'ar-sa';
+    if (localStorage.getItem('currentLanguage') != "ar-sa" && localStorage.getItem('currentLanguage') != "en-sa"){
+      this.currentLanguage = "ar-sa"
+    }else {
+      this.currentLanguage = localStorage.getItem('currentLanguage') || 'ar-sa';
+    }
     this.translate.use(this.currentLanguage);
     this._TranslationService.currentLang(this.currentLanguage);
     const body = document.getElementsByTagName('body');

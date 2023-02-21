@@ -36,9 +36,8 @@ export type ChartOptions = {
 };
 // end:: using charts
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { MenuService } from '../../services/menu.service';
 declare const $: any;
-
-
 
 @Component({
   selector: 'app-reports',
@@ -51,7 +50,9 @@ export class ReportsComponent implements OnInit {
   public archivechartOptions: Partial<ChartOptions> | any;
 
   /*************************/
-  typeChartSeries: ApexNonAxisChartSeries = [26, 16, 18, 40];
+  Catcount: number[] = [];
+  Category: string[] = [];
+  typeChartSeries: ApexNonAxisChartSeries = this.Catcount;
   typeChartDetails: ApexChart = {
     type: 'donut',
     toolbar: {
@@ -67,19 +68,27 @@ export class ReportsComponent implements OnInit {
   workers: number = 8500;
   completed: number = 6000;
   completedText: boolean = true;
-  constructor(private _AuthService: AuthService, private translate: TranslateService) {
+  count: number[] = [];
+  status: string[] = [];
 
+  addedOn_month: number[] = [];
+  addedOn_count: number[] = [];
+  endedOn_month: number[] = [];
+  endedOn_count: number[] = [];
+  constructor(
+    private _AuthService: AuthService,
+    private _MenuService: MenuService,
+    private translate: TranslateService
+  ) {
     if (localStorage.getItem('currentLanguage') == 'ar-sa') {
-
     } else {
-
     }
     /* state projects  chart */
     this.statechartOptions = {
       series: [
         {
           name: ' ',
-          data: [80, 65, 85, 45, 5],
+          data: this.count,
         },
       ],
       chart: {
@@ -113,13 +122,7 @@ export class ReportsComponent implements OnInit {
         show: true,
       },
       xaxis: {
-        categories: [
-          'مكتملة',
-          'متأخرة',
-          'تنتهي قريباً',
-          'الحالية',
-          'لم يتم التعميد',
-        ],
+        categories: this.status,
         labels: {
           style: {
             colors: ['#F5E306', '#F24773', '#4CB871', '#068DF5', '#CCCCCC'],
@@ -133,12 +136,12 @@ export class ReportsComponent implements OnInit {
     this.archivechartOptions = {
       series: [
         {
-          name:  "غير مكتملة",
-          data: [11, 32, 45, 32, 34, 52, 41,31 , 40, 28, 51, 42],
+          name: 'غير مكتملة',
+          data: this.addedOn_count,
         },
         {
-          name: "مكتملة",
-          data: [31, 40, 28, 51, 42, 109, 100 ,90, 80, 95, 100, 120],
+          name: 'مكتملة',
+          data: this.endedOn_count,
         },
       ],
       chart: {
@@ -165,11 +168,11 @@ export class ReportsComponent implements OnInit {
           ' May ',
           ' Jun ',
           ' Jul ',
-          " Aug ",
-          " Sep ",
-          " Oct ",
-          " Nov ",
-          " Dec "
+          ' Aug ',
+          ' Sep ',
+          ' Oct ',
+          ' Nov ',
+          ' Dec ',
         ],
       },
       tooltip: {
@@ -180,13 +183,92 @@ export class ReportsComponent implements OnInit {
     };
   }
 
-
-
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getData();
+    this.getStatus();
+    this.getCategory();
+    this.getTracking();
+  }
 
   // this function to log out
   logOut() {
     this._AuthService.logout();
+  }
+
+  ProjectArchived: number = 0;
+  ArchivedCorrectly: number = 0;
+  ArchivedInCorrectly: number = 0;
+  ProjectNotLaunched: number = 0;
+
+  getData(): void {
+    this._MenuService.GetStatistics_ProjectArchived().subscribe((Response) => {
+      this.ProjectArchived = Response.data;
+    });
+    this._MenuService
+      .GetStatistics_ArchivedCorrectly()
+      .subscribe((response) => {
+        this.ArchivedCorrectly = response.data;
+      });
+    this._MenuService
+      .GetStatistics_ArchivedInCorrectly()
+      .subscribe((response) => {
+        this.ArchivedInCorrectly = response.data;
+      });
+    this._MenuService
+      .GetStatistics_ProjectNotLaunched()
+      .subscribe((response) => {
+        this.ProjectNotLaunched = response.data;
+      });
+  }
+
+  getStatus(): void {
+    this._MenuService.GetStatistics_ProjectByStatus().subscribe((response) => {
+      for (let index = 0; index < response.data.length; index++) {
+        const element = response.data[index];
+        this.status[index] = element.Status;
+        this.count[index] = element.Count;
+      }
+    });
+  }
+
+  getCategory(): void {
+    this._MenuService
+      .GetStatistics_ProjectByCategory()
+      .subscribe((response) => {
+        for (let index = 0; index < response.data.length; index++) {
+          const element = response.data[index];
+          this.Category[index] = element.Category;
+          this.Catcount[index] = element.Count;
+        }
+      });
+  }
+
+  getTracking() {
+    this._MenuService.GetStatistics_ProjectTracking().subscribe((response) => {
+      console.log(response.data);
+      for (let index = 1; index <= 12; index++) {
+        let monthExist_Data = (
+          response.data.Added_Projects as DataStatatic[]
+        ).find((id) => id.Month == index);
+        this.addedOn_month[index - 1] = index;
+        if (monthExist_Data == undefined) {
+          this.addedOn_count[index - 1] = 0;
+        } else {
+          this.addedOn_count[index - 1] = monthExist_Data.Count;
+        }
+      }
+      for (let index2 = 1; index2 <= 12; index2++) {
+        let monthExist_Data = (
+          response.data.Ended_Projects as DataStatatic[]
+        ).find((id) => id.Month == index2);
+        this.endedOn_month[index2 - 1] = index2;
+        if (monthExist_Data == undefined) {
+          this.endedOn_count[index2 - 1] = 0;
+        } else {
+          this.endedOn_count[index2 - 1] = monthExist_Data.Count;
+        }
+      }
+    });
   }
 
   // handle change in completing projects
@@ -199,4 +281,8 @@ export class ReportsComponent implements OnInit {
       this.completedText = true;
     }
   }
+}
+export class DataStatatic {
+  Count: number = 0;
+  Month: number = 0;
 }
