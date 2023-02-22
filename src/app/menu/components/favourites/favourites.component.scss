@@ -82,3 +82,106 @@
   }
 
 }
+
+
+.navbar {
+  .dropdown {
+    .hover {
+      border: none;
+      outline: none;
+      width: 90%;
+      border-radius: 15px;
+      margin: 1px auto;
+
+      span {
+        font-size: 12px;
+        font-weight: bold;
+        color: #fff;
+      }
+    }
+
+    .check-popup-logout {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.4);
+      display: none;
+      z-index: 5;
+
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+
+        .popup-content {
+          background-color: #fff;
+          border-radius: 10px;
+          min-width: 200px;
+          width: 300px;
+          padding: 10px 20px;
+          text-align: center;
+
+          img {
+            width: 50px;
+            margin: 20px;
+          }
+
+          h4 {
+            font-size: 20px;
+            font-weight: bold;
+            color: #3D3D3D;
+          }
+
+          p{
+            color: #3D3D3D;
+            margin: 10px 5px;
+          }
+
+          .footer {
+            button {
+              padding: 5px;
+              width: 90%;
+              margin: auto;
+              border-radius: 10px;
+              border: none;
+              outline: none;
+              transition: all 0.3s;
+
+            }
+
+            .col-6:first-of-type {
+              button {
+                background-color: #749BC4;
+                color: #fff;
+
+                &:hover {
+                  background-color: #eee ;
+                  outline: 1px solid #749BC4 ;
+                  color: #749BC4 ;
+                }
+              }
+            }
+
+            .col-6:nth-of-type(2) {
+              button {
+                background-color: #fff ;
+                outline: 1px solid #749BC4 ;
+                color: #749BC4 ;
+
+                &:hover {
+                  background-color: #eee;
+                  color: #749BC4;
+                  border: none;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+  }
+}

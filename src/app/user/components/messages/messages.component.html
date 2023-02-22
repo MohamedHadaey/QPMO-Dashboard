@@ -92,14 +92,14 @@
           <div class="messages-content">
             <div class="list">
               <header>
-                <h2>{{"incoming-mail" | translate }} ( {{messages.length}} )</h2>
+                <h2>{{"incoming-mail" | translate }}</h2>
               </header>
               <ul>
                 <li *ngFor="let message of messages" (click)="showDetails();getMessageDetails(message.ID)" [class.selected]="message.ID == messageDetails.ID">
                   <div class="item-header">
                     <a >{{message.ProjectName}}</a>
                     <div class="message-date d-flex justify-content-center align-items-center">
-                      <span>{{message.Date | date:'medium' }}</span>
+                      <span>{{message.Date | date:'short' }}</span>
                     </div>
                   </div>
                   <div class="item-body">
@@ -257,7 +257,7 @@
               <header>
                 <h3>{{messageDetails.ProjectName}}</h3>
                 <div class="message-date d-flex justify-content-center align-items-center">
-                  <span>{{messageDetails.Date | date:'medium' }}</span>
+                  <span>{{messageDetails.Date | date:'short' }}</span>
                 </div>
               </header>
               <div class="message-content">
@@ -292,7 +292,7 @@
                 <section *ngIf="subMessages.length > 0" class="px-4">
                   <ul *ngFor="let subMessage of subMessages" class="subParent-message py-0 mt-3">
                       <div class="msg-body w-100 px-2 py-0 my-0  d-flex justify-content-end">
-                        <p class="fw-normal py-0 my-0">{{subMessage.Date | date:'medium' }}</p>
+                        <p class="fw-normal py-0 my-0">{{subMessage.Date | date:'short' }}</p>
                       </div>
                     <li>
                       <div class="msg-title">

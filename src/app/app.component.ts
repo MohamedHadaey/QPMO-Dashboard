@@ -24,6 +24,7 @@ export class AppComponent {
     this.translate.use(this.currentLanguage);
     this._TranslationService.currentLang(this.currentLanguage);
     const body = document.getElementsByTagName('body');
+
     this._TranslationService.currentlang.subscribe((lang) => {
       // this if condition to check direction of all project according to current language
       if (lang == 'ar-sa') {
@@ -34,6 +35,7 @@ export class AppComponent {
     });
 
     // to disable inspect element, f12 button and developer tools
-    // disableDevtool();
+    disableDevtool();
   }
+
 }

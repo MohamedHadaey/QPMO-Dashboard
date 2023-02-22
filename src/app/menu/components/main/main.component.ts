@@ -832,8 +832,8 @@ export class MainComponent implements OnInit {
   /***************************************/
   // filter form inputs
   filterForm: FormGroup = new FormGroup({
-    ProjectType: new FormControl('1', [Validators.required]),
-    ProjectStatus: new FormControl('1', [Validators.required]),
+    ProjectType: new FormControl(1 , [Validators.required]),
+    ProjectStatus: new FormControl(1,[Validators.required]),
     // now_check: new FormControl('checked', [Validators.required]),
     // complete_check: new FormControl(false, [Validators.required]),
 
@@ -842,28 +842,70 @@ export class MainComponent implements OnInit {
     // end_check: new FormControl('checked', [Validators.required]),
 
     // not_check: new FormControl(false, [Validators.required]),
-    StartDate: new FormControl(null, [Validators.required]),
-    EndDate: new FormControl(null, [Validators.required]),
-    UserPer: new FormControl([25, 75], [Validators.required]),
-    MaqawlPer: new FormControl([25, 75], [Validators.required]),
+    StartDate: new FormControl(null),
+    EndDate: new FormControl(null),
+    UserPer: new FormControl(null),
+    MaqawlPer: new FormControl(null),
   });
 
   submitFilterForm(filterForm: FormGroup) {
-    filterForm.value.UserPer =
-      filterForm.value.UserPer[1] - filterForm.value.UserPer[0];
-    filterForm.value.MaqawlPer =
-      filterForm.value.MaqawlPer[1] - filterForm.value.MaqawlPer[0];
+    console.log("hello")
+    // filterForm.value.UserPer = (filterForm.value.UserPer[1]-filterForm.value.UserPer[0]) ;
+    // filterForm.value.MaqawlPer = (filterForm.value.MaqawlPer[1]-filterForm.value.MaqawlPer[0]) ;
     // console.log(filterForm.value.UserPer);
     // console.log(filterForm.value.MaqawlPer);
-    // console.log(filterForm.value);
-    this._MenuService.filterProjects(filterForm.value).subscribe(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+
+     filterForm.value.UserPer =  null ;
+    filterForm.value.MaqawlPer = null ;
+    filterForm.value.StartDate = null ;
+    filterForm.value.EndDate = null ;
+    filterForm.value.ProjectStatus =[];
+    console.log(filterForm.value);
+    this._MenuService.filterProjects_table(filterForm.value).subscribe((response) => {
+      this.allListsProjects = response.data;
+    } , (error) => {
+      console.log(error);
+    });
+
+    this._MenuService.filterProjects_map(filterForm.value).subscribe((response) => {
+      this.allMapProjects = response.data;
+
+      this.projectslocations = [];
+      this.allMapProjects.forEach((i) => {
+        let lat = i.Project_Location.substring(0,this.allMapProjects[0].Project_Location.indexOf(','));
+        let lng = i.Project_Location.split(',')[1].trim();
+        this.projectslocations.push({
+          ID: i.ID,
+          position: {
+            lat: parseFloat(lat),
+            lng: parseFloat(lng),
+          },
+          status: {
+            scaledSize: {
+              height: 40,
+              width: 40,
+              equals(other) {
+                return true;
+              },
+            },
+            url: '../../../../assets/maps_images/yellow.png',
+          },
+        });
+        console.log('lat: ', parseFloat(lat),'lng: ', parseFloat(lng));
+
+      });
+      console.log(this.allMapProjects)
+    } , (error) => {
+      console.log(error);
+    });
+
+    this._MenuService.filterProjects_cards(filterForm.value).subscribe((response) => {
+      this.allCardsProjects = response.data;
+      console.log(this.allCardsProjects);
+
+    } , (error) => {
+      console.log(error);
+    });
   }
 
   // show favourites projects in all themes

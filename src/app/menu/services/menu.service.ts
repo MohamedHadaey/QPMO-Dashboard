@@ -58,8 +58,16 @@ export class MenuService {
     return this.http.get( `${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/ProjectStatus/GetAll?culture=${this._AuthService.currentLanguage}` )
   }
 
-  filterProjects(data:any):Observable<any> {
+  filterProjects_table(data:any):Observable<any> {
     return this.http.post( `${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/Projects/FilterProjects_Table?culture=${this._AuthService.currentLanguage}`, data)
+  }
+
+  filterProjects_map(data:any):Observable<any> {
+    return this.http.post( `${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/Projects/FilterProjects_Map?culture=${this._AuthService.currentLanguage}`, data)
+  }
+
+  filterProjects_cards(data:any):Observable<any> {
+    return this.http.post( `${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/Projects/FilterProjects_Cards?culture=${this._AuthService.currentLanguage}`, data)
   }
 
 

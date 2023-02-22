@@ -57,13 +57,10 @@ export class FavouritesComponent implements OnInit {
 
 
 
+
   filterForm: FormGroup = new FormGroup({
-    ProjectType: new FormControl('1', [
-      Validators.required
-    ]),
-    ProjectStatus: new FormControl('1', [
-      Validators.required
-    ]),
+    ProjectType: new FormControl(1 , [Validators.required]),
+    ProjectStatus: new FormControl(1,[Validators.required]),
     // now_check: new FormControl('checked', [Validators.required]),
     // complete_check: new FormControl(false, [Validators.required]),
 
@@ -72,29 +69,49 @@ export class FavouritesComponent implements OnInit {
     // end_check: new FormControl('checked', [Validators.required]),
 
     // not_check: new FormControl(false, [Validators.required]),
-    StartDate: new FormControl(null, [Validators.required]),
-    EndDate: new FormControl(null, [Validators.required]),
-    UserPer: new FormControl([25, 75], [Validators.required]),
-    MaqawlPer: new FormControl([25, 75], [Validators.required]),
+    StartDate: new FormControl(null),
+    EndDate: new FormControl(null),
+    UserPer: new FormControl(null),
+    MaqawlPer: new FormControl(null),
   });
 
   submitFilterForm(filterForm: FormGroup) {
-    filterForm.value.UserPer = (filterForm.value.UserPer[1]-filterForm.value.UserPer[0]) ;
-    filterForm.value.MaqawlPer = (filterForm.value.MaqawlPer[1]-filterForm.value.MaqawlPer[0]) ;
-    console.log(filterForm.value.UserPer);
-    console.log(filterForm.value.MaqawlPer);
+    console.log("hello")
+
+    // filterForm.value.UserPer = (filterForm.value.UserPer[1]-filterForm.value.UserPer[0]) ;
+    // filterForm.value.MaqawlPer = (filterForm.value.MaqawlPer[1]-filterForm.value.MaqawlPer[0]) ;
+    // console.log(filterForm.value.UserPer);
+    // console.log(filterForm.value.MaqawlPer);
+
+     filterForm.value.UserPer =  null ;
+    filterForm.value.MaqawlPer = null ;
+    filterForm.value.StartDate = null ;
+    filterForm.value.EndDate = null ;
+    filterForm.value.ProjectStatus =[];
     console.log(filterForm.value);
-    this._MenuService.filterProjects(filterForm.value).subscribe((response) => {
-      console.log(response);
+    this._MenuService.filterProjects_table(filterForm.value).subscribe((response) => {
+      console.log(response.data);
+      this.favouriteProjects = response.data;
     } , (error) => {
       console.log(error);
     })
   }
 
-  // this function to log out
-  logOut() {
-    this._AuthService.logout();
+  // show and hide popup checker
+  togglePopup() {
+    $(".check-popup-logout").fadeToggle();
   }
+
+
+    // this function to log out
+    logOut() {
+      this._AuthService.logout();
+
+   }
+
+  //  toggleProfilePopup(){
+  //   $(".profile-popup").slideToggle()
+  // }
 
 
   showProjectCardDetails(projectId:any) {
@@ -320,7 +337,7 @@ export class FavouritesComponent implements OnInit {
 
 
   // function of search
-  search(x:any) { 
+  search(x:any) {
     if (x.target.value == null || x.target.value == "" || x.target.value == " " ){
       this.favouriteProjects = JSON.parse(localStorage.getItem("favProjects") || '{}');
     }else {

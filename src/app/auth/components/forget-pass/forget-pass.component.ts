@@ -51,7 +51,8 @@ export class ForgetPassComponent implements OnInit {
                 text:'هذا الرقم غير موجود',
                 icon: 'error',
                 confirmButtonText: 'موافق',
-              })
+              });
+              
             } else {
               Swal.fire({
                 title: 'Error !!',
@@ -74,7 +75,9 @@ export class ForgetPassComponent implements OnInit {
                 text: response.Error_Resp,
                 icon: 'error',
                 confirmButtonText: 'موافق',
-              })
+              });
+              $('#validate-msg').slideDown();
+              setTimeout(this.deleteMsg, 4000);
             } else {
               Swal.fire({
                 title: 'Error !!',

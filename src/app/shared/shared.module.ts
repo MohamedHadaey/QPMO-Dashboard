@@ -27,6 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ProjectDetailsComponent,
     ProjectComponent,
 
+
   ],
   imports: [
     CommonModule,
