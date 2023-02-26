@@ -22,8 +22,6 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { MyIntercetor } from './intercetor';
 import { NgxSpinnerModule } from "ngx-spinner";
-
-
 @NgModule({
   declarations: [AppComponent],
   imports: [

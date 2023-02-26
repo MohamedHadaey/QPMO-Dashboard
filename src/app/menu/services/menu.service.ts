@@ -71,6 +71,11 @@ export class MenuService {
   }
 
 
+  GetAppliedFilterData():Observable<any> {
+    return this.http.get( `${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/Projects/GetAppliedFilterData?culture=${this._AuthService.currentLanguage}`);
+  }
+
+
 
   GetStatistics_ProjectArchived():Observable<any> {
     return this.http.get( `${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/Statistics/GetStatistics_ProjectArchived?culture=${this._AuthService.currentLanguage}` )

@@ -1,3 +1,4 @@
+
 <div class="row project-detail px-3 mb-5">
   <div class="day-projects">
     <ul>
@@ -35,6 +36,7 @@
         </div>
       </li>
     </ul>
+    <!-- <ng-container *ngIf="data"> -->
     <div class="project-card-details">
       <div class="row">
         <div class="col-md-6 col-lg-3">
@@ -179,7 +181,7 @@
           </div>
         </div>
         <div class="row project-images">
-          <swiper [slidesPerView]="'auto'" [spaceBetween]="10" [loop]="true" [autoplay]="{
+          <!-- <swiper [slidesPerView]="'auto'" [spaceBetween]="10" [loop]="true" [autoplay]="{
             delay: 2000,
             disableOnInteraction: false
           }" [centeredSlides]="true" class="swiper">
@@ -263,10 +265,96 @@
                 <p>05/02/2020</p>
               </div>
             </ng-template>
+          </swiper> -->
+          <swiper [slidesPerView]="'auto'" [spaceBetween]="10" [loop]="true" [autoplay]="{
+            delay: 2000,
+            disableOnInteraction: false
+          }" [centeredSlides]="true" class="swiper">
+            <ng-template swiperSlide class="swiperSlide">
+              <div class="date">
+                <div class="date-img">
+                  <img src="../../../../assets/images/test-images/img1.jpeg" class="project-image" alt="image soon">
+                </div>
+                <p>05/02/2020</p>
+              </div>
+            </ng-template>
+            <ng-template swiperSlide class="swiperSlide">
+              <div class="date">
+                <div class="date-img">
+                  <img src="../../../../assets/images/test-images/img2.jpeg" class="project-image" alt="image soon">
+                </div>
+                <p>05/02/2020</p>
+              </div>
+            </ng-template>
+            <ng-template swiperSlide class="swiperSlide">
+              <div class="date">
+                <div class="date-img">
+                  <img src="../../../../assets/images/test-images/img3.jpeg" class="project-image" alt="image soon">
+                </div>
+                <p>05/02/2020</p>
+              </div>
+            </ng-template>
+            <ng-template swiperSlide class="swiperSlide">
+              <div class="date">
+                <div class="date-img">
+                  <img src="../../../../assets/images/test-images/img4.jpeg" class="project-image" alt="image soon">
+                </div>
+                <p>05/02/2020</p>
+              </div>
+            </ng-template>
+            <ng-template swiperSlide class="swiperSlide">
+              <div class="date">
+                <div class="date-img">
+                  <img src="../../../../assets/images/test-images/img5.jpeg" class="project-image" alt="image soon">
+                </div>
+                <p>05/02/2020</p>
+              </div>
+            </ng-template>
+            <ng-template swiperSlide class="swiperSlide">
+              <div class="date">
+                <div class="date-img">
+                  <img src="../../../../assets/images/test-images/img6.jpeg" class="project-image" alt="image soon">
+                </div>
+                <p>05/02/2020</p>
+              </div>
+            </ng-template>
+            <ng-template swiperSlide class="swiperSlide">
+              <div class="date">
+                <div class="date-img">
+                  <img src="../../../../assets/images/test-images/img1.jpeg" class="project-image" alt="image soon">
+                </div>
+                <p>05/02/2020</p>
+              </div>
+            </ng-template>
+            <ng-template swiperSlide class="swiperSlide">
+              <div class="date">
+                <div class="date-img">
+                  <img src="../../../../assets/images/test-images/img2.jpeg" class="project-image" alt="image soon">
+                </div>
+                <p>05/02/2020</p>
+              </div>
+            </ng-template>
+            <ng-template swiperSlide class="swiperSlide">
+              <div class="date">
+                <div class="date-img">
+                  <img src="../../../../assets/images/test-images/img3.jpeg" class="project-image" alt="image soon">
+                </div>
+                <p>05/02/2020</p>
+              </div>
+            </ng-template>
+            <ng-template swiperSlide class="swiperSlide">
+              <div class="date">
+                <div class="date-img">
+                  <img src="../../../../assets/images/test-images/img4.jpeg" class="project-image" alt="image soon">
+                </div>
+                <p>05/02/2020</p>
+              </div>
+            </ng-template>
           </swiper>
         </div>
       </div>
     </div>
+  <!-- </ng-container> -->
   </div>
   <!-- delivery alert Modal -->
 <div class="modal fade" id="deliveryModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

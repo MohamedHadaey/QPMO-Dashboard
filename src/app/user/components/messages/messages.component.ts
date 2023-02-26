@@ -28,6 +28,22 @@ export class MessagesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMyInbox();
+    // this.spinner.show();
+
+
+  }
+
+
+  goToFinalMsg() {
+      let finalDetails = $("#final-details").offset().top;
+      console.log("hsjkdhskjhdksjhdjkshdkjshdkjsh", finalDetails)
+      //  $("html,body").animate({ scrollTop: finalDetails+1000 }, 500);
+      //  $(".message-content").scrollTop(finalDetails);
+
+    //   $(".parent-section").scrollTop($(".parent-section").scrollTop() + $(".final-details").position().top);
+
+    //   $(".parent-section").scrollTop($(".parent-section").scrollTop() + $(".final-details").position().top
+    // - $(".parent-section").height()/2 + $(".final-details").height()/2);
   }
 
   // this function to log out
@@ -97,7 +113,8 @@ export class MessagesComponent implements OnInit {
         if (response.Code == 200) {
           this.messageDetails = response.data;
           this.subMessages = this.messageDetails.SubMessages;
-          console.log(this.messageDetails);
+          // console.log(this.messageDetails);
+          // console.log(this.subMessages[this.subMessages.length-1].index);
           // this.spinner.hide();
         } else {
          // this.spinner.hide();

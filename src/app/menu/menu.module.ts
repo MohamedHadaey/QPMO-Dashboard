@@ -12,6 +12,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '../shared/shared.module';
 
 import { GoogleMapsModule } from '@angular/google-maps';
+// import { AgmCoreModule } from '@agm/core';
 
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';

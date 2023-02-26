@@ -19,6 +19,7 @@ import {
 } from 'date-fns';
 import { EventColor } from 'calendar-utils';
 import { Subject } from 'rxjs';
+import Swal from 'sweetalert2';
 
 declare const $: any;
 const colors: Record<string, EventColor> = {
@@ -40,6 +41,7 @@ const colors: Record<string, EventColor> = {
 import { ChangedEventArgs } from '@syncfusion/ej2-calendars';
 import { addClass } from '@syncfusion/ej2-base';
 import { F } from 'chart.js/dist/chunks/helpers.core';
+import { MenuService } from '../../services/menu.service';
 
 @Component({
   selector: 'app-calender',
@@ -47,6 +49,7 @@ import { F } from 'chart.js/dist/chunks/helpers.core';
   styleUrls: ['./calender.component.scss'],
 })
 export class CalenderComponent implements OnInit {
+  currentLanguage: any = localStorage.getItem('currentLanguage');
   view: CalendarView = CalendarView.Month;
   CalendarView = CalendarView;
   refresh = new Subject<void>();
@@ -115,7 +118,7 @@ export class CalenderComponent implements OnInit {
 
   minimize: boolean = true;
   fav: boolean = false;
-  constructor(private _AuthService: AuthService) {}
+  constructor(private _AuthService: AuthService,private _MenuService:MenuService) {}
 
   ngOnInit(): void {}
 
@@ -127,8 +130,58 @@ export class CalenderComponent implements OnInit {
   // this function to open day projects panel
   showDayProjects(e: any) {
     if (e.badgeTotal > 0) {
+      // this.getProjectDetails(3);
       $('.day-projects').slideToggle();
       $('.project-card-details').slideUp();
     }
+  }
+
+
+  projectDetails!:any;
+  // function of get specific project
+  getProjectDetails(id:any) {
+    this._MenuService.getProjectDetails(id).subscribe((response => {
+      if(response.Code == 200) {
+        this.projectDetails = response.data;
+        console.log(this.projectDetails)
+      } else {
+        if (this.currentLanguage == 'ar-sa') {
+          Swal.fire({
+            title: 'خطأ !!',
+            text: response.Error_Resp,
+            icon: 'error',
+            confirmButtonText: 'موافق',
+          })
+        } else {
+          Swal.fire({
+            title: 'Error !!',
+            text: response.Error_Resp,
+            icon: 'error',
+            confirmButtonText: 'OK',
+          })
+        }
+      }
+    }) ,(error) => {
+      if (this.currentLanguage == 'ar-sa') {
+        Swal.fire({
+          title: 'خطأ !!',
+          text: 'خطأ غير معروف من الخادم !!',
+          icon: 'error',
+          confirmButtonText: 'موافق',
+        })
+      } else {
+        Swal.fire({
+          title: 'Error !!',
+          text: 'Unknown error From Server!!',
+          icon: 'error',
+          confirmButtonText: 'OK',
+        })
+      }
+      // if (this.currentLanguage == "ar-sa") {
+      //   this.toastr.error("خطأ غير معروف من الخادم !!")
+      // }else {
+      //   this.toastr.error("Unknown error From Server!!")
+      // }
+    })
   }
 }

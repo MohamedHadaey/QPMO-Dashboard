@@ -145,6 +145,10 @@
 "late": "Late",
 "almost-done": "Almost Done",
 
-"loading": " Loading ..."
+"loading": " Loading ...",
+
+"logoutt": "logout",
+"log-out-word": "Sign Out",
+"check-logout-msg": "Are you sure you want to Sign Out?"
 }
 

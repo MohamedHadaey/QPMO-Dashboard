@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit {
           (response) => {
             if (response.Code == 200) {
               this.spinner.hide();
+
               // if (this.currentLanguage == 'ar-sa') {
               //   const Toast = Swal.mixin({
               //     toast: true,

@@ -75,6 +75,7 @@ export class MainComponent implements OnInit {
       $('.content-body').addClass('content-body-ltr');
     }
 
+    this.GetAppliedFilterData()
     this.getListsProjects();
     this.getMapProjects();
     this.getCardsProjects();
@@ -83,6 +84,19 @@ export class MainComponent implements OnInit {
     this.getProjectsTypes();
     this.getProjectsStates();
   }
+
+  ///****************** */
+  // GetAppliedFilterData apt
+
+  filteredData:any;
+  GetAppliedFilterData() {
+    this._MenuService.GetAppliedFilterData().subscribe((response) => {
+      this.filteredData = response.data;
+      console.log("filteredData:", this.filteredData.ProjectType);
+
+    })
+  }
+  //****************** */
 
   /////////////////////Maps////////////////////
   center: google.maps.LatLngLiteral = {
@@ -173,7 +187,9 @@ export class MainComponent implements OnInit {
   };
   zoom = 7;
 
+
   projectslocations: googleMaps_ApiReturn[] = [];
+  // map_center: googleMaps_ApiCenter[] = [];
 
   markerOptions: google.maps.MarkerOptions = {
     draggable: false,
@@ -265,9 +281,17 @@ export class MainComponent implements OnInit {
       (response) => {
         if (response.Code == 200) {
           this.allMapProjects = response.data;
+          // this.loadScript();
           localStorage.setItem('allMapProjects', JSON.stringify(this.allMapProjects));
-          console.log('map view', this.allMapProjects);
+          // console.log('map view', this.allMapProjects);
           // console.log(this.allMapProjects[0].Project_Location);
+          // let firstLat = this.allMapProjects[0].Project_Location.substring(0,this.allMapProjects[0].Project_Location.indexOf(','));
+          // let firstLng = this.allMapProjects[0].Project_Location.split(',')[1].trim();
+          // this.center.lat = firstLat;
+          // this.center.lng = firstLng;
+          // console.log("lat::::",this.center.lat,"lng::::", this.center.lng);
+
+
           // debugger;
           this.projectslocations = [];
           this.allMapProjects.forEach((i) => {
@@ -294,6 +318,7 @@ export class MainComponent implements OnInit {
 
           });
           //console.log("projectslocations" ,this.projectslocations);
+
         } else {
           // this.toastr.error(response.Error_Resp)
           if (this.currentLanguage == 'ar-sa') {
@@ -832,7 +857,7 @@ export class MainComponent implements OnInit {
   /***************************************/
   // filter form inputs
   filterForm: FormGroup = new FormGroup({
-    ProjectType: new FormControl(1 , [Validators.required]),
+    ProjectType: new FormControl(1, [Validators.required]),
     ProjectStatus: new FormControl(1,[Validators.required]),
     // now_check: new FormControl('checked', [Validators.required]),
     // complete_check: new FormControl(false, [Validators.required]),
@@ -1109,3 +1134,6 @@ interface googleMaps_ApiReturn {
   position: google.maps.LatLngLiteral;
   status: google.maps.Icon;
 }
+// interface googleMaps_ApiCenter {
+//   center: google.maps.LatLngLiteral
+// }

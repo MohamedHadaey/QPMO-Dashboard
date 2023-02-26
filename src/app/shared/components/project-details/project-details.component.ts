@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-
+import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
+import { Data } from '@angular/router';
 import { EventColor } from 'calendar-utils';
+import { MenuService } from 'src/app/menu/services/menu.service';
 
 // import swiper components
 // import Swiper core and required modules
@@ -24,6 +25,7 @@ declare const $: any;
 export class ProjectDetailsComponent implements OnInit {
   minimize: boolean = true;
   fav: boolean = false;
+  @Input() data:Data = {};
   constructor() {}
 
   ngOnInit(): void {}
@@ -62,4 +64,6 @@ export class ProjectDetailsComponent implements OnInit {
   closeUpdateImagesPopup() {
     $('.update-popups').hide();
   }
+
+
 }

@@ -78,7 +78,7 @@
                     }}</span></button>
               </li>
               <li class="mb-2">
-                <button (click)="logOut()" routerLink="/login" class="hover bg-danger"><span>{{"log-out" | translate
+                <button data-bs-toggle="modal" data-bs-target="#logoutModal" class="hover bg-danger"><span>{{"log-out" | translate
                     }}</span></button>
               </li>
             </ul>
@@ -113,8 +113,26 @@
         </div>
       </div>
       <div class="row px-3">
-        <app-project-details></app-project-details>
+        <app-project-details  [data]="projectDetails"></app-project-details>
       </div>
     </div>
   </div>
 </section>
+<!-- Modal -->
+<div class="modal fade logout-modal" id="logoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" style="max-width: 400px">
+    <div class="modal-content">
+      <div class="modal-header text-center" style="border-bottom: 0 ">
+        <img src="../../../../assets/images/Dashboard-icons/alert.png" style="width: 50px; margin: auto;" alt="alert logout">
+      </div>
+      <div class="modal-body text-center pb-0" style="border-bottom: 0 ">
+        <h4>{{"log-out-word" | translate}}</h4>
+        <p class="pt-2">{{"check-logout-msg" | translate}}</p>
+      </div>
+      <div class="modal-footer py-3">
+          <button type="button"  data-bs-dismiss="modal">{{"cancel" | translate }}</button>
+          <button type="button" data-bs-dismiss="modal" (click)="logOut();" routerLink="/login">{{"log-out-word" | translate }}</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -147,6 +147,9 @@ a {
 
 }
 
+.infinity-loader {
+  max-width: 200px;
+}
 /* end:: global styles for all project */
 
 
@@ -573,13 +576,13 @@ a {
                       }
 
                       /*********************************************/
-                      
+
 
                     }
                   }
 
                   .footer {
-                    button {
+                    button,a {
                       margin: 5px;
                       padding: 5px 30px;
                       border-radius: 10px;
@@ -603,7 +606,7 @@ a {
                     }
 
                     .col-6:nth-of-type(2) {
-                      button {
+                      a {
                         background-color: #fff;
                         outline: 1px solid #749BC4;
                         color: #749BC4;
@@ -612,6 +615,7 @@ a {
                           background-color: #eee;
                           color: #749BC4;
                           border: none;
+                          cursor: pointer;
                         }
                       }
                     }
@@ -695,6 +699,51 @@ a {
   padding: 0;
 }
 
+
+.logout-modal {
+
+
+  .modal-footer {
+    border-top: 0;
+    button {
+      padding: 5px;
+      width: 90%;
+      margin: auto;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      max-width: 120px;
+      transition: all 0.3s;
+
+    }
+
+
+      button:first-of-type {
+        background-color: #749BC4;
+        color: #fff;
+
+        &:hover {
+          background-color: #eee ;
+          outline: 1px solid #749BC4 ;
+          color: #749BC4 ;
+        }
+    }
+
+
+      button:nth-of-type(2) {
+        background-color: #fff ;
+        outline: 1px solid #749BC4 ;
+        color: #749BC4 ;
+
+        &:hover {
+          background-color: #eee;
+          color: #749BC4;
+          border: none;
+        }
+      }
+    }
+
+}
 /* end:: main style for layout of all pages */
 
 /* start media queres  */

@@ -18,10 +18,13 @@
         </div>
         <div class="col-md-6 col-lg-3">
           <div class="icons">
-            <img src="../../../../assets/images/Dashboard-icons/Favorite-gray.png" alt="favourite icon" *ngIf="data['IsFav'] == false"
-              >
-            <img src="../../../../assets/images/Dashboard-icons/Favorite-blue.png" alt="favourite icon" *ngIf="data['IsFav'] == true"
-            >
+            <img
+            src="../../../../assets/images/Dashboard-icons/Favorite-blue.png"
+            alt="favourite" class="fav-icon" *ngIf="data['IsFav'] == true">
+            <img
+            src="../../../../assets/images/Dashboard-icons/Favorite-gray.png"
+            alt="favourite" class="unfav-icon" *ngIf="data['IsFav'] == false">
+
             <img src="../../../../assets/images/Dashboard-icons/maximize.png" alt="maximize icon"
               (click)="showProjectProcess()" *ngIf="!minimize">
             <img src="../../../../assets/images/Dashboard-icons/minimize.png" alt="minimize icon"
@@ -157,7 +160,7 @@
           </div>
         </div>
         <div class="row project-images">
-          <swiper [slidesPerView]="'auto'" [spaceBetween]="10" [loop]="true" [autoplay]="{
+          <!-- <swiper [slidesPerView]="'auto'" [spaceBetween]="10" [loop]="true" [autoplay]="{
             delay: 2000,
             disableOnInteraction: false
           }" [centeredSlides]="true" class="swiper">
@@ -237,6 +240,91 @@
               <div class="date">
                 <div class="date-img">
                   <img src="../../../../assets/images/Dashboard-icons/imagesoon.png" class="project-image" alt="image soon">
+                </div>
+                <p>05/02/2020</p>
+              </div>
+            </ng-template>
+          </swiper> -->
+          <swiper [slidesPerView]="'auto'" [spaceBetween]="10" [loop]="true" [autoplay]="{
+            delay: 2000,
+            disableOnInteraction: false
+          }" [centeredSlides]="true" class="swiper">
+            <ng-template swiperSlide class="swiperSlide">
+              <div class="date">
+                <div class="date-img">
+                  <img src="../../../../assets/images/test-images/img1.jpeg" class="project-image" alt="image soon">
+                </div>
+                <p>05/02/2020</p>
+              </div>
+            </ng-template>
+            <ng-template swiperSlide class="swiperSlide">
+              <div class="date">
+                <div class="date-img">
+                  <img src="../../../../assets/images/test-images/img2.jpeg" class="project-image" alt="image soon">
+                </div>
+                <p>05/02/2020</p>
+              </div>
+            </ng-template>
+            <ng-template swiperSlide class="swiperSlide">
+              <div class="date">
+                <div class="date-img">
+                  <img src="../../../../assets/images/test-images/img3.jpeg" class="project-image" alt="image soon">
+                </div>
+                <p>05/02/2020</p>
+              </div>
+            </ng-template>
+            <ng-template swiperSlide class="swiperSlide">
+              <div class="date">
+                <div class="date-img">
+                  <img src="../../../../assets/images/test-images/img4.jpeg" class="project-image" alt="image soon">
+                </div>
+                <p>05/02/2020</p>
+              </div>
+            </ng-template>
+            <ng-template swiperSlide class="swiperSlide">
+              <div class="date">
+                <div class="date-img">
+                  <img src="../../../../assets/images/test-images/img5.jpeg" class="project-image" alt="image soon">
+                </div>
+                <p>05/02/2020</p>
+              </div>
+            </ng-template>
+            <ng-template swiperSlide class="swiperSlide">
+              <div class="date">
+                <div class="date-img">
+                  <img src="../../../../assets/images/test-images/img6.jpeg" class="project-image" alt="image soon">
+                </div>
+                <p>05/02/2020</p>
+              </div>
+            </ng-template>
+            <ng-template swiperSlide class="swiperSlide">
+              <div class="date">
+                <div class="date-img">
+                  <img src="../../../../assets/images/test-images/img1.jpeg" class="project-image" alt="image soon">
+                </div>
+                <p>05/02/2020</p>
+              </div>
+            </ng-template>
+            <ng-template swiperSlide class="swiperSlide">
+              <div class="date">
+                <div class="date-img">
+                  <img src="../../../../assets/images/test-images/img2.jpeg" class="project-image" alt="image soon">
+                </div>
+                <p>05/02/2020</p>
+              </div>
+            </ng-template>
+            <ng-template swiperSlide class="swiperSlide">
+              <div class="date">
+                <div class="date-img">
+                  <img src="../../../../assets/images/test-images/img3.jpeg" class="project-image" alt="image soon">
+                </div>
+                <p>05/02/2020</p>
+              </div>
+            </ng-template>
+            <ng-template swiperSlide class="swiperSlide">
+              <div class="date">
+                <div class="date-img">
+                  <img src="../../../../assets/images/test-images/img4.jpeg" class="project-image" alt="image soon">
                 </div>
                 <p>05/02/2020</p>
               </div>

@@ -17,6 +17,7 @@ SwiperCore.use([Autoplay, Navigation, Pagination, Scrollbar]);
 declare const $: any;
 import { Options , ChangeContext} from '@angular-slider/ngx-slider';
 import Swal from 'sweetalert2';
+import { MenuService } from 'src/app/menu/services/menu.service';
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
@@ -31,7 +32,8 @@ export class ProjectComponent implements OnInit {
   minimize: boolean = true;
   fav: boolean = false;
   currentLanguage: any = localStorage.getItem('currentLanguage');
-  constructor(private _SharedService:SharedService, private toastr: ToastrService) {
+
+    constructor(private _SharedService:SharedService, private toastr: ToastrService,private _MenuService: MenuService) {
 
     console.log(" data on constructor  " , this.data)
   }
@@ -56,6 +58,7 @@ export class ProjectComponent implements OnInit {
     };
     console.log(" data on ngOnInit  " , this.data);
     this.getProjectProcesses();
+
   }
 
   // this function to close day projects panel
@@ -205,5 +208,142 @@ export class ProjectComponent implements OnInit {
       }
     })
   }
+
+
+    //********         add to fav       ************/
+    addProjectToFav(id: any) {
+      this._MenuService.addToFav(id).subscribe(
+        (response) => {
+          if (response.Code == 200) {
+            $(".unfav-icon").addClass("d-none");
+            $(".unfav-icon").removeClass("d-inline-block");
+            $(".fav-icon").addClass("d-inline-block");
+            $(".fav-icon").removeClass("d-none");
+
+            if (this.currentLanguage == 'ar-sa') {
+              Swal.fire({
+                title: 'نجاح !!',
+                text: 'تم إضافة المشروع بنجاح',
+                icon: 'success',
+                confirmButtonText: 'موافق',
+              });
+            } else {
+              Swal.fire({
+                title: 'Success !!',
+                text: 'The project has been successfully added',
+                icon: 'success',
+                confirmButtonText: 'OK',
+              });
+            }
+            // this.getListsProjects();
+            // this.getMapProjects();
+            // this.getCardsProjects();
+            // this.getFavProjects_lists();
+            // this.getFavProjects_cards();
+          } else {
+            if (this.currentLanguage == 'ar-sa') {
+              Swal.fire({
+                title: 'خطأ !!',
+                text: response.Error_Resp,
+                icon: 'error',
+                confirmButtonText: 'موافق',
+              });
+            } else {
+              Swal.fire({
+                title: 'Error !!',
+                text: response.Error_Resp,
+                icon: 'error',
+                confirmButtonText: 'OK',
+              });
+            }
+          }
+        },
+        (errorr) => {
+          if (this.currentLanguage == 'ar-sa') {
+            Swal.fire({
+              title: 'خطأ !!',
+              text: 'خطأ غير معروف من الخادم !!',
+              icon: 'error',
+              confirmButtonText: 'موافق',
+            });
+          } else {
+            Swal.fire({
+              title: 'Error !!',
+              text: 'Unknown error From Server!!',
+              icon: 'error',
+              confirmButtonText: 'OK',
+            });
+          }
+        }
+      );
+    }
+
+    //********         remove from fav         ************/
+
+    removeProjectFromFav(id: any) {
+      this._MenuService.removeFromFav(id).subscribe(
+        (response) => {
+          if (response.Code == 200) {
+            $(".fav-icon").addClass("d-none");
+            $(".fav-icon").removeClass("d-inline-block");
+            $(".unfav-icon").addClass("d-inline-block");
+            $(".unfav-icon").removeClass("d-none");
+            if (this.currentLanguage == 'ar-sa') {
+              Swal.fire({
+                title: 'نجاح !!',
+                text: 'تم حذف المشروع بنجاح',
+                icon: 'success',
+                confirmButtonText: 'موافق',
+              });
+            } else {
+              Swal.fire({
+                title: 'Success !!',
+                text: 'The project has been successfully deleted',
+                icon: 'success',
+                confirmButtonText: 'OK',
+              });
+            }
+            // this.getListsProjects();
+            // this.getMapProjects();
+            // this.getCardsProjects();
+            // this.getFavProjects_lists();
+            // this.getFavProjects_cards();
+          } else {
+            if (this.currentLanguage == 'ar-sa') {
+              Swal.fire({
+                title: 'خطأ !!',
+                text: response.Error_Resp,
+                icon: 'error',
+                confirmButtonText: 'موافق',
+              });
+            } else {
+              Swal.fire({
+                title: 'Error !!',
+                text: response.Error_Resp,
+                icon: 'error',
+                confirmButtonText: 'OK',
+              });
+            }
+          }
+        },
+        (errorr) => {
+          if (this.currentLanguage == 'ar-sa') {
+            Swal.fire({
+              title: 'خطأ !!',
+              text: 'خطأ غير معروف من الخادم !!',
+              icon: 'error',
+              confirmButtonText: 'موافق',
+            });
+          } else {
+            Swal.fire({
+              title: 'Error !!',
+              text: 'Unknown error From Server!!',
+              icon: 'error',
+              confirmButtonText: 'OK',
+            });
+          }
+        }
+      );
+    }
 
 }
