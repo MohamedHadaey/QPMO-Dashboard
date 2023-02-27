@@ -12,7 +12,7 @@ import {
   ApexGrid,
 } from 'ng-apexcharts';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
-
+import { DatePipe } from '@angular/common';
 type ApexXAxis = {
   type?: 'category' | 'datetime' | 'numeric';
   categories?: any;
@@ -44,6 +44,7 @@ declare const $: any;
   selector: 'app-reports',
   templateUrl: './reports.component.html',
   styleUrls: ['./reports.component.scss'],
+  
 })
 export class ReportsComponent implements OnInit {
   completeText_en:string = "Completed";
@@ -85,7 +86,8 @@ export class ReportsComponent implements OnInit {
   constructor(
     private _AuthService: AuthService,
     private _MenuService: MenuService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private datePipe: DatePipe
   ) {
 
 
@@ -377,9 +379,9 @@ export class ReportsComponent implements OnInit {
     end: new FormControl<Date | null>(null),
   });
 
-
 currentPeriodClicked(val:any) {
-  console.log(val.start)
+  console.log(this.datePipe.transform((val.start),'yyyy-MM-dd'));
+  this.getCategory_form(this.datePipe.transform((val.start),'yyyy-MM-dd'),this.datePipe.transform((val.end),'yyyy-MM-dd'))
 }
 
   // from:Date | null = null;
@@ -388,6 +390,7 @@ currentPeriodClicked(val:any) {
     this._MenuService
       .GetStatistics_ProjectByCategory_form(from,to)
       .subscribe((response) => {
+        console.log(response)
         for (let index = 0; index < response.data.length; index++) {
           const element = response.data[index];
           this.Category[index] = element.Category;

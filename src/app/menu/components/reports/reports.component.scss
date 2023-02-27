@@ -12,7 +12,7 @@
             box-shadow: 0px 0px 10px 0.5px #ccc;
             border-radius: 15px;
             background-color: #fff;
-            min-height: 360px;
+           //  min-height: 360px;
 
             .employees-head {
               border-bottom: 3px solid #eee;
@@ -30,28 +30,83 @@
                 }
               }
 
-              .date-span {
-                background-color: #F0F2FA;
-                padding: 5px !important;
-                border-radius: 15px;
-                overflow: hidden;
-                margin: 0 5px 3px 5px !important;
-                max-width: 120px;
-                max-height: 29px;
+              // .example-form-field {
+              //   // padding: 0 !important;
+              //   // margin: 0 !important;
 
-                input[type="date"] {
-                  border: none;
-                  outline: none;
-                  background-color: transparent;
-                  color: #3D3D3D;
-                  font-weight: 700;
+              //   .range-input-datepicker {
+              //     width: 165px;
+              //   }
+
+              //   .mat-datepicker-toggle {
+              //     width: 300px !important;
+              //   }
+
+              //   .mat-form-field-subscript-wrapper{
+              //     display: none !important;
+              //   }
+
+              //   .mat-form-field-label {
+              //     color: red;
+              //   }
+              //   .mat-date-range-input {
+              //     color: blue;
+              //   }
+              //   .mat-date-range-input-separator {
+              //     color: blue;
+              //   }
+              // }
+
+              // mat-form-field {
+              //   background-color: red;
+              //   height: 100px !important;
+              //   max-height: 100px !important;
+              //   overflow: hidden !important;
+              //   text-align: left !important;
+              //   display: flex !important;
+              //   padding: 0 !important;
+              //   // margin: 0 !important;
+              // }
+
+              // mat-form-field + mat-form-field {
+              //   margin-left: 800px;
+              // }
+
+                .mat-form-field-underline {
+                  display: none !important;
                 }
+
+                .mat-form-field-appearance-fill .mat-form-field-underline::before {
+                  display: none !important;
+                }
+
+                .mat-form-field-wrapper {
+                  padding-bottom: 0px !important;
               }
 
-              span {
-                color: #3D3D3D;
-                font-weight: bold !important;
-              }
+
+              // .date-span {
+              //   background-color: #F0F2FA;
+              //   padding: 5px !important;
+              //   border-radius: 15px;
+              //   overflow: hidden;
+              //   margin: 0 5px 3px 5px !important;
+              //   max-width: 120px;
+              //   max-height: 29px;
+
+              //   input[type="date"] {
+              //     border: none;
+              //     outline: none;
+              //     background-color: transparent;
+              //     color: #3D3D3D;
+              //     font-weight: 700;
+              //   }
+              // }
+
+              // span {
+              //   color: #3D3D3D;
+              //   font-weight: bold !important;
+              // }
 
         //       .datepicker-toggle{
         //         position: relative;

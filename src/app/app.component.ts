@@ -36,7 +36,7 @@ export class AppComponent implements OnInit{
     });
 
     // to disable inspect element, f12 button and developer tools
-    // disableDevtool();
+    disableDevtool();
   }
 
 

@@ -156,4 +156,103 @@ export class VarifyPassComponent implements OnInit {
       }
     }
   }
+
+
+  resendVarifationCode() {
+    this.spinner.show();
+    let Username = localStorage.getItem("Username");
+    let pass = localStorage.getItem("pass");
+    this._AuthService
+        .signIn(Username, pass)
+        .subscribe(
+          (response) => {
+            if (response.Code == 200) {
+              this.spinner.hide();
+              if (this.currentLanguage == 'ar-sa') {
+                Swal.fire({
+                  title: 'نجاح !!',
+                  text: 'تم إعادة ارسال رمز التحقق بنجاح',
+                  icon: 'success',
+                  confirmButtonText: 'موافق',
+                })
+                // this.toastr.error('اسم المستخدم / كلمة المرور غير صحيحة !!');
+              } else {
+                Swal.fire({
+                  title: 'Error !!',
+                  text: 'The verification code has been sent successfully',
+                  icon: 'success',
+                  confirmButtonText: 'OK',
+                })
+              }
+
+              // if (this.currentLanguage == 'ar-sa') {
+              //   const Toast = Swal.mixin({
+              //     toast: true,
+              //     position: 'top-end',
+              //     showConfirmButton: false,
+              //     timer: 3000,
+              //     timerProgressBar: true,
+              //     didOpen: (toast) => {
+              //       toast.addEventListener('mouseenter', Swal.stopTimer)
+              //       toast.addEventListener('mouseleave', Swal.resumeTimer)
+              //     }
+              //   })
+
+              //   Toast.fire({
+              //     icon: 'success',
+              //     title: 'Signed in successfully'
+              //   })
+
+              // } else {
+
+              // }
+              // this._Router.navigate(['/varify-pass']);
+              // localStorage.setItem('C_Code', response.data.token);
+              // localStorage.setItem('UserID', response.data.UserID);
+            }  else{
+              this.spinner.hide();
+              if (this.currentLanguage == 'ar-sa') {
+                Swal.fire({
+                  title: 'خطأ !!',
+                  text: 'خطأ في الخادم يمكنك المحاولة مرة أخرى لاحقًا !! !!',
+                  icon: 'error',
+                  confirmButtonText: 'موافق',
+                })
+               // this.toastr.error('خطأ في الخادم يمكنك المحاولة مرة أخرى لاحقًا !! !!');
+              } else {
+                Swal.fire({
+                  title: 'Error !!',
+                  text: 'Server Error you can try again later !! !!',
+                  icon: 'error',
+                  confirmButtonText: 'OK',
+                })
+                // this.toastr.error('Server Error you can try again later !! !!');
+              }
+            } 
+          },
+          (error) => {
+            this.spinner.hide();
+            if (this.currentLanguage == 'ar-sa') {
+              Swal.fire({
+                title: 'خطأ !!',
+                text: 'خطأ غير معروف من الخادم !!',
+                icon: 'error',
+                confirmButtonText: 'موافق',
+              })
+            } else {
+              Swal.fire({
+                title: 'Error !!',
+                text: 'Unknown error From Server!!',
+                icon: 'error',
+                confirmButtonText: 'OK',
+              })
+            }
+            // if (this.currentLanguage == 'ar-sa') {
+            //   this.toastr.error('خطأ غير معروف من الخادم !!');
+            // } else {
+            //   this.toastr.error('Unknown error From Server!!');
+            // }
+          }
+        );
+  }
 }

@@ -38,6 +38,8 @@ export class LoginComponent implements OnInit {
       this.spinner.hide();
       return;
     } else {
+      localStorage.setItem('Username', this.loginForm.value.Username);
+      localStorage.setItem('pass', this.loginForm.value.pass);
       this._AuthService
         .signIn(this.loginForm.value.Username, this.loginForm.value.pass)
         .subscribe(
