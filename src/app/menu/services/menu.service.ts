@@ -101,6 +101,10 @@ export class MenuService {
     return this.http.get( `${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/Statistics/GetStatistics_ProjectByCategory?culture=${this._AuthService.currentLanguage}` )
   }
 
+  GetStatistics_ProjectByCategory_form(from:any, to:any):Observable<any> {
+    return this.http.get( `${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/Statistics/GetStatistics_ProjectByCategory?from=${from}&to=${to}&culture=${this._AuthService.currentLanguage}` )
+  }
+
   GetStatistics_ProjectTracking():Observable<any> {
     return this.http.get( `${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/Statistics/GetStatistics_ProjectTracking?culture=${this._AuthService.currentLanguage}` )
   }

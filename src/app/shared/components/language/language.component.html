@@ -1,5 +1,5 @@
 
 <div class="languages">
     <img src="../../../../assets/images/Dashboard-icons/flag-ksa@2x.png" alt="arabic-theme" (click)="getArabic()" *ngIf="currentLanguage == 'en-sa'" class="lang-icon ar-icon">
-    <img src="../../../../assets/images/Dashboard-icons/UK_flag.png" alt="english-theme" (click)="getEnglish()" *ngIf="currentLanguage == 'ar-sa'" class="lang-icon en-icon">
+    <img src="../../../../assets/images/Dashboard-icons/UK_flag.png" alt="english-theme" (click)="getEnglish();changeMapLang()" *ngIf="currentLanguage == 'ar-sa'" class="lang-icon en-icon">
   </div>

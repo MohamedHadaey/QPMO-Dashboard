@@ -11,7 +11,7 @@ import {
   ApexLegend,
   ApexGrid,
 } from 'ng-apexcharts';
-
+import {FormGroup, FormControl, Validators} from '@angular/forms';
 
 type ApexXAxis = {
   type?: 'category' | 'datetime' | 'numeric';
@@ -247,6 +247,7 @@ export class ReportsComponent implements OnInit {
     this.getData();
     this.getStatus();
     this.getCategory();
+    // this.getCategory_form("01/01/2022","01/01/2023");
     this.getTracking();
   }
 
@@ -345,9 +346,47 @@ export class ReportsComponent implements OnInit {
 
   }
 
+
   getCategory(): void {
     this._MenuService
       .GetStatistics_ProjectByCategory()
+      .subscribe((response) => {
+        for (let index = 0; index < response.data.length; index++) {
+          const element = response.data[index];
+          this.Category[index] = element.Category;
+          this.Catcount[index] = element.Count;
+        }
+        this.typeChartSeries= this.Catcount;
+        this.typeChartDetails= {
+          type: 'donut',
+          toolbar: {
+            show: false,
+          },
+        };
+
+        this.typechartDetails= {
+          enabled: true,
+        };
+
+      });
+  }
+
+
+  range = new FormGroup({
+    start: new FormControl<Date | null>(null),
+    end: new FormControl<Date | null>(null),
+  });
+
+
+currentPeriodClicked(val:any) {
+  console.log(val.start)
+}
+
+  // from:Date | null = null;
+  // to:Date | null = null;
+  getCategory_form(from:any, to:any): void {
+    this._MenuService
+      .GetStatistics_ProjectByCategory_form(from,to)
       .subscribe((response) => {
         for (let index = 0; index < response.data.length; index++) {
           const element = response.data[index];

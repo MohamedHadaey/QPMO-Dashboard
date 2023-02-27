@@ -116,17 +116,38 @@
                         <!-- <img src="../../../../assets/images/Dashboard-icons/rate.png" alt="rate"> -->
                         <h4>{{"project-states" | translate }}</h4>
                       </div>
+
+
+                      <mat-form-field appearance="fill" class="example-form-field">
+                        <mat-label>Enter a date range</mat-label>
+                        <mat-date-range-input [formGroup]="range" [rangePicker]="rangePicker">
+                          <input matStartDate placeholder="Start date" formControlName="start">
+                          <input matEndDate placeholder="End date" formControlName="end">
+                        </mat-date-range-input>
+                        <!-- <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint> -->
+                        <mat-datepicker-toggle matIconSuffix [for]="rangePicker"></mat-datepicker-toggle>
+                        <mat-date-range-picker #rangePicker>
+                          <mat-date-range-picker-actions>
+                            <button mat-button matDateRangePickerCancel>Cancel</button>
+                            <button mat-raised-button color="primary" matDateRangePickerApply (click)="currentPeriodClicked(range.value)">Apply</button>
+                          </mat-date-range-picker-actions>
+                        </mat-date-range-picker>
+                      </mat-form-field>
+
+
+
+
                       <!-- <span>{{"from" | translate}}</span> -->
                       <!-- <span class="datepicker-toggle"><img  src="../../../../assets/images/Dashboard-icons/date.png" alt="date icon" class="datepicker-toggle-button"><input  type="date" class="datepicker-input"></span> -->
 
-                      <div class="date-span">
-                        <input type="date" name="end_project" class="w-100" value="2022-01-01">
+                      <!-- <div class="date-span">
+                        <input type="date" name="start_date" id="start_date" class="w-100" value="2022-01-01" onchange="getObject(this);">
                       </div>
                       <span class="fw-bold">:</span>
-                      <!-- <span>{{"to" | translate}}</span> -->
+                      <span>{{"to" | translate}}</span>
                       <div class="date-span">
-                        <input type="date" name="end_project"  class="w-100" value="2022-12-30">
-                      </div>
+                        <input type="date" name="end_date" id="end_date" class="w-100" value="2022-12-30">
+                      </div> -->
                       <!-- <span  class="datepicker-toggle"><img  src="../../../../assets/images/Dashboard-icons/date.png" alt="date icon" class="datepicker-toggle-button"><input  type="date" class="datepicker-input"></span> -->
                     </div>
                     <div class="employees-number py-0">
