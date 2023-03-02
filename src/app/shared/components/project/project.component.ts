@@ -18,6 +18,7 @@ declare const $: any;
 import { Options , ChangeContext} from '@angular-slider/ngx-slider';
 import Swal from 'sweetalert2';
 import { MenuService } from 'src/app/menu/services/menu.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
@@ -33,7 +34,7 @@ export class ProjectComponent implements OnInit {
   fav: boolean = false;
   currentLanguage: any = localStorage.getItem('currentLanguage');
 
-    constructor(private _SharedService:SharedService, private toastr: ToastrService,private _MenuService: MenuService) {
+    constructor(private _SharedService:SharedService, private toastr: ToastrService,private _MenuService: MenuService, private spinner: NgxSpinnerService) {
 
     console.log(" data on constructor  " , this.data)
   }

@@ -64,3 +64,13 @@ export interface ProjectStatus {
   Status_Enabled: boolean
   Status_Desc: string
 }
+
+
+export interface emptyFilter {
+  ProjectType: any,
+  ProjectStatus: any,
+  StartDate: any,
+  EndDate: any,
+  MaqawlPer: any,
+  UserPer: any,
+}

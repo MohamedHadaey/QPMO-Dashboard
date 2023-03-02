@@ -8,6 +8,8 @@ declare const $: any;
 declare var google: any;
 import Swal from 'sweetalert2';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { emptyFilter } from 'src/app/models/project';
+import { filter } from 'rxjs';
 
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
@@ -61,8 +63,10 @@ export class MainComponent implements OnInit {
   constructor(
     private _AuthService: AuthService,
     private _MenuService: MenuService,
-    private toastr: ToastrService
-  ) {}
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService
+  ) {
+  }
 
   ngOnInit(): void {
     // $(".dropdown-toggle").dropdown('toggle');
@@ -177,7 +181,7 @@ export class MainComponent implements OnInit {
       },
     ],
   };
-  zoom = 13;
+  zoom = 12;
 
   projectslocations: googleMaps_ApiReturn[] = [];
   // map_center: googleMaps_ApiCenter[] = [];
@@ -266,33 +270,43 @@ export class MainComponent implements OnInit {
     );
   }
 
+
+  // let firstLat = this.allMapProjects[0].Project_Location.substring(0,this.allMapProjects[0].Project_Location.indexOf(','));
+  // let firstLng = this.allMapProjects[0].Project_Location.split(',')[1].trim();
+  // this.center.lat = firstLat;
+  // this.center.lng = firstLng;
+  // console.log("lat::::",this.center.lat,"lng::::", this.center.lng);
+  // this.center = {
+  //   lat: parseFloat(firstLat),
+  //   lng: parseFloat(firstLng),
+  // }
+
+
+
+
   // function of get all Map projects
   getMapProjects() {
     this._MenuService.getAllMapProjects().subscribe(
       (response) => {
         if (response.Code == 200) {
           this.allMapProjects = response.data;
-          console.log(" ya map" , this.allMapProjects);
-
           // this.loadScript();
-          localStorage.setItem('allMapProjects', JSON.stringify(this.allMapProjects));
-          // console.log('map view', this.allMapProjects);
-          console.log("only::",this.allMapProjects[0].Project_Location);
-          let firstLat = this.allMapProjects[0].Project_Location.substring(0,this.allMapProjects[0].Project_Location.indexOf(','));
-          let firstLng = this.allMapProjects[0].Project_Location.split(',')[1].trim();
-          this.center.lat = firstLat;
-          this.center.lng = firstLng;
-          console.log("lat::::",this.center.lat,"lng::::", this.center.lng);
-          this.center = {
-            lat: parseFloat(firstLat),
-            lng: parseFloat(firstLng),
-          }
-
-
+          localStorage.setItem(
+            'allMapProjects',
+            JSON.stringify(this.allMapProjects)
+          );
+          let ImagesUrl = [
+            '../../../../assets/maps_images/yellow.png',
+            '../../../../assets/maps_images/green.png',
+            '../../../../assets/maps_images/red.png',
+          ];
           // debugger;
           this.projectslocations = [];
           this.allMapProjects.forEach((i) => {
-            let lat = i.Project_Location.substring(0,this.allMapProjects[0].Project_Location.indexOf(','));
+            let lat = i.Project_Location.substring(
+              0,
+              this.allMapProjects[0].Project_Location.indexOf(',')
+            );
             let lng = i.Project_Location.split(',')[1].trim();
             this.projectslocations.push({
               ID: i.ID,
@@ -308,14 +322,16 @@ export class MainComponent implements OnInit {
                     return true;
                   },
                 },
-                url: '../../../../assets/maps_images/yellow.png',
+                url: ImagesUrl[i.ID % 2],
               },
             });
-            console.log('lat: ', parseFloat(lat),'lng: ', parseFloat(lng));
-
+            console.log('lat: ', parseFloat(lat), 'lng: ', parseFloat(lng));
+            this.center = {
+              lat: parseFloat(lat),
+              lng: parseFloat(lng),
+            };
           });
-          console.log("projectslocationsxxxx" ,this.projectslocations);
-
+          //console.log("projectslocations" ,this.projectslocations);
         } else {
           // this.toastr.error(response.Error_Resp)
           if (this.currentLanguage == 'ar-sa') {
@@ -366,13 +382,13 @@ export class MainComponent implements OnInit {
       (response) => {
         if (response.Code == 200) {
           this.allCardsProjects = response.data;
-          console.log("allCardsProjects:::" , this.allCardsProjects);
+          // console.log("allCardsProjects:::" , this.allCardsProjects);
 
           localStorage.setItem(
             'allCardsProjects',
             JSON.stringify(this.allCardsProjects)
           );
-          // console.log('card view', this.allCardsProjects);
+          console.log('card view', this.allCardsProjects);
         } else {
           // this.toastr.error(response.Error_Resp)
           if (this.currentLanguage == 'ar-sa') {
@@ -484,18 +500,11 @@ export class MainComponent implements OnInit {
         if (response.Code == 200) {
           this.favProjects_map = response.data;
           localStorage.setItem('favProjects_map',JSON.stringify(this.favProjects_map));
-          console.log('fav_maps', this.favProjects_map);
-
-          let firstLat = this.favProjects_map[0].Project_Location.substring(0,this.favProjects_map[0].Project_Location.indexOf(','));
-          let firstLng = this.favProjects_map[0].Project_Location.split(',')[1].trim();
-          this.center.lat = firstLat;
-          this.center.lng = firstLng;
-          console.log("lat::::",this.center.lat,"lng::::", this.center.lng);
-          this.center = {
-            lat: parseFloat(firstLat),
-            lng: parseFloat(firstLng),
-          }
-
+          let ImagesUrl = [
+            '../../../../assets/maps_images/yellow.png',
+            '../../../../assets/maps_images/green.png',
+            '../../../../assets/maps_images/red.png',
+          ];
           this.projectslocations = [];
           this.favProjects_map.forEach((i) => {
             let lat = i.Project_Location.substring(0,this.favProjects_map[0].Project_Location.indexOf(','));
@@ -514,11 +523,14 @@ export class MainComponent implements OnInit {
                     return true;
                   },
                 },
-                url: '../../../../assets/maps_images/yellow.png',
+                url: ImagesUrl[i.ID % 2],
               },
             });
             console.log('lat: ', parseFloat(lat),'lng: ', parseFloat(lng));
-
+            this.center = {
+              lat: parseFloat(lat),
+              lng: parseFloat(lng),
+            };
           });
         } else {
           // this.toastr.error(response.Error_Resp)
@@ -574,7 +586,7 @@ export class MainComponent implements OnInit {
             'favProjects_card',
             JSON.stringify(this.favProjects_card)
           );
-          // console.log('fav_cards', this.favProjects_card);
+          console.log('fav_cards', this.favProjects_card);
         } else {
           // this.toastr.error(response.Error_Resp)
           if (this.currentLanguage == 'ar-sa') {
@@ -750,12 +762,21 @@ export class MainComponent implements OnInit {
               confirmButtonText: 'OK',
             });
           }
+
+
           this.getListsProjects();
           this.getMapProjects();
           this.getCardsProjects();
           this.getFavProjects_lists();
           this.getFavProjects_cards();
           this.getFavProjects_map();
+          if (this.isFav == false) {
+            this.isFav = true;
+            this.showFav()
+          } else {
+            this.isFav = false;
+            this.showUnFav()
+          }
         } else {
           if (this.currentLanguage == 'ar-sa') {
             Swal.fire({
@@ -792,6 +813,7 @@ export class MainComponent implements OnInit {
         }
       }
     );
+
   }
 
   // get projcts types
@@ -871,8 +893,8 @@ export class MainComponent implements OnInit {
   filterForm!: FormGroup;
   private initForm(): void {
     this.filterForm = new FormGroup({
-      ProjectType: new FormControl(1),
-      ProjectStatus: new FormControl(1),
+      ProjectType: new FormControl(null, [Validators.required]),
+      ProjectStatus: new FormControl(null),
       // now_check: new FormControl('checked', [Validators.required]),
       // complete_check: new FormControl(false, [Validators.required]),
 
@@ -887,9 +909,6 @@ export class MainComponent implements OnInit {
       MaqawlPer: new FormControl(null),
       });
 }
-
-
-
 
   // filter form inputs
   // filterForm: FormGroup = new FormGroup({
@@ -912,63 +931,163 @@ export class MainComponent implements OnInit {
 
 
   submitFilterForm(filterForm: FormGroup) {
-    console.log("hello")
-    // filterForm.value.UserPer = (filterForm.value.UserPer[1]-filterForm.value.UserPer[0]) ;
-    // filterForm.value.MaqawlPer = (filterForm.value.MaqawlPer[1]-filterForm.value.MaqawlPer[0]) ;
-    // console.log(filterForm.value.UserPer);
-    // console.log(filterForm.value.MaqawlPer);
+    if(filterForm.invalid) {
+      return
+    }else {
+      this.closeDropdown();
+      this.spinner.show();
+      console.log("hello")
+      // filterForm.value.UserPer = (filterForm.value.UserPer[1]-filterForm.value.UserPer[0]) ;
+      // filterForm.value.MaqawlPer = (filterForm.value.MaqawlPer[1]-filterForm.value.MaqawlPer[0]) ;
+      // console.log(filterForm.value.UserPer);
+      // console.log(filterForm.value.MaqawlPer);
 
-     filterForm.value.UserPer =  null ;
-    filterForm.value.MaqawlPer = null ;
-    filterForm.value.StartDate = null ;
-    filterForm.value.EndDate = null ;
-    filterForm.value.ProjectStatus =[];
-    console.log(filterForm.value);
-    this._MenuService.filterProjects_table(filterForm.value).subscribe((response) => {
-      this.allListsProjects = response.data;
-    } , (error) => {
-      console.log(error);
-    });
+       filterForm.value.UserPer =  null ;
+      filterForm.value.MaqawlPer = null ;
+      filterForm.value.StartDate = null ;
+      filterForm.value.EndDate = null ;
+      filterForm.value.ProjectStatus =[];
+      console.log(filterForm.value);
+      this._MenuService.filterProjects_table(filterForm.value).subscribe((response) => {
+        this.allListsProjects = response.data;
+        this.spinner.hide();
+      } , (error) => {
+        console.log(error);
+      });
 
-    this._MenuService.filterProjects_map(filterForm.value).subscribe((response) => {
-      this.allMapProjects = response.data;
-
-      this.projectslocations = [];
-      this.allMapProjects.forEach((i) => {
-        let lat = i.Project_Location.substring(0,this.allMapProjects[0].Project_Location.indexOf(','));
-        let lng = i.Project_Location.split(',')[1].trim();
-        this.projectslocations.push({
-          ID: i.ID,
-          position: {
+      this._MenuService.filterProjects_map(filterForm.value).subscribe((response) => {
+        this.allMapProjects = response.data;
+        let ImagesUrl = [
+          '../../../../assets/maps_images/yellow.png',
+          '../../../../assets/maps_images/green.png',
+          '../../../../assets/maps_images/red.png',
+        ];
+        this.projectslocations = [];
+        this.allMapProjects.forEach((i) => {
+          let lat = i.Project_Location.substring(0,this.allMapProjects[0].Project_Location.indexOf(','));
+          let lng = i.Project_Location.split(',')[1].trim();
+          this.projectslocations.push({
+            ID: i.ID,
+            position: {
+              lat: parseFloat(lat),
+              lng: parseFloat(lng),
+            },
+            status: {
+              scaledSize: {
+                height: 40,
+                width: 40,
+                equals(other) {
+                  return true;
+                },
+              },
+              url: ImagesUrl[i.ID % 2],
+            },
+          });
+          console.log('lat: ', parseFloat(lat),'lng: ', parseFloat(lng));
+          this.center = {
             lat: parseFloat(lat),
             lng: parseFloat(lng),
-          },
-          status: {
-            scaledSize: {
-              height: 40,
-              width: 40,
-              equals(other) {
-                return true;
-              },
-            },
-            url: '../../../../assets/maps_images/yellow.png',
-          },
+          };
         });
-        console.log('lat: ', parseFloat(lat),'lng: ', parseFloat(lng));
-
+        console.log(this.allMapProjects)
+        this.spinner.hide();
+      } , (error) => {
+        console.log(error);
       });
-      console.log(this.allMapProjects)
-    } , (error) => {
-      console.log(error);
-    });
 
-    this._MenuService.filterProjects_cards(filterForm.value).subscribe((response) => {
-      this.allCardsProjects = response.data;
-      console.log(this.allCardsProjects);
+      this._MenuService.filterProjects_cards(filterForm.value).subscribe((response) => {
+        this.allCardsProjects = response.data;
+        console.log(this.allCardsProjects);
+        this.spinner.hide();
+      } , (error) => {
+        console.log(error);
+      });
+    }
+  }
 
-    } , (error) => {
-      console.log(error);
-    });
+
+  // clear form data
+  emptyFilter!:emptyFilter;
+
+  clearFilteredData() {
+    this.spinner.show();
+    this.closeDropdown();
+    console.log("hello");
+    this.emptyFilter = {
+      ProjectType: null,
+      ProjectStatus: [],
+      StartDate: null,
+      EndDate: null,
+      MaqawlPer: null,
+      UserPer: null,
+
+    }
+
+    this.getMapProjects();
+    this.getCardsProjects();
+    this.getListsProjects();
+    this.spinner.hide();
+
+
+    // tell ramy about that
+
+    // this._MenuService.filterProjects_table(this.emptyFilter).subscribe((response) => {
+    //   this.allListsProjects = response.data;
+    //   this.spinner.hide();
+    // } , (error) => {
+    //   console.log(error);
+    // });
+
+    // this._MenuService.filterProjects_map(this.emptyFilter).subscribe((response) => {
+    //   this.allMapProjects = response.data;
+    //   console.log("clearmap", this.allMapProjects)
+    //   let ImagesUrl = [
+    //     '../../../../assets/maps_images/yellow.png',
+    //     '../../../../assets/maps_images/green.png',
+    //     '../../../../assets/maps_images/red.png',
+    //   ];
+    //   this.projectslocations = [];
+    //   this.allMapProjects.forEach((i) => {
+    //     let lat = i.Project_Location.substring(0,this.allMapProjects[0].Project_Location.indexOf(','));
+    //     let lng = i.Project_Location.split(',')[1].trim();
+    //     this.projectslocations.push({
+    //       ID: i.ID,
+    //       position: {
+    //         lat: parseFloat(lat),
+    //         lng: parseFloat(lng),
+    //       },
+    //       status: {
+    //         scaledSize: {
+    //           height: 40,
+    //           width: 40,
+    //           equals(other) {
+    //             return true;
+    //           },
+    //         },
+    //         url: ImagesUrl[i.ID % 2],
+    //       },
+    //     });
+    //     console.log('lat: ', parseFloat(lat),'lng: ', parseFloat(lng));
+    //     this.center = {
+    //       lat: parseFloat(lat),
+    //       lng: parseFloat(lng),
+    //     };
+    //   });
+    //   console.log(this.allMapProjects)
+    //   this.spinner.hide();
+    // } , (error) => {
+    //   console.log(error);
+    // });
+
+    // this._MenuService.filterProjects_cards(this.emptyFilter).subscribe((response) => {
+    //   console.log(" clear filter ",response);
+    //   this.allCardsProjects = response.data;
+    //   console.log(this.allCardsProjects);
+    //   this.spinner.hide();
+    // } , (error) => {
+    //   this.spinner.hide()
+    //   console.log(error);
+    // });
   }
 
 
@@ -1061,6 +1180,7 @@ ProjectType!:any;
     this.allMapProjects = this.favProjects_map;
     this.allCardsProjects = this.favProjects_card;
     this.getFavProjects_map();
+    // this.getFavProjects_cards();
   }
 
   // show favourites projects in all themes
@@ -1102,6 +1222,7 @@ ProjectType!:any;
 
   closeDropdown() {
     $('.form-dropdown-menu').removeClass('show');
+
   }
 
 
@@ -1132,6 +1253,11 @@ ProjectType!:any;
         this.allMapProjects = JSON.parse(localStorage.getItem('allMapProjects') || '{}');
         this.allCardsProjects = JSON.parse(localStorage.getItem('allCardsProjects') || '{}');
 
+        let ImagesUrl = [
+          '../../../../assets/maps_images/yellow.png',
+          '../../../../assets/maps_images/green.png',
+          '../../../../assets/maps_images/red.png',
+        ];
         this.projectslocations = [];
         this.allMapProjects.forEach((i) => {
           let lat = i.Project_Location.substring(0,this.allMapProjects[0].Project_Location.indexOf(','));
@@ -1150,7 +1276,7 @@ ProjectType!:any;
                   return true;
                 },
               },
-              url: '../../../../assets/maps_images/yellow.png',
+              url: ImagesUrl[i.ID % 2],
             },
           });
           console.log('lat: ', parseFloat(lat),'lng: ', parseFloat(lng));
@@ -1161,6 +1287,11 @@ ProjectType!:any;
         this.favProjects_map = JSON.parse(localStorage.getItem('favProjects_map') || '{}');
         this.favProjects_card = JSON.parse(localStorage.getItem('favProjects_card') || '{}');
 
+        let ImagesUrl = [
+          '../../../../assets/maps_images/yellow.png',
+          '../../../../assets/maps_images/green.png',
+          '../../../../assets/maps_images/red.png',
+        ];
         this.projectslocations = [];
           this.favProjects_map.forEach((i) => {
             let lat = i.Project_Location.substring(0,this.favProjects_map[0].Project_Location.indexOf(','));
@@ -1179,11 +1310,14 @@ ProjectType!:any;
                     return true;
                   },
                 },
-                url: '../../../../assets/maps_images/yellow.png',
+                url: ImagesUrl[i.ID % 2],
               },
             });
             console.log('lat: ', parseFloat(lat),'lng: ', parseFloat(lng));
-
+            this.center = {
+              lat: parseFloat(lat),
+              lng: parseFloat(lng),
+            };
           });
       }
     } else {
@@ -1196,6 +1330,11 @@ ProjectType!:any;
         this.allMapProjects = this.allMapProjects.filter((project) => project.Project_Name.toLowerCase().includes(x.target.value.toLowerCase()));
         this.allCardsProjects = this.allCardsProjects.filter((project) => project.Project_Name.toLowerCase().includes(x.target.value.toLowerCase()));
 
+        let ImagesUrl = [
+          '../../../../assets/maps_images/yellow.png',
+          '../../../../assets/maps_images/green.png',
+          '../../../../assets/maps_images/red.png',
+        ];
         this.projectslocations = [];
         this.allMapProjects.forEach((i) => {
           let lat = i.Project_Location.substring(0,this.allMapProjects[0].Project_Location.indexOf(','));
@@ -1214,11 +1353,14 @@ ProjectType!:any;
                   return true;
                 },
               },
-              url: '../../../../assets/maps_images/yellow.png',
+              url: ImagesUrl[i.ID % 2],
             },
           });
           console.log('lat: ', parseFloat(lat),'lng: ', parseFloat(lng));
-
+          this.center = {
+            lat: parseFloat(lat),
+            lng: parseFloat(lng),
+          };
         });
 
       } else {
@@ -1233,6 +1375,11 @@ ProjectType!:any;
         this.favProjects_card = this.favProjects_card.filter((project) =>  project.Project_Name.toLowerCase().includes(x.target.value.toLowerCase()));
         this.allCardsProjects = this.favProjects_card;
 
+        let ImagesUrl = [
+          '../../../../assets/maps_images/yellow.png',
+          '../../../../assets/maps_images/green.png',
+          '../../../../assets/maps_images/red.png',
+        ];
         this.projectslocations = [];
           this.favProjects_map.forEach((i) => {
             let lat = i.Project_Location.substring(0,this.favProjects_map[0].Project_Location.indexOf(','));
@@ -1251,11 +1398,14 @@ ProjectType!:any;
                     return true;
                   },
                 },
-                url: '../../../../assets/maps_images/yellow.png',
+                url: ImagesUrl[i.ID % 2],
               },
             });
             console.log('lat: ', parseFloat(lat),'lng: ', parseFloat(lng));
-
+            this.center = {
+              lat: parseFloat(lat),
+              lng: parseFloat(lng),
+            };
           });
       }
     }
@@ -1271,6 +1421,3 @@ interface googleMaps_ApiReturn {
   position: google.maps.LatLngLiteral;
   status: google.maps.Icon;
 }
-// interface googleMaps_ApiCenter {
-//   center: google.maps.CameraOptions
-// }

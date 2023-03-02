@@ -12,7 +12,7 @@
             box-shadow: 0px 0px 10px 0.5px #ccc;
             border-radius: 15px;
             background-color: #fff;
-           //  min-height: 360px;
+            height: 400px;
 
             .employees-head {
               border-bottom: 3px solid #eee;
@@ -264,7 +264,7 @@
             h4 {
               margin: 5px 0;
               color: #3D3D3D;
-              font-size: 18px;
+              font-size: 16px;
               font-weight: bold;
             }
 
@@ -305,7 +305,7 @@
           }
 
           .chart-container {
-            max-width: 450px;
+            max-width: 500px;
             margin: auto;
 
           }
@@ -315,6 +315,22 @@
             margin: 35px auto;
           }
 
+        }
+
+        .panels {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .panels  .projects-follow-card{
+          width: 200px;
+          margin: 10px;
+        }
+
+        .panels .col-lg {
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
 
         // date-range

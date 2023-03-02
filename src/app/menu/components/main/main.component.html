@@ -1,4 +1,6 @@
-
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" [fullScreen]="true">
+  <img src="../../../../assets/images/Dashboard-icons/loader.gif" alt="infinity-loader" class="img-fluid" class="infinity-loader">
+</ngx-spinner>
 <section class="content">
   <div class="row">
     <div class="sidebar">
@@ -215,17 +217,16 @@
                     <li>
                       <div class="row footer d-flex justify-content-center align-items-center">
                         <div class="col-6 p-2 d-flex justify-content-center align-items-center">
-                          <button type="submit" [disabled]="filterForm.invalid"  id="agree" (click)="closeDropdown()">{{"apply" | translate }}</button>
+                          <button type="submit" [disabled]="filterForm.invalid"  id="agree">{{"apply" | translate }}</button>
                         </div>
                         <div class="col-6 p-2 d-flex justify-content-center align-items-center">
                           <a id="exit" (click)="closeDropdown()">{{"cancel" | translate }}</a>
 
                         </div>
+                        <div class="col-12 w-100 d-flex justify-content-center align-items-center p-2 text-center">
+                          <p id="clearBtn" (click)="clearFilteredData()">{{"clear" | translate }}</p>
+                        </div>
                       </div>
-
-                      <!-- <div class="row">
-                          <a id="clear" (click)="closeDropdown()">{{"cancel" | translate }}</a>
-                      </div> -->
                     </li>
                   </ul>
                 </form>

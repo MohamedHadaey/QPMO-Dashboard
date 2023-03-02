@@ -6,6 +6,8 @@ import { ToastrService } from 'ngx-toastr';
 import { MenuService } from '../../services/menu.service';
 declare const $: any;
 import Swal from 'sweetalert2';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { emptyFilter } from 'src/app/models/project';
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
@@ -34,26 +36,46 @@ export class ProjectsComponent implements OnInit {
   card: boolean = true;
   showen: string = 'maps';
 
-  constructor(private _AuthService: AuthService, private _MenuService:MenuService, private toastr: ToastrService) {}
+  constructor(private _AuthService: AuthService, private _MenuService:MenuService, private toastr: ToastrService,private spinner: NgxSpinnerService) {}
 
-  filterForm: FormGroup = new FormGroup({
-    ProjectType: new FormControl(1 , [Validators.required]),
-    ProjectStatus: new FormControl(1,[Validators.required]),
-    // now_check: new FormControl('checked', [Validators.required]),
-    // complete_check: new FormControl(false, [Validators.required]),
 
-    // late_check: new FormControl(false, [Validators.required]),
+  ngOnInit(): void {
+    this.getProjectsFollowed();
+    this.getProjectsTypes();
+    this.getProjectsStates();
 
-    // end_check: new FormControl('checked', [Validators.required]),
+    this.initForm();
+  }
 
-    // not_check: new FormControl(false, [Validators.required]),
-    StartDate: new FormControl(null),
-    EndDate: new FormControl(null),
-    UserPer: new FormControl(null),
-    MaqawlPer: new FormControl(null),
-  });
+  filterForm!: FormGroup;
+  private initForm(): void {
+    this.filterForm = new FormGroup({
+      ProjectType: new FormControl(null, [Validators.required]),
+      ProjectStatus: new FormControl(null),
+      // now_check: new FormControl('checked', [Validators.required]),
+      // complete_check: new FormControl(false, [Validators.required]),
 
-  submitFilterForm(filterForm: FormGroup) {
+      // late_check: new FormControl(false, [Validators.required]),
+
+      // end_check: new FormControl('checked', [Validators.required]),
+
+      // not_check: new FormControl(false, [Validators.required]),
+      StartDate: new FormControl(null),
+      EndDate: new FormControl(null),
+      UserPer: new FormControl(null),
+      MaqawlPer: new FormControl(null),
+      });
+}
+
+filteredFollowedProjects:any[] = []
+
+submitFilterForm(filterForm: FormGroup) {
+  if(filterForm.invalid) {
+    return
+  }else {
+    this.closeDropdown();
+    this.spinner.show();
+    console.log("hello")
     // filterForm.value.UserPer = (filterForm.value.UserPer[1]-filterForm.value.UserPer[0]) ;
     // filterForm.value.MaqawlPer = (filterForm.value.MaqawlPer[1]-filterForm.value.MaqawlPer[0]) ;
     // console.log(filterForm.value.UserPer);
@@ -65,20 +87,47 @@ export class ProjectsComponent implements OnInit {
     filterForm.value.EndDate = null ;
     filterForm.value.ProjectStatus =[];
     console.log(filterForm.value);
-    // this._MenuService.filterProjects_table(filterForm.value).subscribe((response) => {
-    //   console.log(response.data);
-    //   this.followedProjects = response.data;
-    //   console.log("12123132", response.data)
-    // } , (error) => {
-    //   console.log(error);
-    // })
-  }
+    this._MenuService.filterProjects_table(filterForm.value).subscribe((response) => {
+      this.followedProjects = [];
+      this.filteredFollowedProjects = response.data;
+      console.log("tracking:::" , this.filteredFollowedProjects);
 
-  ngOnInit(): void {
-    this.getProjectsFollowed();
-    this.getProjectsTypes();
-    this.getProjectsStates();
+      this.spinner.hide();
+    } , (error) => {
+      console.log(error);
+    });
   }
+}
+
+   // clear form data
+   emptyFilter!:emptyFilter;
+
+   clearFilteredData() {
+     this.spinner.show();
+     this.closeDropdown();
+     console.log("hello");
+     this.emptyFilter = {
+       ProjectType: null,
+       ProjectStatus: [],
+       StartDate: null,
+       EndDate: null,
+       MaqawlPer: null,
+       UserPer: null,
+     }
+     this.getProjectsFollowed();
+     this.spinner.hide();
+
+     // tell ramy about that
+
+     // this._MenuService.filterProjects_table(this.emptyFilter).subscribe((response) => {
+     //   this.allListsProjects = response.data;
+     //   this.spinner.hide();
+     // } , (error) => {
+     //   console.log(error);
+     // });
+   }
+
+
 
   // this function to log out
   logOut() {

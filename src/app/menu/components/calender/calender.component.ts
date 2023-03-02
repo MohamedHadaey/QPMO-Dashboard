@@ -27,14 +27,15 @@ const colors: Record<string, EventColor> = {
     primary: '#ad2121',
     secondary: '#FAE3E3',
   },
-  blue: {
-    primary: '#1e90ff',
-    secondary: '#D1E8FF',
-  },
   yellow: {
     primary: '#e3bc08',
     secondary: '#FDF1BA',
   },
+  blue: {
+    primary: '#1e90ff',
+    secondary: '#D1E8FF',
+  },
+
 };
 
 // my trail to add calender cards
@@ -85,7 +86,7 @@ export class CalenderComponent implements OnInit {
       start: addHours(startOfDay(new Date()), 2),
       end: addHours(new Date(), 2),
       title: 'A draggable and resizable event',
-      color: { ...colors['yellow'] },
+      color: { ...colors['blue'] },
       resizable: {
         beforeStart: true,
         afterEnd: true,

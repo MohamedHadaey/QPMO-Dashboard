@@ -99,6 +99,7 @@
 "retype-pass": "Retype new password",
 "update-pass": "Update password",
 "cancel": "Cancel",
+"clear": "Clear",
 "update-password": "Update password",
 
 
@@ -135,6 +136,7 @@
 "filter": "filter",
 "project-type": "Project Type",
 "project-state": "Project state",
+"all": "All",
 "starting-date": "Starting date",
 "ending-date": "End Date",
 "Section A.Rate": "Section A.Rate",

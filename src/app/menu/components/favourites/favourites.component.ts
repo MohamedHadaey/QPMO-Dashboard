@@ -6,6 +6,8 @@ import { MenuService } from '../../services/menu.service';
 import { ToastrService } from 'ngx-toastr';
 declare const $: any;
 import Swal from 'sweetalert2';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { emptyFilter } from 'src/app/models/project';
 
 @Component({
   selector: 'app-favourites',
@@ -31,7 +33,7 @@ export class FavouritesComponent implements OnInit {
     ceil: 100,
   };
   /**************************/
-  constructor(private _AuthService: AuthService, private _MenuService:MenuService, private toastr: ToastrService) {}
+  constructor(private _AuthService: AuthService, private _MenuService:MenuService, private toastr: ToastrService,  private spinner: NgxSpinnerService) {}
 
 
   ngOnInit(): void {
@@ -56,12 +58,11 @@ export class FavouritesComponent implements OnInit {
   // }
 
 
-
-    filterForm!: FormGroup;
+  filterForm!: FormGroup;
   private initForm(): void {
     this.filterForm = new FormGroup({
-      ProjectType: new FormControl(1),
-      ProjectStatus: new FormControl(1),
+      ProjectType: new FormControl(null, [Validators.required]),
+      ProjectStatus: new FormControl(null),
       // now_check: new FormControl('checked', [Validators.required]),
       // complete_check: new FormControl(false, [Validators.required]),
 
@@ -99,49 +100,60 @@ export class FavouritesComponent implements OnInit {
   // });
 
   submitFilterForm(filterForm: FormGroup) {
-    // console.log("hello")
-
-    // // filterForm.value.UserPer = (filterForm.value.UserPer[1]-filterForm.value.UserPer[0]) ;
-    // // filterForm.value.MaqawlPer = (filterForm.value.MaqawlPer[1]-filterForm.value.MaqawlPer[0]) ;
-    // // console.log(filterForm.value.UserPer);
-    // // console.log(filterForm.value.MaqawlPer);
-
-    //  filterForm.value.UserPer =  null ;
-    // filterForm.value.MaqawlPer = null ;
-    // filterForm.value.StartDate = null ;
-    // filterForm.value.EndDate = null ;
-    // filterForm.value.ProjectStatus =[];
-    // console.log(filterForm.value);
-    // this._MenuService.filterProjects_table(filterForm.value).subscribe((response) => {
-    //   console.log(" favooooo" ,response.data);
-    //   this.favouriteProjects = response.data;
-    //   console.log("dsdsdsds1112121" ,response.data)
-    // } , (error) => {
-    //   console.log(error);
-    // });
-
-
-
-
+    if(filterForm.invalid) {
+      return
+    }else {
+      this.closeDropdown();
+      this.spinner.show();
       console.log("hello")
-    // filterForm.value.UserPer = (filterForm.value.UserPer[1]-filterForm.value.UserPer[0]) ;
-    // filterForm.value.MaqawlPer = (filterForm.value.MaqawlPer[1]-filterForm.value.MaqawlPer[0]) ;
-    // console.log(filterForm.value.UserPer);
-    // console.log(filterForm.value.MaqawlPer);
+      // filterForm.value.UserPer = (filterForm.value.UserPer[1]-filterForm.value.UserPer[0]) ;
+      // filterForm.value.MaqawlPer = (filterForm.value.MaqawlPer[1]-filterForm.value.MaqawlPer[0]) ;
+      // console.log(filterForm.value.UserPer);
+      // console.log(filterForm.value.MaqawlPer);
 
-     filterForm.value.UserPer =  null ;
-    filterForm.value.MaqawlPer = null ;
-    filterForm.value.StartDate = null ;
-    filterForm.value.EndDate = null ;
-    filterForm.value.ProjectStatus =[];
-    console.log(filterForm.value);
-    this._MenuService.filterProjects_table(filterForm.value).subscribe((response) => {
-      this.favouriteProjects = response.data;
-    } , (error) => {
-      console.log(error);
-    });
+       filterForm.value.UserPer =  null ;
+      filterForm.value.MaqawlPer = null ;
+      filterForm.value.StartDate = null ;
+      filterForm.value.EndDate = null ;
+      filterForm.value.ProjectStatus =[];
+      console.log(filterForm.value);
+      this._MenuService.filterProjects_table(filterForm.value).subscribe((response) => {
+        this.favouriteProjects = response.data;
+        this.spinner.hide();
+      } , (error) => {
+        console.log(error);
+      });
+    }
   }
 
+
+    // clear form data
+    emptyFilter!:emptyFilter;
+
+    clearFilteredData() {
+      this.spinner.show();
+      this.closeDropdown();
+      console.log("hello");
+      this.emptyFilter = {
+        ProjectType: null,
+        ProjectStatus: [],
+        StartDate: null,
+        EndDate: null,
+        MaqawlPer: null,
+        UserPer: null,
+      }
+      this.getFavProjects();
+      this.spinner.hide();
+
+      // tell ramy about that
+
+      // this._MenuService.filterProjects_table(this.emptyFilter).subscribe((response) => {
+      //   this.allListsProjects = response.data;
+      //   this.spinner.hide();
+      // } , (error) => {
+      //   console.log(error);
+      // });
+    }
 
 
       ///****************** */

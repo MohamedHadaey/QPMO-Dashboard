@@ -72,12 +72,14 @@
 
           .col-sm-6:first-of-type .project-card {
             // background-color: #4CB871;
-            background: linear-gradient(231deg, #4CB871 0%, #E9E9E9 100%);
+            // background: linear-gradient(231deg, #4CB871 0%, #E9E9E9 100%);
+            background: linear-gradient(231deg, #F24773 0%, #E9E9E9 100%)
           }
 
           .col-sm-6:nth-of-type(2) .project-card {
             // background-color: #F24773;
-            background: linear-gradient(231deg, #F24773 0%, #E9E9E9 100%)
+            // background: linear-gradient(231deg, #F24773 0%, #E9E9E9 100%)
+            background: linear-gradient(231deg, #e3bc08 0%, #E9E9E9 100%);
           }
 
           .col-sm-6:nth-of-type(3) .project-card {

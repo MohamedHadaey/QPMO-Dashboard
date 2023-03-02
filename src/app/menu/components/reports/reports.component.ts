@@ -44,7 +44,7 @@ declare const $: any;
   selector: 'app-reports',
   templateUrl: './reports.component.html',
   styleUrls: ['./reports.component.scss'],
-  
+
 })
 export class ReportsComponent implements OnInit {
   completeText_en:string = "Completed";
@@ -63,6 +63,7 @@ export class ReportsComponent implements OnInit {
   typeChartSeries: ApexNonAxisChartSeries = this.Catcount;
   typeChartDetails: ApexChart = {
     type: 'donut',
+    height: 1000,
     toolbar: {
       show: false,
     },
@@ -110,7 +111,7 @@ export class ReportsComponent implements OnInit {
           },
           toolbar: false,
         },
-        colors: ['#F5E306', '#F24773', '#4CB871', '#068DF5', '#CCCCCC'],
+        colors: ['#4CB871','#F5E306', '#F24773',, '#068DF5', '#CCCCCC'],
         plotOptions: {
           bar: {
             columnWidth: '10%',
@@ -134,7 +135,7 @@ export class ReportsComponent implements OnInit {
           categories: this.status,
           labels: {
             style: {
-              colors: ['#F5E306', '#F24773', '#4CB871', '#068DF5', '#CCCCCC'],
+              colors: ['#4CB871','#F5E306', '#F24773',, '#068DF5', '#CCCCCC'],
               fontSize: '14px',
             },
           },

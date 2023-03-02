@@ -88,9 +88,9 @@
         <div class="row p-0">
           <div class="col-12 p-3">
             <div class="list p-3">
-              <div class="row reports">
+              <div class="row reports ">
                 <h5 class="py-0 my-0 fw-bold">{{"projects-statistics" | translate }}</h5>
-                <div class="col-md-6 p-3">
+                <div class="col-lg-6 p-3">
                   <div class="employees p-3">
                     <div class="employees-head w-100 d-flex justify-content-between align-items-center">
                       <div class="logo d-flex align-items-center pt-2" style="padding-bottom: 32px;">
@@ -109,7 +109,7 @@
                     <!-- end:: charts -->
                   </div>
                 </div>
-                <div class="col-md-6 p-3">
+                <div class="col-lg-6 p-3">
                   <div class="employees p-3 pt-1">
                     <div class="employees-head  w-100 d-flex justify-content-between align-items-center">
                       <div class="logo d-flex align-items-center flex-grow-1">
@@ -153,7 +153,7 @@
                     </div>
                     <div class="employees-number py-0">
                       <div class="row">
-                        <div class="chart-container">
+                        <div class="chart-container  ">
                           <apx-chart [chart]="typeChartDetails" [series]="typeChartSeries"
                             [labels]="Category"
                             [dataLabels]="typechartDetails"></apx-chart>
@@ -163,45 +163,35 @@
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-sm-6 col-md-4 col-lg p-3">
-                  <div class="projects-follow-card">
-                    <h4>{{"archieved-projects" | translate }}</h4>
-                    <div class="number p-3">
-                      <h3 id="color-primary">{{ProjectArchived}}</h3>
-                    </div>
+              <div class="row panels w-100 mx-0 py-3">
+                <div class="projects-follow-card">
+                  <h4>{{"archieved-projects" | translate }}</h4>
+                  <div class="number p-3">
+                    <h3 id="color-primary">{{ProjectArchived}}</h3>
                   </div>
                 </div>
-                <div class="col-sm-6 col-md-4 col-lg p-3">
-                  <div class="projects-follow-card">
-                    <h4>{{"correctly-archieved" | translate }}</h4>
-                    <div class="number p-3">
-                      <h3 id="color-green">{{ArchivedCorrectly}}</h3>
-                    </div>
+                <div class="projects-follow-card">
+                  <h4>{{"correctly-archieved" | translate }}</h4>
+                  <div class="number p-3">
+                    <h3 id="color-green">{{ArchivedCorrectly}}</h3>
                   </div>
                 </div>
-                <div class="col-sm-6 col-md-4 col-lg p-3">
-                  <div class="projects-follow-card">
-                    <h4>{{"incorrectly-archieved" | translate }}</h4>
-                    <div class="number p-3">
-                      <h3 id="color-red">{{ArchivedInCorrectly}}</h3>
-                    </div>
+                <div class="projects-follow-card">
+                  <h4>{{"incorrectly-archieved" | translate }}</h4>
+                  <div class="number p-3">
+                    <h3 id="color-red">{{ArchivedInCorrectly}}</h3>
                   </div>
                 </div>
-                <div class="col-sm-6 col-md-4 col-lg p-3">
-                  <div class="projects-follow-card">
-                    <h4>{{"delayed-projects" | translate }}</h4>
-                    <div class="number p-3">
-                      <h3 id="color-yellow">1</h3>
-                    </div>
+                <div class="projects-follow-card">
+                  <h4>{{"delayed-projects" | translate }}</h4>
+                  <div class="number p-3">
+                    <h3 id="color-yellow">1</h3>
                   </div>
                 </div>
-                <div class="col-sm-6 col-md-4 col-lg p-3">
-                  <div class="projects-follow-card">
-                    <h4>{{"not-financial" | translate }}</h4>
-                    <div class="number p-3">
-                      <h3 id="color-secondary">{{ProjectNotLaunched}}</h3>
-                    </div>
+                <div class="projects-follow-card">
+                  <h4>{{"not-financial" | translate }}</h4>
+                  <div class="number p-3">
+                    <h3 id="color-secondary">{{ProjectNotLaunched}}</h3>
                   </div>
                 </div>
               </div>

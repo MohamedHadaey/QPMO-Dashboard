@@ -97,7 +97,7 @@
                   <img src="../../../../assets/images/Dashboard-icons/filter-gray.png" alt="user" class="profile m-0">
                 </button>
                 <form [formGroup]="filterForm" (ngSubmit)="submitFilterForm(filterForm)">
-                  <ul class="dropdown-menu form-dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <ul class="dropdown-menu form-dropdown-menu" aria-labelledby="dropdownMenu">
                     <li>
                       <div class="row">
                         <div class="col-5">
@@ -215,10 +215,14 @@
                     <li>
                       <div class="row footer d-flex justify-content-center align-items-center">
                         <div class="col-6 p-2 d-flex justify-content-center align-items-center">
-                          <button type="submit" id="agree" [disabled]="filterForm.invalid" (click)="closeDropdown()">{{"apply" | translate }}</button>
+                          <button type="submit" [disabled]="filterForm.invalid"  id="agree">{{"apply" | translate }}</button>
                         </div>
                         <div class="col-6 p-2 d-flex justify-content-center align-items-center">
                           <a id="exit" (click)="closeDropdown()">{{"cancel" | translate }}</a>
+
+                        </div>
+                        <div class="col-12 w-100 d-flex justify-content-center align-items-center p-2 text-center">
+                          <p id="clearBtn" (click)="clearFilteredData()">{{"clear" | translate }}</p>
                         </div>
                       </div>
                     </li>
@@ -242,33 +246,67 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let followProject of followedProjects">
-                    <td>
-                      <div class="item">
-                        <p>{{followProject.ProjectDTO.Project_ContractCode}}</p>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="item">
-                        <p (click)="showProjectCardDetails(followProject.ProjectDTO.Project_Id)" class="hover">{{followProject.ProjectDTO.Project_Name}}</p>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="item">
-                        <p>{{"Abdullah Ibrahim" | translate }}</p>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="item">
-                        <p>{{"reason" | translate }}</p>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="item">
-                        <p>{{followProject.Project_EndDate || "13-08-2022"}}</p>
-                      </div>
-                    </td>
-                  </tr>
+                  <ng-container *ngIf="followedProjects.length != 0">
+                    <tr *ngFor="let followProject of followedProjects">
+                      <td>
+                        <div class="item">
+                          <p>{{followProject.ProjectDTO.Project_ContractCode}}</p>
+                          <!-- <p  *ngIf="followedProjects.length !=0">\78465241736</p> -->
+                        </div>
+                      </td>
+                      <td>
+                        <div class="item">
+                          <p (click)="showProjectCardDetails(followProject.ProjectDTO.Project_Id)" class="hover">{{followProject.ProjectDTO.Project_Name}}</p>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="item">
+                          <p>{{"Abdullah Ibrahim" | translate }}</p>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="item">
+                          <p>{{"reason" | translate }}</p>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="item">
+                          <p>{{followProject.ProjectLog_Date | date: 'dd-MM-yyyy'}}</p>
+                        </div>
+                      </td>
+                    </tr>
+                  </ng-container>
+                  <ng-container *ngIf="followedProjects.length == 0">
+                    <tr *ngFor="let filterFollowProject of filteredFollowedProjects">
+                      <td>
+                        <div class="item">
+                          <p>{{filterFollowProject.Project_ContractCode}}</p>
+                          <!-- <p  *ngIf="followedProjects.length !=0">\78465241736</p> -->
+                        </div>
+                      </td>
+                      <td>
+                        <div class="item">
+                          <p (click)="showProjectCardDetails(filterFollowProject.Project_Id)" class="hover">{{filterFollowProject.Project_Name}}</p>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="item">
+                          <p>{{"Abdullah Ibrahim" | translate }}</p>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="item">
+                          <p>{{"reason" | translate }}</p>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="item">
+                          <p>{{filterFollowProject.Project_EndDate | date: 'dd-MM-yyyy'}}</p>
+                        </div>
+                      </td>
+                    </tr>
+                  </ng-container>
+
                   <!-- <tr>
                     <td>
                       <div class="item">

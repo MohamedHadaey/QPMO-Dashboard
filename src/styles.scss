@@ -447,6 +447,7 @@ a {
                 li {
                   border-bottom: 1px solid #eee;
 
+
                   .row {
                     padding: 0;
                     margin: 0;
@@ -618,6 +619,30 @@ a {
                           cursor: pointer;
                         }
                       }
+                    }
+
+                    .col-12 {
+
+                      p {
+                        background-color: #dc3545;
+                          color: #fff;
+                          margin: 0px;
+                          padding: 5px 50px;
+                          width: 90%;
+                          margin: auto;
+                          border-radius: 10px;
+                          border: none;
+                          outline: none;
+                          transition: all 0.3s;
+
+                        &:hover {
+                          background-color: #fff;
+                          outline: 1px solid #dc3545;
+                          color: #dc3545;
+                          cursor: pointer;
+                        }
+                      }
+
                     }
                   }
                 }

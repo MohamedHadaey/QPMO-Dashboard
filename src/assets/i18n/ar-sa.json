@@ -99,6 +99,8 @@
   "update-pass": "تأكيد",
   "update-password": "متابعة",
   "cancel": "الغاء",
+  "clear": "إفراغ",
+
 
   "messages": "Messages",
   "message" : "مراسلة ...",
@@ -133,6 +135,7 @@
   "filter": "filter",
   "project-type": "نوع المشروع",
   "project-state": "حالة المشروع",
+  "all": "الكل",
   "starting-date": "بدء المشروع",
   "ending-date": "انتهاء المشروع",
   "Section A.Rate": "نسبة انجاز الجهة",
