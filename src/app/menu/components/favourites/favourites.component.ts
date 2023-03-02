@@ -39,9 +39,12 @@ export class FavouritesComponent implements OnInit {
     // $("#agree").click(function() {
     //   $(".dropdown-menu").removeClass("show");
     // })
+    //this.GetAppliedFilterData()
     this.getFavProjects();
     this.getProjectsTypes();
     this.getProjectsStates();
+
+        this.initForm();
   };
 
 
@@ -54,30 +57,73 @@ export class FavouritesComponent implements OnInit {
 
 
 
+    filterForm!: FormGroup;
+  private initForm(): void {
+    this.filterForm = new FormGroup({
+      ProjectType: new FormControl(1),
+      ProjectStatus: new FormControl(1),
+      // now_check: new FormControl('checked', [Validators.required]),
+      // complete_check: new FormControl(false, [Validators.required]),
+
+      // late_check: new FormControl(false, [Validators.required]),
+
+      // end_check: new FormControl('checked', [Validators.required]),
+
+      // not_check: new FormControl(false, [Validators.required]),
+      StartDate: new FormControl(null),
+      EndDate: new FormControl(null),
+      UserPer: new FormControl(null),
+      MaqawlPer: new FormControl(null),
+      });
+}
 
 
 
 
-  filterForm: FormGroup = new FormGroup({
-    ProjectType: new FormControl(1 , [Validators.required]),
-    ProjectStatus: new FormControl(1,[Validators.required]),
-    // now_check: new FormControl('checked', [Validators.required]),
-    // complete_check: new FormControl(false, [Validators.required]),
 
-    // late_check: new FormControl(false, [Validators.required]),
+  // filterForm: FormGroup = new FormGroup({
+  //   ProjectType: new FormControl(1 , [Validators.required]),
+  //   ProjectStatus: new FormControl(1,[Validators.required]),
+  //   // now_check: new FormControl('checked', [Validators.required]),
+  //   // complete_check: new FormControl(false, [Validators.required]),
 
-    // end_check: new FormControl('checked', [Validators.required]),
+  //   // late_check: new FormControl(false, [Validators.required]),
 
-    // not_check: new FormControl(false, [Validators.required]),
-    StartDate: new FormControl(null),
-    EndDate: new FormControl(null),
-    UserPer: new FormControl(null),
-    MaqawlPer: new FormControl(null),
-  });
+  //   // end_check: new FormControl('checked', [Validators.required]),
+
+  //   // not_check: new FormControl(false, [Validators.required]),
+  //   StartDate: new FormControl(null),
+  //   EndDate: new FormControl(null),
+  //   UserPer: new FormControl(null),
+  //   MaqawlPer: new FormControl(null),
+  // });
 
   submitFilterForm(filterForm: FormGroup) {
-    console.log("hello")
+    // console.log("hello")
 
+    // // filterForm.value.UserPer = (filterForm.value.UserPer[1]-filterForm.value.UserPer[0]) ;
+    // // filterForm.value.MaqawlPer = (filterForm.value.MaqawlPer[1]-filterForm.value.MaqawlPer[0]) ;
+    // // console.log(filterForm.value.UserPer);
+    // // console.log(filterForm.value.MaqawlPer);
+
+    //  filterForm.value.UserPer =  null ;
+    // filterForm.value.MaqawlPer = null ;
+    // filterForm.value.StartDate = null ;
+    // filterForm.value.EndDate = null ;
+    // filterForm.value.ProjectStatus =[];
+    // console.log(filterForm.value);
+    // this._MenuService.filterProjects_table(filterForm.value).subscribe((response) => {
+    //   console.log(" favooooo" ,response.data);
+    //   this.favouriteProjects = response.data;
+    //   console.log("dsdsdsds1112121" ,response.data)
+    // } , (error) => {
+    //   console.log(error);
+    // });
+
+
+
+
+      console.log("hello")
     // filterForm.value.UserPer = (filterForm.value.UserPer[1]-filterForm.value.UserPer[0]) ;
     // filterForm.value.MaqawlPer = (filterForm.value.MaqawlPer[1]-filterForm.value.MaqawlPer[0]) ;
     // console.log(filterForm.value.UserPer);
@@ -90,13 +136,60 @@ export class FavouritesComponent implements OnInit {
     filterForm.value.ProjectStatus =[];
     console.log(filterForm.value);
     this._MenuService.filterProjects_table(filterForm.value).subscribe((response) => {
-      console.log(response.data);
       this.favouriteProjects = response.data;
     } , (error) => {
       console.log(error);
-    })
+    });
   }
 
+
+
+      ///****************** */
+  // GetAppliedFilterData api
+
+  filteredData:any = {
+    ProjectType: null,
+    MaqawlPer: null,
+    UserPer: null,
+    ProjectTypes: null,
+    ProjectStatus: [],
+    StartDate: null,
+    EndDate: null
+}
+
+ProjectType!:any;
+  GetAppliedFilterData() {
+    this._MenuService.GetAppliedFilterData().subscribe((response) => {
+      this.filteredData = response.data;
+      this.ProjectType = this.filteredData.ProjectType;
+      // console.log(this.filteredData)
+      // this.filterForm.get('ProjectType').setValue(this.filteredData);
+      // this.filterForm.get('ProjectType')?.setValue(this.filteredData.value.ProjectType);
+      // console.log(this.filteredData.ProjectType);
+
+      this.filterForm.value.ProjectType = this.filteredData.ProjectType;
+
+      this.setformValue(this.filteredData)
+      if(this.filteredData == null) {
+      } else {
+
+        this._MenuService.filterProjects_table(this.filteredData).subscribe((response) => {
+          this.favouriteProjects = response.data;
+        } , (error) => {
+          console.log(error);
+        });
+
+      }
+
+    });
+
+
+  }
+
+  setformValue(response: any) {
+    this.filterForm.get('ProjectType')?.setValue(response.ProjectType);
+
+}
   // show and hide popup checker
   togglePopup() {
     $(".check-popup-logout").fadeToggle();
@@ -151,11 +244,11 @@ export class FavouritesComponent implements OnInit {
         }
       }
     }) ,(error) => {
-      if (this.currentLanguage == "ar-sa") {
-        this.toastr.error("خطأ غير معروف من الخادم !!")
-      }else {
-        this.toastr.error("Unknown error From Server!!")
-      }
+      // if (this.currentLanguage == "ar-sa") {
+      //   this.toastr.error("خطأ غير معروف من الخادم !!")
+      // }else {
+      //   this.toastr.error("Unknown error From Server!!")
+      // }
     })
   }
 
@@ -229,6 +322,7 @@ export class FavouritesComponent implements OnInit {
         }
         this.getFavProjects();
         $('.project-card-details').slideUp();
+        // this.GetAppliedFilterData();
       } else {
         if (this.currentLanguage == 'ar-sa') {
           Swal.fire({
@@ -294,11 +388,11 @@ export class FavouritesComponent implements OnInit {
        }
      }
    }) ,(error) => {
-     if (this.currentLanguage == "ar-sa") {
-       this.toastr.error("خطأ غير معروف من الخادم !!")
-     }else {
-       this.toastr.error("Unknown error From Server!!")
-     }
+    //  if (this.currentLanguage == "ar-sa") {
+    //    this.toastr.error("خطأ غير معروف من الخادم !!")
+    //  }else {
+    //    this.toastr.error("Unknown error From Server!!")
+    //  }
    })
  }
 
@@ -327,11 +421,11 @@ export class FavouritesComponent implements OnInit {
         }
       }
     }) ,(error) => {
-      if (this.currentLanguage == "ar-sa") {
-        this.toastr.error("خطأ غير معروف من الخادم !!")
-      }else {
-        this.toastr.error("Unknown error From Server!!")
-      }
+      // if (this.currentLanguage == "ar-sa") {
+      //   this.toastr.error("خطأ غير معروف من الخادم !!")
+      // }else {
+      //   this.toastr.error("Unknown error From Server!!")
+      // }
     })
   }
 

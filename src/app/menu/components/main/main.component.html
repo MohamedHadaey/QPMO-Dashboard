@@ -48,7 +48,7 @@
       <nav class="navbar">
         <app-toggler></app-toggler>
         <!-- <h2 class="bg-danger">QPMO<sub>system</sub></h2> -->
-        <img src="../../../../assets/images/Dashboard-icons/final_logo.png" style="width: 90px; margin: 5px 0" alt="qpmo_logo">
+        <img src="../../../../assets/images/Dashboard-icons/final_logo_2.png" style="width: 122px; margin: 5px 0" alt="qpmo_logo">
         <div class="d-flex justify-content-center align-items-center icons">
           <app-language></app-language>
           <img src="../../../../assets/images/Dashboard-icons/msg.png" alt="msgs" routerLink="/messages">
@@ -219,8 +219,13 @@
                         </div>
                         <div class="col-6 p-2 d-flex justify-content-center align-items-center">
                           <a id="exit" (click)="closeDropdown()">{{"cancel" | translate }}</a>
+
                         </div>
                       </div>
+
+                      <!-- <div class="row">
+                          <a id="clear" (click)="closeDropdown()">{{"cancel" | translate }}</a>
+                      </div> -->
                     </li>
                   </ul>
                 </form>
@@ -295,7 +300,7 @@
                     </td>
                     <td>
                       <div class="item">
-                        <p>{{project.Project_EndDate}}</p>
+                        <p>{{project.Project_EndDate  | date: 'dd/MM/yyyy'}}</p>
                       </div>
                     </td>
                     <td>

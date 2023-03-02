@@ -147,6 +147,9 @@
 
   "logoutt": "logout",
   "log-out-word": "تسجيل الخروج",
-  "check-logout-msg": "هل أنت متأكد انك تريد تسجبل الخروج؟"
+  "check-logout-msg": "هل أنت متأكد انك تريد تسجبل الخروج؟",
+  "project-file1": "السجل التجارى",
+  "project-file2": "شهاده الزكاه والدخل",
+  "project-file3": "خطاب الضمان البنكى"
   }
 

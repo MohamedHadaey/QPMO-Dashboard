@@ -50,7 +50,7 @@
       <nav class="navbar">
         <app-toggler></app-toggler>
         <!-- <h2>QPMO<sub>system</sub></h2> -->
-        <img src="../../../../assets/images/Dashboard-icons/final_logo.png" style="width: 90px; margin: 5px 0" alt="qpmo_logo">
+        <img src="../../../../assets/images/Dashboard-icons/final_logo_2.png" style="width: 122px; margin: 5px 0" alt="qpmo_logo">
         <div class="d-flex justify-content-center align-items-center icons">
           <app-language></app-language>
           <img src="../../../../assets/images/Dashboard-icons/msg.png" alt="msgs" class="message"
@@ -96,7 +96,7 @@
                 <h2>{{"incoming-mail" | translate }}</h2>
               </header>
               <ul>
-                <li *ngFor="let message of messages" (click)="showDetails();goToFinalMsg();getMessageDetails(message.ID)" [class.selected]="message.ID == messageDetails.ID">
+                <li *ngFor="let message of messages" (click)="showDetails();getMessageDetails(message.ID)" [class.selected]="message.ID == messageDetails.ID">
                   <div class="item-header" id="bottonBtn">
                     <a >{{message.ProjectName}}</a>
                     <div class="message-date d-flex justify-content-center align-items-center">
@@ -261,7 +261,7 @@
                   <span>{{messageDetails.Date | date:'short' }}</span>
                 </div>
               </header>
-              <div class="message-content bg-success parent-section">
+              <div class="message-content parent-section">
                 <section class="sticky-top pb-0" style="background-color: #F3F5FD;" >
                   <ul class="parent-message" >
                     <li>
@@ -314,9 +314,7 @@
                     </li>
                   </ul>
                 </section>
-                <div class="final-details p-5 bg-danger" id="final-details">
 
-                </div>
               </div>
               <footer>
                 <div>

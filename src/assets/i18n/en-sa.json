@@ -149,6 +149,9 @@
 
 "logoutt": "logout",
 "log-out-word": "Sign Out",
-"check-logout-msg": "Are you sure you want to Sign Out?"
+"check-logout-msg": "Are you sure you want to Sign Out?",
+"project-file1": "Commercial register",
+"project-file2": "Certificate of Zakat and Income",
+"project-file3": "Bank guarantee letter"
 }
 

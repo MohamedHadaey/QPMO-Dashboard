@@ -65,12 +65,13 @@ export class ProjectsComponent implements OnInit {
     filterForm.value.EndDate = null ;
     filterForm.value.ProjectStatus =[];
     console.log(filterForm.value);
-    this._MenuService.filterProjects_table(filterForm.value).subscribe((response) => {
-      console.log(response.data);
-      this.followedProjects = response.data;
-    } , (error) => {
-      console.log(error);
-    })
+    // this._MenuService.filterProjects_table(filterForm.value).subscribe((response) => {
+    //   console.log(response.data);
+    //   this.followedProjects = response.data;
+    //   console.log("12123132", response.data)
+    // } , (error) => {
+    //   console.log(error);
+    // })
   }
 
   ngOnInit(): void {
@@ -154,11 +155,11 @@ export class ProjectsComponent implements OnInit {
         }
       }
     }) ,(error) => {
-      if (this.currentLanguage == "ar-sa") {
-        this.toastr.error("خطأ غير معروف من الخادم !!")
-      }else {
-        this.toastr.error("Unknown error From Server!!")
-      }
+      // if (this.currentLanguage == "ar-sa") {
+      //   this.toastr.error("خطأ غير معروف من الخادم !!")
+      // }else {
+      //   this.toastr.error("Unknown error From Server!!")
+      // }
     })
   }
 
@@ -188,11 +189,11 @@ export class ProjectsComponent implements OnInit {
           }
         }
       }) ,(error) => {
-        if (this.currentLanguage == "ar-sa") {
-          this.toastr.error("خطأ غير معروف من الخادم !!")
-        }else {
-          this.toastr.error("Unknown error From Server!!")
-        }
+        // if (this.currentLanguage == "ar-sa") {
+        //   this.toastr.error("خطأ غير معروف من الخادم !!")
+        // }else {
+        //   this.toastr.error("Unknown error From Server!!")
+        // }
       })
     }
 

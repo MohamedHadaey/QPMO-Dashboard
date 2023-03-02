@@ -20,9 +20,9 @@
           <div class="icons">
             <img
             src="../../../../assets/images/Dashboard-icons/Favorite-blue.png"
-            alt="favourite" class="fav-icon" *ngIf="data['IsFav'] == true">
+            alt="favourite" class="fav-icon" *ngIf="data['IsFav'] == true" (click)="removeProjectFromFav(data['ID'])">
             <img
-            src="../../../../assets/images/Dashboard-icons/Favorite-gray.png"
+            src="../../../../assets/images/Dashboard-icons/Favorite-gray.png" (click)="addProjectToFav(data['ID'])"
             alt="favourite" class="unfav-icon" *ngIf="data['IsFav'] == false">
 
             <img src="../../../../assets/images/Dashboard-icons/maximize.png" alt="maximize icon"
@@ -62,9 +62,9 @@
           <div class="projects-follow-card">
             <h4>{{"project-fiels" | translate }}</h4>
             <div class="number p-3">
-              <p>xxxxxxxx.pdf</p>
-              <p>xxxxxxxx.pdf</p>
-              <p>xxxxxxxx.pdf</p>
+              <p>{{"project-file1" | translate}}</p>
+              <p>{{"project-file2" | translate}}</p>
+              <p>{{"project-file3" | translate}}</p>
             </div>
           </div>
         </div>

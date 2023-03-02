@@ -44,8 +44,8 @@ export class MainComponent implements OnInit {
     console.log(ll);
   }
   // constructor input
-  constructorMinValue: any = 30;
-  constructorMaxValue: any = 60;
+  constructorMinValue: any = 25;
+  constructorMaxValue: any = 50;
   constructorOptions: Options = {
     floor: 0,
     ceil: 100,
@@ -75,7 +75,7 @@ export class MainComponent implements OnInit {
       $('.content-body').addClass('content-body-ltr');
     }
 
-    this.GetAppliedFilterData()
+    // this.GetAppliedFilterData()
     this.getListsProjects();
     this.getMapProjects();
     this.getCardsProjects();
@@ -83,20 +83,12 @@ export class MainComponent implements OnInit {
     this.getFavProjects_cards();
     this.getProjectsTypes();
     this.getProjectsStates();
+
+    this.initForm();
   }
 
-  ///****************** */
-  // GetAppliedFilterData apt
 
-  filteredData:any;
-  GetAppliedFilterData() {
-    this._MenuService.GetAppliedFilterData().subscribe((response) => {
-      this.filteredData = response.data;
-      console.log("filteredData:", this.filteredData.ProjectType);
 
-    })
-  }
-  //****************** */
 
   /////////////////////Maps////////////////////
   center: google.maps.LatLngLiteral = {
@@ -185,8 +177,7 @@ export class MainComponent implements OnInit {
       },
     ],
   };
-  zoom = 7;
-
+  zoom = 13;
 
   projectslocations: googleMaps_ApiReturn[] = [];
   // map_center: googleMaps_ApiCenter[] = [];
@@ -281,15 +272,21 @@ export class MainComponent implements OnInit {
       (response) => {
         if (response.Code == 200) {
           this.allMapProjects = response.data;
+          console.log(" ya map" , this.allMapProjects);
+
           // this.loadScript();
           localStorage.setItem('allMapProjects', JSON.stringify(this.allMapProjects));
           // console.log('map view', this.allMapProjects);
-          // console.log(this.allMapProjects[0].Project_Location);
-          // let firstLat = this.allMapProjects[0].Project_Location.substring(0,this.allMapProjects[0].Project_Location.indexOf(','));
-          // let firstLng = this.allMapProjects[0].Project_Location.split(',')[1].trim();
-          // this.center.lat = firstLat;
-          // this.center.lng = firstLng;
-          // console.log("lat::::",this.center.lat,"lng::::", this.center.lng);
+          console.log("only::",this.allMapProjects[0].Project_Location);
+          let firstLat = this.allMapProjects[0].Project_Location.substring(0,this.allMapProjects[0].Project_Location.indexOf(','));
+          let firstLng = this.allMapProjects[0].Project_Location.split(',')[1].trim();
+          this.center.lat = firstLat;
+          this.center.lng = firstLng;
+          console.log("lat::::",this.center.lat,"lng::::", this.center.lng);
+          this.center = {
+            lat: parseFloat(firstLat),
+            lng: parseFloat(firstLng),
+          }
 
 
           // debugger;
@@ -317,7 +314,7 @@ export class MainComponent implements OnInit {
             console.log('lat: ', parseFloat(lat),'lng: ', parseFloat(lng));
 
           });
-          //console.log("projectslocations" ,this.projectslocations);
+          console.log("projectslocationsxxxx" ,this.projectslocations);
 
         } else {
           // this.toastr.error(response.Error_Resp)
@@ -369,6 +366,8 @@ export class MainComponent implements OnInit {
       (response) => {
         if (response.Code == 200) {
           this.allCardsProjects = response.data;
+          console.log("allCardsProjects:::" , this.allCardsProjects);
+
           localStorage.setItem(
             'allCardsProjects',
             JSON.stringify(this.allCardsProjects)
@@ -428,6 +427,7 @@ export class MainComponent implements OnInit {
       (response) => {
         if (response.Code == 200) {
           this.favProjects_list = response.data;
+          console.log("123456", this.favProjects_list)
           localStorage.setItem(
             'favProjects_list',
             JSON.stringify(this.favProjects_list)
@@ -486,6 +486,15 @@ export class MainComponent implements OnInit {
           localStorage.setItem('favProjects_map',JSON.stringify(this.favProjects_map));
           console.log('fav_maps', this.favProjects_map);
 
+          let firstLat = this.favProjects_map[0].Project_Location.substring(0,this.favProjects_map[0].Project_Location.indexOf(','));
+          let firstLng = this.favProjects_map[0].Project_Location.split(',')[1].trim();
+          this.center.lat = firstLat;
+          this.center.lng = firstLng;
+          console.log("lat::::",this.center.lat,"lng::::", this.center.lng);
+          this.center = {
+            lat: parseFloat(firstLat),
+            lng: parseFloat(firstLng),
+          }
 
           this.projectslocations = [];
           this.favProjects_map.forEach((i) => {
@@ -681,6 +690,7 @@ export class MainComponent implements OnInit {
           this.getCardsProjects();
           this.getFavProjects_lists();
           this.getFavProjects_cards();
+          this.getFavProjects_map()
         } else {
           if (this.currentLanguage == 'ar-sa') {
             Swal.fire({
@@ -745,6 +755,7 @@ export class MainComponent implements OnInit {
           this.getCardsProjects();
           this.getFavProjects_lists();
           this.getFavProjects_cards();
+          this.getFavProjects_map();
         } else {
           if (this.currentLanguage == 'ar-sa') {
             Swal.fire({
@@ -810,11 +821,11 @@ export class MainComponent implements OnInit {
         }
       },
       (error) => {
-        if (this.currentLanguage == 'ar-sa') {
-          this.toastr.error('خطأ غير معروف من الخادم !!');
-        } else {
-          this.toastr.error('Unknown error From Server!!');
-        }
+        // if (this.currentLanguage == 'ar-sa') {
+        //   this.toastr.error('خطأ غير معروف من الخادم !!');
+        // } else {
+        //   this.toastr.error('Unknown error From Server!!');
+        // }
       }
     );
   }
@@ -846,32 +857,59 @@ export class MainComponent implements OnInit {
         }
       },
       (error) => {
-        if (this.currentLanguage == 'ar-sa') {
-          this.toastr.error('خطأ غير معروف من الخادم !!');
-        } else {
-          this.toastr.error('Unknown error From Server!!');
-        }
+        // if (this.currentLanguage == 'ar-sa') {
+        //   this.toastr.error('خطأ غير معروف من الخادم !!');
+        // } else {
+        //   this.toastr.error('Unknown error From Server!!');
+        // }
       }
     );
   }
   /***************************************/
+
+
+  filterForm!: FormGroup;
+  private initForm(): void {
+    this.filterForm = new FormGroup({
+      ProjectType: new FormControl(1),
+      ProjectStatus: new FormControl(1),
+      // now_check: new FormControl('checked', [Validators.required]),
+      // complete_check: new FormControl(false, [Validators.required]),
+
+      // late_check: new FormControl(false, [Validators.required]),
+
+      // end_check: new FormControl('checked', [Validators.required]),
+
+      // not_check: new FormControl(false, [Validators.required]),
+      StartDate: new FormControl(null),
+      EndDate: new FormControl(null),
+      UserPer: new FormControl(null),
+      MaqawlPer: new FormControl(null),
+      });
+}
+
+
+
+
   // filter form inputs
-  filterForm: FormGroup = new FormGroup({
-    ProjectType: new FormControl(1, [Validators.required]),
-    ProjectStatus: new FormControl(1,[Validators.required]),
-    // now_check: new FormControl('checked', [Validators.required]),
-    // complete_check: new FormControl(false, [Validators.required]),
+  // filterForm: FormGroup = new FormGroup({
+  //   ProjectType: new FormControl(null),
+  //   ProjectStatus: new FormControl(null),
+  //   // now_check: new FormControl('checked', [Validators.required]),
+  //   // complete_check: new FormControl(false, [Validators.required]),
 
-    // late_check: new FormControl(false, [Validators.required]),
+  //   // late_check: new FormControl(false, [Validators.required]),
 
-    // end_check: new FormControl('checked', [Validators.required]),
+  //   // end_check: new FormControl('checked', [Validators.required]),
 
-    // not_check: new FormControl(false, [Validators.required]),
-    StartDate: new FormControl(null),
-    EndDate: new FormControl(null),
-    UserPer: new FormControl(null),
-    MaqawlPer: new FormControl(null),
-  });
+  //   // not_check: new FormControl(false, [Validators.required]),
+  //   StartDate: new FormControl(null),
+  //   EndDate: new FormControl(null),
+  //   UserPer: new FormControl(null),
+  //   MaqawlPer: new FormControl(null),
+  // });
+
+
 
   submitFilterForm(filterForm: FormGroup) {
     console.log("hello")
@@ -933,6 +971,89 @@ export class MainComponent implements OnInit {
     });
   }
 
+
+    ///****************** */
+  // GetAppliedFilterData api
+
+  filteredData:any = {
+    ProjectType: null,
+    MaqawlPer: null,
+    UserPer: null,
+    ProjectTypes: null,
+    ProjectStatus: [],
+    StartDate: null,
+    EndDate: null
+}
+
+ProjectType!:any;
+  GetAppliedFilterData() {
+    this._MenuService.GetAppliedFilterData().subscribe((response) => {
+      this.filteredData = response.data;
+      this.ProjectType = this.filteredData.ProjectType;
+      // console.log(this.filteredData)
+      // this.filterForm.get('ProjectType').setValue(this.filteredData);
+      // this.filterForm.get('ProjectType')?.setValue(this.filteredData.value.ProjectType);
+      // console.log(this.filteredData.ProjectType);
+
+      this.filterForm.value.ProjectType = this.filteredData.ProjectType;
+
+      this.setformValue(this.filteredData)
+      if(this.filteredData == null) {
+      } else {
+        this._MenuService.filterProjects_cards(this.filteredData).subscribe((response) => {
+          this.allCardsProjects = response.data;
+        } , (error) => {
+          console.log(error);
+        });
+        this._MenuService.filterProjects_table(this.filteredData).subscribe((response) => {
+          this.allListsProjects = response.data;
+        } , (error) => {
+          console.log(error);
+        });
+        this._MenuService.filterProjects_map(this.filteredData).subscribe((response) => {
+          this.allMapProjects = response.data;
+
+          this.projectslocations = [];
+          this.allMapProjects.forEach((i) => {
+            let lat = i.Project_Location.substring(0,this.allMapProjects[0].Project_Location.indexOf(','));
+            let lng = i.Project_Location.split(',')[1].trim();
+            this.projectslocations.push({
+              ID: i.ID,
+              position: {
+                lat: parseFloat(lat),
+                lng: parseFloat(lng),
+              },
+              status: {
+                scaledSize: {
+                  height: 40,
+                  width: 40,
+                  equals(other) {
+                    return true;
+                  },
+                },
+                url: '../../../../assets/maps_images/yellow.png',
+              },
+            });
+            console.log('lat: ', parseFloat(lat),'lng: ', parseFloat(lng));
+
+          });
+          console.log(this.allMapProjects)
+        } , (error) => {
+          console.log(error);
+        });
+      }
+
+    });
+
+
+  }
+
+  setformValue(response: any) {
+    this.filterForm.get('ProjectType')?.setValue(response.ProjectType);
+
+}
+  //****************** */
+
   // show favourites projects in all themes
   showFav() {
     this.isFav = true;
@@ -983,6 +1104,22 @@ export class MainComponent implements OnInit {
     $('.form-dropdown-menu').removeClass('show');
   }
 
+
+  // returnData() {
+  //   this.filterForm.reset();
+  //   this.filteredData = {
+  //     ProjectType: null,
+  //     MaqawlPer: null,
+  //     UserPer: null,
+  //     ProjectTypes: null,
+  //     ProjectStatus: [],
+  //     StartDate: null,
+  //     EndDate: null
+  // }
+
+  //   this.GetAppliedFilterData();
+
+  // }
   // function of search
   search(x: any) {
     if (
@@ -1135,5 +1272,5 @@ interface googleMaps_ApiReturn {
   status: google.maps.Icon;
 }
 // interface googleMaps_ApiCenter {
-//   center: google.maps.LatLngLiteral
+//   center: google.maps.CameraOptions
 // }
