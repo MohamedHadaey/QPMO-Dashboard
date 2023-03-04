@@ -99,7 +99,7 @@
                       </div>
                     </div>
                     <!-- begin:: chart -->
-                    <div id="chart" class="my-2 py-1">
+                    <div id="chart" class="my-2 py-1" >
                       <apx-chart [series]="statechartOptions.series" [chart]="statechartOptions.chart"
                         [dataLabels]="statechartOptions.dataLabels" [plotOptions]="statechartOptions.plotOptions"
                         [yaxis]="statechartOptions.yaxis" [xaxis]="statechartOptions.xaxis"
@@ -153,8 +153,8 @@
                     </div>
                     <div class="employees-number py-0">
                       <div class="row">
-                        <div class="chart-container  ">
-                          <apx-chart [chart]="typeChartDetails" [series]="typeChartSeries"
+                        <div class="chart-container  " id="typeChart">
+                          <apx-chart width="100%" height="450px" [chart]="typeChartDetails" [series]="typeChartSeries"
                             [labels]="Category"
                             [dataLabels]="typechartDetails"></apx-chart>
                         </div>
@@ -200,13 +200,11 @@
                   <div class="employees p-3">
                     <div class="employees-head  w-100 d-flex justify-content-between align-items-center">
                       <div class="logo d-flex align-items-center flex-grow-1">
-                        <!-- <img src="../../../../assets/images/Dashboard-icons/archives.png" alt="rate"> -->
                         <h4>{{"project-movement" | translate }}</h4>
                       </div>
                     </div>
                     <div class="employees-number py-0">
                       <div class="row">
-                        <!--The content below is only a placeholder and can be replaced.-->
                         <div id="chart">
                           <apx-chart [series]="archivechartOptions.series" [chart]="archivechartOptions.chart"
                             [xaxis]="archivechartOptions.xaxis" [stroke]="archivechartOptions.stroke"

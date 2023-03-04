@@ -298,6 +298,8 @@ a {
           margin-top: 10px !important;
           padding: 10px;
           left: 0;
+          position: absolute;
+          z-index: 5 !important;
         }
 
         .dropdown-menu {

@@ -283,9 +283,11 @@
 
         // for reports
         .reports {
-          .col-md-6:nth-of-type(2) {
+          .col-lg-6:nth-of-type(2) {
             .employees {
               .employees-number {
+                // background-color: red;
+                // direction: ltr !important;
                 padding: 20px;
 
                 h2 {
@@ -307,6 +309,8 @@
           .chart-container {
             max-width: 500px;
             margin: auto;
+            // background-color: green;
+
 
           }
 

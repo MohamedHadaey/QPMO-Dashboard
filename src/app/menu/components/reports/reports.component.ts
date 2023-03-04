@@ -44,13 +44,12 @@ declare const $: any;
   selector: 'app-reports',
   templateUrl: './reports.component.html',
   styleUrls: ['./reports.component.scss'],
-
 })
 export class ReportsComponent implements OnInit {
-  completeText_en:string = "Completed";
-  unCompleteText_en:string = "not complete";
-  completeText_ar:string = "مكتملة";
-  unCompleteText_ar:string = "غير مكتملة";
+  completeText_en: string = 'Completed';
+  unCompleteText_en: string = 'not complete';
+  completeText_ar: string = 'مكتملة';
+  unCompleteText_ar: string = 'غير مكتملة';
   currentLanguage: any = localStorage.getItem('currentLanguage');
   /*************************/
   @ViewChild('chart') chart!: ChartComponent;
@@ -64,6 +63,7 @@ export class ReportsComponent implements OnInit {
   typeChartDetails: ApexChart = {
     type: 'donut',
     height: 1000,
+
     toolbar: {
       show: false,
     },
@@ -90,160 +90,156 @@ export class ReportsComponent implements OnInit {
     private translate: TranslateService,
     private datePipe: DatePipe
   ) {
-
-
-
     /* state projects  chart */
-      this.statechartOptions = {
+    this.statechartOptions = {
+      series: [
+        {
+          name: ' ',
+          data: this.count,
+        },
+      ],
+      chart: {
+        height: 250,
+        type: 'bar',
+        events: {
+          // click: function(chart, w, e) {
+          //   console.log(chart, w, e)
+          // }
+        },
+        toolbar: false,
+      },
+      colors: ['#4CB871', '#F5E306', '#F24773', , '#068DF5', '#CCCCCC'],
+      plotOptions: {
+        bar: {
+          columnWidth: '10%',
+          distributed: true,
+          endingShape: 'rounded',
+        },
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      stroke: {
+        width: 2,
+      },
+      legend: {
+        show: false,
+      },
+      grid: {
+        show: true,
+      },
+      xaxis: {
+        categories: this.status,
+        labels: {
+          style: {
+            colors: ['#4CB871', '#F5E306', '#F24773', , '#068DF5', '#CCCCCC'],
+            fontSize: '14px',
+          },
+        },
+      },
+    };
+
+    if (localStorage.getItem('currentLanguage') == 'ar-sa') {
+      /* archive projects chart */
+      this.archivechartOptions = {
         series: [
           {
-            name: ' ',
-            data: this.count,
+            name: 'غير مكتملة',
+            data: this.addedOn_count,
+          },
+          {
+            name: 'مكتملة',
+            data: this.endedOn_count,
           },
         ],
         chart: {
-          height: 250,
-          type: 'bar',
-          events: {
-            // click: function(chart, w, e) {
-            //   console.log(chart, w, e)
-            // }
+          height: 350,
+          type: 'area',
+          zoom: {
+            enabled: false,
           },
           toolbar: false,
-        },
-        colors: ['#4CB871','#F5E306', '#F24773',, '#068DF5', '#CCCCCC'],
-        plotOptions: {
-          bar: {
-            columnWidth: '10%',
-            distributed: true,
-            endingShape: 'rounded',
-          },
         },
         dataLabels: {
           enabled: false,
         },
         stroke: {
-          width: 2,
-        },
-        legend: {
-          show: false,
-        },
-        grid: {
-          show: true,
+          curve: 'smooth',
         },
         xaxis: {
-          categories: this.status,
-          labels: {
-            style: {
-              colors: ['#4CB871','#F5E306', '#F24773',, '#068DF5', '#CCCCCC'],
-              fontSize: '14px',
-            },
+          type: 'date',
+          categories: [
+            ' Jan ',
+            ' Feb ',
+            ' Mar ',
+            ' Apr ',
+            ' May ',
+            ' Jun ',
+            ' Jul ',
+            ' Aug ',
+            ' Sep ',
+            ' Oct ',
+            ' Nov ',
+            ' Dec ',
+          ],
+        },
+        tooltip: {
+          x: {
+            format: 'dd/MM/yy',
           },
         },
       };
-
-      if (localStorage.getItem('currentLanguage') == 'ar-sa') {
-        /* archive projects chart */
- this.archivechartOptions = {
-   series: [
-     {
-       name: 'غير مكتملة',
-       data: this.addedOn_count,
-     },
-     {
-       name: 'مكتملة',
-       data: this.endedOn_count,
-     },
-   ],
-   chart: {
-     height: 350,
-     type: 'area',
-     zoom: {
-       enabled: false,
-     },
-     toolbar: false,
-   },
-   dataLabels: {
-     enabled: false,
-   },
-   stroke: {
-     curve: 'smooth',
-   },
-   xaxis: {
-     type: 'date',
-     categories: [
-       ' Jan ',
-       ' Feb ',
-       ' Mar ',
-       ' Apr ',
-       ' May ',
-       ' Jun ',
-       ' Jul ',
-       ' Aug ',
-       ' Sep ',
-       ' Oct ',
-       ' Nov ',
-       ' Dec ',
-     ],
-   },
-   tooltip: {
-     x: {
-       format: 'dd/MM/yy',
-     },
-   },
- };
-   } else {
-
+    } else {
       /* archive projects chart */
- this.archivechartOptions = {
-   series: [
-     {
-       name: 'not complete',
-       data: this.addedOn_count,
-     },
-     {
-       name: 'Completed',
-       data: this.endedOn_count,
-     },
-   ],
-   chart: {
-     height: 350,
-     type: 'area',
-     zoom: {
-       enabled: false,
-     },
-     toolbar: false,
-   },
-   dataLabels: {
-     enabled: false,
-   },
-   stroke: {
-     curve: 'smooth',
-   },
-   xaxis: {
-     type: 'date',
-     categories: [
-       ' Jan ',
-       ' Feb ',
-       ' Mar ',
-       ' Apr ',
-       ' May ',
-       ' Jun ',
-       ' Jul ',
-       ' Aug ',
-       ' Sep ',
-       ' Oct ',
-       ' Nov ',
-       ' Dec ',
-     ],
-   },
-   tooltip: {
-     x: {
-       format: 'dd/MM/yy',
-     },
-   },
- };
-   }
+      this.archivechartOptions = {
+        series: [
+          {
+            name: 'not complete',
+            data: this.addedOn_count,
+          },
+          {
+            name: 'Completed',
+            data: this.endedOn_count,
+          },
+        ],
+        chart: {
+          height: 350,
+          type: 'area',
+          zoom: {
+            enabled: false,
+          },
+          toolbar: false,
+        },
+        dataLabels: {
+          enabled: false,
+        },
+        stroke: {
+          curve: 'smooth',
+        },
+        xaxis: {
+          type: 'date',
+          categories: [
+            ' Jan ',
+            ' Feb ',
+            ' Mar ',
+            ' Apr ',
+            ' May ',
+            ' Jun ',
+            ' Jul ',
+            ' Aug ',
+            ' Sep ',
+            ' Oct ',
+            ' Nov ',
+            ' Dec ',
+          ],
+        },
+        tooltip: {
+          x: {
+            format: 'dd/MM/yy',
+          },
+        },
+      };
+    }
   }
 
   ngOnInit(): void {
@@ -286,16 +282,14 @@ export class ReportsComponent implements OnInit {
   }
 
   getStatus() {
-
     this._MenuService.GetStatistics_ProjectByStatus().subscribe((response) => {
-      console.log("res", response);
+      console.log('res', response);
 
       for (let index = 0; index < response.data.length; index++) {
         const element = response.data[index];
         this.status[index] = element.Status;
         this.count[index] = element.Count;
       }
-
 
       this.statechartOptions = {
         series: [
@@ -344,11 +338,8 @@ export class ReportsComponent implements OnInit {
           },
         },
       };
-
     });
-
   }
-
 
   getCategory(): void {
     this._MenuService
@@ -359,56 +350,56 @@ export class ReportsComponent implements OnInit {
           this.Category[index] = element.Category;
           this.Catcount[index] = element.Count;
         }
-        this.typeChartSeries= this.Catcount;
-        this.typeChartDetails= {
+        this.typeChartSeries = this.Catcount;
+        this.typeChartDetails = {
           type: 'donut',
           toolbar: {
             show: false,
           },
         };
 
-        this.typechartDetails= {
+        this.typechartDetails = {
           enabled: true,
         };
-
       });
   }
-
 
   range = new FormGroup({
     start: new FormControl<Date | null>(null),
     end: new FormControl<Date | null>(null),
   });
 
-currentPeriodClicked(val:any) {
-  console.log(this.datePipe.transform((val.start),'yyyy-MM-dd'));
-  this.getCategory_form(this.datePipe.transform((val.start),'yyyy-MM-dd'),this.datePipe.transform((val.end),'yyyy-MM-dd'))
-}
+  currentPeriodClicked(val: any) {
+    console.log(this.datePipe.transform(val.start, 'yyyy-MM-dd'));
+    this.getCategory_form(
+      this.datePipe.transform(val.start, 'yyyy-MM-dd'),
+      this.datePipe.transform(val.end, 'yyyy-MM-dd')
+    );
+  }
 
   // from:Date | null = null;
   // to:Date | null = null;
-  getCategory_form(from:any, to:any): void {
+  getCategory_form(from: any, to: any): void {
     this._MenuService
-      .GetStatistics_ProjectByCategory_form(from,to)
+      .GetStatistics_ProjectByCategory_form(from, to)
       .subscribe((response) => {
-        console.log(response)
+        console.log(response);
         for (let index = 0; index < response.data.length; index++) {
           const element = response.data[index];
           this.Category[index] = element.Category;
           this.Catcount[index] = element.Count;
         }
-        this.typeChartSeries= this.Catcount;
-        this.typeChartDetails= {
+        this.typeChartSeries = this.Catcount;
+        this.typeChartDetails = {
           type: 'donut',
           toolbar: {
             show: false,
           },
         };
 
-        this.typechartDetails= {
+        this.typechartDetails = {
           enabled: true,
         };
-
       });
   }
 
@@ -439,121 +430,107 @@ currentPeriodClicked(val:any) {
       }
 
       if (localStorage.getItem('currentLanguage') == 'ar-sa') {
-           /* archive projects chart */
-    this.archivechartOptions = {
-      series: [
-        {
-          name: 'غير مكتملة',
-          data: this.addedOn_count,
-        },
-        {
-          name: 'مكتملة',
-          data: this.endedOn_count,
-        },
-      ],
-      chart: {
-        height: 350,
-        type: 'area',
-        zoom: {
-          enabled: false,
-        },
-        toolbar: false,
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      stroke: {
-        curve: 'smooth',
-      },
-      xaxis: {
-        type: 'date',
-        categories: [
-          ' Jan ',
-          ' Feb ',
-          ' Mar ',
-          ' Apr ',
-          ' May ',
-          ' Jun ',
-          ' Jul ',
-          ' Aug ',
-          ' Sep ',
-          ' Oct ',
-          ' Nov ',
-          ' Dec ',
-        ],
-      },
-      tooltip: {
-        x: {
-          format: 'dd/MM/yy',
-        },
-      },
-    };
+        /* archive projects chart */
+        this.archivechartOptions = {
+          series: [
+            {
+              name: 'غير مكتملة',
+              data: this.addedOn_count,
+            },
+            {
+              name: 'مكتملة',
+              data: this.endedOn_count,
+            },
+          ],
+          chart: {
+            height: 350,
+            type: 'area',
+            zoom: {
+              enabled: false,
+            },
+            toolbar: false,
+          },
+          dataLabels: {
+            enabled: false,
+          },
+          stroke: {
+            curve: 'smooth',
+          },
+          xaxis: {
+            type: 'date',
+            categories: [
+              ' Jan ',
+              ' Feb ',
+              ' Mar ',
+              ' Apr ',
+              ' May ',
+              ' Jun ',
+              ' Jul ',
+              ' Aug ',
+              ' Sep ',
+              ' Oct ',
+              ' Nov ',
+              ' Dec ',
+            ],
+          },
+          tooltip: {
+            x: {
+              format: 'dd/MM/yy',
+            },
+          },
+        };
       } else {
-
-         /* archive projects chart */
-    this.archivechartOptions = {
-      series: [
-        {
-          name: 'not complete',
-          data: this.addedOn_count,
-        },
-        {
-          name: 'Completed',
-          data: this.endedOn_count,
-        },
-      ],
-      chart: {
-        height: 350,
-        type: 'area',
-        zoom: {
-          enabled: false,
-        },
-        toolbar: false,
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      stroke: {
-        curve: 'smooth',
-      },
-      xaxis: {
-        type: 'date',
-        categories: [
-          ' Jan ',
-          ' Feb ',
-          ' Mar ',
-          ' Apr ',
-          ' May ',
-          ' Jun ',
-          ' Jul ',
-          ' Aug ',
-          ' Sep ',
-          ' Oct ',
-          ' Nov ',
-          ' Dec ',
-        ],
-      },
-      tooltip: {
-        x: {
-          format: 'dd/MM/yy',
-        },
-      },
-    };
+        /* archive projects chart */
+        this.archivechartOptions = {
+          series: [
+            {
+              name: 'not complete',
+              data: this.addedOn_count,
+            },
+            {
+              name: 'Completed',
+              data: this.endedOn_count,
+            },
+          ],
+          chart: {
+            height: 350,
+            type: 'area',
+            zoom: {
+              enabled: false,
+            },
+            toolbar: false,
+          },
+          dataLabels: {
+            enabled: false,
+          },
+          stroke: {
+            curve: 'smooth',
+          },
+          xaxis: {
+            type: 'date',
+            categories: [
+              ' Jan ',
+              ' Feb ',
+              ' Mar ',
+              ' Apr ',
+              ' May ',
+              ' Jun ',
+              ' Jul ',
+              ' Aug ',
+              ' Sep ',
+              ' Oct ',
+              ' Nov ',
+              ' Dec ',
+            ],
+          },
+          tooltip: {
+            x: {
+              format: 'dd/MM/yy',
+            },
+          },
+        };
       }
-
-
     });
-  }
-
-  // handle change in completing projects
-  handleCompleting(event: any) {
-    if (event.target.checked == false) {
-      this.completed = 4500;
-      this.completedText = false;
-    } else {
-      this.completed = 6000;
-      this.completedText = true;
-    }
   }
 }
 export class DataStatatic {

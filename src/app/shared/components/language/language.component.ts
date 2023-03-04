@@ -50,12 +50,4 @@ export class LanguageComponent implements OnInit {
     $('.dropdown-menu').css('left', '0');
     window.location.reload();
   }
-
-  // change map language
-  changeMapLang() {
-    setTimeout(() => {
-      console.log("changeMapLang()");
-    }, 2000);
-
-  }
 }
