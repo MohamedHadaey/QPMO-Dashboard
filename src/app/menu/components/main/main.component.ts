@@ -80,11 +80,13 @@ export class MainComponent implements OnInit {
     }
 
     // this.GetAppliedFilterData()
+
+    this.getFavProjects_lists();
+    this.getFavProjects_cards();
+    this.getFavProjects_map();
     this.getListsProjects();
     this.getMapProjects();
     this.getCardsProjects();
-    this.getFavProjects_lists();
-    this.getFavProjects_cards();
     this.getProjectsTypes();
     this.getProjectsStates();
 
@@ -499,6 +501,8 @@ export class MainComponent implements OnInit {
       (response) => {
         if (response.Code == 200) {
           this.favProjects_map = response.data;
+          console.log("123456789", this.favProjects_map);
+
           localStorage.setItem('favProjects_map',JSON.stringify(this.favProjects_map));
           let ImagesUrl = [
             '../../../../assets/maps_images/yellow.png',
@@ -1176,11 +1180,13 @@ ProjectType!:any;
   // show favourites projects in all themes
   showFav() {
     this.isFav = true;
+    this.getFavProjects_map();
+    this.getFavProjects_cards();
     this.allListsProjects = this.favProjects_list;
     this.allMapProjects = this.favProjects_map;
     this.allCardsProjects = this.favProjects_card;
-    this.getFavProjects_map();
-    // this.getFavProjects_cards();
+    console.log("mohamed hadaey",this.allCardsProjects)
+
   }
 
   // show favourites projects in all themes

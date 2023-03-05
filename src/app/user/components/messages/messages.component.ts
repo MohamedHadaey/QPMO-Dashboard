@@ -30,21 +30,12 @@ export class MessagesComponent implements OnInit {
     this.getMyInbox();
     // this.spinner.show();
 
-
+    $("#pills-notifications-tab").on("click", () => {
+      $('#message-details').fadeOut();
+      $('#message-details').css('display', 'none');
+    })
   }
 
-
-  goToFinalMsg() {
-      let finalDetails = $("#final-details").offset().top;
-      console.log("hsjkdhskjhdksjhdjkshdkjshdkjsh", finalDetails)
-      //  $("html,body").animate({ scrollTop: finalDetails+1000 }, 500);
-      //  $(".message-content").scrollTop(finalDetails);
-
-    //   $(".parent-section").scrollTop($(".parent-section").scrollTop() + $(".final-details").position().top);
-
-    //   $(".parent-section").scrollTop($(".parent-section").scrollTop() + $(".final-details").position().top
-    // - $(".parent-section").height()/2 + $(".final-details").height()/2);
-  }
 
   // this function to log out
   logOut() {
@@ -107,7 +98,7 @@ export class MessagesComponent implements OnInit {
   }
 
   getMessageDetails(id: any) {
-    // this.spinner.show();
+    this.spinner.show();
     this._UserService.getMessage(id).subscribe(
       (response) => {
         if (response.Code == 200) {
@@ -115,9 +106,9 @@ export class MessagesComponent implements OnInit {
           this.subMessages = this.messageDetails.SubMessages;
           // console.log(this.messageDetails);
           // console.log(this.subMessages[this.subMessages.length-1].index);
-          // this.spinner.hide();
+          this.spinner.hide();
         } else {
-         // this.spinner.hide();
+         this.spinner.hide();
           // this.toastr.error(response.Error_Resp);
           if (this.currentLanguage == 'ar-sa') {
             Swal.fire({
@@ -137,7 +128,7 @@ export class MessagesComponent implements OnInit {
         }
       },
       (error) => {
-        // this.spinner.hide();
+        this.spinner.hide();
         if (this.currentLanguage == 'ar-sa') {
           Swal.fire({
             title: 'خطأ !!',

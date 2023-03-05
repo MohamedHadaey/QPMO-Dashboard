@@ -47,9 +47,9 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
-              "node_modules/popper.js/dist/umd/popper.min.js",
               "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/popper.js/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
               "node_modules/slick-carousel/slick/slick.min.js",
               "node_modules/apexcharts/dist/apexcharts.min.js",
               "node_modules/sweetalert2/dist/sweetalert2.js"

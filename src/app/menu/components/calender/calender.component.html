@@ -53,11 +53,11 @@
           <app-language></app-language>
           <img src="../../../../assets/images/Dashboard-icons/msg.png" alt="msgs" routerLink="/messages">
           <div class="dropdown">
-            <button class="dropdown-toggle mx-2 p-0" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+            <button class="dropdown-toggle mx-2 p-0" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" data-bs-auto-close="outside"
               aria-expanded="false">
               <img src="../../../../assets/images/Dashboard-icons/profile.png" alt="user" class="profile m-0">
             </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" data-bs-auto-close="outside">
               <li>
                 <div class="row">
                   <div class="col-4 p-0">
@@ -104,16 +104,56 @@
               </div>
             </div>
             <div class="col-sm-6">
-              <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+              <h3>{{ viewDate | date }}</h3>
+              <!-- | calendarDate:(view + 'ViewTitle'):'en' -->
             </div>
           </div>
           <mwl-calendar-month-view style="width: 100%;" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
             [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="showDayProjects($event.day)">
           </mwl-calendar-month-view>
         </div>
-      </div>
-      <div class="row px-3">
-        <app-project-details  [data]="projectDetails"></app-project-details>
+        <div class="row parent-test px-3 py-0">
+          <div class="row project-detail child-test px-3 py-0">
+            <div class="day-projects day-calender-projects">
+              <ul>
+                <li>
+                  <p>22 <bdi>{{"october" | translate }}</bdi> 2022 </p>
+                  <img src="../../../../assets/images/Dashboard-icons/exit.png" alt="exit icon" (click)="closeDayProjects()"
+                    class="hover">
+                </li>
+                <li>
+                  <div class="row justify-content-center align-items-center">
+                    <div class="col-sm-6 col-md-4 p-2">
+                      <div class="project-card" (click)="showProjectCardDetails()">
+                        <h5>{{"contract-no" | translate }}</h5>
+                        <p>P0369659874</p>
+                        <h5>{{"project-name" | translate }}</h5>
+                        <p>{{"road" | translate }}</p>
+                      </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4 p-2">
+                      <div class="project-card" (click)="showProjectCardDetails()">
+                        <h5>{{"contract-no" | translate }}</h5>
+                        <p>P0369873244</p>
+                        <h5>{{"project-name" | translate }}</h5>
+                        <p>{{"bridges" | translate }}</p>
+                      </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4 p-2">
+                      <div class="project-card" (click)="showProjectCardDetails()">
+                        <h5>{{"contract-no" | translate }}</h5>
+                        <p>P0369873639</p>
+                        <h5>{{"project-name" | translate }}</h5>
+                        <p>{{"sanitaion" | translate }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+                <app-project [data]="projectDetails"></app-project>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

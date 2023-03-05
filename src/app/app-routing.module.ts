@@ -12,7 +12,6 @@ import { MainComponent } from './menu/components/main/main.component';
 import { ProjectsComponent } from './menu/components/projects/projects.component';
 import { ReportsComponent } from './menu/components/reports/reports.component';
 import { LanguageComponent } from './shared/components/language/language.component';
-import { ProjectDetailsComponent } from './shared/components/project-details/project-details.component';
 import { MessagesComponent } from './user/components/messages/messages.component';
 import { ProfileComponent } from './user/components/profile/profile.component';
 
@@ -31,7 +30,6 @@ const routes: Routes = [
   {path:"profile", component: ProfileComponent, canActivate:[AuthGuard]},
   {path:"messages", component: MessagesComponent, canActivate:[AuthGuard]},
   {path:"language", component: LanguageComponent},
-  {path:"project-details", component: ProjectDetailsComponent},
   {path:"project", component: ProjectsComponent},
   {path:"**" , redirectTo: "home", pathMatch: "full"}
 ];

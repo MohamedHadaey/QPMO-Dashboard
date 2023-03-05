@@ -1,6 +1,6 @@
 .content-body {
   .calendar-content {
-
+    position: relative;
     .calendar-card {
       .btn-group {
         .btn {
@@ -22,5 +22,118 @@
         }
       }
     }
+
+
+     .parent-test {
+      display: none;
+      position: absolute;
+      bottom: -50px;
+      left: 0;
+      right: 0;
+      height: 300px;
+
+      .child-test {
+        margin: auto;
+        .day-calender-projects {
+          background-color: #fff;
+          box-shadow: 0 0 5px rgb(0, 0, 0, 0.4);
+          width: 100%;
+          padding: 10px;
+          border-radius: 10px;
+          position: relative;
+
+          >ul {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+
+            li {
+              width: 100%;
+              background-color: #F3F5FD;
+              border-radius: 5px;
+              margin: 5px 0;
+              padding: 5px 20px;
+              display: flex;
+              align-items: center;
+
+              p {
+                padding: 0;
+                margin: 0;
+                color: #3D3D3D;
+                font-size: 14px;
+                font-weight: bold;
+              }
+
+              img {
+                width: 18px;
+              }
+
+              .row {
+                .col-sm-6 {
+                  .project-card {
+                    border-radius: 20px;
+                    display: flex;
+                    flex-direction: column;
+                    margin: 5px 10px;
+                    padding: 20px 10px;
+                    min-width: 200px;
+                    transition: all 0.3s;
+
+                    &:hover {
+                      cursor: pointer;
+                      border-radius: 5px;
+                    }
+
+                    h5 {
+                      color: #3D3D3D;
+                      font-size: 16px;
+                      font-weight: 700;
+                    }
+
+                    p {
+                      margin: 0;
+                      padding: 0;
+                      color: #fff;
+                      font-weight: 400;
+                    }
+                  }
+                }
+
+                .col-sm-6:first-of-type .project-card {
+                  // background-color: #4CB871;
+                  // background: linear-gradient(231deg, #4CB871 0%, #E9E9E9 100%);
+                  background: linear-gradient(231deg, #F24773 0%, #E9E9E9 100%)
+                }
+
+                .col-sm-6:nth-of-type(2) .project-card {
+                  // background-color: #F24773;
+                  // background: linear-gradient(231deg, #F24773 0%, #E9E9E9 100%)
+                  background: linear-gradient(231deg, #e3bc08 0%, #E9E9E9 100%);
+                }
+
+                .col-sm-6:nth-of-type(3) .project-card {
+                  // background-color: #068DF5;
+                  background: linear-gradient(231deg, #068DF5 0%, #E9E9E9 100%)
+                }
+              }
+            }
+
+            li:first-of-type {
+              justify-content: space-between;
+            }
+
+            li:nth-of-type(2) {
+              padding: 10px 20px;
+              justify-content: center;
+            }
+
+          }
+        }
+      }
+     }
   }
+
+
 }

@@ -1,4 +1,4 @@
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" [fullScreen]="true">
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="none" [fullScreen]="true">
   <img src="../../../../assets/images/Dashboard-icons/loader.gif" alt="infinity-loader" class="img-fluid" class="infinity-loader">
 </ngx-spinner>
 <section class="content">
@@ -55,11 +55,11 @@
           <app-language></app-language>
           <img src="../../../../assets/images/Dashboard-icons/msg.png" alt="msgs" routerLink="/messages">
           <div class="dropdown">
-            <button class="dropdown-toggle mx-2 p-0" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+            <button class="dropdown-toggle mx-2 p-0" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" data-bs-auto-close="outside"
               aria-expanded="false">
               <img src="../../../../assets/images/Dashboard-icons/profile.png" alt="user" class="profile m-0">
             </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" data-bs-auto-close="outside">
               <li>
                 <div class="row">
                   <div class="col-4 p-0">
@@ -99,7 +99,7 @@
                   <img src="../../../../assets/images/Dashboard-icons/filter-gray.png" alt="user" class="profile m-0">
                 </button>
                 <form [formGroup]="filterForm" (ngSubmit)="submitFilterForm(filterForm)">
-                  <ul class="dropdown-menu form-dropdown-menu" aria-labelledby="dropdownMenu">
+                  <ul class="dropdown-menu form-dropdown-menu" aria-labelledby="dropdownMenu" data-bs-auto-close="outside">
                     <li>
                       <div class="row">
                         <div class="col-5">
@@ -613,7 +613,7 @@
                             </div>
                           </div>
                         </div>
-                        <div class="fav-icon w-100 text-start px-3 py-2">
+                        <div class="fav-icon w-100 text-center px-3 py-2">
                           <img src="../../../../assets/images/Dashboard-icons/Favorite-gray.png" (click)="addProjectToFav(project.Project_ID)" *ngIf="!project.Project_ISFav" alt="fav-icon">
                           <img src="../../../../assets/images/Dashboard-icons/Favorite-blue.png"  (click)="removeProjectFromFav(project.Project_ID)" *ngIf="project.Project_ISFav" alt="fav-icon">
                         </div>

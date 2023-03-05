@@ -73,6 +73,10 @@
   "projects-archive-states": "حسب الحالة",
   "completed": "مكتملة",
   "not-completed": "غير مكتملة",
+  "enter-date-range": "أدخل نطاق التاريخ",
+  "enddate": "تاريخ الإنتهاء",
+  "startdate": "تاريخ البدء",
+
 
   "profile": "الاعدادات الشخصية",
   "log-out": "تسجيل خروج",
@@ -153,6 +157,8 @@
   "check-logout-msg": "هل أنت متأكد انك تريد تسجبل الخروج؟",
   "project-file1": "السجل التجارى",
   "project-file2": "شهاده الزكاه والدخل",
-  "project-file3": "خطاب الضمان البنكى"
+  "project-file3": "خطاب الضمان البنكى",
+
+  "meqawel-alert": "إشعار المقاول"
   }
 

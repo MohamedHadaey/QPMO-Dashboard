@@ -131,9 +131,10 @@ export class CalenderComponent implements OnInit {
   // this function to open day projects panel
   showDayProjects(e: any) {
     if (e.badgeTotal > 0) {
-      // this.getProjectDetails(3);
-      $('.day-projects').slideToggle();
-      $('.project-card-details').slideUp();
+      // $('.day-projects').slideToggle();
+      // $('.project-card-details').slideUp();
+      this.getProjectDetails(3);
+      $(".parent-test").slideToggle();
     }
   }
 
@@ -184,5 +185,17 @@ export class CalenderComponent implements OnInit {
       //   this.toastr.error("Unknown error From Server!!")
       // }
     })
+  }
+
+
+    // this function to open project card details panel
+    showProjectCardDetails() {
+      $('.project-card-details').slideToggle();
+
+    }
+
+      // this function to close day projects panel
+  closeDayProjects() {
+    $(".parent-test").slideToggle();
   }
 }

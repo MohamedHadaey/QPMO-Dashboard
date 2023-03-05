@@ -30,47 +30,20 @@
                 }
               }
 
-              // .example-form-field {
-              //   // padding: 0 !important;
-              //   // margin: 0 !important;
 
-              //   .range-input-datepicker {
-              //     width: 165px;
-              //   }
+              mat-form-field {
 
-              //   .mat-datepicker-toggle {
-              //     width: 300px !important;
-              //   }
+                overflow: hidden !important;
+                text-align: right !important;
+                display: flex !important;
+                padding: 0 20px !important;
+                // margin: 0 !important;
+              }
 
-              //   .mat-form-field-subscript-wrapper{
-              //     display: none !important;
-              //   }
-
-              //   .mat-form-field-label {
-              //     color: red;
-              //   }
-              //   .mat-date-range-input {
-              //     color: blue;
-              //   }
-              //   .mat-date-range-input-separator {
-              //     color: blue;
-              //   }
-              // }
-
-              // mat-form-field {
-              //   background-color: red;
-              //   height: 100px !important;
-              //   max-height: 100px !important;
-              //   overflow: hidden !important;
-              //   text-align: left !important;
-              //   display: flex !important;
-              //   padding: 0 !important;
-              //   // margin: 0 !important;
-              // }
-
-              // mat-form-field + mat-form-field {
-              //   margin-left: 800px;
-              // }
+              mat-form-field + mat-form-field {
+                background-color: red;
+                margin-left: 800px;
+              }
 
                 .mat-form-field-underline {
                   display: none !important;
@@ -280,7 +253,12 @@
             }
           }
         }
+        .projects-movements {
 
+          .employees {
+            height: fit-content;
+          }
+        }
         // for reports
         .reports {
           .col-lg-6:nth-of-type(2) {
@@ -288,7 +266,7 @@
               .employees-number {
                 // background-color: red;
                 // direction: ltr !important;
-                padding: 20px;
+                padding: 0px;
 
                 h2 {
                   font-size: 30px;
@@ -307,7 +285,6 @@
           }
 
           .chart-container {
-            max-width: 500px;
             margin: auto;
             // background-color: green;
 
@@ -342,7 +319,7 @@
           form {
             display: flex;
             flex-direction: row;
-            justify-content: end;
+            justify-content: flex-end;
 
             .range {
               width: 200px;
@@ -379,8 +356,6 @@
     }
   }
 }
-
-
 
 /* start media queres  */
 

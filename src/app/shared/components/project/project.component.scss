@@ -170,8 +170,8 @@
               // -- vars
               $bg-color: #34495e;
               $default-size: 1em;
-              $label-font-size: $default-size / 4;
-              $label-font-size-redo: $default-size * 4;
+              $label-font-size: calc($default-size / 4);
+              $label-font-size-redo: calc($default-size * 4);
 
               // -- mixins
               @mixin size($width, $height) {
@@ -247,16 +247,16 @@
 
                 .pie {
                   @include size(100%, 100%);
-                  clip: rect(0, $default-size, $default-size, $default-size / 2);
+                  clip: rect(0, $default-size, $default-size, calc($default-size / 2));
                   left: 0;
                   position: absolute;
                   top: 0;
 
                   .half-circle {
                     @include size(100%, 100%);
-                    border: ($default-size / 15) solid #3498db;
+                    border: calc($default-size / 15) solid #3498db;
                     border-radius: 50%;
-                    clip: rect(0, $default-size / 2, $default-size, 0);
+                    clip: rect(0, calc($default-size / 2), $default-size, 0);
                     left: 0;
                     position: absolute;
                     top: 0;
@@ -266,17 +266,17 @@
                 .label {
                   background: $bg-color;
                   border-radius: 50%;
-                  bottom: $label-font-size-redo / 10;
+                  bottom: calc($label-font-size-redo / 10);
                   color: #ecf0f1;
                   cursor: default;
                   display: block;
                   font-size: $label-font-size;
-                  left: $label-font-size-redo / 10;
-                  line-height: $label-font-size-redo * .70;
+                  left: calc($label-font-size-redo / 10);
+                  line-height: calc($label-font-size-redo * .70);
                   position: absolute;
-                  right: $label-font-size-redo / 10;
+                  right: calc($label-font-size-redo / 10);
                   text-align: center;
-                  top: $label-font-size-redo / 10;
+                  top: calc($label-font-size-redo / 10);
 
                   .smaller {
                     color: #bdc3c7;
@@ -288,7 +288,7 @@
 
                 .shadow {
                   @include size(100%, 100%);
-                  border: $default-size / 15 solid #eee;
+                  border: calc($default-size / 15) solid #eee;
                   border-radius: 50%;
                 }
 
@@ -655,6 +655,7 @@
                 font-weight: bold;
 
               }
+
             }
 
             .update-popups {
@@ -874,11 +875,11 @@
       }
 
       .modal-body {
-        text-align: center;
         h4 {
           color: #555;
           font-weight: bold;
           font-size: 18px;
+          text-align: center;
         }
       }
 
@@ -925,6 +926,26 @@
 
           }
         }
+      }
+    }
+  }
+
+  #dynamicModal {
+    .modal-body {
+
+      .form-chec {
+        padding: 10px 10px 20px 10px;
+        .form-check-input {
+          width: 1.8em !important;
+          height: 1.8em !important;
+      }
+
+      .form-check-label {
+        margin: 0 20px;
+        padding-top: 6px;
+        font-weight: 600;
+
+      }
       }
     }
   }

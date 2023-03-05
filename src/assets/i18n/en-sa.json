@@ -74,6 +74,10 @@
 "projects-archive-states": "Status",
 "completed": "Completed",
 "not-completed": "Not Completed",
+"enter-date-range": "Enter a date range",
+"enddate": "End date",
+"startdate": "Start date",
+
 
 "profile": "Profile",
 "log-out": "Logout",
@@ -154,6 +158,8 @@
 "check-logout-msg": "Are you sure you want to Sign Out?",
 "project-file1": "Commercial register",
 "project-file2": "Certificate of Zakat and Income",
-"project-file3": "Bank guarantee letter"
+"project-file3": "Bank guarantee letter",
+
+"meqawel-alert": "Alert Mqawl"
 }
 

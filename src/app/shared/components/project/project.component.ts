@@ -211,15 +211,91 @@ export class ProjectComponent implements OnInit {
   }
 
 
+
+  requestDeliveryAlert!:string;
+  processDetail = {
+    ProjectAction_CheckMaqawlDefault:false,
+    ProjectAction_CheckUserDefault: false,
+    ProjectAction_Desc: "0",
+    ProjectAction_DescEn: "0",
+    ProjectAction_Enabled: true,
+    ProjectAction_IconPath: "0",
+    ProjectAction_Id: 2,
+    ProjectAction_IsMainFunction: false,
+    ProjectAction_Name: "اشعار بالعمالة اللازمة للمشروع",
+    ProjectAction_ProgDesc: "0"
+  }
+  showProcessFormAlert(val:any) {
+    console.log(val);
+    this.processDetail=val;
+    // this.spinner.show();
+    $('#dynamicModal').modal('show');
+  }
+
+  excuteProjectAction() {
+
+
+  }
+
+  project_id:number = 3
+  sendProjectId(id:number) {
+    this.project_id = id
+  }
+
+
+     // alert form validation
+     alertForm: FormGroup = new FormGroup({
+      alert_mqawl: new FormControl(false, []),
+    });
+
+
+    submitAlertForm(alertForm: FormGroup) {
+      this.spinner.show();
+      if (alertForm.invalid) {
+        this.spinner.hide();
+        return;
+      } else {
+        console.log(alertForm.value.alert_mqawl);
+        console.log("excute");
+        $('#dynamicModal').modal('hide');
+        this.spinner.hide();
+
+
+        this._SharedService.excuteProjectActions(this.processDetail.ProjectAction_Id, this.project_id, alertForm.value.alert_mqawl ).subscribe((response) => {
+          console.log("meqawel alert respnse", response);
+          if(response.Code == 200) {
+            if (this.currentLanguage == 'ar-sa') {
+              Swal.fire({
+                title: 'نجاح !!',
+                text: 'تم ارسال الإشعار بنجاح',
+                icon: 'success',
+                confirmButtonText: 'موافق',
+              })
+            } else {
+              Swal.fire({
+                title: 'Success !!',
+                text: 'Notification sent successfully',
+                icon: 'success',
+                confirmButtonText: 'OK',
+              })
+            }
+
+            this.alertForm.reset();
+          }
+        }, (error) => {
+          console.log(error)
+        })
+      }
+    }
     //********         add to fav       ************/
     addProjectToFav(id: any) {
       this._MenuService.addToFav(id).subscribe(
         (response) => {
           if (response.Code == 200) {
-            $(".unfav-icon").addClass("d-none");
-            $(".unfav-icon").removeClass("d-inline-block");
-            $(".fav-icon").addClass("d-inline-block");
-            $(".fav-icon").removeClass("d-none");
+            $(".unfav-icon-project-details").addClass("d-none");
+            $(".unfav-icon-project-details").removeClass("d-inline-block");
+            $(".fav-icon-project-details").addClass("d-inline-block");
+            $(".fav-icon-project-details").removeClass("d-none");
 
             if (this.currentLanguage == 'ar-sa') {
               Swal.fire({
@@ -227,6 +303,10 @@ export class ProjectComponent implements OnInit {
                 text: 'تم إضافة المشروع بنجاح',
                 icon: 'success',
                 confirmButtonText: 'موافق',
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  window.location.reload();
+                }
               });
             } else {
               Swal.fire({
@@ -234,8 +314,13 @@ export class ProjectComponent implements OnInit {
                 text: 'The project has been successfully added',
                 icon: 'success',
                 confirmButtonText: 'OK',
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  window.location.reload();
+                }
               });
             }
+
             // this.getListsProjects();
             // this.getMapProjects();
             // this.getCardsProjects();
@@ -285,16 +370,20 @@ export class ProjectComponent implements OnInit {
       this._MenuService.removeFromFav(id).subscribe(
         (response) => {
           if (response.Code == 200) {
-            $(".fav-icon").addClass("d-none");
-            $(".fav-icon").removeClass("d-inline-block");
-            $(".unfav-icon").addClass("d-inline-block");
-            $(".unfav-icon").removeClass("d-none");
+            $(".fav-icon-project-details").addClass("d-none");
+            $(".fav-icon-project-details").removeClass("d-inline-block");
+            $(".unfav-icon-project-details").addClass("d-inline-block");
+            $(".unfav-icon-project-details").removeClass("d-none");
             if (this.currentLanguage == 'ar-sa') {
               Swal.fire({
                 title: 'نجاح !!',
                 text: 'تم حذف المشروع بنجاح',
                 icon: 'success',
                 confirmButtonText: 'موافق',
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  window.location.reload();
+                }
               });
             } else {
               Swal.fire({
@@ -302,8 +391,14 @@ export class ProjectComponent implements OnInit {
                 text: 'The project has been successfully deleted',
                 icon: 'success',
                 confirmButtonText: 'OK',
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  window.location.reload();
+                }
               });
             }
+
+
             // this.getListsProjects();
             // this.getMapProjects();
             // this.getCardsProjects();

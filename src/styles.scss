@@ -48,6 +48,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* begin:: global styles for all project */
+
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
@@ -342,7 +343,7 @@ a {
             .col-8 {
               display: flex;
               justify-content: center;
-              align-items: flex-end;
+              align-items: center;
 
               p {
                 font-size: 12px;

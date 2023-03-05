@@ -1,4 +1,7 @@
 <ng-container *ngIf="data">
+  <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" type="none" size="medium" color="#fff" [fullScreen]="true">
+    <img src="../../../../assets/images/Dashboard-icons/loader.gif" alt="infinity-loader" class="img-fluid" class="infinity-loader">
+  </ngx-spinner>
 <div class="row project-detail px-3 mb-5">
   <div class="day-project">
     <div class="project-card-details">
@@ -18,12 +21,13 @@
         </div>
         <div class="col-md-6 col-lg-3">
           <div class="icons">
+            <!-- *ngIf="data['IsFav'] == true" -->
             <img
             src="../../../../assets/images/Dashboard-icons/Favorite-blue.png"
-            alt="favourite" class="fav-icon" *ngIf="data['IsFav'] == true" (click)="removeProjectFromFav(data['ID'])">
+            alt="favourite" class="fav-icon-project-details" [class.d-none]="data['IsFav'] == false" (click)="removeProjectFromFav(data['ID'])">
             <img
             src="../../../../assets/images/Dashboard-icons/Favorite-gray.png" (click)="addProjectToFav(data['ID'])"
-            alt="favourite" class="unfav-icon" *ngIf="data['IsFav'] == false">
+            alt="favourite" class="unfav-icon-project-details" [class.d-none]="data['IsFav'] == true">
 
             <img src="../../../../assets/images/Dashboard-icons/maximize.png" alt="maximize icon"
               (click)="showProjectProcess()" *ngIf="!minimize">
@@ -40,7 +44,7 @@
             <h4>{{"project-start" | translate }}</h4>
             <div class="number p-3">
               <img src="../../../../assets/images/Dashboard-icons/date.png" alt="date icon">
-              <p>{{data['StartDate'] | date}}</p>
+              <p>{{data['StartDate'] | date: 'dd-MM-yyyy'}}</p>
               <!-- | date:'shortDate' -->
             </div>
           </div>
@@ -54,7 +58,7 @@
                 <div class="progress-bar" role="progressbar" aria-label="Success example" [style.width]="data['Project_User_Percentage']+'%'"
                   aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" [class]="data['Project_User_Percentage']<=25?'bg-danger':data['Project_User_Percentage']<=50?'bg-warning':data['Project_User_Percentage']<=75?'bg-success':data['Project_User_Percentage']<=100?'bg-primary':''"></div>
               </div>
-              <span>{{data['LaunchedDate'] | date }} </span>
+              <span>{{data['LaunchedDate'] | date: 'dd-MM-yyyy'}} </span>
             </div>
           </div>
         </div>
@@ -111,8 +115,9 @@
       <div class="row project-process w-100 m-auto  px-0 mx-0">
         <p>{{"project-phases" | translate }}</p>
         <div class="row">
+          <!-- data-bs-toggle="modal" data-bs-target="#dynamicModal" -->
           <div class="col-sm-6 col-md-4 col-lg-2 " *ngFor="let projectProcess of projectProcesses">
-            <div class="process hover" data-bs-toggle="modal" data-bs-target="#deliveryModal">
+            <div class="process hover"   (click)="sendProjectId(data['ID']);showProcessFormAlert(projectProcess)">
               <img src="../../../../assets/images/Dashboard-icons/refresh-ratio.png" alt="alert delay icon">
               <p>{{projectProcess.ProjectAction_Name}}</p>
             </div>
@@ -145,12 +150,12 @@
               <p>{{"request-alert" | translate }}</p>
             </div>
           </div> -->
-          <div class="col-sm-6 col-md-4 col-lg-2">
+          <!-- <div class="col-sm-6 col-md-4 col-lg-2">
             <div class="process hover" data-bs-toggle="modal" data-bs-target="#inventoryModal">
               <img src="../../../../assets/images/Dashboard-icons/inventory.png" alt="inventory icon">
               <p>{{"an-inventory" | translate }}</p>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
       <div class="row project-dates">
@@ -334,8 +339,10 @@
       </div>
     </div>
   </div>
-<!-- delivery alert Modal -->
-<div class="modal fade" id="deliveryModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+
+<!-- dynamic alert Modal -->
+<div class="modal fade" id="dynamicModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -343,49 +350,30 @@
           <img src="../../../../assets/images/Dashboard-icons/alert-delay.png" alt="delivery alert delay icon">
         </div>
       </div>
-      <div class="modal-body px-2 py-0">
-        <h4>{{"request-delivery-alert" | translate}}</h4>
-      </div>
-      <div class="modal-footer py-0">
-        <div class="butns py-0">
-          <div class="row">
-            <div class="col-sm-6">
-              <button type="button" data-bs-dismiss="modal" id="liveToastBtn">{{"confirm" | translate}}</button>
-            </div>
-            <div class="col-sm-6">
-              <button type="button" data-bs-dismiss="modal">{{"cancel" | translate}}</button>
+      <form [formGroup]="alertForm" (ngSubmit)="submitAlertForm(alertForm)">
+        <div class="modal-body px-2 py-0">
+          <!-- <h4>{{"request-delivery-alert" | translate}}</h4> -->
+          <h4>{{processDetail.ProjectAction_Name}}</h4>
+          <div class="form-chec">
+            <input class="form-check-input" type="checkbox" id="flexCheckDefault"  formControlName="alert_mqawl">
+            <label class="form-check-label" for="flexCheckDefault">
+              {{"meqawel-alert" | translate}}
+            </label>
+          </div>
+        </div>
+        <div class="modal-footer py-0">
+          <div class="butns py-0">
+            <div class="row">
+              <div class="col-sm-6">
+                <button type="submit">{{"confirm" | translate}}</button>
+              </div>
+              <div class="col-sm-6">
+                <button type="button" data-bs-dismiss="modal">{{"cancel" | translate}}</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- image update alert Modal -->
-<div class="modal fade" id="imageUpdateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <div class="update-image">
-          <img src="../../../../assets/images/Dashboard-icons/update-photos.png" alt="update photos">
-        </div>
-      </div>
-      <div class="modal-body px-2 py-0">
-        <h4>{{"request-update-images-msg" | translate}}</h4>
-      </div>
-      <div class="modal-footer py-0">
-        <div class="butns py-0">
-          <div class="row">
-            <div class="col-sm-6">
-              <button type="button" data-bs-dismiss="modal">{{"confirm" | translate}}</button>
-            </div>
-            <div class="col-sm-6">
-              <button type="button" data-bs-dismiss="modal">{{"cancel" | translate}}</button>
-            </div>
-          </div>
-        </div>
-      </div>
+      </form>
     </div>
   </div>
 </div>
@@ -420,62 +408,5 @@
     </div>
   </div>
 </div>
-
-<!-- deadline alert modal -->
-<div class="modal fade" id="deadlineAlertModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <div class="update-image">
-          <img src="../../../../assets/images/Dashboard-icons/alert-timeout.png" alt="refresh-ratio icon">
-        </div>
-      </div>
-      <div class="modal-body px-2 py-0">
-        <h4>{{"request-deadline-alert" | translate}}</h4>
-      </div>
-      <div class="modal-footer py-0">
-        <div class="butns py-0">
-          <div class="row">
-            <div class="col-sm-6">
-              <button type="button" data-bs-dismiss="modal">{{"confirm" | translate}}</button>
-            </div>
-            <div class="col-sm-6">
-              <button type="button" data-bs-dismiss="modal">{{"cancel" | translate}}</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- inventory modal -->
-<div class="modal fade" id="inventoryModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <div class="update-image">
-          <img src="../../../../assets/images/Dashboard-icons/inventory.png" alt="refresh-ratio icon">
-        </div>
-      </div>
-      <div class="modal-body px-2 py-0">
-        <h4>{{"inventory-alert" | translate}}</h4>
-      </div>
-      <div class="modal-footer py-0">
-        <div class="butns py-0">
-          <div class="row">
-            <div class="col-sm-6">
-              <button type="button" data-bs-dismiss="modal">{{"confirm" | translate}}</button>
-            </div>
-            <div class="col-sm-6">
-              <button type="button" data-bs-dismiss="modal">{{"cancel" | translate}}</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 </div>
 </ng-container>

@@ -52,11 +52,11 @@
           <app-language></app-language>
           <img src="../../../../assets/images/Dashboard-icons/msg.png" alt="msgs" routerLink="/messages">
           <div class="dropdown">
-            <button class="dropdown-toggle mx-2 p-0" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+            <button class="dropdown-toggle mx-2 p-0" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" data-bs-auto-close="outside"
               aria-expanded="false">
               <img src="../../../../assets/images/Dashboard-icons/profile.png" alt="user" class="profile m-0">
             </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" data-bs-auto-close="outside">
               <li>
                 <div class="row">
                   <div class="col-4 p-0">
@@ -90,8 +90,8 @@
             <div class="list p-3">
               <div class="row reports ">
                 <h5 class="py-0 my-0 fw-bold">{{"projects-statistics" | translate }}</h5>
-                <div class="col-lg-6 p-3">
-                  <div class="employees p-3">
+                <div class="col-lg-6 p-3" style="direction: rtl;" >
+                  <div class="employees p-3" style="direction: rtl;" >
                     <div class="employees-head w-100 d-flex justify-content-between align-items-center">
                       <div class="logo d-flex align-items-center pt-2" style="padding-bottom: 32px;">
                         <!-- <img src="../../../../assets/images/Dashboard-icons/rate.png" alt="worker"> -->
@@ -99,7 +99,7 @@
                       </div>
                     </div>
                     <!-- begin:: chart -->
-                    <div id="chart" class="my-2 py-1" >
+                    <div id="chart" class="my-2 py-1 " style="direction: rtl;" >
                       <apx-chart [series]="statechartOptions.series" [chart]="statechartOptions.chart"
                         [dataLabels]="statechartOptions.dataLabels" [plotOptions]="statechartOptions.plotOptions"
                         [yaxis]="statechartOptions.yaxis" [xaxis]="statechartOptions.xaxis"
@@ -116,13 +116,11 @@
                         <!-- <img src="../../../../assets/images/Dashboard-icons/rate.png" alt="rate"> -->
                         <h4>{{"project-states" | translate }}</h4>
                       </div>
-
-
                       <mat-form-field appearance="fill" class="example-form-field rounded d-flex" style="padding-bottom: 0; margin: 0; border-radius: 10px;">
-                        <mat-label>Enter a date range</mat-label>
-                        <mat-date-range-input style=" width: 165px; margin: left;" [formGroup]="range" [rangePicker]="rangePicker" class="range-input-datepicker">
-                          <input matStartDate placeholder="Start date" formControlName="start" readonly>
-                          <input matEndDate placeholder="End date" formControlName="end" readonly>
+                        <mat-label>{{"enter-date-range" | translate}}</mat-label>
+                        <mat-date-range-input style=" width: 165px;" [style.margin]="currentLanguage=='ar-sa'?'left':'auto'"  [formGroup]="range" [rangePicker]="rangePicker" class="range-input-datepicker">
+                          <input matStartDate [placeholder]="'startdate' | translate" formControlName="start" readonly>
+                          <input matEndDate [placeholder]="'enddate' | translate" formControlName="end" readonly>
                           <!-- (dateChange)="onSecondDateChange($event.value)" -->
                         </mat-date-range-input>
                         <!-- <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint> -->
@@ -134,10 +132,6 @@
                           </mat-date-range-picker-actions>
                         </mat-date-range-picker>
                       </mat-form-field>
-
-
-
-
                       <!-- <span>{{"from" | translate}}</span> -->
                       <!-- <span class="datepicker-toggle"><img  src="../../../../assets/images/Dashboard-icons/date.png" alt="date icon" class="datepicker-toggle-button"><input  type="date" class="datepicker-input"></span> -->
 
@@ -151,13 +145,25 @@
                       </div> -->
                       <!-- <span  class="datepicker-toggle"><img  src="../../../../assets/images/Dashboard-icons/date.png" alt="date icon" class="datepicker-toggle-button"><input  type="date" class="datepicker-input"></span> -->
                     </div>
-                    <div class="employees-number py-0">
-                      <div class="row">
-                        <div class="chart-container  " id="typeChart">
-                          <apx-chart width="100%" height="450px" [chart]="typeChartDetails" [series]="typeChartSeries"
+                    <div class="employees-number py-0 " style="direction: rtl !important;">
+                      <div class="row p-0 m-0 px-0 w-100 d-flex justify-content-center align-items-center">
+
+
+
+                        <div class="chart-container  px-0 mx-0 px-0 d-flex justify-content-center align-items-center"  id="typeChart" *ngIf="currentLanguage=='ar-sa'" style="max-width: 450px; margin: auto;">
+                          <apx-chart class="mx-0" style="width: 100%; margin: auto;" [chart]="typeChartDetails" [series]="typeChartSeries"
                             [labels]="Category"
                             [dataLabels]="typechartDetails"></apx-chart>
                         </div>
+
+
+                        <div class="chart-container px-0 mx-0 px-0 d-flex justify-content-center align-items-center" *ngIf="currentLanguage=='en-sa'" style="direction: ltr;"  id="typeChart" >
+                          <apx-chart style="width: 100%" [chart]="typeChartDetails" [series]="typeChartSeries"
+                            [labels]="Category"
+                            [dataLabels]="typechartDetails"></apx-chart>
+                        </div>
+
+
                       </div>
                     </div>
                   </div>
@@ -195,7 +201,7 @@
                   </div>
                 </div>
               </div>
-              <div class="row justify-content-center align-items-center">
+              <div class="row justify-content-center align-items-center projects-movements">
                 <div class="col-12">
                   <div class="employees p-3">
                     <div class="employees-head  w-100 d-flex justify-content-between align-items-center">
@@ -203,8 +209,8 @@
                         <h4>{{"project-movement" | translate }}</h4>
                       </div>
                     </div>
-                    <div class="employees-number py-0">
-                      <div class="row">
+                    <div class="employees-number py-0 ">
+                      <div class="row ">
                         <div id="chart">
                           <apx-chart [series]="archivechartOptions.series" [chart]="archivechartOptions.chart"
                             [xaxis]="archivechartOptions.xaxis" [stroke]="archivechartOptions.stroke"

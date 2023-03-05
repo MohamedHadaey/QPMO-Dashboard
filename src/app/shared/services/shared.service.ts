@@ -23,4 +23,10 @@ export class SharedService {
   getProjectActions():Observable<any> {
     return this.http.get(`${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/ProjectAction/GetProjectAction?culture=${this._AuthService.currentLanguage}`)
   }
+
+  // function to get project actions or project processes
+  excuteProjectActions(AlertId:number,projectid:number, alert_mqawl:boolean ):Observable<any> {
+    return this.http.post(`${this._AuthService.baseUrl}/api/Dashboard/v${this._AuthService.version}/ProjectAction/ExcuteProjectAction?AlertId=${AlertId}&projectid=${projectid}&alert_mqawl=${alert_mqawl}&culture=${this._AuthService.currentLanguage}` , null)
+  }
+
 }

@@ -155,9 +155,7 @@ export class ReportsComponent implements OnInit {
         chart: {
           height: 350,
           type: 'area',
-          zoom: {
-            enabled: false,
-          },
+         
           toolbar: false,
         },
         dataLabels: {
@@ -205,9 +203,7 @@ export class ReportsComponent implements OnInit {
         chart: {
           height: 350,
           type: 'area',
-          zoom: {
-            enabled: false,
-          },
+
           toolbar: false,
         },
         dataLabels: {
@@ -308,7 +304,7 @@ export class ReportsComponent implements OnInit {
           },
           toolbar: false,
         },
-        colors: ['#F5E306', '#F24773', '#4CB871', '#068DF5', '#CCCCCC'],
+        colors: ['#F5E306', '#4CB871', '#F24773', '#068DF5', '#CCCCCC'],
         plotOptions: {
           bar: {
             columnWidth: '10%',
@@ -332,7 +328,7 @@ export class ReportsComponent implements OnInit {
           categories: this.status,
           labels: {
             style: {
-              colors: ['#F5E306', '#F24773', '#4CB871', '#068DF5', '#CCCCCC'],
+              colors: ['#F5E306',  '#4CB871', '#F24773', '#068DF5', '#CCCCCC'],
               fontSize: '14px',
             },
           },
@@ -445,9 +441,7 @@ export class ReportsComponent implements OnInit {
           chart: {
             height: 350,
             type: 'area',
-            zoom: {
-              enabled: false,
-            },
+
             toolbar: false,
           },
           dataLabels: {
@@ -495,9 +489,7 @@ export class ReportsComponent implements OnInit {
           chart: {
             height: 350,
             type: 'area',
-            zoom: {
-              enabled: false,
-            },
+
             toolbar: false,
           },
           dataLabels: {

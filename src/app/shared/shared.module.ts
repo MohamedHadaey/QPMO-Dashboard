@@ -4,7 +4,6 @@ import { LanguageComponent } from './components/language/language.component';
 import { TogglerComponent } from './components/toggler/toggler.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgChartsModule } from 'ng2-charts';
-import { ProjectDetailsComponent } from './components/project-details/project-details.component';
 // import swiper
 import { SwiperModule } from "swiper/angular";
 import { BrowserModule } from '@angular/platform-browser';
@@ -16,7 +15,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -24,7 +23,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   declarations: [
     LanguageComponent,
     TogglerComponent,
-    ProjectDetailsComponent,
     ProjectComponent,
 
 
@@ -33,6 +31,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CommonModule,
     TranslateModule,
     NgChartsModule,
+    FormsModule,
     BrowserModule,
     SwiperModule,
     MatDatepickerModule,
@@ -47,7 +46,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   exports: [
     LanguageComponent,
     TogglerComponent,
-    ProjectDetailsComponent,
     ProjectComponent
 
   ]

@@ -35,6 +35,7 @@
     "angular-progress-bar": "^1.0.11",
     "angular2-google-map": "^0.1.8",
     "apexcharts": "^3.36.3",
+    "autoprefixer": "10.4.5",
     "bootstrap": "^5.2.2",
     "boxicons": "^2.1.4",
     "chart.js": "^4.0.1",
