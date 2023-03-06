@@ -2,7 +2,10 @@
   <div class="row">
     <div class="sidebar">
       <div class="bg-white h-100">
-        <ul class="h-100">
+        <div class="row">
+          <img src="../../../../assets/images/Dashboard-icons/final_logo_2.png" routerLink="/home" class="qpmo-logo" alt="qpmo_logo">
+        </div>
+        <ul>
           <li routerLink="/home"><img src="../../../../assets/images/Dashboard-icons/home.png" alt="home"><span>{{"home"
               | translate }}</span></li>
           <li routerLink="/projects"><img src="../../../../assets/images/Dashboard-icons/trackprojects.png"
@@ -47,7 +50,7 @@
       <nav class="navbar">
         <app-toggler></app-toggler>
         <!-- <h2>QPMO<sub>system</sub></h2> -->
-        <img src="../../../../assets/images/Dashboard-icons/final_logo_2.png" style="width: 122px; margin: 5px 0" alt="qpmo_logo">
+        <!-- <img src="../../../../assets/images/Dashboard-icons/final_logo_2.png" routerLink="/home" style="width: 122px; margin: 5px 0" alt="qpmo_logo"> -->
         <div class="d-flex justify-content-center align-items-center icons">
           <app-language></app-language>
           <img src="../../../../assets/images/Dashboard-icons/msg.png" alt="msgs" routerLink="/messages">
@@ -127,8 +130,9 @@
                         <mat-datepicker-toggle style=" position: absolute;top: -17px;left: -8px;" matIconSuffix [for]="rangePicker" class="mat-datepicker-toggle"></mat-datepicker-toggle>
                         <mat-date-range-picker #rangePicker style=" padding: 0;margin:0;">
                           <mat-date-range-picker-actions>
-                            <button mat-button matDateRangePickerCancel  style="background-color: #919aa2; margin: 0 10px; padding: 3px 10px; border-radius: 5px; border: none; color: #fff;">Cancel</button>
-                            <button style="background-color: #749BC4; margin: 0 10px; padding: 3px 10px; border-radius: 5px; border: none; color: #fff;" mat-raised-button color="primary" matDateRangePickerApply (click)="currentPeriodClicked(range.value)">Apply</button>
+                            <button style="background-color: #749BC4; margin: 0 10px; padding: 3px 10px; border-radius: 5px; border: none; color: #fff;" mat-raised-button color="primary" matDateRangePickerApply (click)="currentPeriodClicked(range.value)">{{"apply" | translate}}</button>
+                            <button mat-button matDateRangePickerCancel  style="background-color: #919aa2; margin: 0 10px; padding: 3px 10px; border-radius: 5px; border: none; color: #fff;">{{"cancel" |translate}}</button>
+                            <button (click)="getAllTypesOfStatistics(); getCategory()" mat-button matDateRangePickerCancel class="btn btn-danger" style=" margin: 0 10px; padding: 3px 10px; border-radius: 5px; border: none; color: #fff;">{{"clear" |translate}}</button>
                           </mat-date-range-picker-actions>
                         </mat-date-range-picker>
                       </mat-form-field>
@@ -171,24 +175,6 @@
               </div>
               <div class="row panels w-100 mx-0 py-3">
                 <div class="projects-follow-card">
-                  <h4>{{"archieved-projects" | translate }}</h4>
-                  <div class="number p-3">
-                    <h3 id="color-primary">{{ProjectArchived}}</h3>
-                  </div>
-                </div>
-                <div class="projects-follow-card">
-                  <h4>{{"correctly-archieved" | translate }}</h4>
-                  <div class="number p-3">
-                    <h3 id="color-green">{{ArchivedCorrectly}}</h3>
-                  </div>
-                </div>
-                <div class="projects-follow-card">
-                  <h4>{{"incorrectly-archieved" | translate }}</h4>
-                  <div class="number p-3">
-                    <h3 id="color-red">{{ArchivedInCorrectly}}</h3>
-                  </div>
-                </div>
-                <div class="projects-follow-card">
                   <h4>{{"delayed-projects" | translate }}</h4>
                   <div class="number p-3">
                     <h3 id="color-yellow">1</h3>
@@ -200,8 +186,48 @@
                     <h3 id="color-secondary">{{ProjectNotLaunched}}</h3>
                   </div>
                 </div>
+                <div class="projects-follow-card">
+                  <h4>{{"financial-not-launched" | translate }}</h4>
+                  <div class="number p-3">
+                    <h3 id="color-red">12</h3>
+                  </div>
+                </div>
+
+                <div class="projects-follow-card">
+                  <h4>{{"runing-projects" | translate }}</h4>
+                  <div class="number p-3">
+                    <h3 id="color-primary">5</h3>
+                  </div>
+                </div>
+                <div class="projects-follow-card">
+                  <h4>{{"archieved-projects" | translate }}</h4>
+                  <div class="number p-3">
+                    <h3 id="color-green">{{ProjectArchived}}</h3>
+                  </div>
+                </div>
+
+
+
+                <!-- <div class="projects-follow-card">
+                  <h4>{{"not-financial" | translate }}</h4>
+                  <div class="number p-3">
+                    <h3 id="color-secondary">{{ProjectNotLaunched}}</h3>
+                  </div>
+                </div> -->
+                <div class="projects-follow-card">
+                  <h4>{{"mqawl_numbers" | translate }}</h4>
+                  <div class="number p-3">
+                    <h3 id="color-primary2">122</h3>
+                  </div>
+                </div>
+                <div class="projects-follow-card">
+                  <h4>{{"mqawl_active_numbers" | translate }}</h4>
+                  <div class="number p-3">
+                    <h3 id="color-green">08</h3>
+                  </div>
+                </div>
               </div>
-              <div class="row justify-content-center align-items-center projects-movements">
+              <!-- <div class="row justify-content-center align-items-center projects-movements">
                 <div class="col-12">
                   <div class="employees p-3">
                     <div class="employees-head  w-100 d-flex justify-content-between align-items-center">
@@ -216,6 +242,35 @@
                             [xaxis]="archivechartOptions.xaxis" [stroke]="archivechartOptions.stroke"
                             [tooltip]="archivechartOptions.tooltip"
                             [dataLabels]="archivechartOptions.dataLabels"></apx-chart>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+              <div class="row justify-content-center align-items-center projects-movements mt-3">
+                <div class="col-12">
+                  <div class="employees p-3">
+                    <div class="employees-head  w-100 d-flex justify-content-between align-items-center">
+                      <div class="logo d-flex align-items-center flex-grow-1">
+                        <h4>{{"project-movement" | translate }}</h4>
+                      </div>
+                    </div>
+                    <div class="employees-number py-0 ">
+                      <div class="row ">
+                        <div id="chart">
+                          <apx-chart
+                            [series]="projectMovementOptions.series"
+                            [chart]="projectMovementOptions.chart"
+                            [dataLabels]="projectMovementOptions.dataLabels"
+                            [plotOptions]="projectMovementOptions.plotOptions"
+                            [yaxis]="projectMovementOptions.yaxis"
+                            [legend]="projectMovementOptions.legend"
+                            [fill]="projectMovementOptions.fill"
+                            [stroke]="projectMovementOptions.stroke"
+                            [tooltip]="projectMovementOptions.tooltip"
+                            [xaxis]="projectMovementOptions.xaxis"
+                          ></apx-chart>
                         </div>
                       </div>
                     </div>

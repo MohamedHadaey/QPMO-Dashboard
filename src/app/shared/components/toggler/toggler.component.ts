@@ -16,10 +16,12 @@ export class TogglerComponent implements OnInit {
         $('.sidebar').css('width', '55px');
         $('.sidebar li span').fadeOut(0);
         $('.content-body').css('padding-right', '55px');
+        $(".qpmo-logo").fadeToggle();
       } else {
         $('.sidebar').css('width', '220px');
         $('.content-body').css('padding-right', '220px');
         $('.sidebar li span').fadeIn(1500);
+        $(".qpmo-logo").fadeToggle();
       }
     } else {
       if ($('.sidebar').css('width') == '220px') {
@@ -27,11 +29,13 @@ export class TogglerComponent implements OnInit {
         $('.sidebar li span').fadeOut(0);
         $('.content-body').css('padding-left', '55px');
         $('.content-body').css('padding-right', '0');
+        $(".qpmo-logo").fadeToggle();
       } else {
         $('.sidebar').css('width', '220px');
         $('.content-body').css('padding-left', '220px');
         $('.content-body').css('padding-right', '0');
         $('.sidebar li span').fadeIn(1500);
+        $(".qpmo-logo").fadeToggle();
       }
     }
   }

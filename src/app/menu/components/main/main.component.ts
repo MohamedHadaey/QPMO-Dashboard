@@ -327,7 +327,7 @@ export class MainComponent implements OnInit {
                 url: ImagesUrl[i.ID % 2],
               },
             });
-            console.log('lat: ', parseFloat(lat), 'lng: ', parseFloat(lng));
+            // console.log('lat: ', parseFloat(lat), 'lng: ', parseFloat(lng));
             this.center = {
               lat: parseFloat(lat),
               lng: parseFloat(lng),
@@ -445,7 +445,7 @@ export class MainComponent implements OnInit {
       (response) => {
         if (response.Code == 200) {
           this.favProjects_list = response.data;
-          console.log("123456", this.favProjects_list)
+          console.log("fav projects list theme", this.favProjects_list)
           localStorage.setItem(
             'favProjects_list',
             JSON.stringify(this.favProjects_list)
@@ -501,7 +501,7 @@ export class MainComponent implements OnInit {
       (response) => {
         if (response.Code == 200) {
           this.favProjects_map = response.data;
-          console.log("123456789", this.favProjects_map);
+          console.log("fav projects-map theme", this.favProjects_map);
 
           localStorage.setItem('favProjects_map',JSON.stringify(this.favProjects_map));
           let ImagesUrl = [
@@ -530,7 +530,7 @@ export class MainComponent implements OnInit {
                 url: ImagesUrl[i.ID % 2],
               },
             });
-            console.log('lat: ', parseFloat(lat),'lng: ', parseFloat(lng));
+            // console.log('lat: ', parseFloat(lat),'lng: ', parseFloat(lng));
             this.center = {
               lat: parseFloat(lat),
               lng: parseFloat(lng),
@@ -940,7 +940,7 @@ export class MainComponent implements OnInit {
     }else {
       this.closeDropdown();
       this.spinner.show();
-      console.log("hello")
+      // console.log("hello")
       // filterForm.value.UserPer = (filterForm.value.UserPer[1]-filterForm.value.UserPer[0]) ;
       // filterForm.value.MaqawlPer = (filterForm.value.MaqawlPer[1]-filterForm.value.MaqawlPer[0]) ;
       // console.log(filterForm.value.UserPer);
@@ -987,7 +987,7 @@ export class MainComponent implements OnInit {
               url: ImagesUrl[i.ID % 2],
             },
           });
-          console.log('lat: ', parseFloat(lat),'lng: ', parseFloat(lng));
+          // console.log('lat: ', parseFloat(lat),'lng: ', parseFloat(lng));
           this.center = {
             lat: parseFloat(lat),
             lng: parseFloat(lng),
@@ -1016,7 +1016,7 @@ export class MainComponent implements OnInit {
   clearFilteredData() {
     this.spinner.show();
     this.closeDropdown();
-    console.log("hello");
+    // console.log("hello");
     this.emptyFilter = {
       ProjectType: null,
       ProjectStatus: [],
@@ -1157,7 +1157,7 @@ ProjectType!:any;
                 url: '../../../../assets/maps_images/yellow.png',
               },
             });
-            console.log('lat: ', parseFloat(lat),'lng: ', parseFloat(lng));
+           // console.log('lat: ', parseFloat(lat),'lng: ', parseFloat(lng));
 
           });
           console.log(this.allMapProjects)
@@ -1285,7 +1285,7 @@ ProjectType!:any;
               url: ImagesUrl[i.ID % 2],
             },
           });
-          console.log('lat: ', parseFloat(lat),'lng: ', parseFloat(lng));
+         // console.log('lat: ', parseFloat(lat),'lng: ', parseFloat(lng));
 
         });
       } else {
@@ -1319,7 +1319,7 @@ ProjectType!:any;
                 url: ImagesUrl[i.ID % 2],
               },
             });
-            console.log('lat: ', parseFloat(lat),'lng: ', parseFloat(lng));
+            // console.log('lat: ', parseFloat(lat),'lng: ', parseFloat(lng));
             this.center = {
               lat: parseFloat(lat),
               lng: parseFloat(lng),
@@ -1362,7 +1362,7 @@ ProjectType!:any;
               url: ImagesUrl[i.ID % 2],
             },
           });
-          console.log('lat: ', parseFloat(lat),'lng: ', parseFloat(lng));
+          // console.log('lat: ', parseFloat(lat),'lng: ', parseFloat(lng));
           this.center = {
             lat: parseFloat(lat),
             lng: parseFloat(lng),
@@ -1407,7 +1407,7 @@ ProjectType!:any;
                 url: ImagesUrl[i.ID % 2],
               },
             });
-            console.log('lat: ', parseFloat(lat),'lng: ', parseFloat(lng));
+            // console.log('lat: ', parseFloat(lat),'lng: ', parseFloat(lng));
             this.center = {
               lat: parseFloat(lat),
               lng: parseFloat(lng),

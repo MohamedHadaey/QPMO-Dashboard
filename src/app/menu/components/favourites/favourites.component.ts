@@ -105,7 +105,7 @@ export class FavouritesComponent implements OnInit {
     }else {
       this.closeDropdown();
       this.spinner.show();
-      console.log("hello")
+      // console.log("hello")
       // filterForm.value.UserPer = (filterForm.value.UserPer[1]-filterForm.value.UserPer[0]) ;
       // filterForm.value.MaqawlPer = (filterForm.value.MaqawlPer[1]-filterForm.value.MaqawlPer[0]) ;
       // console.log(filterForm.value.UserPer);
@@ -133,7 +133,7 @@ export class FavouritesComponent implements OnInit {
     clearFilteredData() {
       this.spinner.show();
       this.closeDropdown();
-      console.log("hello");
+      // console.log("hello");
       this.emptyFilter = {
         ProjectType: null,
         ProjectStatus: [],

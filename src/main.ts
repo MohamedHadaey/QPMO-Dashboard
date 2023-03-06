@@ -9,7 +9,7 @@ if (environment.production) {
 }
 
 platformBrowserDynamic().bootstrapModule(AppModule).then((ref) =>{
-  console.log("hello", ref)
+  console.log("hellos", ref)
 }
 )
   .catch(err => console.error(err));

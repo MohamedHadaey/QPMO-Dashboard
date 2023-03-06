@@ -10,6 +10,9 @@ import {
   ApexYAxis,
   ApexLegend,
   ApexGrid,
+  ApexStroke,
+  ApexFill,
+  ApexTooltip
 } from 'ng-apexcharts';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import { DatePipe } from '@angular/common';
@@ -34,6 +37,9 @@ export type ChartOptions = {
   grid: ApexGrid;
   colors: string[];
   legend: ApexLegend;
+  fill: ApexFill;
+  tooltip: ApexTooltip;
+  stroke: ApexStroke;
 };
 // end:: using charts
 import { AuthService } from 'src/app/auth/services/auth.service';
@@ -55,6 +61,8 @@ export class ReportsComponent implements OnInit {
   @ViewChild('chart') chart!: ChartComponent;
   public statechartOptions: Partial<ChartOptions> | any;
   public archivechartOptions: Partial<ChartOptions> | any;
+  public projectMovementOptions: Partial<ChartOptions> | any;
+
 
   /*************************/
   Catcount: number[] = [];
@@ -155,7 +163,7 @@ export class ReportsComponent implements OnInit {
         chart: {
           height: 350,
           type: 'area',
-         
+
           toolbar: false,
         },
         dataLabels: {
@@ -236,6 +244,144 @@ export class ReportsComponent implements OnInit {
         },
       };
     }
+
+    // final project movement option
+
+    if (localStorage.getItem('currentLanguage') == 'ar-sa') {
+      this.projectMovementOptions = {
+        series: [
+          {
+            name: " مكتمل ",
+            data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
+          },
+          {
+            name: " معتمد ",
+            data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
+          },
+          {
+            name: ' متاخر ',
+            data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
+          }
+        ],
+        chart: {
+          type: "bar",
+          height: 350,
+          toolbar: false,
+        },
+        plotOptions: {
+          bar: {
+            horizontal: false,
+            columnWidth: "55%",
+            // endingShape: rounded
+          }
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          show: true,
+          width: 2,
+          colors: ['#4CB871', '#F5E306', '#F24773'],
+        },
+        xaxis: {
+          categories: [
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct"
+          ]
+        },
+        yaxis: {
+          title: {
+            text: ""
+          }
+        },
+        fill: {
+          opacity: 1,
+          colors: ['#4CB871', '#F5E306', '#F24773'],
+        },
+        tooltip: {
+          y: {
+            formatter: function(val:any) {
+              return "$ " + val + " thousands";
+            }
+          }
+        }
+      };
+    }else {
+      this.projectMovementOptions = {
+        series: [
+          {
+            name: "Completed",
+            data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
+          },
+          {
+            name: "delayed",
+            data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
+          },
+          {
+            name: "Not Launched",
+            data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
+          }
+        ],
+        chart: {
+          type: "bar",
+          height: 350,
+          toolbar: false,
+        },
+        plotOptions: {
+          bar: {
+            horizontal: false,
+            columnWidth: "55%",
+            // endingShape: rounded
+          }
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          show: true,
+          width: 2,
+          colors: ['#4CB871', '#F5E306', '#F24773'],
+        },
+        xaxis: {
+          categories: [
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct"
+          ]
+        },
+        yaxis: {
+          title: {
+            text: ""
+          }
+        },
+        fill: {
+          opacity: 1,
+          colors: ['#4CB871', '#F5E306', '#F24773'],
+        },
+        tooltip: {
+          y: {
+            formatter: function(val:any) {
+              return "$ " + val + " thousands";
+            }
+          }
+        }
+      };
+    }
+
+
   }
 
   ngOnInit(): void {
@@ -399,6 +545,9 @@ export class ReportsComponent implements OnInit {
       });
   }
 
+  getAllTypesOfStatistics() {
+    this.range.reset()
+  }
   getTracking() {
     this._MenuService.GetStatistics_ProjectTracking().subscribe((response) => {
       console.log(response.data);

@@ -75,7 +75,7 @@ submitFilterForm(filterForm: FormGroup) {
   }else {
     this.closeDropdown();
     this.spinner.show();
-    console.log("hello")
+    // console.log("hello")
     // filterForm.value.UserPer = (filterForm.value.UserPer[1]-filterForm.value.UserPer[0]) ;
     // filterForm.value.MaqawlPer = (filterForm.value.MaqawlPer[1]-filterForm.value.MaqawlPer[0]) ;
     // console.log(filterForm.value.UserPer);
@@ -105,7 +105,7 @@ submitFilterForm(filterForm: FormGroup) {
    clearFilteredData() {
      this.spinner.show();
      this.closeDropdown();
-     console.log("hello");
+     // console.log("hello");
      this.emptyFilter = {
        ProjectType: null,
        ProjectStatus: [],
@@ -140,7 +140,7 @@ submitFilterForm(filterForm: FormGroup) {
     this._MenuService.getFollowProjects().subscribe((response => {
       if(response.Code == 200) {
         this.followedProjects = response.data;
-        console.log("followedProjectst", this.followedProjects);
+        console.log("followed projects response data", this.followedProjects);
         localStorage.setItem("followedProjects", JSON.stringify(this.followedProjects));
       } else {
         if (this.currentLanguage == 'ar-sa') {
@@ -185,7 +185,7 @@ submitFilterForm(filterForm: FormGroup) {
     this._MenuService.getAllCategoties().subscribe((response => {
       if(response.Code == 200) {
         this.projectsTypes = response.data;
-        console.log(this.projectsTypes)
+        console.log("projects type response in followed projects component",this.projectsTypes)
       } else {
         if (this.currentLanguage == 'ar-sa') {
           Swal.fire({
@@ -219,7 +219,7 @@ submitFilterForm(filterForm: FormGroup) {
       this._MenuService.getAllStates().subscribe((response => {
         if(response.Code == 200) {
           this.projectsStates = response.data;
-          console.log(this.projectsStates)
+          console.log("projects status response in followed projects component",this.projectsStates)
         } else {
           if (this.currentLanguage == 'ar-sa') {
             Swal.fire({

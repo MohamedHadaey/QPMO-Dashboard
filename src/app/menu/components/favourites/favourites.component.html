@@ -2,7 +2,10 @@
   <div class="row">
     <div class="sidebar">
       <div class="bg-white h-100">
-        <ul class="h-100">
+        <div class="row">
+          <img src="../../../../assets/images/Dashboard-icons/final_logo_2.png" routerLink="/home" class="qpmo-logo" alt="qpmo_logo">
+        </div>
+        <ul>
           <li routerLink="/home"><img src="../../../../assets/images/Dashboard-icons/home.png" alt="home"><span>{{"home"
               | translate }}</span></li>
           <li routerLink="/projects"><img src="../../../../assets/images/Dashboard-icons/trackprojects.png"
@@ -26,6 +29,7 @@
         </div>
         <div class="offcanvas-body p-0 px-2 bg-white">
           <div class="bg-white h-100">
+            <img src="../../../../assets/images/Dashboard-icons/final_logo_2.png" routerLink="/home" class="qpmo-logo" alt="qpmo_logo">
             <ul class="h-100">
               <li routerLink="/home"><img src="../../../../assets/images/Dashboard-icons/home.png"
                   alt="home"><span>{{"home" | translate }}</span></li>
@@ -49,7 +53,7 @@
       <nav class="navbar">
         <app-toggler></app-toggler>
         <!-- <h2>QPMO<sub>system</sub></h2> -->
-        <img src="../../../../assets/images/Dashboard-icons/final_logo_2.png" style="width: 122px; margin: 5px 0" alt="qpmo_logo">
+        <!-- <img src="../../../../assets/images/Dashboard-icons/final_logo_2.png" routerLink="/home" style="width: 122px; margin: 5px 0" alt="qpmo_logo"> -->
         <div class="d-flex justify-content-center align-items-center icons">
           <app-language></app-language>
           <img src="../../../../assets/images/Dashboard-icons/msg.png" alt="msgs" routerLink="/messages">
@@ -91,7 +95,7 @@
           <div class="col-sm-10 text-center p-2 px-3 w-100">
             <div class="search ">
               <span><i class="fa-solid fa-magnifying-glass"></i></span>
-              <input type="search"  [placeholder]="'search' | translate" (keyup)="search($event)" autocomplete="off">
+              <input type="search"  maxlength="40" [placeholder]="'search' | translate" (keyup)="search($event)" autocomplete="off">
               <div class="dropdown">
                 <button class="dropdown-toggle me-2 p-0" type="button" id="dropdownMenuButton1"
                   data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">

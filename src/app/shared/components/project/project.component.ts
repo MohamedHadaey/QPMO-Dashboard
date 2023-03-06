@@ -57,7 +57,7 @@ export class ProjectComponent implements OnInit {
       Project_User:{},
       Project_User_Percentage:0
     };
-    console.log(" data on ngOnInit  " , this.data);
+    console.log(" followed projects in on ngOnInit  " , this.data);
     this.getProjectProcesses();
 
   }

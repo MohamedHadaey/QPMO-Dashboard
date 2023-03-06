@@ -76,6 +76,10 @@
   "enter-date-range": "أدخل نطاق التاريخ",
   "enddate": "تاريخ الإنتهاء",
   "startdate": "تاريخ البدء",
+  "financial-not-launched": "معتمدة ولم تبدأ بعد",
+  "runing-projects": "المشاريع السارية",
+  "mqawl_numbers": "عدد المقاولين",
+  "mqawl_active_numbers": "عدد المقاولين الفعالين",
 
 
   "profile": "الاعدادات الشخصية",

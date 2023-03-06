@@ -77,6 +77,11 @@
 "enter-date-range": "Enter a date range",
 "enddate": "End date",
 "startdate": "Start date",
+"financial-not-launched": "Financial and not yet launched",
+"runing-projects": "Active projects",
+
+"mqawl_numbers": "Number of contractors",
+"mqawl_active_numbers": "Number of effective contractors",
 
 
 "profile": "Profile",
